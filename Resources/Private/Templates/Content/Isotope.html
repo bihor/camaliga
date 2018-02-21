@@ -1,0 +1,84 @@
+<f:layout name="Default" />
+
+<f:comment>
+This template is a Isotope example that requires jQuery and Isotope from here:
+http://isotope.metafizzy.co/
+Include it like this with TypoScript:
+
+page {
+  includeJSFooter.isotope = fileadmin/templates/scripts/mpezzi-bootstrap_isotope/js/isotope.pkgd.min.js
+  includeJSFooter.isotopeinit = fileadmin/templates/scripts/mpezzi-bootstrap_isotope/js/isotope.init.js
+}
+
+isotope.init.js should contain something like this:
+
+var lastiso = '';
+$('.grid').isotope({
+  // options
+  itemSelector: '.grid-item',
+ // layoutMode: 'fitRows',
+  percentPosition: true,
+  masonry: {
+    // use outer width of grid-sizer for columnWidth
+    columnWidth: 50
+  }
+});
+$('.isoheader').click(function(event){
+	event.preventDefault();
+	$(this).closest('div').addClass('isoopen');
+	$(this).closest('div').addClass('grid-item--width2');
+	$(this).closest('div').addClass('grid-item--height2');
+	if (lastiso != '') {
+		lastiso.removeClass('isoopen');
+		lastiso.removeClass('grid-item--width2');
+		lastiso.removeClass('grid-item--height2');
+	}
+	lastiso = $(this).closest('div');
+	$('.grid').isotope('layout');
+});
+ 
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+</f:comment>
+
+<f:section name="main">
+<f:flashMessages />
+<style>
+.grid-item { width: 23%; }
+.grid-item--width2 { width: 48%; }
+.grid-item--height2 { min-height: 220px; }
+.grid-item img { padding-right: 20px; }
+.grid-hidden {display: none;}
+.isoopen .grid-hidden {display: block;}
+</style>
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div class="grid">
+	<f:for each="{contents}" as="content" iteration="iteration">
+	  <div class="grid-item well">
+	      <h4>
+		    <a href="#" class="isoheader">{content.title}</a>
+	      </h4>
+	      <div class="grid-hidden">
+		      <f:if condition="{fal}"><f:then>
+    			<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" additionalAttributes="{align: 'left'}" treatIdAsReference="1" />
+  			  </f:then><f:else>
+		        <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" additionalAttributes="{align: 'left'}" />
+		      </f:else></f:if>
+		      <p>{content.shortdesc}
+		      <f:if condition="{content.link} != ''">
+				<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+			  </f:if>
+			  </p>
+	      </div>
+	  </div>
+	</f:for>
+</div>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

@@ -1,0 +1,204 @@
+<f:layout name="Default" />
+
+This example shows one selected element, their neighboring elements and a google map.
+https://developers.google.com/maps/documentation/directions/intro?hl=de#DirectionsRequests
+
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Single.css')}" rel="stylesheet" />
+<f:if condition="{settings.maps.dontIncludeAPI} == 0">
+	<f:if condition="{settings.maps.key}"><f:then>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3&key={settings.maps.key}&language={settings.maps.language}"></script>
+	</f:then><f:else>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&language={settings.maps.language}"></script>
+	</f:else></f:if>
+</f:if>
+
+<f:if condition="{error} == 1">
+<f:then>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:then>
+<f:else>
+ <div class="carousel-single">
+  <h1>{content.title}</h1>
+  <div class="carousel-single-img">
+   <f:if condition="{fal}"><f:then>
+    <f:if condition="{content.falimage.uid}">
+	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+    </f:if>
+   </f:then><f:else>
+    <f:if condition="{content.image} != ''">
+	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+    </f:if>
+   </f:else></f:if>
+  </div>
+  <div class="carousel-single-text">
+	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
+	<f:format.html>{content.longdesc}</f:format.html>
+	<f:if condition="{content.city} != ''">{f:translate(key: 'address')}: {content.street}, {content.zip} {content.city}, {content.country}<br></f:if>
+	<f:if condition="{content.person} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.person')}: {content.person}<br></f:if>
+	<f:if condition="{content.phone} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.phone')}: {content.phone}<br></f:if>
+	<f:if condition="{content.mobile} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.mobile')}: {content.mobile}<br></f:if>
+	<f:if condition="{content.email} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.email')}: {content.email}<br></f:if>
+	<div>
+		<f:if condition="{content.custom1} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom1')}: {content.custom1}.</f:if>
+		<f:if condition="{content.custom2} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom2')}: {content.custom2}.</f:if>
+		<f:if condition="{content.custom3} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom3')}: {content.custom3}.</f:if>
+	</div>
+	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
+		{catMMval.title}:
+		<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
+			<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>
+	</f:for>
+	<f:if condition="{content.link} != ''"><p>
+		<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+	</p></f:if>
+  </div>
+  
+  <div class="carousel-single-more">
+	<f:if condition="{fal}"><f:then>
+     <f:if condition="{content.falimage2.uid}">
+      <figure>
+	   <f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.originalFile.alternative}" title="{content.falimage2.originalResource.originalFile.title}" treatIdAsReference="1" />
+	   <figcaption>{content.falimage2.originalResource.originalFile.title}</figcaption>
+	  </figure>
+     </f:if>
+     <f:if condition="{content.falimage3.uid}">
+      <figure>
+	   <f:image src="{content.falimage3.uid}" alt="{content.falimage3.originalResource.originalFile.alternative}" title="{content.falimage3.originalResource.originalFile.title}" treatIdAsReference="1" />
+	   <figcaption>{content.falimage3.originalResource.originalFile.title}</figcaption>
+	  </figure>
+     </f:if>
+     <f:if condition="{content.falimage4.uid}">
+      <figure>
+	   <f:image src="{content.falimage4.uid}" alt="{content.falimage4.originalResource.originalFile.alternative}" title="{content.falimage4.originalResource.originalFile.title}" treatIdAsReference="1" />
+	   <figcaption>{content.falimage4.originalResource.originalFile.title}</figcaption>
+	  </figure>
+     </f:if>
+     <f:if condition="{content.falimage5.uid}">
+      <figure>
+	   <f:image src="{content.falimage5.uid}" alt="{content.falimage5.originalResource.originalFile.alternative}" title="{content.falimage5.originalResource.originalFile.title}" treatIdAsReference="1" />
+	   <figcaption>{content.falimage5.originalResource.originalFile.title}</figcaption>
+	  </figure>
+     </f:if>
+    </f:then><f:else>
+     <f:if condition="{content.image2} != ''">
+     <figure>
+	  <f:image src="/uploads/tx_camaliga/{content.image2}" alt="" title="{content.caption2}" />
+	  <figcaption>{content.caption2}</figcaption>
+	 </figure>
+     </f:if>
+	 <f:if condition="{content.image3} != ''">
+	 <figure>
+	  <f:image src="/uploads/tx_camaliga/{content.image3}" alt="" title="{content.caption3}" />
+	  <figcaption>{content.caption3}</figcaption>
+	 </figure>
+     </f:if>
+	 <f:if condition="{content.image4} != ''">
+	 <figure>
+	  <f:image src="/uploads/tx_camaliga/{content.image4}" alt="" title="{content.caption4}" />
+	  <figcaption>{content.caption4}</figcaption>
+	 </figure>
+     </f:if>
+	 <f:if condition="{content.image5} != ''">
+	 <figure>
+	  <f:image src="/uploads/tx_camaliga/{content.image5}" alt="" title="{content.caption5}" />
+	  <figcaption>{content.caption5}</figcaption>
+	 </figure>
+     </f:if>
+	</f:else></f:if>
+ 
+	<f:if condition="{hasParent} == 1">
+	  <p>{f:translate(key: 'parent')}</p>
+ 	  <f:if condition="{fal}"><f:then>
+ 	   <f:if condition="{parent.falimage.uid}">
+ 	    <figure>
+	    <f:image src="{parent.falimage.uid}" alt="{parent.title}" title="{parent.title}" maxWidth="200" treatIdAsReference="1" />
+	    <figcaption>{parent.title}</figcaption>
+	    </figure>
+	   </f:if>
+	  </f:then><f:else>
+	   <f:if condition="{parent.image} != ''">
+	    <figure>
+	    <f:image src="/uploads/tx_camaliga/{parent.image}" alt="{parent.title}" title="{parent.title}" maxWidth="200" />
+	    <figcaption>{parent.title}</figcaption>
+	    </figure>
+	   </f:if>
+	  </f:else></f:if>
+	</f:if>
+	
+	<f:if condition="{childs -> f:count()} > 0">
+	 <p>{f:translate(key: 'other_childs')}</p>
+	 <f:for each="{childs}" as="child">
+	  <f:if condition="{fal}"><f:then>
+ 	   <f:if condition="{child.falimage.uid}">
+ 	    <figure>
+	    <f:image src="{child.falimage.uid}" alt="{child.title}" title="{child.title}" maxWidth="200" treatIdAsReference="1" />
+	    <figcaption>{child.title}</figcaption>
+	    </figure>
+	   </f:if>
+	  </f:then><f:else>
+	   <f:if condition="{child.image} != ''">
+	    <figure>
+	    <f:image src="/uploads/tx_camaliga/{child.image}" alt="{child.title}" title="{child.title}" maxWidth="200" />
+	    <figcaption>{child.title}</figcaption>
+	    </figure>
+	   </f:if>
+	  </f:else></f:if>
+	 </f:for>
+	</f:if>
+ </div>
+ 
+ <f:if condition="{content.latitude} != 0">
+ <div id="map_canvas" class="carousel-single-map"></div>
+ <script type="text/javascript">
+  var map;
+  
+  function initializeGM() {
+    var latlng = new google.maps.LatLng({content.latitude},{content.longitude});
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+	  zoomControl: true,
+	  zoomControlOptions: {
+		position: google.maps.ControlPosition.LEFT_BOTTOM
+	  },
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  }
+  function addToGM(koord1,koord2,title) {
+	var myLatlng = new google.maps.LatLng(koord1,koord2);
+	var contentString = '<div class="carousel-single-map-item"><b>'+title+'</b></div>';
+
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+
+	var marker = new google.maps.Marker({
+		position: myLatlng,
+		map: map,
+		title: title
+	});
+	
+	google.maps.event.addListener(marker, 'click', function() {
+	  infowindow.open(map,marker);
+	});
+	return;
+  }
+  
+  initializeGM();
+  addToGM({content.latitude}, {content.longitude}, '{content.title}');
+ </script>
+ 
+ <f:if condition="{settings.maps.includeRoute} == 1">
+ 	<f:render partial="Route" arguments="{_all}" />
+ </f:if>
+ </f:if>
+ 
+ <p class="carousel-single-back"><a href="javascript:history.back();">{f:translate(key: 'back', default: 'back')}</a></p>
+ </div>
+</f:else>
+</f:if>
+</f:section>

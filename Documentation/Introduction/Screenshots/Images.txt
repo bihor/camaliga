@@ -1,0 +1,35 @@
+﻿.. |img-3|      image:: ../../Images/camaliga_screenshot1.jpg
+.. :align: left
+.. :border: 0
+.. :name: Image 1
+.. :width: 100%
+
+.. |img-4|      image:: ../../Images/camaliga_screenshot2.jpg
+.. :align: left
+.. :border: 0
+.. :name: Image 2
+.. :width: 100%
+
+.. |img-5|      image:: ../../Images/camaliga_screenshot3.jpg
+.. :align: left
+.. :border: 0
+.. :name: Image 3
+.. :width: 100%
+
+.. |img-6|      image:: ../../Images/camaliga_screenshot4.jpg
+.. :align: left
+.. :border: 0
+.. :name: Image 4
+.. :width: 100%
+
+.. |img-38|      image:: ../../Images/camaliga-suchfelder.jpg
+.. :align: left
+.. :border: 0
+.. :name: Image 5
+.. :width: 100%
+
+.. |img-39|      image:: ../../Images/camaliga-backend-fields.jpg
+.. :align: left
+.. :border: 0
+.. :name: Image 6
+.. :width: 100%

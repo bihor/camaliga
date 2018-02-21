@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_camaliga_domain_model_content">
+				<source>Carousel/gallery/map element</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.shortdesc">
+				<source>Short description</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longdesc">
+				<source>Long description</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image">
+				<source>Images: image 1</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image2">
+				<source>Thumbnail or image 2</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.caption2">
+				<source>Caption for image 2</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image3">
+				<source>Image 3</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.caption3">
+				<source>Caption for image 3</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image4">
+				<source>Image 4</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.caption4">
+				<source>Caption for image 4</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image5">
+				<source>Image 5</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.caption5">
+				<source>Caption for image 5</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.street">
+				<source>Address: street</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.zip">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.person">
+				<source>Contact: person</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.phone">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mobile">
+				<source>Mobile phone</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.email">
+				<source>E-Mail</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.latitude">
+				<source>Latitude</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longitude">
+				<source>Longitude</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom1">
+				<source>Additional: custom 1</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom2">
+				<source>Custom 2</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom3">
+				<source>Custom 3</source>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mother">
+				<source>Parent element of this element</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

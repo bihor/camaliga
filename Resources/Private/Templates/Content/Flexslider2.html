@@ -1,0 +1,133 @@
+<f:layout name="Default" />
+
+jQuery FlexSlider 2 example. You need the FlexSlider 2 plugin from here for this example:
+https://www.woothemes.com/flexslider/
+Download it from GitHub:
+https://github.com/woothemes/FlexSlider
+Extract the zip file and copy it to your fileadmin-folder!
+Include the CSS- and JS-file with TypoScript from your fileadmin-folder like this:
+
+page.includeCSS.flexslider = /fileadmin/Resources/Public/Scripts/FlexSlider/flexslider.css
+page.includeJSFooter.flexslider = /fileadmin/Resources/Public/Scripts/FlexSlider/jquery.flexslider-min.js
+
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+<script type="text/javascript">
+var ttuid = {uid};
+var fstart = 0;
+var thumbwidth = {settings.img.thumbWidth};
+var feasing = '{settings.more.easing}';
+var fautoplay = <f:if condition="{settings.more.autoplay}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var ffade = <f:if condition="{settings.more.fade}"><f:then>'fade'</f:then><f:else>'slide'</f:else></f:if>;
+var floop = <f:if condition="{settings.more.infinite}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var farrows = <f:if condition="{settings.more.showArrows}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var fdots = <f:if condition="{settings.more.showDots}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var farrowsnav = <f:if condition="{settings.more.showArrowsThumbs}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var fdotsnav = <f:if condition="{settings.more.showDotsThumbs}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var fpauseOnHover = <f:if condition="{settings.more.pauseOnHover}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var fpausePlay = <f:if condition="{settings.more.pausePlay}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var fdirection = <f:if condition="{settings.more.vertical}"><f:then>'vertical'</f:then><f:else>'horizontal'</f:else></f:if>;
+var freverse = <f:if condition="{settings.more.reverse}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var fspeed = ({settings.more.speed} * 1000);
+var fautoplayspeed = ({settings.more.autoplaySpeed} * 1000);
+<f:if condition="{settings.more.showThumbnails}"><f:then>
+<f:if condition="{settings.more.showPanel}"><f:then>
+/*<![CDATA[*/
+$(window).load(function() {
+	  // The slider being synced must be initialized first
+	  $('#carousel'+ttuid).flexslider({
+	    animation: 'slide',
+	    easing: feasing,
+	    startAt: fstart,
+	    controlNav: fdotsnav,
+	    directionNav: farrowsnav,
+	    animationLoop: floop,
+	    slideshow: false,
+	    itemWidth: thumbwidth,
+	    itemMargin: 5,
+	    asNavFor: '#slider'+ttuid
+	  });
+	  $('#slider'+ttuid).flexslider({
+	    animation: 'slide',
+	    controlNav: fdots,
+	    directionNav: farrows,
+	    animationLoop: floop,
+	    animationSpeed: fspeed,
+	    slideshow: false,
+	    sync: "#carousel"+ttuid
+	  });
+});
+/*]]>*/
+</f:then><f:else>
+/*<![CDATA[*/
+$(window).load(function() {
+	  $('#carousel'+ttuid).flexslider({
+	    animation: 'slide',
+	    easing: feasing,
+	    startAt: fstart,
+	    direction: fdirection,
+	    reverse: freverse,
+	    controlNav: fdotsnav,
+	    directionNav: farrowsnav,
+	    animationLoop: floop,
+	    slideshow: fautoplay,
+	    itemWidth: thumbwidth,
+	    itemMargin: 5
+	  });
+});
+/*]]>*/
+</f:else></f:if>
+</f:then><f:else>
+/*<![CDATA[*/
+$(window).load(function() {
+	  $('#slider'+ttuid).flexslider({
+	    animation: ffade,
+	    controlNav: fdots,
+	    directionNav: farrows,
+	    animationLoop: floop,
+	    pauseOnHover: fpauseOnHover,
+	    pausePlay: fpausePlay,
+	    slideshow: fautoplay,
+	    slideshowSpeed: fautoplayspeed,
+	    animationSpeed: fspeed
+	  });
+});
+/*]]>*/
+</f:else></f:if>
+</script>
+<f:if condition="{settings.more.showPanel}">
+<div id="slider{uid}" class="flexslider">
+  <ul class="slides">
+	<f:for each="{contents}" as="content">
+		<li>
+			<f:if condition="{fal}"><f:then>
+				<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+			</f:then><f:else>
+				<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+			</f:else></f:if>
+			<p class="flex-caption">{content.title}</p>
+		</li>
+	</f:for>
+  </ul>
+</div>
+</f:if>
+<f:if condition="{settings.more.showThumbnails}">
+<div id="carousel{uid}" class="flexslider">
+  <ul class="slides">
+	<f:for each="{contents}" as="content">
+		<li>
+			<f:if condition="{fal}"><f:then>
+				<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}" treatIdAsReference="1" />
+			</f:then><f:else>
+				<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}" />
+			</f:else></f:if>
+		</li>
+	</f:for>
+  </ul>
+</div>
+</f:if>
+</f:section>

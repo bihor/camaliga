@@ -1,0 +1,1476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:title</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <switchableControllerActions>
+          <TCEforms>
+          <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template</label>
+          <config>
+          <type>select</type>
+          <items>
+            <numIndex index="0">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.carousel</numIndex>
+                <numIndex index="1">Content->carousel</numIndex>
+            </numIndex>
+            <numIndex index="1">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.separated</numIndex>
+                <numIndex index="1">Content->carouselSeparated</numIndex>
+            </numIndex>
+            <numIndex index="2">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
+                <numIndex index="1">Content->list;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="3">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.listextended</numIndex>
+                <numIndex index="1">Content->listExtended;Content->search;Content->showExtended</numIndex>
+            </numIndex>
+            <numIndex index="4">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.show</numIndex>
+                <numIndex index="1">Content->show</numIndex>
+            </numIndex>
+            <numIndex index="5">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.showextended</numIndex>
+                <numIndex index="1">Content->showExtended</numIndex>
+            </numIndex>
+            <numIndex index="6">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.map</numIndex>
+                <numIndex index="1">Content->map;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="7">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.search</numIndex>
+                <numIndex index="1">Content->search;Content->showExtended</numIndex>
+            </numIndex>
+            <numIndex index="9">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.random</numIndex>
+                <numIndex index="1">Content->random</numIndex>
+            </numIndex>
+            <numIndex index="10">
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.responsive</numIndex>
+                <numIndex index="1">Content->responsive</numIndex>
+            </numIndex>
+            <numIndex index="15">
+                <numIndex index="0">Test</numIndex>
+                <numIndex index="1">Content->test;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="19">
+                <numIndex index="0">----------------------</numIndex>
+                <numIndex index="1">Content->nix1</numIndex>
+            </numIndex>
+            <numIndex index="20">
+                <numIndex index="0">Bootstrap Carousel</numIndex>
+                <numIndex index="1">Content->bootstrap;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="21">
+                <numIndex index="0">Bootstrap Collapse/Accordion</numIndex>
+                <numIndex index="1">Content->collapse;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="22">
+                <numIndex index="0">Bootstrap Modal</numIndex>
+                <numIndex index="1">Content->modal;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="23">
+                <numIndex index="0">Bootstrap Tab</numIndex>
+                <numIndex index="1">Content->tab;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="24">
+                <numIndex index="0">----------------------</numIndex>
+                <numIndex index="1">Content->nix2</numIndex>
+            </numIndex>
+            <numIndex index="25">
+                <numIndex index="0">AD Gallery</numIndex>
+                <numIndex index="1">Content->adGallery;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="29">
+                <numIndex index="0">Coolcarousel</numIndex>
+                <numIndex index="1">Content->coolcarousel;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="30">
+                <numIndex index="0">Ekko Lightbox</numIndex>
+                <numIndex index="1">Content->ekko;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="31">
+                <numIndex index="0">Elastislide</numIndex>
+                <numIndex index="1">Content->elastislide;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="32">
+                <numIndex index="0">FancyBox</numIndex>
+                <numIndex index="1">Content->fancyBox;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="33">
+                <numIndex index="0">Flexslider 2</numIndex>
+                <numIndex index="1">Content->flexslider2;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="35">
+                <numIndex index="0">jQuery.Flipster</numIndex>
+                <numIndex index="1">Content->flipster;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="36">
+                <numIndex index="0">FractionSlider</numIndex>
+                <numIndex index="1">Content->fractionSlider;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="37">
+                <numIndex index="0">jQuery Full Width Image Slider</numIndex>
+                <numIndex index="1">Content->fullwidth;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="40">
+                <numIndex index="0">GalleryView</numIndex>
+                <numIndex index="1">Content->galleryview;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="45">
+                <numIndex index="0">Innerfade</numIndex>
+                <numIndex index="1">Content->innerfade;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="46">
+                <numIndex index="0">Isotope</numIndex>
+                <numIndex index="1">Content->isotope;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="47">
+                <numIndex index="0">Lightslider</numIndex>
+                <numIndex index="1">Content->lightslider;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="52">
+                <numIndex index="0">OWL Carousel 2</numIndex>
+                <numIndex index="1">Content->owl2;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="53">
+                <numIndex index="0">Parallax (Simple Parallax Scrolling)</numIndex>
+                <numIndex index="1">Content->parallax;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="54">
+                <numIndex index="0">responsiveCarousel by Basilio Cáceres</numIndex>
+                <numIndex index="1">Content->responsiveCarousel;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="55">
+                <numIndex index="0">Revolution Slider</numIndex>
+                <numIndex index="1">Content->revolution;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="56">
+                <numIndex index="0">Roundabout</numIndex>
+                <numIndex index="1">Content->roundabout;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="57">
+                <numIndex index="0">S Gallery</numIndex>
+                <numIndex index="1">Content->sgallery;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="58">
+                <numIndex index="0">SKDSlider</numIndex>
+                <numIndex index="1">Content->skdslider;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="59">
+                <numIndex index="0">slick carousel</numIndex>
+                <numIndex index="1">Content->slick;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="60">
+                <numIndex index="0">jQuery TOOLS Scrollable</numIndex>
+                <numIndex index="1">Content->scrollable;Content->search;Content->show</numIndex>
+            </numIndex>
+            </items>
+          </config>
+          </TCEforms>
+          </switchableControllerActions>
+          <settings.templateLayout>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:templateLayout</label>
+					<config>
+						<type>select</type>
+						<itemsProcFunc>Quizpalme\Camaliga\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
+						<items>
+							<numIndex index="0" type="array">
+								<numIndex index="0"></numIndex>
+								<numIndex index="1"></numIndex>
+							</numIndex>
+						</items>
+					</config>
+				</TCEforms>
+			</settings.templateLayout>
+			<settings.sortBy>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1">0</numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">Sorting</numIndex>
+					      <numIndex index="1">sorting</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.crdate</numIndex>
+					      <numIndex index="1">crdate</numIndex>
+					  </numIndex>
+					  <numIndex index="3">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.tstamp</numIndex>
+					      <numIndex index="1">tstamp</numIndex>
+					  </numIndex>
+					  <numIndex index="4">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.title</numIndex>
+					      <numIndex index="1">title</numIndex>
+					  </numIndex>
+					  <numIndex index="5">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.zip</numIndex>
+					      <numIndex index="1">zip</numIndex>
+					  </numIndex>
+					  <numIndex index="6">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.city</numIndex>
+					      <numIndex index="1">city</numIndex>
+					  </numIndex>
+					  <numIndex index="7">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy.country</numIndex>
+					      <numIndex index="1">country</numIndex>
+					  </numIndex>
+					  <numIndex index="8">
+					      <numIndex index="0">Custom 1</numIndex>
+					      <numIndex index="1">custom1</numIndex>
+					  </numIndex>
+					  <numIndex index="9">
+					      <numIndex index="0">Custom 2</numIndex>
+					      <numIndex index="1">custom2</numIndex>
+					  </numIndex>
+					  <numIndex index="10">
+					      <numIndex index="0">Custom 3</numIndex>
+					      <numIndex index="1">custom3</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.sortBy>
+			<settings.sortOrder>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1">0</numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder.asc</numIndex>
+					      <numIndex index="1">asc</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder.desc</numIndex>
+					      <numIndex index="1">desc</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.sortOrder>
+			<settings.limit>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:limit</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.limit>
+			<settings.random>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:random</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.random>
+			<settings.getLatLon>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:getLatLon</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.getLatLon>
+			<settings.onlyDistinct>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:onlyDistinct</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.onlyDistinct>
+			<settings.addPadding>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:addPadding</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.addPadding>
+			<settings.listId>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:listId</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.listId>
+			<settings.showId>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:showId</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.showId>
+        </el>
+      </ROOT>
+    </sDEF>
+    <sIMG>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:images</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.img.width>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:imgwidth</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.width>
+			<settings.img.height>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:imgheight</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.height>
+			<settings.img.thumbWidth>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumbWidth</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.thumbWidth>
+			<settings.img.thumbHeight>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumbHeight</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.img.thumbHeight>
+        </el>
+      </ROOT>
+    </sIMG>
+    <sITEM>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:item</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.item.width>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:width</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.width>
+			<settings.item.height>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:height</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.height>
+			<settings.item.padding>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:padding</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.padding>
+			<settings.item.margin>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:margin</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.margin>
+			<settings.item.items>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:items</label>
+                <config>
+                    <type>input</type>
+                    <size>5</size>
+                    <max>5</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.item.items>
+        </el>
+      </ROOT>
+    </sITEM>
+    <sBOOT>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>Bootstrap Carousel</sheetTitle>
+		  <displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Content->bootstrap;Content->search;Content->show]]></displayCond>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.bootstrap.showIndicators>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:showIndicators</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.showIndicators>
+			<settings.bootstrap.showControls>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:showControls</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.showControls>
+			<settings.bootstrap.interval>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:interval</label>
+                <config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.bootstrap.interval>
+			<settings.bootstrap.pause>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:pause</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">"hover"</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">"none"</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.pause>
+			<settings.bootstrap.wrap>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:wrap</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.wrap>
+			<settings.bootstrap.keyboard>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:keyboard</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.keyboard>
+        </el>
+      </ROOT>
+    </sBOOT>
+    <sCOLLAPSE>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>Bootstrap Collapse</sheetTitle>
+		  <displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Content->collapse;Content->search;Content->show]]></displayCond>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.bootstrap.expanded>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:expanded</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:expandall</numIndex>
+					      <numIndex index="1">all</numIndex>
+					  </numIndex>
+					  <numIndex index="3">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.expanded>
+			<settings.bootstrap.parent>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:parent</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.parent>
+			<settings.bootstrap.toggle>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:toggle</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">collapse</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.toggle>
+        </el>
+      </ROOT>
+    </sCOLLAPSE>
+    <sMODAL>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>Bootstrap Modal</sheetTitle>
+		  <displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Content->modal;Content->search;Content->show]]></displayCond>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.bootstrap.dialog>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:dialog</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:small</numIndex>
+					      <numIndex index="1">modal-sm</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:large</numIndex>
+					      <numIndex index="1">modal-lg</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.dialog>
+			<settings.bootstrap.animation>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:animation</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:fade</numIndex>
+					      <numIndex index="1">fade</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.animation>
+			<settings.bootstrap.escape>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:escape</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.escape>
+        </el>
+      </ROOT>
+    </sMODAL>
+    <sSEO>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>SEO</sheetTitle>
+		  <displayCond>
+		 	<OR>
+          		<numIndex index="0"><![CDATA[FIELD:sDEF.switchableControllerActions:=:Content->show]]></numIndex>
+          		<numIndex index="1"><![CDATA[FIELD:sDEF.switchableControllerActions:=:Content->showExtended]]></numIndex>
+        	</OR>
+          </displayCond>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.seo.setTitle>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:seo.setTitle</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.seo.setTitle>
+			<settings.seo.setDescription>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:seo.setDescription</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.seo.setDescription>
+			<settings.seo.setIndexedDocTitle>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:seo.setIndexedDocTitle</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.seo.setIndexedDocTitle>
+			<settings.seo.setOgTitle>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:seo.setOgTitle</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.seo.setOgTitle>
+			<settings.seo.setOgDescription>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:seo.setOgDescription</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.seo.setOgDescription>
+			<settings.seo.setOgImage>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:seo.setOgImage</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.seo.setOgImage>
+        </el>
+      </ROOT>
+    </sSEO>
+    <sMORE>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:more</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.more.setModulo>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:setModulo</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">0</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.setModulo>
+			<settings.more.speed>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mspeed</label>
+                <config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.more.speed>
+			<settings.more.autoplay>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mautoplay</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.autoplay>
+			<settings.more.autoplaySpeed>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mautoplaySpeed</label>
+                <config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.more.autoplaySpeed>
+			<settings.more.infinite>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:minfinite</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.infinite>
+			<settings.more.vertical>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mvertical</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.vertical>
+			<settings.more.reverse>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mreverse</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.reverse>
+			<settings.more.crop>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mcrop</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.crop>
+			<settings.more.showPanel>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowPanel</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showPanel>
+			<settings.more.showArrows>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowArrows</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showArrows>
+			<settings.more.showDots>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowDots</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showDots>
+			<settings.more.showThumbnails>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowThumbnails</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showThumbnails>
+			<settings.more.showAllThumbs>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowAllThumbs</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showAllThumbs>
+			<settings.more.showArrowsThumbs>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowArrowsThumbs</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showArrowsThumbs>
+			<settings.more.showDotsThumbs>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowDotsThumbs</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showDotsThumbs>
+			<settings.more.showCaptions>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowCaptions</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.showCaptions>
+			<settings.more.pausePlay>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mpausePlay</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.pausePlay>
+			<settings.more.pauseOnHover>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mpauseOnHover</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.pauseOnHover>
+			<settings.more.opacity>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mopacity</label>
+					<config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+					</config>
+				</TCEforms>
+			</settings.more.opacity>
+			<settings.more.slidesToShow>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mslidesToShow</label>
+					<config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+					</config>
+				</TCEforms>
+			</settings.more.slidesToShow>
+			<settings.more.slidesToScroll>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mslidesToScroll</label>
+					<config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+					</config>
+				</TCEforms>
+			</settings.more.slidesToScroll>
+			<settings.more.fade>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mfade</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.fade>
+			<settings.more.easing>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:measing</label>
+					<config>
+                    <type>input</type>
+                    <size>7</size>
+                    <max>6</max>
+                    <eval>trim</eval>
+					</config>
+				</TCEforms>
+			</settings.more.easing>
+    	    <settings.more.addLightbox>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:addLightbox</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">0</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.more.addLightbox>
+        </el>
+      </ROOT>
+    </sMORE>
+    <sEXTENDED>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedOptions</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.extended.enable>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedVersion</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.extended.enable>
+			<settings.extended.onlySearchForm>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:onlySearchForm</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.extended.onlySearchForm>
+			<settings.extended.restrictSearch>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:restrictSearch</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.extended.restrictSearch>
+			<settings.extended.radiusValues>
+              <TCEforms>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:radiusValues</label>
+                <config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                </config>
+              </TCEforms>
+			</settings.extended.radiusValues>
+			<settings.extended.saveSearch>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:saveSearch</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.extended.saveSearch>
+        </el>
+      </ROOT>
+    </sEXTENDED>
+    <sCATS>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:categories</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.defaultCatIDs>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:default_categories</label>
+					<config>
+						<type>select</type>
+						<renderMode>tree</renderMode>
+						<treeConfig>
+							<parentField>parent</parentField>
+							<appearance>
+								<maxLevels>99</maxLevels>
+								<expandAll>TRUE</expandAll>
+								<showHeader>TRUE</showHeader>
+							</appearance>
+						</treeConfig>
+						<foreign_table>sys_category</foreign_table>
+						<foreign_table_where> AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting ASC</foreign_table_where>
+						<size>10</size>
+						<autoSizeMax>20</autoSizeMax>
+						<minitems>0</minitems>
+						<maxitems>99</maxitems>
+					</config>
+				</TCEforms>
+			</settings.defaultCatIDs>
+			<settings.normalCategoryMode>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode</label>
+					<config>
+					<type>select</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode.and</numIndex>
+					      <numIndex index="1">and</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode.or</numIndex>
+					      <numIndex index="1">or</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.normalCategoryMode>
+        </el>
+      </ROOT>
+    </sCATS>
+  </sheets>
+</T3DataStructure>

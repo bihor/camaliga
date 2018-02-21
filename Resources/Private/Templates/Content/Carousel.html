@@ -1,0 +1,86 @@
+{namespace cam=Quizpalme\Camaliga\ViewHelpers}
+<f:layout name="Default" />
+
+This default template is a simple carousel that requires only jQuery.
+It is an example from enavu:
+http://web.enavu.com/tutorials/making-a-jquery-infinite-carousel-with-nice-features/
+Note 1: you need at least n+2 elements for this carousel! n: visible elements at one time.
+  If you doesn´t have n+2 elements, set infinite to 0.
+Note 2: you can copy and customise the camaliga/Resources/Public/css/Carousel.css
+  and the camaliga/Resources/Public/JavaScript/jquery.camaliga.js to your fileadmin-folder.
+  Remove that 2 things from this template if you do that...
+Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
+  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+Note 4: if your width contains the padding too, you must activate "addPadding" via TypoScript or FlexForms too.
+  This are all avaiable variables for the size: paddingItemWidth, totalItemWidth, itemWidth, totalWidth, 
+  paddingItemHeight, totalItemHeight, itemHeight and the img- and item-settings.
+Note 5: if you include jQuery only in the footer, you will need to move $('#carousel_ul').camaliga(...) to the footer too!
+
+<f:section name="main">
+<f:flashMessages />
+<style>
+#carousel_inner {
+width:{totalWidth}px;
+height:{totalItemHeight}px;
+}
+#carousel_ul li{
+width:{itemWidth}px;
+height:{itemHeight}px;
+padding:{settings.item.padding}px;
+margin:{settings.item.margin}px;
+}
+</style>
+<cam:addPublicResources path="{f:uri.resource(path:'css/Carousel.css')}"></cam:addPublicResources>
+<cam:addPublicResources path="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" compress="FALSE" footer="TRUE"></cam:addPublicResources>
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<div id="carousel_container">
+  <div id="left_scroll"><a href="javascript:$('#carousel_ul').data('camaliga').slideTo('left');">&nbsp;</a></div>
+  <div id="carousel_inner">
+    <ul id="carousel_ul">
+	<f:for each="{contents}" as="content">
+		<li class="carousel_li">
+			<f:if condition="{fal}"><f:then>
+			    <f:image src="{content.falimage.uid}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+			</f:then><f:else>
+			    <f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />
+			</f:else></f:if>
+			<h4>{content.title}</h4>
+			<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
+			<f:if condition="{content.link} != ''">
+				<p><f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink></p>
+			</f:if>
+		</li>
+	</f:for>
+    </ul>
+  </div>
+  <div id="right_scroll"><a href="javascript:$('#carousel_ul').data('camaliga').slideTo('right');">&nbsp;</a></div>
+  <input type="hidden" id="hidden_auto_slide_seconds" value="0" />
+</div>
+<div style="clear:both;"><!-- --></div>
+<script>
+// width of an item with width, padding and margin left + right
+var item_width = {totalItemWidth};
+$(window).load(
+function() {
+  $('#carousel_ul').camaliga({
+	auto_slide: 0,	// auto slide (0, 1)?
+    hover_pause: 0,	// pause on hover (0, 1)?
+	auto_slide_seconds: 5000, // auto slide in milliseconds
+	infinite: 1,	// infinite carousel (0, 1)? Then you need at least n+2 elements!
+	item_width: item_width,	// item width of the li-element. Only needed if li has a padding>0 or margin>0
+	li_name: 'li.carousel_li',	// only needed, if you use ul,li in the element itself
+	left_scroll: '#left_scroll',	// only needed, if you want to change the arrow at the first element when infinite=0 (class camaliga_first will be added)
+	right_scroll: '#right_scroll'	// only needed, if you want to change the arrow at the last element when infinite=0 (class camaliga_last will be added)
+  });
+}
+);
+</script>
+</f:then>
+<f:else>
+ <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

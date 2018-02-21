@@ -1,0 +1,35 @@
+﻿.. |img-20|     image:: ../Images/camaliga_tut1.png
+.. :align: left
+.. :border: 0
+.. :name: Grafik1
+.. :width: 100%
+
+.. |img-21|     image:: ../Images/camaliga_tut2.png
+.. :align: left
+.. :border: 0
+.. :name: Grafik18
+.. :width: 100%
+
+.. |img-22|     image:: ../Images/camaliga_tut3.png
+.. :align: left
+.. :border: 0
+.. :name: Grafik17
+.. :width: 100%
+
+.. |img-23|     image:: ../Images/camaliga_tut4.png
+.. :align: left
+.. :border: 0
+.. :name: Grafik19
+.. :width: 100%
+
+.. |img-24|     image:: ../Images/camaliga_tut5.png
+.. :align: left
+.. :border: 0
+.. :name: Grafik20
+.. :width: 100%
+
+.. |img-25|     image:: ../Images/camaliga_tut6.png
+.. :align: left
+.. :border: 0
+.. :name: Grafik21
+.. :width: 100%

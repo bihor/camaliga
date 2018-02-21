@@ -1,0 +1,56 @@
+<f:layout name="Default" />
+
+Ekko Lightbox for Bootstrap - Template, based on: 
+http://www.jqueryscript.net/lightbox/Simple-Gallery-Lightbox-Plugin-with-jQuery-Bootstrap-Ekko-Lightbox.html
+
+Note 1: Download the Ekko Lightbox and copy it to your fileadmin-folder. Include it like this:
+ page {
+  includeJS.ekko = fileadmin/template/ekko-lightbox.js
+  includeCSS.ekko = fileadmin/template/ekko-lightbox.css
+  jsFooterInline {
+   77 = TEXT
+   77.value (
+	jQuery(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {		    event.preventDefault();		    $(this).ekkoLightbox();		});
+   )
+  }
+ }
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+Note 3: number of images per row can not be set to 5 due to a Bootstrap weakness.
+Note 4: you must enable setModulo for this template!
+ plugin.tx_camaliga.settings.item.setModulo = 1
+
+<f:section name="main">
+<f:flashMessages />
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+
+<f:for each="{contents}" as="content" iteration="iter">
+  <f:if condition="{content.moduloBegin} > 0"><div class="row media-row wrapper-parent mr-{content.moduloBegin}"></f:if>
+	<div class="<f:if condition="{settings.item.items} == 6"><f:then>col-lg-2 col-md-3 col-sm-4</f:then><f:else><f:if
+	 condition="{settings.item.items} == 4"><f:then>col-lg-3 col-md-4 col-sm-4 col-xs-6</f:then><f:else><f:if
+	 condition="{settings.item.items} == 3"><f:then>col-lg-4 col-md-4 col-sm-6</f:then><f:else>col-lg-6 col-md-6 col-sm-6 col-xs-12</f:else></f:if></f:else></f:if></f:else></f:if>">
+		<figure class="center-block center-block">
+			<f:if condition="{fal}"><f:then>
+		  		<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}" class="gallery gallery-responsive"
+			 data-toggle="lightbox" data-parent=".wrapper-parent" data-gallery="gallery-{uid}" data-title="{content.title}"
+			 data-footer="{content.shortdesc}"><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}"
+			 maxWidth="{settings.img.width}" class="img-responsive border" treatIdAsReference="1" /></a>
+		  	</f:then><f:else>
+				<a href="/uploads/tx_camaliga/{content.image}" class="gallery gallery-responsive"
+			 data-toggle="lightbox" data-parent=".wrapper-parent" data-gallery="gallery-{uid}" data-title="{content.title}"
+			 data-footer="{content.shortdesc}"><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}"
+			 maxWidth="{settings.img.width}" class="img-responsive border" /></a>
+			</f:else></f:if>
+		</figure>
+	</div>
+  <f:if condition="{content.moduloEnd} > 0"></div></f:if>
+</f:for>
+
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

@@ -1,0 +1,88 @@
+<f:layout name="Default" />
+
+Note 1: copy the CSS-file into your fileadmin-folder and include it via TypoScript!
+  Remove that line from this template after doing that...
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+Note 3: you can use pageUid="{settings.showId}" in link.action if you have a separeted single page.
+  
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/List.css')}" rel="stylesheet" />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+ <table class="carousel-list">
+ <f:for each="{contents}" as="content">
+  <tr>
+   <td class="carousel-list-img">
+   <f:if condition="{fal}"><f:then>
+    <f:if condition="{content.falimage.uid}">
+	<f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+    </f:if>
+   </f:then><f:else>
+    <f:if condition="{content.image} != ''">
+	<f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" />
+    </f:if>
+   </f:else></f:if>
+   </td>
+   <td class="carousel-list-text">
+	<div><b><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
+		<f:else><f:link.action action="show" arguments="{content : content}">{content.title}</f:link.action></f:else></f:if></b></div>
+	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
+	<f:if condition="{content.city} != ''">{f:translate(key: 'address')}: {content.street}, {content.zip} {content.city}, {content.country}<br></f:if>
+	<f:if condition="{content.person} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.person')}: {content.person}<br></f:if>
+	<f:if condition="{content.phone} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.phone')}: {content.phone}<br></f:if>
+	<f:if condition="{content.mobile} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.mobile')}: {content.mobile}<br></f:if>
+	<f:if condition="{content.email} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.email')}: {content.email}<br></f:if>
+	<div>
+		<f:if condition="{content.custom1} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom1')}: {content.custom1}.</f:if>
+		<f:if condition="{content.custom2} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom2')}: {content.custom2}.</f:if>
+		<f:if condition="{content.custom3} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom3')}: {content.custom3}.</f:if>
+	</div>
+	<f:if condition="{content.distance} > 0">
+		<div>{f:translate(key: 'distance', default: 'distance')}: <f:format.number decimals="2" decimalSeparator="," thousandsSeparator=".">{content.distance}</f:format.number> km</div>
+	</f:if>
+	<f:if condition="{content.link} != ''"><p>
+		<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+	</p></f:if>
+	<div>
+	<f:if condition="{settings.extended.enable} == 1">
+	<f:then>
+	   	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
+			{catMMval.title}:
+			<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
+				<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>
+		</f:for>
+	</f:then>
+	<f:else>
+		<f:for each="{content.categories}" as="category" iteration="iter">
+			<f:if condition="{iter.isFirst}"><div>{f:translate(key: 'tx_camaliga_domain_model_content.category')}:</f:if>
+			{category.title}<f:if condition="{iter.isLast}"><f:then>.</div></f:then><f:else>, </f:else></f:if>
+		</f:for>
+	</f:else>
+	</f:if>
+	</div>
+   </td>
+  </tr>
+ </f:for>
+ </table>
+ <p>{contents -> f:count()} {f:translate(key: 'entries_found')}</p>
+</f:then>
+<f:else>
+  <f:if condition="{onlySearchForm} == 0"><p><f:translate key="nothing" default="Nothing found." /></p></f:if>
+</f:else>
+</f:if>
+
+<f:if condition="{settings.extended.enable} == 1">
+  <f:form action="search" name="camaliga">
+	<div class="well">
+	  <h3>{f:translate(key: 'options', default: 'Options')}</h3>
+	  <f:render partial="Options" arguments="{_all}" />
+	  <f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="btn btn-primary" />
+	  <f:form.hidden name="template" value="List" />
+	</div>
+  </f:form>
+</f:if>
+</f:section>

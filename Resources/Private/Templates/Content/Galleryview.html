@@ -1,0 +1,97 @@
+<f:layout name="Default" />
+
+This template is a gallery that requires jQuery + jQuery Timers + jQuery UI Effects Easing and GalleryView from here:
+https://github.com/jackwanders/GalleryView
+https://galleryview.co/Galleryview/
+Note 1: copy the GalleryView-files into your fileadmin-folder and include them via TypoScript like this:
+ page {
+  includeCSS.galleryview = fileadmin/template/galleryview/css/jquery.galleryview-3.0-dev.css
+  includeJSFooter.galleryview = fileadmin/template/galleryview/js/jquery.galleryview-3.0-dev.js
+ }
+Or you can use the ViewHelper cam:addPublicResources. See manual!
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<script type="text/javascript">
+var start = 1;
+var imgwidth = {settings.img.width};
+var imgheight = {settings.img.height};
+var thumbwidth = {settings.img.thumbWidth};
+var thumbheight = {settings.img.thumbHeight};
+var tspeed = {settings.more.speed} * 1000;
+var gautoplayspeed = ({settings.more.autoplaySpeed} * 1000);
+var gautoplay = <f:if condition="{settings.more.autoplay}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var gcrop = <f:if condition="{settings.more.crop}"><f:then>'crop'</f:then><f:else>'fit'</f:else></f:if>;
+var gpanelnav = <f:if condition="{settings.more.showArrows}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var gcaptions = <f:if condition="{settings.more.showCaptions}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var gfilmstrip = <f:if condition="{settings.more.showThumbnails}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var gstyle = <f:if condition="{settings.more.showAllThumbs}"><f:then>'show all'</f:then><f:else>'scroll'</f:else></f:if>;
+var gfilmstripnav = <f:if condition="{settings.more.showArrowsThumbs}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var gpausePlay = <f:if condition="{settings.more.pausePlay}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var gpanels = <f:if condition="{settings.more.showPanel}"><f:then>true</f:then><f:else>false</f:else></f:if>;
+var geasing = '{settings.more.easing}';
+var iopacity = {settings.more.opacity};
+
+jQuery(document).ready(function() {
+  $('#myGallery').galleryView({
+	transition_speed: tspeed,
+	transition_interval: gautoplayspeed,
+	panel_width: imgwidth,
+	panel_height: imgheight,
+	frame_width: thumbwidth,
+	frame_height: thumbheight,
+	start_frame: start,
+	autoplay: gautoplay,
+	panel_scale: gcrop,
+	show_panels: gpanels,
+	show_panel_nav: gpanelnav,
+	show_filmstrip: gfilmstrip,
+	show_filmstrip_nav: gfilmstripnav,
+	enable_slideshow: gpausePlay,
+	show_captions: gcaptions,
+	filmstrip_style: gstyle,
+	infobar_opacity: iopacity,
+	easing: geasing,
+	enable_overlays: true
+  });
+});
+</script>
+
+<ul id="myGallery">
+<f:for each="{contents}" as="content">
+<li>
+  <f:if condition="{fal}"><f:then>
+    <f:image src="{content.falimage.uid}" title="{content.title}" additionalAttributes="{data-description:content.shortdesc}" treatIdAsReference="1" />
+  </f:then><f:else>
+    <img src="/uploads/tx_camaliga/{content.image}" title="{content.title}" data-description="{content.shortdesc}" />
+  </f:else></f:if>
+</li>
+</f:for>
+</ul>
+
+<f:if condition="{settings.more.addLightbox} == 1">
+	<f:render partial="Fancybox" arguments="{_all}" />
+</f:if>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+
+<f:if condition="{settings.extended.enable} == 1">
+	<f:form action="search" name="camaliga">
+	<div class="well">
+	  <h3>{f:translate(key: 'options', default: 'Options')}</h3>
+	  <f:render partial="Options" arguments="{_all}" />
+	  <f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="btn btn-primary" />
+	  <f:form.hidden name="template" value="Galleryview" />
+	</div>
+	</f:form>
+</f:if>
+</f:section>

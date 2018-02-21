@@ -1,0 +1,41 @@
+<script type="text/javascript">
+//<![CDATA[
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+
+function calcRoute() {
+ var start = document.getElementById('startR').value;
+ var end = document.getElementById('endR').value;
+ var request = {
+   origin: start,
+   destination: end,
+   travelMode: google.maps.DirectionsTravelMode.DRIVING
+ };
+ directionsService.route(request, function(response, status) {
+   if (status == google.maps.DirectionsStatus.OK) {
+   directionsDisplay.setDirections(response);
+   }
+ });
+}
+
+function initializeGMroute() {
+	directionsDisplay = new google.maps.DirectionsRenderer();
+	directionsDisplay.setMap(map);
+	directionsDisplay.setPanel(document.getElementById('directions-panel'));
+}
+
+google.maps.event.addDomListener(window, 'load', initializeGMroute);
+//]]>
+</script>
+
+<br>
+<f:form method="get" onsubmit="calcRoute(); return false" class="form-inline" id="calc_route">
+ <div class="form-group">
+  <label for="start">{f:translate(key: 'route.from')}</label>
+  <input type="text" size="40" class="form-control" id="startR" name="from" value="" placeholder="{f:translate(key: 'route.example')}" />
+ </div>
+ <button name="submit" type="submit" class="btn btn-primary">{f:translate(key: 'route.search')}</button>
+ <input type="hidden" id="endR" value="{content.latitude},{content.longitude}" name="nach" />
+</f:form>
+<br>
+<div id="directions-panel" style="width: 100%;overflow: auto;"></div>

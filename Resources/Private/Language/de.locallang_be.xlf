@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+			<trans-unit id="title">
+				<target>Layout</target>
+			</trans-unit>
+			<trans-unit id="images">
+				<target>Bilder</target>
+			</trans-unit>
+			<trans-unit id="item">
+				<target>Elemente</target>
+			</trans-unit>
+			<trans-unit id="categories">
+				<target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="template">
+				<target>HTML-Template:</target>
+			</trans-unit>
+			<trans-unit id="template.not_configured">
+				<target>kein Template-Layout ausgewählt!</target>
+			</trans-unit>
+			<trans-unit id="template.carousel">
+				<target>Karussell: Elemente nebeneinander</target>
+			</trans-unit>
+			<trans-unit id="template.separated">
+				<target>Karussell: Text und Bild getrennt voneinander</target>
+			</trans-unit>
+			<trans-unit id="template.list">
+				<target>Listenansicht: alle Elemente sind untereinander</target>
+			</trans-unit>
+			<trans-unit id="template.listextended">
+				<target>Listenansicht 2: automatisch erweitere Version</target>
+			</trans-unit>
+			<trans-unit id="template.show">
+				<target>Einzelansicht eines Elements</target>
+			</trans-unit>
+			<trans-unit id="template.showextended">
+				<target>Einzelansicht 2: automatisch erweitere Version</target>
+			</trans-unit>
+			<trans-unit id="template.map">
+				<target>Kartenansicht (Google maps)</target>
+			</trans-unit>
+			<trans-unit id="template.random">
+				<target>Nur ein zufälliges Element anzeigen (ungecacht)</target>
+			</trans-unit>
+			<trans-unit id="template.responsive">
+				<target>Einfaches responsives Karussell</target>
+			</trans-unit>
+			<trans-unit id="template.search">
+				<target>Google map 2: automatisch erweitere Version (ungecachtes search-Template)</target>
+			</trans-unit>
+			<trans-unit id="templateLayout">
+				<target>Template-Layout (siehe Doku):</target>
+			</trans-unit>
+			<trans-unit id="sortBy">
+				<target>Standard-Sortierung nach:</target>
+			</trans-unit>
+			<trans-unit id="sortBy.crdate">
+				<target>Anlege-Datum</target>
+			</trans-unit>
+			<trans-unit id="sortBy.tstamp">
+				<target>Änderungs-Datum</target>
+			</trans-unit>
+			<trans-unit id="sortBy.title">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="sortBy.zip">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="sortBy.city">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="sortBy.country">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="sortOrder">
+				<target>Standard-Sortier-Reihenfolge:</target>
+			</trans-unit>
+			<trans-unit id="sortOrder.asc">
+				<target>Aufsteigend</target>
+			</trans-unit>
+			<trans-unit id="sortOrder.desc">
+				<target>Absteigend</target>
+			</trans-unit>
+			<trans-unit id="random">
+				<target>Ergebnisse zufällig sortieren (gecacht)?</target>
+			</trans-unit>
+			<trans-unit id="getLatLon">
+				<target>Versuche die Position zu einer Adresse automatisch zu finden?</target>
+			</trans-unit>
+			<trans-unit id="onlyDistinct">
+				<target>Zeige nur einmalige Elemente an (Mutter oder ein Kind)?</target>
+			</trans-unit>
+			<trans-unit id="seo.setTitle">
+				<target>Ersetze den Seiten-Titel durch das Titel-Feld?</target>
+			</trans-unit>
+			<trans-unit id="seo.setDescription">
+				<target>Ersetze das Metatag "description" durch das Kurzbeschreibung-Feld?</target>
+			</trans-unit>
+			<trans-unit id="seo.setIndexedDocTitle">
+				<target>Ersetze den Seiten-Titel in der Sitemap durch das Titel-Feld?</target>
+			</trans-unit>
+			<trans-unit id="seo.setOgTitle">
+				<target>Setze das Titel-Feld als og:title Metatag?</target>
+			</trans-unit>
+			<trans-unit id="seo.setOgDescription">
+				<target>Setze das Kurzbeschreibung-Feld als og:description Metatag?</target>
+			</trans-unit>
+			<trans-unit id="seo.setOgImage">
+				<target>Setze das 1. Bild als og:image Metatag?</target>
+			</trans-unit>
+			<trans-unit id="addPadding">
+				<target>Padding zu Breite und Höhe hinzuaddieren?</target>
+			</trans-unit>
+			<trans-unit id="listId">
+				<target>Wo ist die Listen-Seite (man muss die Variable {settings.listId} noch im Template hinzufügen)?</target>
+			</trans-unit>
+			<trans-unit id="showId">
+				<target>Wo ist die Einzelansicht-Seite (man muss die Variable {settings.showId} noch im Template hinzufügen)?</target>
+			</trans-unit>
+			<trans-unit id="layout.listId">
+				<target>Listen-Seite:</target>
+			</trans-unit>
+			<trans-unit id="layout.showId">
+				<target>Einzelansicht-Seite:</target>
+			</trans-unit>
+			<trans-unit id="imgwidth">
+				<target>Breite der Bilder in px ({settings.img.width}):</target>
+			</trans-unit>
+			<trans-unit id="imgheight">
+				<target>Höhe der Bilder in px ({settings.img.height}):</target>
+			</trans-unit>
+			<trans-unit id="thumbWidth">
+				<target>Breite der kleinen Bilder in px ({settings.img.thumbWidth}):</target>
+			</trans-unit>
+			<trans-unit id="thumbHeight">
+				<target>Höhe der kleinen Bilder in px ({settings.img.thumbHeight}):</target>
+			</trans-unit>
+			<trans-unit id="width">
+				<target>Breite in px ({settings.item.width}):</target>
+			</trans-unit>
+			<trans-unit id="height">
+				<target>Höhe in px ({settings.item.height}):</target>
+			</trans-unit>
+			<trans-unit id="padding">
+				<target>Padding in px ({settings.item.padding}):</target>
+			</trans-unit>
+			<trans-unit id="margin">
+				<target>Margin in px ({settings.item.margin}):</target>
+			</trans-unit>
+			<trans-unit id="items">
+				<target>Anzahl sichtbarer Elemente [pro Spalte] (z.B. JavaScript-Parameter für Karussells) ({settings.item.items}):</target>
+			</trans-unit>
+			<trans-unit id="limit">
+				<target>Anzahl sichtbarer Elemente (SQL-Select-Parameter):</target>
+			</trans-unit>
+			<trans-unit id="default_categories">
+				<target>Ausgewählte Kategorien (bei erweiterten Templates: UND für radio-Buttons und ODER für Checkboxen):</target>
+			</trans-unit>
+			<trans-unit id="categoryMode">
+				<target>Kategorie-Modus:</target>
+			</trans-unit>
+			<trans-unit id="categoryMode.original">
+				<target>Benutze die Kategorie-Relationen der Original-Elemente</target>
+			</trans-unit>
+			<trans-unit id="categoryMode.translated">
+				<target>Benutze die Kategorie-Relationen der übersetzen Elemente (bugy)</target>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode">
+				<target>Kategorie-Modus (bei normalen Templates):</target>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode.and">
+				<target>UND-Verknüpfung der ausgewählten Kategorien</target>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode.or">
+				<target>ODER-Verknüpfung der ausgewählten Kategorien</target>
+			</trans-unit>
+			<trans-unit id="showIndicators">
+				<target>Zeige die Punkt-Navigation an:</target>
+			</trans-unit>
+			<trans-unit id="showControls">
+				<target>Zeige die Pfeil-Navigation an:</target>
+			</trans-unit>
+			<trans-unit id="interval">
+				<target>Wie lange soll ein Element angezeigt werden? Zeit in ms oder false:</target>
+			</trans-unit>
+			<trans-unit id="pause">
+				<target>Soll das Kaurssell bei mouseenter stehen bleiben?</target>
+			</trans-unit>
+			<trans-unit id="wrap">
+				<target>Soll das Karussell am Ende von vorne beginnen?</target>
+			</trans-unit>
+			<trans-unit id="keyboard">
+				<target>Soll das Karussell auf Tastatureingaben reagieren?</target>
+			</trans-unit>
+			<trans-unit id="dialog">
+				<target>Größe des Dialog-Fensters (normal, klein oder groß):</target>
+			</trans-unit>
+			<trans-unit id="small">
+				<target>klein</target>
+			</trans-unit>
+			<trans-unit id="large">
+				<target>groß</target>
+			</trans-unit>
+			<trans-unit id="animation">
+				<target>Animation (kann nur per TypoScript entfernt werden):</target>
+			</trans-unit>
+			<trans-unit id="fade">
+				<target>von oben nach unten einfahren</target>
+			</trans-unit>
+			<trans-unit id="escape">
+				<target>Modal schließen, wenn ESC gedrückt wurde?</target>
+			</trans-unit>
+			<trans-unit id="expanded">
+				<target>Erstes Element aufklappen?</target>
+			</trans-unit>
+			<trans-unit id="expandall">
+				<target>klappe alle Elemente auf</target>
+			</trans-unit>
+			<trans-unit id="parent">
+				<target>Nur höchstens ein Element aufklappen?</target>
+			</trans-unit>
+			<trans-unit id="toggle">
+				<target>Sollen die Elemente aufklappbar sein?</target>
+			</trans-unit>
+			<trans-unit id="extendedOptions">
+				<target>Erweiterte Optionen</target>
+			</trans-unit>
+			<trans-unit id="extendedVersion">
+				<target>Erweitertes Template mit Kategoriensuche aktivieren (siehe Doku; {settings.extended.enable})?</target>
+			</trans-unit>
+			<trans-unit id="onlySearchForm">
+				<target>Zeige nur das Suchformular ohne Ergebnisse an ({settings.extended.onlySearchForm})?</target>
+			</trans-unit>
+			<trans-unit id="restrictSearch">
+				<target>Such-Optionen einschränken ({settings.extended.restrictSearch})?</target>
+			</trans-unit>
+			<trans-unit id="radiusValues">
+				<target>Radius-Werte bei Umkreissuche in km. Z.B. 10,20,50 ({settings.extended.radiusValues}):</target>
+			</trans-unit>
+			<trans-unit id="saveSearch">
+				<target>Such-Parameter in einem Cookie speichern und das Cookie bei einer nicht-Suche laden?</target>
+			</trans-unit>
+			<trans-unit id="more">
+				<target>Weiteres</target>
+			</trans-unit>
+			<trans-unit id="setModulo">
+				<target>Modulo-Berechnung einschalten (wird z.B. beim Ekko-Template gebraucht; {settings.more.setModulo}):</target>
+			</trans-unit>
+			<trans-unit id="mspeed">
+				<target>Übergangs-Geschwindigkeit in sek. (für Flexslider2, Galleryview, Parallax, Slick; {settings.more.speed}):</target>
+			</trans-unit>
+			<trans-unit id="mautoplay">
+				<target>Autoplay einschalten? (für Flexslider2, Galleryview, Slick; {settings.more.autoplay}):</target>
+			</trans-unit>
+			<trans-unit id="mautoplaySpeed">
+				<target>Verzögerungs-Geschwindigkeit in sek. (für Flexslider2, Galleryview, Parallax, Slick; {settings.more.autoplaySpeed}):</target>
+			</trans-unit>
+			<trans-unit id="minfinite">
+				<target>Endlosschleife einschalten? (für Flexslider2, Slick; {settings.more.infinite}):</target>
+			</trans-unit>
+			<trans-unit id="mvertical">
+				<target>Vertikale Ansicht? (für Flexslider2, Slick; {settings.more.vertical}):</target>
+			</trans-unit>
+			<trans-unit id="mreverse">
+				<target>Rechts-nach-links? (für Flexslider2, Slick; {settings.more.reverse}):</target>
+			</trans-unit>
+			<trans-unit id="mcrop">
+				<target>Bilder notfalls beschneiden? (für Galleryview; {settings.more.crop}):</target>
+			</trans-unit>
+			<trans-unit id="mshowPanel">
+				<target>Großes Bild (Panel) anzeigen? (für Flexslider2, Slick; {settings.more.showPanel}):</target>
+			</trans-unit>
+			<trans-unit id="mshowArrows">
+				<target>Pfeil-Navigation anzeigen? (für Flexslider2, Galleryview, Slick; {settings.more.showArrows}):</target>
+			</trans-unit>
+			<trans-unit id="mshowDots">
+				<target>Punkte-Navigation anzeigen? (für Flexslider2, Slick; {settings.more.showDots}):</target>
+			</trans-unit>
+			<trans-unit id="mshowThumbnails">
+				<target>Thumbnail-Navigation einschalten? (für Flexslider2, Galleryview; {settings.more.showThumbnails}):</target>
+			</trans-unit>
+			<trans-unit id="mshowAllThumbs">
+				<target>Alle Thumbnails anzeigen? (für Galleryview; {settings.more.showAllThumbs}):</target>
+			</trans-unit>
+			<trans-unit id="mshowArrowsThumbs">
+				<target>Pfeil-Navigation bei den Thumbnails anzeigen? (für Flexslider2, Galleryview, Slick; {settings.more.showArrowsThumbs}):</target>
+			</trans-unit>
+			<trans-unit id="mshowDotsThumbs">
+				<target>Punkte-Navigation bei den Thumbnails anzeigen? (für Flexslider2, Slick; {settings.more.showDotsThumbs}):</target>
+			</trans-unit>
+			<trans-unit id="mshowCaptions">
+				<target>Bildunterschrift anzeigen? (für Galleryview; {settings.more.showCaptions}):</target>
+			</trans-unit>
+			<trans-unit id="mpausePlay">
+				<target>Play/Pause anzeigen? (für Flexslider2, Galleryview; {settings.more.pausePlay}):</target>
+			</trans-unit>
+			<trans-unit id="mpauseOnHover">
+				<target>Pausieren bei mouseover? (für Flexslider2, Slick; {settings.more.pauseOnHover}):</target>
+			</trans-unit>
+			<trans-unit id="mopacity">
+				<target>Deckkraft (für Galleryview; {settings.more.opacity}):</target>
+			</trans-unit>
+			<trans-unit id="mslidesToShow">
+				<target>Anzahl sichtbarer Thumbnails (für Slick; {settings.more.slidesToShow}):</target>
+			</trans-unit>
+			<trans-unit id="mslidesToScroll">
+				<target>Anzahl zu scrollende Thumbnails (für Slick; {settings.more.slidesToScroll}):</target>
+			</trans-unit>
+			<trans-unit id="mfade">
+				<target>Fade-Effekt (sonst slide; für Flexslider2, Slick; {settings.more.fade}):</target>
+			</trans-unit>
+			<trans-unit id="measing">
+				<target>Übergangs-Effekt (z.B. linear oder swing; für Flexslider2, Galleryview, Slick; {settings.more.easing}):</target>
+			</trans-unit>
+			<trans-unit id="addLightbox">
+				<target>Zeige eine zusätzliche Lightbox an? (für Galleryview; {settings.more.addLightbox}):</target>
+			</trans-unit>
+			<trans-unit id="yes">
+				<target>ja</target>
+			</trans-unit>
+			<trans-unit id="no">
+				<target>nein</target>
+			</trans-unit>
+			
+			<trans-unit id="mlang_tabs_tab">
+				<target>Camaliga</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr">
+				<target>Übersicht und Import "carousel/map/list/gallery"</target>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tablabel">
+				<target>Camaliga-Übersicht und Import</target>
+			</trans-unit>
+			
+			<trans-unit id="index.title">
+				<target>Alphabetische Übersicht</target>
+			</trans-unit>
+			<trans-unit id="index.elements">
+				<target>Camaliga-Elemente in diesem Ordner/Dokument:</target>
+			</trans-unit>
+			<trans-unit id="import.title">
+				<target>Karussell-Import</target>
+			</trans-unit>
+			<trans-unit id="import.importDel">
+				<target>Importiere diese Einträge und lösche die alten Einträge</target>
+			</trans-unit>
+			<trans-unit id="import.import">
+				<target>Importiere diese Einträge</target>
+			</trans-unit>
+			<trans-unit id="import.ok">
+				<target>OK, die Elemente wurden importiert!</target>
+			</trans-unit>
+			<trans-unit id="import.del">
+				<target>OK, die alten Elemente wurden gelöscht!</target>
+			</trans-unit>
+			<trans-unit id="import.found">
+				<target>Einträge gefunden</target>
+			</trans-unit>
+			<trans-unit id="import.error">
+				<target>Fehler: keine Einträge gefunden!</target>
+			</trans-unit>
+			<trans-unit id="importNews.title">
+				<target>tt_news-Import</target>
+			</trans-unit>
+			<trans-unit id="importCooking.title">
+				<target>mv_cooking-Import</target>
+			</trans-unit>
+			<trans-unit id="thumb.title">
+				<target>Sortierte Bilder-Übersicht</target>
+			</trans-unit>
+			<trans-unit id="thumb.text">
+				<target>Bei dieser sortierten Ansicht aller sichtbaren Elemente kann man die Reihenfolge ändern:</target>
+			</trans-unit>
+			<trans-unit id="thumb.save">
+				<target>Neue Reihenfolge abspeichern</target>
+			</trans-unit>
+			<trans-unit id="thumb.saved">
+				<target>Die Reihenfolge der sichtbaren Elemente wurde geändert / gespeichert!</target>
+			</trans-unit>
+			
+			<trans-unit id="pagelayoutview">
+				<target>CaMaLiGa-PlugIn-Einstellungen:</target>
+			</trans-unit>
+			<trans-unit id="pagemodule.switchToPage">
+				<target>gehe zur Seite</target>
+			</trans-unit>
+			<trans-unit id="pagemodule.pageNotAvailable">
+				<target>keine Seite verfügbar!</target>
+			</trans-unit>
+			
+			<trans-unit id="tasks.title">
+				<target>CSV-Export</target>
+			</trans-unit>
+			<trans-unit id="itasks.title">
+				<target>CSV-Import</target>
+			</trans-unit>
+			<trans-unit id="faltasks.title">
+				<target>Wechsele die Bilder zu FAL</target>
+			</trans-unit>
+			<trans-unit id="tasks.description">
+				<target>Exportiert eine CSV-Datei aus der DB ins fileadmin-Verzeichnis.</target>
+			</trans-unit>
+			<trans-unit id="itasks.description">
+				<target>Importiert eine CSV-Datei vom fileadmin-Verzeichnis in die DB.</target>
+			</trans-unit>
+			<trans-unit id="faltasks.description">
+				<target>Verschiebe die Bilder aus /uploads nach FAL und ändere die Bilder-Relationen in den Camaliga-Elementen.</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.page">
+				<target>Seite mit Camaliga-Elementen (pages UID):</target>
+			</trans-unit>
+			<trans-unit id="itasks.validate.catpage">
+				<target>Suche Kategorien nur im angegebenen Ordner?</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.language">
+				<target>Sprache (sys_language UID):</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.cats">
+				<target>Nur Elemente mit einer dieser Kategorie-UIDs (z.B. 5,7) (keine Leerzeichen!):</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.csvfile">
+				<target>Pfad und Name der CSV-Datei (muss mit "fileadmin/" beginnen):</target>
+			</trans-unit>
+			<trans-unit id="itasks.validate.csvfile">
+				<target>Pfad und Name der CSV-Datei (muss mit "fileadmin/" beginnen) [man kann * im Namen verwenden, um immer die letzte Datei auszuwählen (sortiert nach Name)]:</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.header">
+				<target>Überschriften-Zeile in der CSV-Datei (z.B. "UID";"Name";"Beschreibung";"Bundesland"):</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.fields">
+				<target>Datenbankfelder, die exportiert werden sollen (z.B. uid, title, shortdesc, "category:Bundesland") [bei category den Name einer Parent-Kategorie angeben]:</target>
+			</trans-unit>
+			<trans-unit id="itasks.validate.fields">
+				<target>Datenbankfelder, in die importiert werden soll (z.B. uid, title, shortdesc, category, category:Brandenburg, category-parent:Bundesland) [es gibt 3 Möglichkeiten, Kategorien zu importieren: Kategorie-Name in jeder Zeile angeben; Kategorie einmal in Header und dann 0 oder 1 in jeder Zeile; Parent-Kategorie im Header und Kind-Kategorien in jeder Zeile]:</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.separator">
+				<target>Texttrenner:</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.delimiter">
+				<target>Feldtrenner:</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.catdelimiter">
+				<target>Feldtrenner bei Kategorien:</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.convert">
+				<target>Von UTF-8 nach ISO konvertieren?</target>
+			</trans-unit>
+			<trans-unit id="itasks.validate.convert">
+				<target>Von ISO nach UTF-8 konvertieren?</target>
+			</trans-unit>
+			<trans-unit id="itasks.validate.delete">
+				<target>Alte Daten aus dem Ordner erst löschen?</target>
+			</trans-unit>
+			<trans-unit id="itasks.validate.simulate">
+				<target>Import nur simulieren (Ausgabe statt Import)?</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.imgpath">
+				<target>Neuer Ort für die Bilder; Ordner, der im default-Storage (normalerweise ist das fileadmin/) liegt:</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidPage">
+				<target>Ungültige Seiten-UID. Bitte eine richtige Seiten-UID eingeben!</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidLanguage">
+				<target>Ungültige Sprach-UID. Bitte eine richtige Sprach-UID eingeben!</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidCsvfile">
+				<target>Ungültiger Pfad zur CSV-Datei. Bitte einen Pfad angeben, der mit fileadmin/ anfängt!</target>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidImgpath">
+				<target>Ungültiger Pfad für die Bilder. Bitte einen existierenden Pfad angeben, der im default-Storage-Folder liegt (normalerweise fileadmin/)! Beispiel: images/slider/</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

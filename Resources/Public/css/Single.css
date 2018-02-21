@@ -1,0 +1,27 @@
+.carousel-single {
+	margin:0;
+	padding:0;
+}
+.carousel-single-img {
+	padding: 0 0 15px 0;
+}
+.carousel-single-text {
+	padding: 0 0 15px 0;
+}
+.carousel-single-more figure {
+	padding: 0 0 10px 0;
+	font-style: italic;
+}
+.carousel-single-map {
+	width:700px;
+	height:500px;
+	margin:10px 0;
+}
+.carousel-single-map-item {
+	width:333px;
+	height:auto;
+}
+.carousel-single-back {
+	clear: both;
+	padding: 7px 0 0 0;
+}

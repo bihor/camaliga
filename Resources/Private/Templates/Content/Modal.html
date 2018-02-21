@@ -1,0 +1,56 @@
+<f:layout name="Default" />
+
+This example shows a Bootstrap Modal.
+Note 1: you need Bootstrap & Bootstrap Modal for this example. Download it from here:
+http://getbootstrap.com/javascript/#modals
+Copy the JS- and CSS-file into your fileadmin-folder!
+Or better: install a Bootstrap extension and you are done!
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+Note 3: use the field "custom1" for the modal-button/link or change the template.
+
+<f:section name="main">
+<f:flashMessages />
+<style>
+.mymodal .modal-body h4 { margin-top: 0; }
+.mymodal .modal-body img { margin: 0 20px 6px 0; }
+.mymodal .modal-body p { margin-bottom: 0; }
+</style>
+
+<f:for each="{contents}" as="content">
+ <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-keyboard="{settings.bootstrap.escape}" data-target="#myModal{content.uid}">{content.custom1}</button>
+</f:for>
+
+<f:for each="{contents}" as="content" iteration="iter">
+<div class="modal {settings.bootstrap.animation}" id="myModal{content.uid}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{content.uid}">
+  <div class="modal-dialog {settings.bootstrap.dialog}" role="document">
+    <div class="modal-content mymodal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="{f:translate(key: 'close')}"><span aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title" id="myModalLabel{content.uid}">{content.title}</h3>
+      </div>
+      <div class="modal-body">
+        <f:if condition="{fal}"><f:then>
+	      <f:if condition="{content.falimage.uid}">
+		  <f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" additionalAttributes="{align: 'left'}" treatIdAsReference="1" />
+	      </f:if>
+	    </f:then><f:else>
+	      <f:if condition="{content.image} != ''">
+		  <f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" additionalAttributes="{align: 'left'}" />
+	      </f:if>
+	    </f:else></f:if>
+        <h4><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
+        <f:format.html>{content.longdesc}</f:format.html>
+		<f:if condition="{content.link} != ''"><p>
+		  <f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+		</p></f:if>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{f:translate(key: 'close')}</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</f:for>
+</f:section>

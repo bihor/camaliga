@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+			<trans-unit id="title">
+				<source>Layout</source>
+			</trans-unit>
+			<trans-unit id="images">
+				<source>Images</source>
+			</trans-unit>
+			<trans-unit id="item">
+				<source>Items</source>
+			</trans-unit>
+			<trans-unit id="categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="title">
+				<source>Layout</source>
+			</trans-unit>
+			<trans-unit id="template">
+				<source>HTML-Template:</source>
+			</trans-unit>
+			<trans-unit id="template.not_configured">
+				<source>no template layout selected!</source>
+			</trans-unit>
+			<trans-unit id="template.carousel">
+				<source>Carousel: elements are side by side</source>
+			</trans-unit>
+			<trans-unit id="template.separated">
+				<source>Carousel: text and images separated</source>
+			</trans-unit>
+			<trans-unit id="template.list">
+				<source>List view: elements are among themselves</source>
+			</trans-unit>
+			<trans-unit id="template.listextended">
+				<source>List view 2: automatic extended version</source>
+			</trans-unit>
+			<trans-unit id="template.show">
+				<source>Single view: one element</source>
+			</trans-unit>
+			<trans-unit id="template.showextended">
+				<source>Single view 2: automatic extended version</source>
+			</trans-unit>
+			<trans-unit id="template.map">
+				<source>map view (google maps)</source>
+			</trans-unit>
+			<trans-unit id="template.random">
+				<source>Only one random element (uncached)</source>
+			</trans-unit>
+			<trans-unit id="template.responsive">
+				<source>A simple responsive carousel</source>
+			</trans-unit>
+			<trans-unit id="template.search">
+				<source>Google maps 2: (uncached search template)</source>
+			</trans-unit>
+			<trans-unit id="templateLayout">
+				<source>Template layout (see manual):</source>
+			</trans-unit>
+			<trans-unit id="sortBy">
+				<source>Default sort by:</source>
+			</trans-unit>
+			<trans-unit id="sortBy.tstamp">
+				<source>Modified date</source>
+			</trans-unit>
+			<trans-unit id="sortBy.crdate">
+				<source>Creation date</source>
+			</trans-unit>
+			<trans-unit id="sortBy.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="sortBy.zip">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="sortBy.city">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="sortBy.country">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="sortOrder">
+				<source>Default sort order:</source>
+			</trans-unit>
+			<trans-unit id="sortOrder.asc">
+				<source>ascending</source>
+			</trans-unit>
+			<trans-unit id="sortOrder.desc">
+				<source>descending</source>
+			</trans-unit>
+			<trans-unit id="random">
+				<source>Shuffle elements (random order, cached)?</source>
+			</trans-unit>
+			<trans-unit id="getLatLon">
+				<source>Try to get the position of an address automatically?</source>
+			</trans-unit>
+			<trans-unit id="onlyDistinct">
+				<source>Show only distinct entries (parent or one child)?</source>
+			</trans-unit>
+			<trans-unit id="seo.setTitle">
+				<source>Replace the site-title with the title-field?</source>
+			</trans-unit>
+			<trans-unit id="seo.setDescription">
+				<source>Set the metatag "description" with the shortdesc-field?</source>
+			</trans-unit>
+			<trans-unit id="seo.setIndexedDocTitle">
+				<source>Replace the site-title in the sitemap with the title-field?</source>
+			</trans-unit>
+			<trans-unit id="seo.setOgTitle">
+				<source>Set the metatag og:title with the title-field?</source>
+			</trans-unit>
+			<trans-unit id="seo.setOgDescription">
+				<source>Set the metatag og:description with the shortdesc-field?</source>
+			</trans-unit>
+			<trans-unit id="seo.setOgImage">
+				<source>Set the metatag og:image with the 1. image?</source>
+			</trans-unit>
+			<trans-unit id="addPadding">
+				<source>Add padding to width and height specification?</source>
+			</trans-unit>
+			<trans-unit id="listId">
+				<source>Where is the list-page (you must add the setting {settings.listId} to the template)?</source>
+			</trans-unit>
+			<trans-unit id="showId">
+				<source>Where is the single-page (you must add the setting {settings.showId} to the template)?</source>
+			</trans-unit>
+			<trans-unit id="layout.listId">
+				<source>List-page:</source>
+			</trans-unit>
+			<trans-unit id="layout.showId">
+				<source>Single-page:</source>
+			</trans-unit>
+			<trans-unit id="imgwidth">
+				<source>Width of images in px ({settings.img.width}):</source>
+			</trans-unit>
+			<trans-unit id="imgheight">
+				<source>Height of images in px ({settings.img.height}):</source>
+			</trans-unit>
+			<trans-unit id="thumbWidth">
+				<source>Width of thumbnail images in px ({settings.img.thumbWidth}):</source>
+			</trans-unit>
+			<trans-unit id="thumbHeight">
+				<source>Height of thumbnail images in px ({settings.img.thumbHeight}):</source>
+			</trans-unit>
+			<trans-unit id="width">
+				<source>Width in px ({settings.item.width}):</source>
+			</trans-unit>
+			<trans-unit id="height">
+				<source>Height in px ({settings.item.height}):</source>
+			</trans-unit>
+			<trans-unit id="padding">
+				<source>Padding in px ({settings.item.padding}):</source>
+			</trans-unit>
+			<trans-unit id="margin">
+				<source>Margin in px ({settings.item.margin}):</source>
+			</trans-unit>
+			<trans-unit id="items">
+				<source>Number of visible items [per row] (e.g. JavaScript-parameter for carousels) ({settings.item.items}):</source>
+			</trans-unit>
+			<trans-unit id="limit">
+				<source>Number of visible elements (SQL-select-parameter):</source>
+			</trans-unit>
+			<trans-unit id="default_categories">
+				<source>Selected default categories (for extended templates: AND for radio-buttons and OR for checkboxes):</source>
+			</trans-unit>
+			<trans-unit id="categoryMode">
+				<source>Category mode:</source>
+			</trans-unit>
+			<trans-unit id="categoryMode.translated">
+				<source>Use the category relations of translated elements (bugy)</source>
+			</trans-unit>
+			<trans-unit id="categoryMode.original">
+				<source>Use the category relations of the original element</source>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode">
+				<source>Category mode (for normal templates):</source>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode.and">
+				<source>AND combination of the selected categories</source>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode.or">
+				<source>OR combination of the selected categories</source>
+			</trans-unit>
+			<trans-unit id="normalCategoryMode">
+				<source>Category mode (for normal templates):</source>
+			</trans-unit>
+			<trans-unit id="showIndicators">
+				<source>Show indicators:</source>
+			</trans-unit>
+			<trans-unit id="showControls">
+				<source>Show controls:</source>
+			</trans-unit>
+			<trans-unit id="interval">
+				<source>The amount of time to delay between automatically cycling an item (ms):</source>
+			</trans-unit>
+			<trans-unit id="pause">
+				<source>Pauses the cycling of the carousel on mouseenter?</source>
+			</trans-unit>
+			<trans-unit id="wrap">
+				<source>The carousel should cycle continuously?</source>
+			</trans-unit>
+			<trans-unit id="keyboard">
+				<source>The carousel should react to keyboard events?</source>
+			</trans-unit>
+			<trans-unit id="dialog">
+				<source>Size og the dialog window (normal, small or large):</source>
+			</trans-unit>
+			<trans-unit id="small">
+				<source>small</source>
+			</trans-unit>
+			<trans-unit id="large">
+				<source>large</source>
+			</trans-unit>
+			<trans-unit id="animation">
+				<source>Animation type (can be removed only via TypoScript):</source>
+			</trans-unit>
+			<trans-unit id="fade">
+				<source>fading</source>
+			</trans-unit>
+			<trans-unit id="escape">
+				<source>Close the modal when escape key is pressed?</source>
+			</trans-unit>
+			<trans-unit id="expanded">
+				<source>First collapsible element is opened by default?</source>
+			</trans-unit>
+			<trans-unit id="expandall">
+				<source>open all collapsible elements</source>
+			</trans-unit>
+			<trans-unit id="parent">
+				<source>Open allways max. one collapsible element?</source>
+			</trans-unit>
+			<trans-unit id="toggle">
+				<source>Toggles the collapsible element on invocation?</source>
+			</trans-unit>
+			<trans-unit id="extendedOptions">
+				<source>Extended options</source>
+			</trans-unit>
+			<trans-unit id="extendedVersion">
+				<source>Activate extended template with category search (see manual; {settings.extended.enable})?</source>
+			</trans-unit>
+			<trans-unit id="onlySearchForm">
+				<source>Show only the search form without results ({settings.extended.onlySearchForm})?</source>
+			</trans-unit>
+			<trans-unit id="restrictSearch">
+				<source>Restrict the search options ({settings.extended.restrictSearch})?</source>
+			</trans-unit>
+			<trans-unit id="radiusValues">
+				<source>Proximity values in km. E.g. 10,20,50 ({settings.extended.radiusValues}):</source>
+			</trans-unit>
+			<trans-unit id="saveSearch">
+				<source>Save the search parameters in a cookie and load them later?</source>
+			</trans-unit>
+			<trans-unit id="more">
+				<source>More</source>
+			</trans-unit>
+			<trans-unit id="setModulo">
+				<source>Enable modulo-calculation (needed for e.g. the Ekko-template; {settings.more.setModulo}):</source>
+			</trans-unit>
+			<trans-unit id="mspeed">
+				<source>Speed in sec. (for Flexslider2, Galleryview, Parallax, Slick {settings.more.speed}):</source>
+			</trans-unit>
+			<trans-unit id="mautoplay">
+				<source>Enable autoplay? (for Flexslider2, Galleryview, Slick {settings.more.autoplay}):</source>
+			</trans-unit>
+			<trans-unit id="mautoplaySpeed">
+				<source>Autoplay speed in sec. (for Flexslider2, Galleryview, Parallax, Slick; {settings.more.autoplaySpeed}):</source>
+			</trans-unit>
+			<trans-unit id="minfinite">
+				<source>Infinite loop? (for Flexslider2, Slick; {settings.more.infinite}):</source>
+			</trans-unit>
+			<trans-unit id="mvertical">
+				<source>Vertical direction? (for Flexslider2, Slick; {settings.more.vertical}):</source>
+			</trans-unit>
+			<trans-unit id="mreverse">
+				<source>Right to left? (for Flexslider2, Slick; {settings.more.reverse}):</source>
+			</trans-unit>
+			<trans-unit id="mcrop">
+				<source>Crop images if they do not fit? (for Galleryview; {settings.more.crop}):</source>
+			</trans-unit>
+			<trans-unit id="mshowPanel">
+				<source>Show the panel? (for Flexslider2, Slick; {settings.more.showPanel}):</source>
+			</trans-unit>
+			<trans-unit id="mshowArrows">
+				<source>Show arrow navigation? (for Flexslider2, Galleryview, Slick; {settings.more.showArrows}):</source>
+			</trans-unit>
+			<trans-unit id="mshowDots">
+				<source>Show dots navigation? (for Flexslider2, Slick; {settings.more.showDots}):</source>
+			</trans-unit>
+			<trans-unit id="mshowThumbnails">
+				<source>Show thumbnails/image navigation? (for Flexslider2, Galleryview; {settings.more.showThumbnails}):</source>
+			</trans-unit>
+			<trans-unit id="mshowAllThumbs">
+				<source>Show all thumbnails? (für Galleryview; {settings.more.showAllThumbs}):</source>
+			</trans-unit>
+			<trans-unit id="mshowArrowsThumbs">
+				<source>Arrow navigation for the thumbnails? (for Flexslider2, Galleryview, Slick; {settings.more.showArrowsThumbs}):</source>
+			</trans-unit>
+			<trans-unit id="mshowDotsThumbs">
+				<source>Dot navigation for the thumbnails? (for Flexslider2, Slick; {settings.more.showDotsThumbs}):</source>
+			</trans-unit>
+			<trans-unit id="mshowCaptions">
+				<source>Show captions? (for Galleryview; {settings.more.showCaptions}):</source>
+			</trans-unit>
+			<trans-unit id="mpausePlay">
+				<source>Show Play/Pause? (for Flexslider2, Galleryview; {settings.more.pausePlay}):</source>
+			</trans-unit>
+			<trans-unit id="mpauseOnHover">
+				<source>Pause on mouseover? (for Flexslider2, Slick; {settings.more.pauseOnHover}):</source>
+			</trans-unit>
+			<trans-unit id="mopacity">
+				<source>Opacity (for Galleryview; {settings.more.opacity}):</source>
+			</trans-unit>
+			<trans-unit id="mslidesToShow">
+				<source>Slides to show (for Slick; {settings.more.slidesToShow}):</source>
+			</trans-unit>
+			<trans-unit id="mslidesToScroll">
+				<source>Slides to scroll (for Slick; {settings.more.slidesToScroll}):</source>
+			</trans-unit>
+			<trans-unit id="mfade">
+				<source>Fade effect (otherwise slide; for Flexslider2, Slick; {settings.more.fade}):</source>
+			</trans-unit>
+			<trans-unit id="measing">
+				<source>Easing effect (e.g. linear or swing; for Flexslider2, Galleryview, Slick; {settings.more.easing}):</source>
+			</trans-unit>
+			<trans-unit id="addLightbox">
+				<source>Show an additional Lightbox? (for Galleryview; {settings.more.addLightbox}):</source>
+			</trans-unit>
+			<trans-unit id="yes">
+				<source>yes</source>
+			</trans-unit>
+			<trans-unit id="no">
+				<source>no</source>
+			</trans-unit>
+			
+			<trans-unit id="mlang_tabs_tab">
+				<source>Camaliga</source>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr">
+				<source>Overview and import for "carousel/map/list/gallery"</source>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tablabel">
+				<source>Camaliga overview and import</source>
+			</trans-unit>
+			
+			<trans-unit id="index.title">
+				<source>Alphabetical overview</source>
+			</trans-unit>
+			<trans-unit id="index.elements">
+				<source>Camaliga-elements in this folder/document:</source>
+			</trans-unit>
+			<trans-unit id="import.title">
+				<source>Karussell-Import</source>
+			</trans-unit>
+			<trans-unit id="import.import">
+				<source>Import this entries</source>
+			</trans-unit>
+			<trans-unit id="import.found">
+				<source>entries found.</source>
+			</trans-unit>
+			<trans-unit id="import.importDel">
+				<source>Import this entries and delete the old entries</source>
+			</trans-unit>
+			<trans-unit id="import.ok">
+				<source>OK. Elements imported!</source>
+			</trans-unit>
+			<trans-unit id="import.del">
+				<source>OK. Old elements deleted!</source>
+			</trans-unit>
+			<trans-unit id="import.error">
+				<source>Error: no entries found!</source>
+			</trans-unit>
+			<trans-unit id="importNews.title">
+				<source>tt_news-Import</source>
+			</trans-unit>
+			<trans-unit id="importCooking.title">
+				<source>mv_cooking-Import</source>
+			</trans-unit>
+			<trans-unit id="thumb.title">
+				<source>Sorted thumbnail overview</source>
+			</trans-unit>
+			<trans-unit id="thumb.text">
+				<source>In this sorted view of all visible elements you can change the order of the elements:</source>
+			</trans-unit>
+			<trans-unit id="thumb.save">
+				<source>Save the new order</source>
+			</trans-unit>
+			<trans-unit id="thumb.saved">
+				<source>The order of the visible elements has been changed / saved!</source>
+			</trans-unit>
+			
+			<trans-unit id="pagelayoutview">
+				<source>CaMaLiGa plugin settings:</source>
+			</trans-unit>
+			<trans-unit id="pagemodule.switchToPage">
+				<source>switch to page</source>
+			</trans-unit>
+			<trans-unit id="pagemodule.pageNotAvailable">
+				<source>page not available!</source>
+			</trans-unit>
+			
+			<trans-unit id="tasks.title">
+				<source>CSV export</source>
+			</trans-unit>
+			<trans-unit id="itasks.title">
+				<source>CSV import</source>
+			</trans-unit>
+			<trans-unit id="faltasks.title">
+				<source>Switch to FAL</source>
+			</trans-unit>
+			<trans-unit id="tasks.description">
+				<source>Writes a CSV-file from the DB to the fileadmin folder.</source>
+			</trans-unit>
+			<trans-unit id="itasks.description">
+				<source>Reads a CSV-file from the fileadmin folder to the DB.</source>
+			</trans-unit>
+			<trans-unit id="faltasks.description">
+				<source>Move /uploads-images to FAL and change the image-relation in the camaliga-elements.</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.page">
+				<source>Page with camaliga-elements (pages UID):</source>
+			</trans-unit>
+			<trans-unit id="itasks.validate.catpage">
+				<source>Search categories only in the given folder?</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.language">
+				<source>Language (sys_language UID):</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.cats">
+				<source>Only elements with one of this category-uids (e.g. 5,7) (no space!):</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.csvfile">
+				<source>Path and name of the csv file (must begin with "fileadmin/"):</source>
+			</trans-unit>
+			<trans-unit id="itasks.validate.csvfile">
+				<source>Path and name of the csv file (must begin with "fileadmin/") [you can use * in the name to select always the last file (ordered by name)]:</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.header">
+				<source>Header line of the csv file (e.g. "UID";"Name";"Description";"Category 1"):</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.fields">
+				<source>Database fields to export (e.g. uid, title, shortdesc, "category:State") [at category: the name of the parent category]:</source>
+			</trans-unit>
+			<trans-unit id="itasks.validate.fields">
+				<source>Database fields for the import (e.g. uid, title, shortdesc, category, category:Brandenburg, category-parent:State) [there are 3 possibilities to import categories: category-name in every row; category in the header an then 0 or 1 in every row; parent-category in the header and child-categories in every row]:</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.separator">
+				<source>Separator:</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.delimiter">
+				<source>Delimiter:</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.catdelimiter">
+				<source>Category delimiter:</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.convert">
+				<source>Convert text from UTF-8 to ISO?</source>
+			</trans-unit>
+			<trans-unit id="itasks.validate.convert">
+				<source>Convert text from ISO to UTF-8?</source>
+			</trans-unit>
+			<trans-unit id="itasks.validate.delete">
+				<source>Delete old entries of this folder first?</source>
+			</trans-unit>
+			<trans-unit id="itasks.validate.simulate">
+				<source>Simulation only (echo, no import)?</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.imgpath">
+				<source>New place for the images (folder in your default-storage):</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidPage">
+				<source>Invalid pages uid, please enter a valid pages uid!</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidLanguage">
+				<source>Invalid sys_language uid, please enter a valid sys_language uid!</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidCsvfile">
+				<source>Invalid csv file, please enter a valid path to the csv file in the fileadmin folder!</source>
+			</trans-unit>
+			<trans-unit id="tasks.validate.invalidImgPath">
+				<source>Invalid image-folder-path, please enter a valid and existend path for the images in your default-storage-folder (usually fileadmin/)! Example: images/slider/</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

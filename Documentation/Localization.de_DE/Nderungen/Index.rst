@@ -1,0 +1,177 @@
+﻿
+
+.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+.. ==================================================
+.. DEFINE SOME TEXTROLES
+.. --------------------------------------------------
+.. role::   underline
+.. role::   typoscript(code)
+.. role::   ts(typoscript)
+   :class:  typoscript
+.. role::   php(code)
+
+
+Änderungen
+----------
+
+- Hier findet man die Änderungen...
+
+==========  =====================================================================================================================
+Version     Änderungen
+==========  =====================================================================================================================
+0.1.0       Erster Upload ins TER.
+0.1.2       Google PicasaWeb-Import und FancyBox-Template hinzugefügt. Tutorial hinzugefügt.
+1.0.0       Mehr TypoScript- und FlexForm-Einstellungen. Karussell-Beispiel upgedatet.
+1.1.0       Einige Beispiele hinzugefügt. Karussell-Import verbessert.
+1.2.0       Schwerer Bug gefixt: falscher Pfad zu den Templates. Einige Beispiele hinzugefügt.
+1.2.1       Test der neuen ReST Dokumentation.
+1.2.3       Dokumentation angepasst. sxw-Dokument gelöscht. Liste der Kategorien sortiert.
+1.3.0       S Gallery und jQuery.Flipster Template hinzugefügt.
+            Template Carousel.html verbessert.
+            Weitere Größen-Variablen hinzugefügt.
+            Bug gefixt: man kann die 0 auch in den FlexForms benutzen.
+1.4.0       Update-Skript hinzugefügt. Bitte nach einen Update auf Typo3 6.2 ausführen,
+            falls man in der Version 6.0 oder 6.1 Kategorien benutzt hat!
+            Kategorien zu den FlexForms hinzugefügt.
+2.0.0       Die Kategorie-Ausgabe ist nun sprachabhängig. categoryMode-Einstellung hinzugefügt.
+            {content.categories} wurde in {content.categoriesAndParents} umbenannt. Ersteres liefert nun eine andere Liste!
+            Siehe Kapitel Administration/Kategorien.
+
+            Template-Layouts hinzugefügt: damit man mehrere Layouts in einem Template verwenden kann
+            (siehe Kapitel Seiten-TSconfig).
+
+            3 neue Felder hinzugefügt: Telefon, Handy und E-Mail.
+
+            3 neue HTML-Templates hinzugefügt (SKDslider, OWL carousel 2, Responsive Carousel).
+
+            Hooks für die Extensions linkvalidator und ke_search hinzugefügt.
+3.0.0       Die Kategorien-Suche läuft nun mit allen Templates, nicht nur mit den erweiterten Templates.
+
+            Neue Felder: 4 weitere Bilder mit Beschreibung für die Detail-Ansicht.
+
+            Ordner-Bild hinzugefügt.
+
+            Fast alle Templates wurden verbessert (z.B. optimiert für Bootstrap 3).
+
+            Erfolgreich getestet mit Typo3 7.0 und der Extension compatibility6. Min. Vorraussetzung auf Typo3 6.2.2
+            geändert.
+3.1.0       Template Tab.html (für Bootstrap) und Lightslider.html hinzugefügt.
+
+            Option hinzugefügt: automatische Suche nach Latitude und Longitude.
+
+            Möglichkeit eingebaut, die Camaliga-Tabelle zu erweitern.
+
+            Typo3 7 Kompatibilität erhöht (läuft noch nicht ganz mit Typo3 7.1).
+3.2.0       Bug gefixt: Fehler beim tt_news-Import.
+            Typo3 7 Kompatibilität erhöht.
+
+            Neues Backend-Formular: sortierbare Bilderübersicht.
+
+            Neue Templates: Isotope, jQuery Full Width Image Slider, Coolcarousel.
+4.0.0       Template-Liste in den FlexForms anders sortiert/gegliedert. Demo-Link zu den Templates in diese Doku eingebaut.
+
+            Neue Templates: slick carousel, Bootstrap Collapse/Accordion, Bootstrap Modal.
+
+            Neue FlexForms für die Konfiguration der 4 Bootstrap-Templates.
+
+            Zahlreiche Verbesserungen (z.B. bei der Suche nach Kategorien bei normalen Templates).
+5.0.0       Erweiterte Templates können nun durch eine Option eingeschaltet werden. Siehe Kapitel "Updaten auf camaliga 5.0.0".
+
+            3 Templates sind nun veraltet und sollten nicht mehr benutzt werden. Siehe Kapitel "Updaten auf camaliga 5.0.0".
+
+            Neue Backend-Module: CSV-Import und mv_cooking-Import.
+
+            Brandneu: Volltextsuche und Umkreissuche.
+
+            Neue Optionen: Sortierung nach crdate, settings.limit, settings.extended.*
+
+            Neue Templates: search (siehe Kapitel "Administration / Erweiterte Templates").
+
+            ke_search-Indexer umbenannt.
+
+            Bug gefixt: Sortierung bei normalen Templates mit Kategorien.
+6.0.0       Camaliga ist nun TYPO3 7 LTS kompatibel:
+
+            - Vendor-Name geändert -> man muss nach dem Updaten den allgemeinen Chache löschen!
+            - alte Methoden ersetzt.
+            - Pfad zu den Templates geändert -> siehe Kapitel Konfiguration/TypoScript-Referenz und Updaten auf camaliga 6.0.0.
+
+            Planer-Task für CSV-Export hinzugefügt.
+
+            Veraltete actions und Templates entfernt: galleryviewExtended, adGalleryExtended und mapExtended.
+6.0.3       TCA-Problem mit TYPO3 7 gefixt (evt. den allg. Cache löschen).
+
+            double7-Validator gefixt.
+
+            TS settings.googleMapsKey hinzugefügt.
+6.0.6       TYPO3 7 Bugfix.
+
+            TS hinzugefügt: settings.maps.key, zoom, startLatitude und startLongitude. googleMapsKey wieder entfernt.
+6.1.0       Template Parallax hinzugefügt.
+
+            Update-Skript für camaliga 6.0.0 hinzugefügt.
+
+            TYPO3 7 Bugfix und neues Icon.
+6.2.0       TypoScript und FlexForm hinzugefügt: settings.more.* Variablen hinzugefügt: {contents.moduloBegin}, {contents.moduloEnd}.
+
+            Template hinzugefügt: Ekko.
+
+            Geänderte Templates: AdGallery, Flexslider2, Galleryview, Parallax, Slick.
+            Die meisten dieser Templates können nun per TypoScript oder FlexForms gesteuert werden.
+
+            3 Templates sind nun veraltet: AdGalleryFancyBox, GalleryviewFancyBox, OwlSimpleModal.
+            Siehe Kapitel "Administration/HTML-Templates".
+
+            Bugfix: Validation-Fehlermeldung?
+6.3.0       2 ViewHelper hinzugefügt: content- und addPublicResources-ViewHelper. Siehe Kapitel "Administration/ViewHelpers".
+
+            Die zusätzliche Extension camaliga_addon ist nun verfügbar. Siehe Kapitel "Administration/Camaliga-Tabellen erweitern".
+
+            Bugfix: Kleinigkeiten.
+6.3.1       Bugfix: Kleinigkeiten.
+6.4.0       Template Revolution-Slider und FracionSlider hinzugefügt.
+
+            Optionale Felder können nun auch im Extension-Maganger ausgeblendet werden.
+
+            Die Volltextsuche sucht jetzt auch in custom1.
+
+            Kleinere Optimierungen.
+7.0.0       TYPO3 6.2 Kompatibilität entfernt.
+
+            Die Templates AdGalleryFancyBox, GalleryviewFancyBox und OwlSimpleModal entfernt.
+
+            TS seo.*, maps.language, maps.dontIncludeAPI und maps.includeRoute hinzugefügt.
+
+            Partial für eine Routenplannung hinzugefügt.
+
+            Den CSV-Import verschoben. Neuer Ort: Scheduler.
+
+            Den PicasaWeb-Import entfernt, da es PicasaWeb nicht mehr gibt.
+
+            Neues DB-Feld: Kontaktperson. Mehr Ausschalt-Optionen bei der Konfiguration im Extension-Manager.
+
+            Neue Variable in den Templates verfügbar: {content.links}
+7.1.0       Setting extended.saveSearch hinzugefügt.
+            TYPO3 8.7 Kompatibilität hinzugefügt. Achtung: von TYPO3 8.7 erzeugte Links können noch nicht ausgewertet werden.
+7.1.6       Kleinere Bugs gefixt. Kleinere Änderungen in dieser Doku.
+8.0.0       Man kann nun auch FAL-Bilder benutzen. Diese können in der Kofiguration im Extension Manager eingeschaltet werden.
+
+            Alle Templates aktualisiert. Z.B. alle Links zu f:link.typolink geändert.
+
+            Das Owl-Template gelöscht. Nutze stattdessen das Owl2-Template.
+
+            mv_cooking import removed.
+8.0.1       Bugs gefixt: getImgConfig und tx_camaliga_double7 entfernt.
+8.0.2       Update-Skript für falsche FAL-Relationen.
+            Bitte das Aktualisierungs-Skript im Extension-Manager benutzen, falls schon FAL benutzt wird.
+8.1.0       Planer-Task hinzugefügt: man kann jetzt uploads-Bilder zu FAL-Bildern konvertieren.
+            Lies auch das Kapitel Administration → Scheduler-Tasks dazu.
+            
+            Layout Backend7.html durch Backend.html ersetzt.
+            
+            tx_camaliga_double7 endgültig entfernt, da TYPO3 sich manchmal daran störte (Cache-Problem).
+==========  =====================================================================================================================

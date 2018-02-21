@@ -1,0 +1,72 @@
+<f:layout name="Default" />
+
+This simple responsive carousel requires only jQuery.
+Note 1: you can copy and customise the camaliga/Resources/Public/css/Responsive.css to your fileadmin-folder.
+Remove that line from this template if you do that...
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+
+
+<f:section name="main">
+<f:flashMessages />
+<link href="{f:uri.resource(path:'css/Responsive.css')}" rel="stylesheet" />
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<script type="text/javascript">
+var speed = 800;
+var first = 0;
+var pause = 7000;
+<f:if condition="{0:settings.item.items} != {0:''}"><f:then>
+var max = {settings.item.items};
+</f:then><f:else>
+var max = {contents -> f:count()};
+</f:else></f:if>
+var jetzt = 1;
+/*<![CDATA[*/
+(function($) {
+	function tack() {
+		$('#grau-'+jetzt).animate({
+        //    height: 0
+        }, speed).hide('medium', function() {
+            $('#item-'+jetzt).hide();
+			jetzt++;
+			if (jetzt>max) jetzt = 1;
+			$('#item-'+jetzt).show();
+			$('#grau-'+jetzt).show('medium');
+        });
+	}
+    setInterval(tack, pause);
+})(jQuery);
+/*]]>*/
+</script>
+
+<div class="karussell">
+<ul id="mycarousel">
+<f:for each="{contents}" as="content" iteration="iter">
+<li class="carousel-item <f:if condition="{iter.isFirst}"><f:then>ka-first</f:then><f:else><f:if condition="{iter.isLast}"><f:then>ka-last</f:then><f:else>ka-middle</f:else></f:if></f:else></f:if>" id="item-{iter.cycle}">
+  <f:if condition="{fal}"><f:then>
+    <f:if condition="{content.falimage.uid}">
+	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+    </f:if>
+  </f:then><f:else>
+    <f:if condition="{content.image} != ''">
+	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+    </f:if>
+  </f:else></f:if>
+  <div class="grau grau-<f:if condition="{iter.isFirst}"><f:then>ka-first</f:then><f:else><f:if condition="{iter.isLast}"><f:then>ka-last</f:then><f:else>ka-middle</f:else></f:if></f:else></f:if>" id="grau-{iter.cycle}">
+	<h3>{content.title}</h3><f:format.html>{content.shortdesc}</f:format.html>
+	<f:if condition="{content.link} != ''"><p>
+		<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+	</p></f:if>
+  </div>
+</li>
+</f:for>
+</ul>
+</div>
+</f:then>
+<f:else>
+ <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

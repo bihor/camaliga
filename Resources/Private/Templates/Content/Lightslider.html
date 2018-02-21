@@ -1,0 +1,66 @@
+<f:layout name="Default" />
+
+This is a Lightslider that uses the jQuery-plugin from here:
+http://sachinchoolur.github.io/lightslider/settings.html
+Note: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
+  plugin.tx_camaliga.view.templateRootPath = fileadmin/template/files/
+  Copy this file in a subfolder named "Content" of this folder.
+Download the jQuery-plugin and include it like this:
+  page.includeCSS.lighslider = fileadmin/lightslider-master/lightSlider/css/lightSlider.css
+  page.includeJSFooter.lighslider = fileadmin/lightslider-master/lightSlider/js/jquery.lightSlider.min.js
+  page.includeJSFooter.lighsliderStart= fileadmin/Resources/Public/Scripts/Lightslider.js
+Put this JS-code in the last file:
+  $(document).ready(function() {
+    $('#lightSlider').lightSlider({
+        item:4,
+        slideMove:1,
+		slideMargin:20,
+		//prevHtml: 'weiter',
+        easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+        speed:600,
+        responsive : [
+            {
+                breakpoint:800,
+                settings: {
+                    item:3,
+                    slideMargin:15
+                }
+            },
+            {
+                breakpoint:480,
+                settings: {
+                    item:2,
+                    slideMargin:10
+                }
+            }
+        ]
+    });
+  });
+
+
+<f:section name="main">
+<f:flashMessages />
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+<ul id="lightSlider">
+	<f:for each="{contents}" as="content">
+		<li>
+			<f:if condition="{fal}"><f:then>
+			<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}m" treatIdAsReference="1" />
+			</f:then><f:else>
+			<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />
+			</f:else></f:if>
+			<h3>{content.title}</h3>
+			<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
+			<f:if condition="{content.link} != ''">
+				<p><f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink></p>
+			</f:if>
+		</li>
+	</f:for>
+</ul>
+</f:then>
+<f:else>
+ <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+</f:section>

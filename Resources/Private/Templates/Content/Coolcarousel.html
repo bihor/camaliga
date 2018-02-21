@@ -1,0 +1,161 @@
+<f:layout name="Default" />
+
+Coolslider-Template, based on: 
+http://coolcarousels.frebsite.nl/c/66/
+
+Note 1: Download Coolslider and copy it to your fileadmin-folder. Include it like this:
+ page {
+  includeJS.coolslider = fileadmin/coolcarousel/jquery.carouFredSel-6.2.0-packed.js
+ }
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+$(function() {
+	var $imgs = $('#images .carousel'),
+		$capt = $('#captions .carousel'),
+		$timr = $('#timer');
+
+	$imgs.carouFredSel({
+		circular: false,
+		scroll: {
+			easing: 'quadratic',
+			duration: 3,
+			timeoutDuration: 3000,
+			onBefore: function( data ) {
+				$capt.trigger( 'slideTo', [ '.' + data.items.visible.first().attr( 'alt' ) ] );
+				$timr.stop().animate({
+					opacity: 0
+				}, data.scroll.duration);
+			},
+			onAfter: function() {
+				$timr.stop().animate({
+					opacity: 1
+				}, 150);
+			}
+		},
+		auto: {
+			progress: '#timer'
+		},
+		pagination: {
+			container: '.pager',
+			anchorBuilder: function( i ) {
+				return '<a class="p' + i + '" href="#"></a>';
+			}
+		}
+	});
+	$capt.carouFredSel({
+		circular: false,
+		auto: false,
+		scroll: {
+			easing: 'quadratic',
+			duration: 3
+		}
+	});
+});
+/*]]>*/
+</script>
+<style type="text/css">
+.tx-camaliga {
+	position: relative;
+}
+#images {
+	width: 800px;
+	height: 560px;
+}
+#images img {
+	display: block;
+	float: left;
+}
+#timer,
+#captions {
+	background: rgba( 0, 0, 0, 0.5 );
+	width: 800px;
+	height: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+#timer {
+	background: rgba( 200, 0, 0, 0.5 );
+}
+#captions .carousel > div {
+	color: #fff;
+	font-size: 22px;
+	font-weight: bold;
+	line-height: 52px;
+	text-transform: uppercase;
+	text-indent: 50px;
+	width: 800px;
+	height: 50px;
+	float: left;
+}
+.pager {
+	line-height: 22px;
+	margin: 12px 0;
+	padding: 1px 20px 0 0;
+	float: right;
+}
+.pager a {
+	border: 1px solid #fff;
+	border-radius: 10px;
+	display: none;
+	width: 10px;
+	height: 10px;
+	margin: 0 3px;
+}
+.pager a:hover {
+	background: rgba( 255, 255, 255, 0.3 );
+}
+.pager a.selected {
+	background: #fff;
+}
+.cod .pager .p1,
+.cod .pager .p2,
+.cod .pager .p3,
+.gta .pager .p4,
+.gta .pager .p5,
+.gta .pager .p6,
+.mgs .pager .p7,
+.mgs .pager .p8,
+.mgs .pager .p9 {
+	display: inline-block;
+}
+</style>
+
+<div id="images">
+	<div class="carousel">
+	<f:for each="{contents}" as="content">
+		<f:if condition="{fal}"><f:then>
+		    <f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" />
+		</f:then><f:else>
+		    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" />
+		</f:else></f:if>
+	</f:for>
+	</div>
+</div>
+<div id="timer"></div>
+<div id="captions">
+	<div class="carousel">
+		<f:for each="{contents}" as="content">
+		<div class="cod">{content.title}
+			<div class="pager"></div>
+		</div>
+		</f:for>
+	</div>
+</div>
+
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

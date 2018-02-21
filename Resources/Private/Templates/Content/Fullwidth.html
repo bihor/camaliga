@@ -1,0 +1,83 @@
+<f:layout name="Default" />
+
+jQuery Full Width Image Slider-Template, based on: 
+https://github.com/JoeBonham/jQuery-Full-Width-Image-Slider
+
+Note 1: Download the Full Width Image Slider and copy it to your fileadmin-folder. Include it like this:
+ page {
+  includeJS.fullwidth = fileadmin/jQuery-Full-Width-Image-Slider-master/slider.js
+  includeCSS.fullwidth = fileadmin/jQuery-Full-Width-Image-Slider-master/slider.less
+ }
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+
+<div class="full-width">
+    <div class="inner">
+	<f:for each="{contents}" as="content" iteration="iter">
+        <div class="slide">
+            <div class="over">
+				<article>
+				<span class="stitle">{content.title}</span><br>
+				<f:if condition="{content.link} != ''">
+					<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+				</f:if>
+				</article>
+            </div>
+			<f:if condition="{fal}"><f:then>
+			    <f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" />
+			</f:then><f:else>
+			    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" />
+			</f:else></f:if>
+        </div>
+	</f:for>
+    </div>
+    <div class="controls">
+        <a href="#" class="left">&lt;</a>
+        <a href="#" class="right">&gt;</a>
+    </div>
+    <div class="slide-nav"></div>
+</div>
+
+<script>
+$('.full-width').on('fws.start', function(e, data){
+    /*
+    'data' is an object with the following structure:
+    {
+        status: {
+            current: 0, // current slide number
+            previous: 0, // previous slide number
+            max: 0 // slide count
+        },
+        direction: '' // left, right or direct
+    }
+    */
+})
+.on('fws.finish', function(e, data){
+    /*
+    'data' has the same structure as the data object in `fws.move` but without the direction property
+    */
+});
+
+$('.full-width').fullWidth({
+    maxHeight   :   500, // maximum height of slider, px
+    minHeight   :   375, // minimum height of slider, px
+    delay       :   6000, // delay between slides, ms
+    transition  :   1000, // transition speed, ms
+    maxFont     :   36, // maximum font size, px
+    minFont     :   24 // minimum font size, px
+});
+</script>
+
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_camaliga_domain_model_content">
+				<target>Camaliga-Element</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.title">
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.shortdesc">
+				<target>Kurze Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longdesc">
+				<target>Lange Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.link">
+				<target>Link zu einer Seite</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.image">
+				<target>Bild</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.street">
+				<target>Straße</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.zip">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.city">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.country">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.person">
+				<target>Ansprechpartner</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.phone">
+				<target>Telefon-Nr.</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mobile">
+				<target>Handy-Nr.</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.email">
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.latitude">
+				<target>Latitude</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.longitude">
+				<target>Longitude</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom1">
+				<target>Eigenes Feld 1</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom2">
+				<target>Eigenes Feld 2</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.custom3">
+				<target>Eigenes Feld 3</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.mother">
+				<target>Übergeordnetes Element von diesem Element</target>
+			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.category">
+				<target>Kategorie</target>
+			</trans-unit>
+			
+			<trans-unit id="search">
+				<target>Suchen</target>
+			</trans-unit>
+			<trans-unit id="nothing">
+				<target>Leider wurden 0 Elemente gefunden. Bitte modifiziere die Suche.</target>
+			</trans-unit>
+			<trans-unit id="more">
+				<target>Weiterführende Infos</target>
+			</trans-unit>
+			<trans-unit id="address">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="parent">
+				<target>Übergeordnetes Element:</target>
+			</trans-unit>
+			<trans-unit id="other_childs">
+				<target>Zugehörige Elemente:</target>
+			</trans-unit>
+			<trans-unit id="entries_found">
+				<target>Elemente gefunden.</target>
+			</trans-unit>
+			<trans-unit id="options">
+				<target>Optionen</target>
+			</trans-unit>
+			<trans-unit id="fulltext">
+				<target>Volltextsuche</target>
+			</trans-unit>
+			<trans-unit id="searchword">
+				<target>Suchbegriff</target>
+			</trans-unit>
+			<trans-unit id="place">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="radius">
+				<target>Umkreis</target>
+			</trans-unit>
+			<trans-unit id="distance">
+				<target>Entfernung</target>
+			</trans-unit>
+			<trans-unit id="sortby">
+				<target>Sortieren nach</target>
+			</trans-unit>
+			<trans-unit id="orderby">
+				<target>Sortierreihenfolge</target>
+			</trans-unit>
+			<trans-unit id="folder">
+				<target>Ordner</target>
+			</trans-unit>
+			<trans-unit id="every">
+				<target>egal</target>
+			</trans-unit>
+			<trans-unit id="prev">
+				<target>zurück</target>
+			</trans-unit>
+			<trans-unit id="next">
+				<target>weiter</target>
+			</trans-unit>
+			<trans-unit id="back">
+				<target>Zurück</target>
+			</trans-unit>
+			<trans-unit id="close">
+				<target>Schließen</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

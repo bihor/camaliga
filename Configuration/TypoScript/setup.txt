@@ -1,0 +1,124 @@
+plugin.tx_camaliga {
+	view {
+		templateRootPaths {
+			0 = EXT:camaliga/Resources/Private/Templates/
+			1 = {$plugin.tx_camaliga.view.templateRootPath}
+		}
+		partialRootPaths {
+			0 = EXT:camaliga/Resources/Private/Partials/
+			1 = {$plugin.tx_camaliga.view.partialRootPath}
+		}
+		layoutRootPaths {
+			0 = EXT:camaliga/Resources/Private/Layouts/
+			1 = {$plugin.tx_camaliga.view.layoutRootPath}
+		}
+	}
+	persistence {
+		storagePid = {$plugin.tx_camaliga.persistence.storagePid}
+		# storagePid.ifEmpty.data = {page:uid}
+	}
+	features {
+		rewrittenPropertyMapper = 1
+	}
+	settings {
+		listId =
+		showId =
+		sortBy =
+		sortOrder =
+		limit = 0
+		random = 0
+		getLatLon = 0
+		onlyDistinct = 0
+		addPadding = 0
+		img {
+		  width = 700
+		  height = 500
+		  thumbWidth = 195
+		  thumbHeight = 139
+		}
+		item {
+		  width = 195
+		  height = 290
+		  padding = 0
+		  margin = 10
+		  items = 3
+		}
+		maps {
+		  key =
+		  language = de
+		  dontIncludeAPI = 0
+		  includeRoute = 0
+		  zoom = 5
+		  startLatitude = 50.0
+		  startLongitude = 10.0
+		}
+		seo {
+			setTitle = 0
+			setIndexedDocTitle = 0
+			setDescription = 0
+			setOgTitle = 0
+			setOgDescription = 0
+			setOgImage = 0
+		}
+		more {
+			setModulo = 0
+			speed = 0.5
+			autoplay = false
+			autoplaySpeed = 6
+			infinite = true
+			vertical = false
+			reverse = false
+			crop = false
+			showPanel = true
+			showArrows = true
+			showDots = true
+			showThumbnails = true
+			showAllThumbs = false
+			showArrowsThumbs = true
+			showDotsThumbs = true
+			showCaptions = false
+			pausePlay = true
+			pauseOnHover = false
+			opacity = 0.75
+			slidesToShow = 6
+			slidesToScroll = 1
+			fade = true
+			easing = linear
+			addLightbox = 0
+		}
+		extended {
+			enable = 0
+			onlySearchForm = 0
+			restrictSearch = 0
+			radiusValues =
+			saveSearch = 0
+		}
+		bootstrap {
+			showIndicators = 0
+			showControls = 0
+			interval = 5000
+			pause = "hover"
+			wrap = true
+			keyboard = true
+			expanded = false
+			parent = true
+			toggle = collapse
+			dialog =
+			animation = fade
+			escape = true
+		}
+		overrideFlexformSettingsIfEmpty = 1
+		defaultStoragePids =
+		defaultCatIDs =
+		normalCategoryMode =
+		# categoryMode = see extension-configuration
+		debug = 0
+	}
+}
+
+# plugin.tx_camaliga._CSS_DEFAULT_STYLE ( )
+
+# Icon für die Suche.
+plugin.tx_kesearch_pi2.additionalPathForTypeIcons = typo3conf/ext/camaliga/
+
+module.tx_camaliga < plugin.tx_camaliga

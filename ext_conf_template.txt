@@ -1,0 +1,23 @@
+# cat=basic/enable; type=boolean; label=Ignore the category relations of translated elements:
+categoryMode = 1
+
+# cat=basic//10; type=string; label=Select this extended fields too (without comma, e.g. "custom4 custom5 custom6"):
+extendedFields =
+
+# cat=basic/enable; type=boolean; label=Use images from FAL instead of images from uploads/:
+enableFal = 0
+
+# cat=disable_fields/enable; type=boolean; label=Disable all further images (use only one image):
+disableFurtherImages = 0
+
+# cat=disable_fields/enable; type=boolean; label=Disable all address fields:
+disableAddress = 0
+
+# cat=disable_fields/enable; type=boolean; label=Disable all contact fields:
+disableContact = 0
+
+# cat=disable_fields/enable; type=boolean; label=Disable all custom fields:
+disableCustom = 0
+
+# cat=disable_fields/enable; type=boolean; label=Disable the mother field:
+disableMother = 0

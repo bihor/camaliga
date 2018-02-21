@@ -1,0 +1,131 @@
+<f:layout name="Default" />
+
+This template is a gallery that requires jQuery + jQuery UI Easing and AD Gallery from here:
+http://adgallery.codeplex.com/documentation
+Download AD Gallery and include it like this with TypoScript:
+ page {
+  includeCSS.adgalcss = fileadmin/ADGallery/lib/jquery.ad-gallery.css
+  includeJSFooter.adgallery = fileadmin/ADGallery/lib/jquery.ad-gallery.min.js
+  jsFooterInline {
+   77 = TEXT
+   77.value (
+       var galleries = $('.ad-gallery').adGallery();
+   )
+  }
+ }
+Remove jsFooterInline, if you use the extended version of this template!
+Or add this to jsFooterInline, if you want to display a FancyBox too:
+$(".ad-gallery").on("click", ".ad-image", function() {
+  $.fancybox({
+    href : $(this).find("img").attr("src"),
+    closeBtn: true,
+    closeClick : true,
+    openEffect : 'elastic',
+    openSpeed  : 150,
+    closeEffect : 'elastic',
+    closeSpeed  : 150,
+    helpers : {
+      overlay : null
+    }
+  });
+});
+The FancyBox-solution is from here:
+http://forum.jquery.com/topic/fancybox-in-ad-gallery
+You need jQuery FancyBox and jQuery FancyBox Buttons. Download them and include them additional like this with TypoScript:
+ page {
+  includeJS.fancybox = fileadmin/template/fancyBox/source/jquery.fancybox.pack.js
+  includeCSS.fancybox = fileadmin/template/fancyBox/source/jquery.fancybox.css
+ }
+Copy this HTML-file from typo3conf/ext/camaliga/Resources/Private/Templates/Content to your fileadmin-folder.
+Specifty the fileadmin-folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/Resources/Private/Extensions/Camaliga/
+Copy this file in the subfolder "Content" of this folder.
+
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+    <div id="gallery" class="ad-gallery">
+      <div class="ad-image-wrapper">
+      </div>
+      <div class="ad-controls">
+      </div>
+      <div class="ad-nav">
+        <div class="ad-thumbs">
+          <ul class="ad-thumb-list">
+      <f:for each="{contents}" as="content" iteration="iteration">
+            <li>
+            <f:if condition="{fal}"><f:then>
+            	<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}">
+<f:image src="{content.falimage.uid}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" class="image{iteration.cycle}" treatIdAsReference="1" />
+		  		</a>
+		  	</f:then><f:else>
+				<a href="/uploads/tx_camaliga/{content.image}">
+<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" class="image{iteration.cycle}" />
+				</a>
+			</f:else></f:if>
+            </li>
+      </f:for>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="descriptions">
+    </div>
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p>
+</f:else>
+</f:if>
+
+
+<f:if condition="{settings.extended.enable} == 1">
+	<f:form action="search" name="camaliga">
+	<div class="well">
+	  <h3>{f:translate(key: 'options', default: 'Options')}</h3>
+	  <f:render partial="Options" arguments="{_all}" />
+	  <f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="btn btn-primary" />
+	  <f:form.hidden name="template" value="AdGallery" />
+	</div>
+	</f:form>
+
+	<f:if condition="{contents -> f:count()} > 0">
+	<f:then>
+	<script type="text/javascript">
+	$(function() {
+	  var desc = '';
+	  <f:for each="{contents}" as="content" iteration="iter">
+	desc = '<p>Custom var: {content.custom1}.';
+	<f:if condition="{content.custom2} != ''">desc = desc+' Custom 2: {content.custom2}.';</f:if>
+	<f:if condition="{content.custom3} != ''">desc = desc+' Custom 3: {content.custom3}.';</f:if>  
+	<f:if condition="{content.shortdesc} != ''">desc = desc+' {content.shortdesc}';</f:if>
+	    <f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
+	desc = desc+' {catMMval.title}: ';
+	      <f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isFirst}">
+	<f:then>desc = desc+'{catMMchildVal}';</f:then><f:else>desc = desc+', {catMMchildVal}';</f:else></f:if></f:for>
+	desc = desc+'.';</f:for>
+	<f:if condition="{content.link} != ''">desc = desc+' <f:link.typolink parameter="{content.link}">{f:translate(key: 'more', default: 'more')}</f:link.typolink>';</f:if>
+	desc = desc+'</p>';
+	$('img.image{iter.cycle}').data('ad-desc', desc);
+	  </f:for>
+	  
+	    var galleries = $('.ad-gallery').adGallery({
+	    hooks: {
+	    displayDescription: function(image) {
+	      $('.ad-my-desc').html('<h4>'+image.title+'</h4>'+image.desc);
+	    }
+	    }
+	  });
+	  $('#toggle-slideshow').click(
+	      function() {
+	        galleries[0].slideshow.toggle();
+	        return false;
+	      }
+	  );
+	});
+	</script>
+	</f:then>
+	</f:if>
+</f:if>
+</f:section>
