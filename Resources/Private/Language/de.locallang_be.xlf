@@ -458,7 +458,7 @@
 				<target>Import nur simulieren (Ausgabe statt Import)?</target>
 			</trans-unit>
 			<trans-unit id="tasks.validate.imgpath">
-				<target>Neuer Ort für die Bilder; Ordner, der im default-Storage (normalerweise ist das fileadmin/) liegt:</target>
+				<target>Neuer Ort für die Bilder; Ordner, der im default-Storage (muss vorhanden sein!; normalerweise ist das fileadmin/) liegt (z.B. bilder/slider/):</target>
 			</trans-unit>
 			<trans-unit id="tasks.validate.invalidPage">
 				<target>Ungültige Seiten-UID. Bitte eine richtige Seiten-UID eingeben!</target>

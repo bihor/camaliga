@@ -25,15 +25,17 @@ Scheduler-Tasks
   Gehe zum Erweiterungsmanager und klicke auf Camaliga. Klicke dann auf "Use images from FAL instead of images from uploads/".
   Dann muss man Camaliga kurz deinstallieren und wieder neu installieren.
 
-- Zu guter letzt musst du noch deine geänderten Templates anpassen! Merge sie mit den Templates aus dem typo3conf-Ordner. 
+- Zu guter letzt musst du noch deine geänderten Templates anpassen! Merge sie mit den Templates aus dem typo3conf-Ordner.
   Altes Beispiel::
-  
+
     <f:if condition="{content.image} != ''">
 	  <f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" />
     </f:if>
-    
+
 - Neues Beispiel::
 
     <f:if condition="{content.falimage.uid}">
 	  <f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
     </f:if>
+
+Beachte: gelöschte Elemente werden ignoriert!

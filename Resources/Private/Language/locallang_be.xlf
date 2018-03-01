@@ -464,7 +464,7 @@
 				<source>Simulation only (echo, no import)?</source>
 			</trans-unit>
 			<trans-unit id="tasks.validate.imgpath">
-				<source>New place for the images (folder in your default-storage):</source>
+				<source>New place for the images (folder in your default-storage [must exist!], usually fileadmin/) (e.g. images/slider/):</source>
 			</trans-unit>
 			<trans-unit id="tasks.validate.invalidPage">
 				<source>Invalid pages uid, please enter a valid pages uid!</source>
