@@ -1,0 +1,103 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace cam=Quizpalme\Camaliga\ViewHelpers}
+<f:layout name="Default" />
+<f:section name="main">
+<f:flashMessages />
+<cam:addPublicResources path="fileadmin/Resources/Public/Styles/leaflet.css"></cam:addPublicResources>
+<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/leaflet.js" compress="FALSE" footer="FALSE"></cam:addPublicResources>
+<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.css"></cam:addPublicResources>
+<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.Default.css"></cam:addPublicResources>
+<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/leaflet.markercluster.js" compress="FALSE" footer="FALSE"></cam:addPublicResources>
+
+<f:if condition="{onlySearchForm} == 0">
+<div id="map" style="width:100%; height:{settings.item.height}px;"></div>
+
+<script type='text/javascript'>
+var ts_tileLayer = '{settings.maps.tileLayer -> f:format.raw()}';
+var ts_maxZoom = {settings.maps.maxZoom};
+var ts_attribution = '{settings.maps.attribution -> f:format.raw()}';
+//var suche = {f:if(condition: '{search} == 1', then: 'true', else: 'false')};
+//<![CDATA[
+// siehe hier: https://leaflet-extras.github.io/leaflet-providers/preview/
+var mymap = L.map('map').setView([51.3, 10.3], 6);
+var OpenStreetMap = L.tileLayer(ts_tileLayer, { maxZoom: ts_maxZoom, attribution: ts_attribution });
+OpenStreetMap.addTo(mymap);
+//]]>
+</script>
+<script type='text/javascript'>
+var addressPoints = [];
+<f:for each="{contents}" as="content" iteration="iter"><f:if condition="{content.latitude} != 0">
+addressPoints.push( [{content.latitude},{content.longitude},'{content.titleNl2br}','<f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.titleNl2br}</f:link.action></f:then><f:else><f:link.action action="show" arguments="{content : content}">{content.titleNl2br}</f:link.action></f:else></f:if>','{content.shortdescNl2br}','<f:if condition="{fal}"><f:then><f:if condition="{content.falimage.uid}"><f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:if></f:then><f:else><f:if condition="{content.image} != ''"><f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" /></f:if></f:else></f:if>','{content.streetNl2br}','{content.zip} {content.city}','{content.link}','<f:if condition="{content.distance} > 0"><f:then><f:format.number decimals="2" decimalSeparator="," thousandsSeparator=".">{content.distance}</f:format.number></f:then></f:if>',{iter.cycle}] );</f:if></f:for>
+var markers = L.markerClusterGroup();
+var map_icon = L.icon({
+    iconUrl: 'http://maps.gstatic.com/intl/de_de/mapfiles/ms/micons/red-pushpin.png',
+    shadowUrl: 'http://maps.gstatic.com/intl/de_de/mapfiles/ms/micons/pushpin_shadow.png',
+    iconSize:     [32, 32], // size of the icon
+    shadowSize:   [59, 32], // size of the shadow
+    iconAnchor:   [16, 32], // point of the icon which will correspond to marker's location
+    shadowAnchor: [16, 32],  // the same for the shadow
+	popupAnchor:  [-1, -40] // point from which the popup should open relative to the iconAnchor
+});
+
+//<![CDATA[
+for (var i = 0; i < addressPoints.length; i++) {
+  var a = addressPoints[i];
+  var map_title = a[2];
+  var map_tmp = '';
+  var map_popup = '<h4>' + a[3] + '</h4>';
+  if (a[5]) {
+	  map_popup += '<div class="row"><div class="col-md-6">' + a[5] + '</div><div class="col-md-6">';
+  } else {
+	  map_popup += '<div><div>';
+  }
+  if (a[4]) map_popup += '<div>' + a[4] + '</div>';
+  if (a[6] || a[7]) {  // str + ort
+    map_tmp = '<p>' + a[6];
+    if (a[6] && a[7]) map_tmp = map_tmp + '<br>';
+    map_tmp = map_tmp + a[7] + '</p>';
+    map_popup += map_tmp;
+  }
+  if (a[8]) {
+    map_popup += '<p><a href="'+a[8]+'" target="extern">Zur Website</a></p>';
+  }
+  if (a[9]) {
+    map_popup += "<p>Entfernung: "+a[9]+' km</p>';
+  }
+  map_popup = map_popup + '</div></div>';
+  var marker = L.marker(new L.LatLng(a[0], a[1]), { 
+	title: map_title,
+	icon: map_icon
+  });
+  marker.bindPopup(map_popup);
+  markers.addLayer(marker);
+}
+
+$( document ).ready(function() {
+  if ((addressPoints.length > 0)) {
+    mymap.addLayer(markers);
+    if ((addressPoints.length == 1)) {
+	  mymap.fitBounds(markers.getBounds().pad(0.9));
+    } else {
+	  mymap.fitBounds(markers.getBounds().pad(0.03));
+    }
+  }
+});
+//]]>
+</script>
+
+<div style="clear: both; height: 5px;">&nbsp;</div>
+<p>{contents -> f:count()} {f:translate(key: 'entries_found')}</p>
+</f:if>
+
+<f:if condition="{settings.extended.enable} == 1">
+	<f:form action="search" name="camaliga">
+	<div class="well">
+	  <h3>{f:translate(key: 'options', default: 'Options')}</h3>
+	  <f:render partial="Options" arguments="{_all}" />
+	  <f:form.submit name="search" value="{f:translate(key: 'search', default: 'search')}" class="btn btn-primary" />
+	  <f:form.hidden name="template" value="Openstreetmap" />
+	</div>
+	</f:form>
+</f:if>
+</f:section>
+</html>

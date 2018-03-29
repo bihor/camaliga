@@ -46,6 +46,10 @@
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.search</numIndex>
                 <numIndex index="1">Content->search;Content->showExtended</numIndex>
             </numIndex>
+            <numIndex index="8">
+                <numIndex index="0">Openstreetmap + Leaflet</numIndex>
+                <numIndex index="1">Content->openstreetmap;Content->search;Content->show</numIndex>
+            </numIndex>
             <numIndex index="9">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.random</numIndex>
                 <numIndex index="1">Content->random</numIndex>

@@ -51,6 +51,9 @@ plugin.tx_camaliga {
 		  zoom = 5
 		  startLatitude = 50.0
 		  startLongitude = 10.0
+		  tileLayer =
+		  attribution =
+		  maxZoom =
 		}
 		seo {
 			setTitle = 0
