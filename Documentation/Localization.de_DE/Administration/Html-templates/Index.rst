@@ -138,6 +138,12 @@ Owl2.html                  Template, welches das responsive Owl2-Plugin benutzt.
                            Infos: https://owlcarousel2.github.io/OwlCarousel2/
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos/owl2.html
+Openstreetmap.html         Template, welches die Openstreetmap und Leaflet mit markercluster benutzt.
+                           Achtung: man muss Leaflet und Leaflet.markercluster separat installieren.
+
+                           Infos: https://github.com/Leaflet/Leaflet.markercluster
+
+                           Demo: http://www.quizpalme.de/autor/thermensaunas.html
 Parallax.html              Template, welches "Simple Parallax Scrolling" benutzt.
                            Achtung 1: man muss Simple Parallax Scrolling separat installieren.
                            Achtung 2: man muss settings.img.with,.height,.thumbHeight und settings.more.speed setzen.

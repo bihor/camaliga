@@ -7,7 +7,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Update class for the extension manager.
  *
  * @package TYPO3
- * @subpackage tx_news
  */
 class ext_update {
 	
@@ -184,17 +183,33 @@ class ext_update {
 	 * @return string
 	 */
 	protected function generateOutput() {
-		$output = '';
-		foreach ($this->messageArray as $messageItem) {
-			/** @var \TYPO3\CMS\Core\Messaging\FlashMessage $flashMessage */
-			$flashMessage = GeneralUtility::makeInstance(
-				'TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
-				$messageItem[2],
-				$messageItem[1],
-				$messageItem[0]);
-			$output .= $flashMessage->render();
+		if (\TYPO3\CMS\Core\Utility\VersionNumberUtility::convertVersionNumberToInteger(\TYPO3\CMS\Core\Utility\VersionNumberUtility::getNumericTypo3Version()) < 8000000) {
+			$output = '';
+			foreach ($this->messageArray as $messageItem) {
+				/** @var \TYPO3\CMS\Core\Messaging\FlashMessage $flashMessage */
+				$flashMessage = GeneralUtility::makeInstance(
+					'TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+					$messageItem[2],
+					$messageItem[1],
+					$messageItem[0]);
+				$output .= $flashMessage->render();
+			}
+			return $output;
+		} else {
+			$out = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Messaging\Renderer\BootstrapRenderer::class);
+			$messages = [];
+			foreach ($this->messageArray as $messageItem) {
+				/** @var \TYPO3\CMS\Core\Messaging\FlashMessage $flashMessage */
+				$flashMessage = GeneralUtility::makeInstance(
+						FlashMessage::class,
+						$messageItem[2],
+						$messageItem[1],
+						$messageItem[0]
+						);
+				$messages[] = $flashMessage;
+			}
+			return $out->render($messages);
 		}
-		return $output;
 	}
 }
 ?>

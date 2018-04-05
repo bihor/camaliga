@@ -132,6 +132,12 @@ Modal.html                 Template for Twitter Bootstrap Modal. Use the field c
                            Infos: http://getbootstrap.com/javascript/#modals
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen.html
+Openstreetmap.html         Template that uses the Openstreetmap and Leaflet with markercluster.
+                           Note: you must install Leaflet and Leaflet.markercluster separately.
+
+                           Infos: https://github.com/Leaflet/Leaflet.markercluster
+
+                           Demo: http://www.quizpalme.de/autor/thermensaunas.html
 Owl2.html                  Template that uses the responsive Owl2 plugin.
                            Note: you must install OWL2 separately.
 
