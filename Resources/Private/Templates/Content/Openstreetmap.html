@@ -4,7 +4,7 @@
 <f:comment>
 This template is an OpenStreetMap-template which uses Leaflet and Leaflet-Markercluster from here:
 http://leafletjs.com/download.html
-and
+and if you want to use the clustering-feature:
 https://github.com/Leaflet/Leaflet.markercluster
 Download both and include it with the addPublicResources-Viewhelper. You can see the default-path below.
 Leaflet-Tile-Providers:
@@ -19,9 +19,11 @@ Copy this file in a subfolder named "Content" of this folder.
 <f:flashMessages />
 <cam:addPublicResources path="fileadmin/Resources/Public/Styles/leaflet.css"></cam:addPublicResources>
 <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/leaflet.js" compress="FALSE" footer="FALSE"></cam:addPublicResources>
+<f:if condition="{settings.maps.clustering} == 1">
 <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.css"></cam:addPublicResources>
 <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.Default.css"></cam:addPublicResources>
 <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/leaflet.markercluster.js" compress="FALSE" footer="FALSE"></cam:addPublicResources>
+</f:if>
 
 <f:if condition="{onlySearchForm} == 0">
 <div id="map" style="width:100%; height:{settings.item.height}px;"></div>
@@ -38,8 +40,10 @@ var text_more = "{f:translate(key: 'more')}";
 var text_distance = "{f:translate(key: 'distance', default: 'distance')}";
 var addressPoints = [];
 <f:for each="{contents}" as="content" iteration="iter"><f:if condition="{content.latitude} != 0">
-addressPoints.push( [{content.latitude},{content.longitude},'{content.titleNl2br}','<f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.titleNl2br}</f:link.action></f:then><f:else><f:link.action action="show" arguments="{content : content}">{content.titleNl2br}</f:link.action></f:else></f:if>','{content.shortdescNl2br}','<f:if condition="{fal}"><f:then><f:if condition="{content.falimage.uid}"><f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:if></f:then><f:else><f:if condition="{content.image} != ''"><f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" /></f:if></f:else></f:if>','{content.streetNl2br}','{content.zip} {content.city}','{content.link}','<f:if condition="{content.distance} > 0"><f:then><f:format.number decimals="2" decimalSeparator="," thousandsSeparator=".">{content.distance}</f:format.number></f:then></f:if>',{iter.cycle}] );</f:if></f:for>
+addressPoints.push( [{content.latitude},{content.longitude},'{content.titleNl2br}','<f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.titleNl2br}</f:link.action></f:then><f:else><f:link.action action="show" arguments="{content : content}">{content.titleNl2br}</f:link.action></f:else></f:if>','{content.shortdescNl2br}','<f:if condition="{fal}"><f:then><f:if condition="{content.falimage.uid}"><f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" class="img-responsive img-fluid" /></f:if></f:then><f:else><f:if condition="{content.image} != ''"><f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" class="img-responsive img-fluid" /></f:if></f:else></f:if>','{content.streetNl2br}','{content.zip} {content.city}','{content.link}','<f:if condition="{content.distance} > 0"><f:then><f:format.number decimals="2" decimalSeparator="," thousandsSeparator=".">{content.distance}</f:format.number></f:then></f:if>',{iter.cycle}] );</f:if></f:for>
+<f:if condition="{settings.maps.clustering} == 1">
 var markers = L.markerClusterGroup();
+</f:if>
 var map_icon = L.icon({
     iconUrl: 'http://maps.gstatic.com/intl/de_de/mapfiles/ms/micons/red-pushpin.png',
     shadowUrl: 'http://maps.gstatic.com/intl/de_de/mapfiles/ms/micons/pushpin_shadow.png',
@@ -50,7 +54,7 @@ var map_icon = L.icon({
 	popupAnchor:  [-1, -40] // point from which the popup should open relative to the iconAnchor
 });
 
-//<![CDATA[
+
 for (var i = 0; i < addressPoints.length; i++) {
   var a = addressPoints[i];
   var map_title = a[2];
@@ -80,9 +84,14 @@ for (var i = 0; i < addressPoints.length; i++) {
 	icon: map_icon
   });
   marker.bindPopup(map_popup);
+  <f:if condition="{settings.maps.clustering} == 1"><f:then>
   markers.addLayer(marker);
+  </f:then><f:else>
+  marker.addTo(mymap);
+  </f:else></f:if>
 }
 
+<f:if condition="{settings.maps.clustering} == 1"><f:then>
 $( document ).ready(function() {
   if ((addressPoints.length > 0)) {
     mymap.addLayer(markers);
@@ -93,7 +102,7 @@ $( document ).ready(function() {
     }
   }
 });
-//]]>
+</f:then></f:if>
 </script>
 
 <div style="clear: both; height: 5px;">&nbsp;</div>

@@ -120,6 +120,7 @@ settings.maps.key                         string         Google maps API key
 settings.maps.language                    int            Google maps API language                                                           de
 settings.maps.dontIncludeAPI              boolean        Dont include the JS with the Google maps API key?                                  0
 settings.maps.includeRoute                boolean        Include a partial for a route planner?                                             0
+settings.maps.clustering                  boolean        Clustering of markers?                                                             0
 settings.maps.zoom                        int            Zoom level for the next 2 values                                                   5
 settings.maps.startLatitude               float          Latitude for an empty map                                                          50.0
 settings.maps.startLongitude              float          Longitude for an empty map                                                         10.0

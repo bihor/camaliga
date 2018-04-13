@@ -125,6 +125,7 @@ settings.maps.key                         string         Google maps API key
 settings.maps.language                    int            Google maps API language                                                           de
 settings.maps.dontIncludeAPI              boolean        Das JS mit dem Google maps API key nicht einbinden?                                0
 settings.maps.includeRoute                boolean        Das Partial für die Routenplannung einbinden?                                      0
+settings.maps.clustering                  boolean        Clustering von Markern einschalten?                                                0
 settings.maps.zoom                        int            Zoom-Level für die nächsten 2 Werte                                                5
 settings.maps.startLatitude               float          Latitude für eine leere Karte                                                      50.0
 settings.maps.startLongitude              float          Longitude für eine leere Karte                                                     10.0

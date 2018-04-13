@@ -48,6 +48,7 @@ plugin.tx_camaliga {
 		  language = de
 		  dontIncludeAPI = 0
 		  includeRoute = 0
+		  clustering = 0
 		  zoom = 5
 		  startLatitude = 50.0
 		  startLongitude = 10.0
