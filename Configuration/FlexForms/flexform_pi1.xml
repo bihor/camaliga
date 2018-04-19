@@ -1476,5 +1476,52 @@
         </el>
       </ROOT>
     </sCATS>
+    <sMAPS>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.maps.key>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.key</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.key>
+			<settings.maps.language>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.language</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.language>
+			<settings.maps.dontIncludeAPI>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.dontIncludeAPI</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.maps.dontIncludeAPI>
+        </el>
+      </ROOT>
+    </sMAPS>
   </sheets>
 </T3DataStructure>

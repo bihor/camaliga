@@ -318,6 +318,18 @@
 			<trans-unit id="addLightbox">
 				<target>Zeige eine zusätzliche Lightbox an? (für Galleryview; {settings.more.addLightbox}):</target>
 			</trans-unit>
+			<trans-unit id="maps">
+				<target>Karten</target>
+			</trans-unit>
+			<trans-unit id="maps.key">
+				<target>API key</target>
+			</trans-unit>
+			<trans-unit id="maps.language">
+				<target>API Sprach-key</target>
+			</trans-unit>
+			<trans-unit id="maps.dontIncludeAPI">
+				<target>API-Skript nicht einbinden?</target>
+			</trans-unit>
 			<trans-unit id="yes">
 				<target>ja</target>
 			</trans-unit>

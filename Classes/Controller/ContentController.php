@@ -121,6 +121,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if ((!$originalSettings['seo'][$key] && $originalSettings['seo'][$key]!=='0') && isset($value))
 					$originalSettings['seo'][$key] = $value;
 			}
+			if (is_array($tsSettings['maps.']))
+			foreach ($tsSettings['maps.'] as $key=>$value) {
+				if ((!$originalSettings['maps'][$key] && $originalSettings['maps'][$key]!=='0') && isset($value))
+					$originalSettings['maps'][$key] = $value;
+			}
 		}
 		$this->settings = $originalSettings;
 	}
