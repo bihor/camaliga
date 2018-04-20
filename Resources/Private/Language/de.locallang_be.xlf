@@ -330,6 +330,30 @@
 			<trans-unit id="maps.dontIncludeAPI">
 				<target>API-Skript nicht einbinden?</target>
 			</trans-unit>
+			<trans-unit id="maps.includeRoute">
+				<target>Füge einen Routenplaner dazu?</target>
+			</trans-unit>
+			<trans-unit id="maps.clustering">
+				<target>Aktiviere das Clustering von Markern?</target>
+			</trans-unit>
+			<trans-unit id="maps.zoom">
+				<target>Start zoom:</target>
+			</trans-unit>
+			<trans-unit id="maps.maxZoom">
+				<target>Maximaler zoom:</target>
+			</trans-unit>
+			<trans-unit id="maps.startLatitude">
+				<target>Start Latitude:</target>
+			</trans-unit>
+			<trans-unit id="maps.startLongitude">
+				<target>Start Longitude:</target>
+			</trans-unit>
+			<trans-unit id="maps.tileLayer">
+				<target>Pfad zu einem tile-Layer-Anbieter (OpenStreetMap):</target>
+			</trans-unit>
+			<trans-unit id="maps.attribution">
+				<target>Attribution für die tile-Layers (OpenStreetMap):</target>
+			</trans-unit>
 			<trans-unit id="yes">
 				<target>ja</target>
 			</trans-unit>

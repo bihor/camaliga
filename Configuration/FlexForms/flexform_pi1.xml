@@ -1520,6 +1520,102 @@
 					</config>
 				</TCEforms>
 			</settings.maps.dontIncludeAPI>
+			<settings.maps.includeRoute>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.includeRoute</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.maps.includeRoute>
+			<settings.maps.clustering>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.clustering</label>
+					<config>
+					<type>check</type>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">1</numIndex>
+					  </numIndex>
+					  </items>
+					  <renderMode>checkbox</renderMode>
+					</config>
+				</TCEforms>
+			</settings.maps.clustering>
+			<settings.maps.zoom>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.zoom</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.zoom>
+			<settings.maps.maxZoom>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.maxZoom</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.maxZoom>
+			<settings.maps.startLatitude>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLatitude</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.startLatitude>
+			<settings.maps.startLongitude>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLongitude</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.startLongitude>
+			<settings.maps.tileLayer>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.tileLayer</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.tileLayer>
+			<settings.maps.attribution>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.attribution</label>
+					<config>
+                    <type>input</type>
+                    <size>15</size>
+                    <max>25</max>
+                    <eval>trim</eval>
+                    </config>
+				</TCEforms>
+			</settings.maps.attribution>
         </el>
       </ROOT>
     </sMAPS>

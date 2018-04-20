@@ -336,6 +336,30 @@
 			<trans-unit id="maps.dontIncludeAPI">
 				<source>Don´t include the API script?</source>
 			</trans-unit>
+			<trans-unit id="maps.includeRoute">
+				<source>Include an route planer?</source>
+			</trans-unit>
+			<trans-unit id="maps.clustering">
+				<source>Enable clustering of markers?</source>
+			</trans-unit>
+			<trans-unit id="maps.zoom">
+				<source>Start zoom:</source>
+			</trans-unit>
+			<trans-unit id="maps.maxZoom">
+				<source>Maximum zoom:</source>
+			</trans-unit>
+			<trans-unit id="maps.startLatitude">
+				<source>Start latitude:</source>
+			</trans-unit>
+			<trans-unit id="maps.startLongitude">
+				<source>Start longitude:</source>
+			</trans-unit>
+			<trans-unit id="maps.tileLayer">
+				<source>Path to a tile-layer-distributor (OpenStreetMap):</source>
+			</trans-unit>
+			<trans-unit id="maps.attribution">
+				<source>Attribution for the tile layers (OpenStreetMap):</source>
+			</trans-unit>
 			<trans-unit id="yes">
 				<source>yes</source>
 			</trans-unit>
