@@ -60,6 +60,7 @@ Administration
    Extension-Manager/Index
    Html-templates/Index
    Erweiterte-Templates/Index
+   Maps/Index
    Umkreissuche/Index
    Template-variablen/Index
    ViewHelper/Index

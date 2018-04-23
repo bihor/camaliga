@@ -129,6 +129,9 @@ settings.maps.clustering                  boolean        Clustering von Markern 
 settings.maps.zoom                        int            Zoom-Level für die nächsten 2 Werte                                                5
 settings.maps.startLatitude               float          Latitude für eine leere Karte                                                      50.0
 settings.maps.startLongitude              float          Longitude für eine leere Karte                                                     10.0
+settings.maps.tileLayer                   string         Pfad zu einem tile-Layer-Anbieter (OpenStreetMap)                                  [OSM]
+settings.maps.attribution                 string         Attribution für die tile-Layers (OpenStreetMap)                                    [OSM]
+settings.maps.maxZoom                     int            Maximaler Zoom-Level                                                               19
 settings.seo.setTitle                     boolean        Ersetze auf den Single-Seiten den Seiten-Titel durch den Titel des                 0
                                                          angezeigten Elements?
 

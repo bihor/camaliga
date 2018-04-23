@@ -124,6 +124,9 @@ settings.maps.clustering                  boolean        Clustering of markers? 
 settings.maps.zoom                        int            Zoom level for the next 2 values                                                   5
 settings.maps.startLatitude               float          Latitude for an empty map                                                          50.0
 settings.maps.startLongitude              float          Longitude for an empty map                                                         10.0
+settings.maps.tileLayer                   string         Path to a tile-layer-distributor (OpenStreetMap)                                   [OSM]
+settings.maps.attribution                 string         Attribution for the tile layers (OpenStreetMap)                                    [OSM]
+settings.maps.maxZoom                     int            Maximum zoom level                                                                 19
 settings.seo.setTitle                     boolean        Change the site-title on a single site?                                            0
 
                                                          0: no. 1: yes, set the title of an element on a single page.
