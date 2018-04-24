@@ -538,9 +538,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * set SEO head?
 	 *
 	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+	 * @param integer $enableFal
 	 * @return void
 	 */
-	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content) {
+	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content, $enableFal) {
 		$title = $content->getTitle();
 		$desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
 		if ($this->settings['seo']['setTitle'] == 1) {
@@ -558,12 +559,28 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		if (($this->settings['seo']['setOgDescription'] == 1) && $desc) {
 			$this->response->addAdditionalHeaderData('<meta property="og:description" content="' . $desc . '">');
 		}
-		if (($this->settings['seo']['setOgImage'] == 1) && $content->getImage()) {
+		if ($this->settings['seo']['setOgImage'] == 1) {
 			$server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
 			$server .= $_SERVER['SERVER_NAME'];
-			$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $server . '/uploads/tx_camaliga/' . $content->getImage() . '">');
+			$image = '';
+			if ($enableFal) {
+				if ($content->getFalimage() && $content->getFalimage()->getUid()) {
+					$typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
+					$fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
+					$fileObjectData = $fileObject->toArray();
+					$image = $server . '/' . $fileObjectData['url'];
+				}
+			} else {
+				if ($content->getImage()) {
+					$image = $server . '/uploads/tx_camaliga/' . $content->getImage();
+				}
+			}
+			if ($image) {
+				$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
+			}
 		}
 	}
+	
 	/**
 	 * action show one element. ignorevalidation added because of validation erros
 	 *
@@ -577,9 +594,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			// $this->view->setTemplatePathAndFilename($this->templatePath . 'Content/ShowExtended.html');
 			$this->showExtendedAction($content);
 		} else {
-			$this->setSeo($content);
 			$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
 			$enableFal = intval($configurationUtility['enableFal']);
+			$this->setSeo($content, $enableFal);
 				
 			$this->view->assign('fal', $enableFal);
 			$this->view->assign('content', $content);
@@ -595,9 +612,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
-		$this->setSeo($content);
 		$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
 		$enableFal = intval($configurationUtility['enableFal']);
+		$this->setSeo($content, $enableFal);
 			
 		$this->view->assign('fal', $enableFal);
 		$this->view->assign('content', $content);
