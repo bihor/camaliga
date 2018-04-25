@@ -17,11 +17,11 @@ if (!defined('TYPO3_MODE')) {
 // Hooks for ke_search
 if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('ke_search')) {
 	// register custom indexer hook
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['registerIndexerConfiguration'][]
-		= 'EXT:camaliga/Classes/Hooks/class.user_kesearchhooks.php:user_kesearchhooks';
-	
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['customIndexer'][]
-		= 'EXT:camaliga/Classes/Hooks/class.user_kesearchhooks.php:user_kesearchhooks';
+	// adjust this to your namespace and class name
+	// adjust the autoloading information in composer.json, too!
+	$customIndexerClassName = 'Quizpalme\Camaliga\Hooks\KeSearchIndexer';
+	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['registerIndexerConfiguration'][] = $customIndexerClassName;
+	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['customIndexer'][] = $customIndexerClassName;
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:camaliga/Configuration/TSconfig/ContentElementWizard.txt">');

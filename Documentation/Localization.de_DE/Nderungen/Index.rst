@@ -174,5 +174,7 @@ Version     Änderungen
             Layout Backend7.html durch Backend.html ersetzt.
             
             tx_camaliga_double7 endgültig entfernt, da TYPO3 sich manchmal daran störte (Cache-Problem).
-8.1.2       Template Openstreetmap hinzugefügt.
+8.2.0       Template Openstreetmap hinzugefügt. Clustering-Option für Karten hinzugefügt. Flexforms für Karten hinzugefügt.
+
+            Den ke_search-Indexer ausgetauscht (neue Variante).
 ==========  =====================================================================================================================
