@@ -76,3 +76,13 @@ benutzen kann oder auch in den fileadmin-Ordner kopieren kann. Den Pfad zum Part
 ::
 
   plugin.tx_camaliga.view.partialRootPath = fileadmin/templates/Partials/
+
+Beachte: die RealUrl-Doku sagt, dass man die Generierung des cHash bei nicht cache-baren Plugins ausschalten sollte.
+Nun kann man noch zum f:form noCacheHash="true" hinzufügen, aber dann funktioniert die Suche nicht mehr.
+Toller Ratschlag also...
+Damit die Suche wieder funktioniert, muss man noch auf eine weitere Seite weiterleiten - also noch ein pageUid hinzufügen.
+Neues Beispiel:
+
+::
+
+  <f:form action="search" name="camaliga" noCacheHash="true" pageUid="15">

@@ -75,3 +75,12 @@ can be used or you can also copy it in the fileadmin folder. The path to the Par
 ::
 
   plugin.tx_camaliga.view.partialRootPath = fileadmin/templates/Partials/
+
+Note: the RealUrl-documentation says, that there should no cHash for plugins that are not chacheable.
+You can add noCacheHash="true" to your f:form, but then the search will not work anymore. Bad advice.
+But you can fix this problem if you create an new search page and add the pageUid to your search form.
+New example:
+
+::
+
+  <f:form action="search" name="camaliga" noCacheHash="true" pageUid="15">
