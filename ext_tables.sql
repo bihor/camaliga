@@ -66,5 +66,4 @@ CREATE TABLE tx_camaliga_domain_model_content (
 	KEY parent (pid),
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
 	KEY language (l10n_parent,sys_language_uid)
-
 );

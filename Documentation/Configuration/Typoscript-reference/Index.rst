@@ -63,6 +63,7 @@ settings.defaultCatIDs                    String / int   Default categories. Onl
 
                                                             plugin.tx_camaliga.settings.defaultCatIDs = 2,3
 settings.listId                           int            ID of the list page.
+settings.searchId                         int            ID of the page where the search should be. See chapter Admin./Ext. templ.
 settings.showId                           int            ID of the single page.
 settings.sortBy                           string         Sort by?                                                                           sorting
 

@@ -74,9 +74,9 @@ class KeSearchIndexer
 					$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
 					$tags = ''; // oder '#camaliga#';
 					if ($configurationUtility['dontSwitchContAct']) {
-						$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
-					} else {
 						$params = '&tx_camaliga_pi1[action]=show&tx_camaliga_pi1[controller]=Content&tx_camaliga_pi1[content]=' . $record['uid'];
+					} else {
+						$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
 					}
 
                     // Additional information

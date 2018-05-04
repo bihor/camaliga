@@ -85,4 +85,4 @@ Neues Beispiel:
 
 ::
 
-  <f:form action="search" name="camaliga" noCacheHash="true" pageUid="15">
+  <f:form action="search" name="camaliga" noCacheHash="true" pageUid="{settings.searchId}">

@@ -64,6 +64,7 @@ settings.defaultCatIDs                    String / int   Standard-Kategorien. Nu
 
                                                             plugin.tx_camaliga.settings.defaultCatIDs = 2,3
 settings.listId                           int            ID der Seite für die Listenansicht.
+settings.searchId                         int            ID der Seite, wo gesucht werden soll. Siehe Kapitel Admin./Erw. Templates.
 settings.showId                           int            ID der Seite für die Einzelansicht.
 settings.sortBy                           string         Sortieren nach?                                                                    sorting
 
