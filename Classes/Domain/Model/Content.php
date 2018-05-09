@@ -265,10 +265,9 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	protected $custom3;
 
 	/**
-	 * Mutter-Element. Früher: integer
+	 * Mutter-Element: Quizpalme\Camaliga\Domain\Model\Content
 	 *
-	 * \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Quizpalme\Camaliga\Domain\Model\Content>
-     * @lazy
+	 * @var \integer
 	 */
 	protected $mother;
 	
@@ -1009,7 +1008,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the mother
 	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Quizpalme\Camaliga\Domain\Model\Content>
+	 * @return \Quizpalme\Camaliga\Domain\Model\Content $mother
 	 */
 	public function getMother() {
 		return $this->mother;
@@ -1018,9 +1017,10 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the mother
 	 *
-	 *@param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $mother  Mutter-Element
+	 * @param \Quizpalme\Camaliga\Domain\Model\Content $mother
+	 * @return void
 	 */
-	public function setMother($mother) {
+	public function setMother(\Quizpalme\Camaliga\Domain\Model\Content $mother) {
 		$this->mother = $mother;
 	}
 
