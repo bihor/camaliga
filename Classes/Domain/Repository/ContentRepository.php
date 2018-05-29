@@ -108,7 +108,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$resUids[$element->getUid()] = 1;
 			}
 			foreach ($result as $key => $element)  {
-				if (($element->getMother() > 0) && ($resUids[$element->getMother()] == 1)) {
+				if (($element->getMother()) && ($resUids[$element->getMother()->getUid()] == 1)) {
 					// Mutter und Kind sind vorhanden => Kind löschen
 					$delKeys[] = $key;
 				}

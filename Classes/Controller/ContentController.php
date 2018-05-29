@@ -619,11 +619,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('fal', $enableFal);
 		$this->view->assign('content', $content);
 		$this->view->assign('error', 0);
-		if ($content->getMother() > 0) {
+		if ($content->getMother()) {
 			// wir haben hier ein Kind
-			$this->view->assign('parent', $this->contentRepository->findByUid($content->getMother()));
+			$this->view->assign('parent', $this->contentRepository->findByUid($content->getMother()->getUid()));
 			$this->view->assign('hasParent', 1);
-			$this->view->assign('childs', $this->contentRepository->findByMother2($content->getMother(), $content->getUid()));
+			$this->view->assign('childs', $this->contentRepository->findByMother2($content->getMother()->getUid(), $content->getUid()));
 		} else {
 			// wir haben hier die Mutter
 			$this->view->assign('parent', '');
