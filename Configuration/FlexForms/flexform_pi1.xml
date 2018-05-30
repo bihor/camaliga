@@ -1489,7 +1489,7 @@
 					<config>
                     <type>input</type>
                     <size>15</size>
-                    <max>25</max>
+                    <max>50</max>
                     <eval>trim</eval>
                     </config>
 				</TCEforms>
