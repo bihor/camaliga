@@ -114,14 +114,18 @@ https://developers.google.com/maps/documentation/directions/intro?hl=de#Directio
  	  <f:if condition="{fal}"><f:then>
  	   <f:if condition="{parent.falimage.uid}">
  	    <figure>
+ 	    <f:link.action action="showExtended" arguments="{content : parent}">
 	    <f:image src="{parent.falimage.uid}" alt="{parent.title}" title="{parent.title}" maxWidth="200" treatIdAsReference="1" />
+	    </f:link.action>
 	    <figcaption>{parent.title}</figcaption>
 	    </figure>
 	   </f:if>
 	  </f:then><f:else>
 	   <f:if condition="{parent.image} != ''">
 	    <figure>
+	    <f:link.action action="showExtended" arguments="{content : parent}">
 	    <f:image src="/uploads/tx_camaliga/{parent.image}" alt="{parent.title}" title="{parent.title}" maxWidth="200" />
+	    </f:link.action>
 	    <figcaption>{parent.title}</figcaption>
 	    </figure>
 	   </f:if>
@@ -134,14 +138,18 @@ https://developers.google.com/maps/documentation/directions/intro?hl=de#Directio
 	  <f:if condition="{fal}"><f:then>
  	   <f:if condition="{child.falimage.uid}">
  	    <figure>
+ 	    <f:link.action action="showExtended" arguments="{content : child}">
 	    <f:image src="{child.falimage.uid}" alt="{child.title}" title="{child.title}" maxWidth="200" treatIdAsReference="1" />
+	    </f:link.action>
 	    <figcaption>{child.title}</figcaption>
 	    </figure>
 	   </f:if>
 	  </f:then><f:else>
 	   <f:if condition="{child.image} != ''">
 	    <figure>
+	    <f:link.action action="showExtended" arguments="{content : child}">
 	    <f:image src="/uploads/tx_camaliga/{child.image}" alt="{child.title}" title="{child.title}" maxWidth="200" />
+	    </f:link.action>
 	    <figcaption>{child.title}</figcaption>
 	    </figure>
 	   </f:if>

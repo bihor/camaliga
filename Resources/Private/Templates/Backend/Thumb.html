@@ -47,9 +47,13 @@
 	  	<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
 	  	<table><tr><td rowspan="2" width="150">
 	  	<f:if condition="{fal}"><f:then>
+	  	  <f:if condition="{content.falimage.uid} > 0">
 	  		<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="120m" height="75m" treatIdAsReference="1" />
+	  	  </f:if>
 	  	</f:then><f:else>
+	  	  <f:if condition="{content.image} != ''">
 		  	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="120m" height="75m" />
+		  </f:if>
 		</f:else></f:if>
 	  	</td><td><h3>{content.title}</h3></td></tr><tr><td>{content.shortdesc}</td></tr></table>
 	  	<f:form.hidden name="camelements[{content.uid}]" id="ecami{content.uid}" value="0" />
