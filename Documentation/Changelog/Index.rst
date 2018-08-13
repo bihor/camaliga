@@ -172,4 +172,7 @@ Version     Changes
 8.2.0       Template Openstreetmap added. Clustering option added. Flexforms for maps added.
 
             ke_search-Indexer replaced.
+8.2.5       TYPO3 8 Bugfix.
+            The field mother is now lazy.
+            Slick template and other things improved.
 ==========  ============================================================================================================================
