@@ -167,7 +167,7 @@ Version     Changes
 8.1.0       Scheduler task added: you can now convert uploads-images to FAL-images! Read the chapter Administration → Scheduler-Tasks.
 
             Layout Backend7.html replaced with Backend.html.
-            
+
             tx_camaliga_double7 completely removed, because TYPO3 has sometimes a cache-problem with it.
 8.2.0       Template Openstreetmap added. Clustering option added. Flexforms for maps added.
 
