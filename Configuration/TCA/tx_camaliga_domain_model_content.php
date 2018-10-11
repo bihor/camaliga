@@ -384,6 +384,7 @@ $tcaArray = array(
 							'cols' => 40,
 							'rows' => 14,
 							'eval' => 'trim',
+        					'softref' => 'typolink_tag,url',
 					),
 					'defaultExtras' => 'richtext:rte_transform[mode=ts_css]'
 			),
