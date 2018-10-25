@@ -14,7 +14,7 @@ namespace Quizpalme\Camaliga\ViewHelpers;
  * The TYPO3 project - inspiring people to share!
  * 
  * {namespace cam=Quizpalme\Camaliga\ViewHelpers}
- * <cam:addPublicResources path="path/to/style.css"></cam:content>
+ * <cam:addPublicResources path="path/to/style.css"></cam:addPublicResources>
  * A ViewHelper to include JS- and CSS-files
  *
  * @package camaliga
@@ -72,7 +72,7 @@ class AddPublicResourcesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abst
 
 		// CSS
 		} elseif ($ext === 'css') {
-			if ($libray) {
+		    if ($library) {
 				$pageRenderer->addCssLibrary($path, 'stylesheet', 'all', '', $compress);
 			} else {
 				$pageRenderer->addCssFile($path, 'stylesheet', 'all', '', $compress);

@@ -126,7 +126,7 @@ ListExtended.html          Listen-Ansicht mit mehr Feldern.
                            Demo: http://www.quizpalme.de/astronomische-uhren/liste-astronomischer-uhren.html
 Map.html                   Eine "google map".
 
-                           Demo: http://www.quizpalme.de/astronomische-uhren/astro-karte.html
+                           Demo: http://www.quizpalme.de/astronomische-uhren/astronomische-uhr/camaliga/showExtended/Content/415.html
 Modal.html                 Template für Twitter Bootstrap Modal. Benutze das Feld custom1 für den Modal-Button.
 
                            Infos: http://getbootstrap.com/javascript/#modals
