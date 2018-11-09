@@ -172,9 +172,14 @@ Version     Changes
 8.2.0       Template Openstreetmap added. Clustering option added. Flexforms for maps added.
 
             ke_search-Indexer replaced.
-8.2.8       TYPO3 8 Bugfix.
+8.2.8       TYPO3 8 bugfix.
+
             The field mother is now lazy.
+
             Slick template and other things improved.
+
             The linkvalidator works now.
-            Minor bug in addPublicResources ViewHelper fixed. 
+
+            Minor bug in addPublicResources ViewHelper fixed.
+8.2.9       Geocoding fixed. The geocode feature requires now a google maps api key!
 ==========  ============================================================================================================================

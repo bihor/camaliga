@@ -178,8 +178,14 @@ Version     Änderungen
 
             Den ke_search-Indexer ausgetauscht (neue Variante).
 8.2.8       TYPO3 8 Bugfix.
+
             Das mother-Feld ist nun lazy.
+
             Das Slick-Template und anderes verbessert.
+
             Der Linkvalidator works now.
-            Kleiner Bug im addPublicResources ViewHelper gefixt. 
+
+            Kleiner Bug im addPublicResources ViewHelper gefixt.
+8.2.9       Geocoding fixed. Für das Feature "automaisch die Position zu einer Adresse finden" braucht man nun einen Google
+            maps API key! Die bisherige Lösung funktionierte nicht mehr!
 ==========  =====================================================================================================================

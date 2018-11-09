@@ -179,7 +179,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
 			if ($this->settings['random']) $contents = $this->sortObjects($contents);
-			if ($this->settings['getLatLon']) $contents = $this->getLatLon($contents);
+			if ($this->settings['getLatLon']) $this->getLatLon($contents);
 			
 			if ($this->settings['more']['setModulo']) {
 				$i = 0;
@@ -453,7 +453,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 			if ($place)	$distanceArray = $this->contentRepository->getDistanceArray();	// Distanz-Array vorhanden?
 			if ($this->settings['random']) $contents = $this->sortObjects($contents);	// zufällig umsortieren?
-			if ($this->settings['getLatLon']) $contents = $this->getLatLon($contents);	// Position suchen? Bringt nach einer Umkreissuche freilich nichts!
+			if ($this->settings['getLatLon']) $this->getLatLon($contents);	// Position suchen? Bringt nach einer Umkreissuche freilich nichts!
 			$this->view->assign('onlySearchForm', 0);
 		}
 
@@ -1104,7 +1104,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * Latitude und Longitude zu einer Adresse ermitteln
 	 * Lösung von hier: http://stackoverflow.com/questions/8633574/get-latitude-and-longitude-automatically-using-php-api
 	 */
-	private function getLatLon($objects) {
+	private function getLatLon(&$objects) {
 		//$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
 		/**
 		 * prüfen, welche Objekte eine Adresse (mind. einen Ort), aber keine Position haben
@@ -1117,7 +1117,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if ($object->getCity()) $address .= ($address) ? ', ' . $object->getCity() : $object->getCity();
 				if ($object->getCountry()) $address .= ($address) ? ', ' . $object->getCountry() : $object->getCountry();
 				$address = urlencode($address);
-				$url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
+				$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=" . $this->settings['maps']['key'];
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, $url);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -1138,7 +1138,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 			}
 		  }
-		return $objects;
+		//return $objects;
 	}
 }
 ?>
