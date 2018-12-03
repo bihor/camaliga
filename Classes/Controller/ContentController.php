@@ -1109,7 +1109,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		/**
 		 * prüfen, welche Objekte eine Adresse (mind. einen Ort), aber keine Position haben
 		 */
-		if (is_object($objects) || is_array($objects))
+	    if (is_object($objects) || is_array($objects)) {
 		  foreach($objects as $object) {
 			if ($object->getLatitude() == 0 && $object->getLongitude() == 0 && $object->getCity()) {
 				$address = $object->getStreet();
@@ -1126,6 +1126,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				$response = curl_exec($ch);
 				curl_close($ch);
+				if (TYPO3_DLOG || $this->settings['debug'])
+				    \TYPO3\CMS\Core\Utility\GeneralUtility::devLog('geocode response to address "' . $address . '": ' . $response, 'camaliga', 0);
 				$response_a = json_decode($response);
 				$lat = $response_a->results[0]->geometry->location->lat;
 				$long = $response_a->results[0]->geometry->location->lng;
@@ -1138,7 +1140,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 			}
 		  }
-		//return $objects;
+	   }
 	}
 }
 ?>
