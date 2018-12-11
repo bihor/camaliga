@@ -1,0 +1,65 @@
+{namespace cam=Quizpalme\Camaliga\ViewHelpers}
+<f:layout name="Default" />
+
+Elegant Responsive Pure CSS3 Slider-Template, based on: 
+https://codepen.io/rizkykurniawanritonga/full/shmwC
+
+Note 1: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+ plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+Copy this file in a subfolder named "Content" of this folder.
+Note 2: works only with 5 slides! If you have another number of slides, you need to change the Elegant.css file from the Public/css-folder.
+Copy the file to your fileadmin-folder and customise it there.
+
+<f:section name="main">
+<cam:addPublicResources path="{f:uri.resource(path:'css/Elegant.css')}"></cam:addPublicResources>
+<f:flashMessages />
+
+<f:if condition="{contents -> f:count()} > 0">
+<f:then>
+
+<article id="slider">
+<f:for each="{contents}" as="content" iteration="iteration">
+	<input {f:if(condition: iteration.isFirst, then: 'checked')} type='radio' name='slider' id='slide{iteration.cycle}'/>
+</f:for>
+<div id="slides">
+	<div id="slidercontainer">
+		<div class="sliderinner">
+			<f:for each="{contents}" as="content" iteration="iteration">
+			  <article>
+				<div class="slidercaption"><section>
+					<h3>{content.title}</h3>
+					<div class="row">
+						<div class="col-md-9 col-sm-8"><f:format.html>{content.shortdesc}</f:format.html></div>
+						<div class="col-md-3 col-sm-4"><f:if condition="{content.link} != ''"><div class="align-right">
+							<f:link.typolink parameter="{content.link}" class="btn btn-primary">{f:translate(key: 'more')}</f:link.typolink>
+						</div></f:if></div>
+					</div>
+				</section></div>
+				<f:if condition="{fal}"><f:then>
+		  			<f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" class="img-responsive" />
+				</f:then><f:else>
+				    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" class="img-responsive" />
+				</f:else></f:if>
+			  </article>
+			</f:for>
+		</div>
+	</div>
+</div>
+<div id="slidercommands">
+  <f:for each="{contents}" as="content" iteration="iteration">
+	<label for='slide{iteration.cycle}'></label>
+  </f:for>
+</div>
+<div id="slideractive">
+  <f:for each="{contents}" as="content" iteration="iteration">
+	<label for='slide{iteration.cycle}'></label>
+  </f:for>
+</div>
+</article>
+
+</f:then>
+<f:else>
+  <p><f:translate key="nothing" default="Nothing found." /></p> 
+</f:else>
+</f:if>
+</f:section>

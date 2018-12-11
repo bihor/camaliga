@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'Quizpalme.' . $_EXTKEY,
 	'Pi1',
 	array(
-		'Content' => 'list, listExtended, show, showExtended, random, search, carousel, carouselSeparated, responsiveCarousel, coolcarousel, ekko, lightslider, sgallery, skdslider, scrollable, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, revolution, fractionSlider, responsive, map, openstreetmap',
+		'Content' => 'list, listExtended, show, showExtended, random, search, carousel, carouselSeparated, elegant, responsiveCarousel, coolcarousel, ekko, lightslider, sgallery, skdslider, scrollable, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, revolution, fractionSlider, responsive, map, openstreetmap',
 	),
 	array(
 		'Content' => 'random, search',

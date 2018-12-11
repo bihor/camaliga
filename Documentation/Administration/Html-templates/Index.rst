@@ -69,6 +69,9 @@ Elastislide.html           Template that uses the Elastislide plugin.
                            Infos: http://tympanus.net/codrops/2011/09/12/elastislide-responsive-carousel/
 
                            Demo: http://www.quizpalme.de/fotos/kunst/elastislide-kunst.html
+Elegant.html               Template that uses the Elegant Responsive Pure CSS3 Slider.
+
+                           Infos: https://codepen.io/rizkykurniawanritonga/full/shmwC
 FancyBox.html              Template that uses only the FancyBox plugin.
                            Note: you must install FancyBox separately.
 

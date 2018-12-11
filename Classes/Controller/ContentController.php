@@ -777,31 +777,18 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$this->listAction();
 		}
 	}
-
+	
 	/**
-	 * action GalleryView
+	 * action Coolcarousel
 	 *
 	 * @return void
 	 */
-	public function galleryviewAction() {
-		if ($this->settings['extended']['enable']) {
-			$this->listExtendedAction();
-		} else {
-			$this->listAction();
-		}
-	}
-
-	/**
-	 * action FancyBox
-	 *
-	 * @return void
-	 */
-	public function fancyBoxAction() {
-		if ($this->settings['extended']['enable']) {
-			$this->listExtendedAction();
-		} else {
-			$this->listAction();
-		}
+	public function coolcarouselAction() {
+	    if ($this->settings['extended']['enable']) {
+	        $this->listExtendedAction();
+	    } else {
+	        $this->listAction();
+	    }
 	}
 
 	/**
@@ -831,16 +818,42 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 	
 	/**
-	 * action Coolcarousel
+	 * action Elegant CSS3 Slider
 	 *
 	 * @return void
 	 */
-	public function coolcarouselAction() {
-		if ($this->settings['extended']['enable']) {
-			$this->listExtendedAction();
-		} else {
-			$this->listAction();
-		}
+	public function elegantAction() {
+	    if ($this->settings['extended']['enable']) {
+	        $this->listExtendedAction();
+	    } else {
+	        $this->listAction();
+	    }
+	}
+	
+	/**
+	 * action FancyBox
+	 *
+	 * @return void
+	 */
+	public function fancyBoxAction() {
+	    if ($this->settings['extended']['enable']) {
+	        $this->listExtendedAction();
+	    } else {
+	        $this->listAction();
+	    }
+	}
+	
+	/**
+	 * action GalleryView
+	 *
+	 * @return void
+	 */
+	public function galleryviewAction() {
+	    if ($this->settings['extended']['enable']) {
+	        $this->listExtendedAction();
+	    } else {
+	        $this->listAction();
+	    }
 	}
 
 	/**

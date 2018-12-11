@@ -58,6 +58,10 @@
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.responsive</numIndex>
                 <numIndex index="1">Content->responsive</numIndex>
             </numIndex>
+            <numIndex index="11">
+                <numIndex index="0">Elegant Responsive Pure CSS3 Slider</numIndex>
+                <numIndex index="1">Content->elegant</numIndex>
+            </numIndex>
             <numIndex index="15">
                 <numIndex index="0">Test</numIndex>
                 <numIndex index="1">Content->test;Content->show</numIndex>
