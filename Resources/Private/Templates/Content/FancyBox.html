@@ -19,7 +19,6 @@ Copy this file in a subfolder named "Content" of this folder.
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
 <script type="text/javascript">
-/*<![CDATA[*/
 jQuery(document).ready(function() {
   $("a.fancybox").fancybox({
 		prevEffect		: 'none',
@@ -31,7 +30,6 @@ jQuery(document).ready(function() {
 		}
   });
 });
-/*]]>*/
 </script>
 <p class="camaliga_fancy">
 <f:for each="{contents}" as="content" iteration="iteration">

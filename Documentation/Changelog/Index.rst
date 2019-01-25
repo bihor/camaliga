@@ -182,4 +182,7 @@ Version     Changes
 
             Minor bug in addPublicResources ViewHelper fixed.
 8.2.9       Geocoding fixed. The geocode feature requires now a google maps api key!
+
+            Elegant Responsive Pure CSS3 Slider added.
+8.3.0       Important change: Optimized for TYPO3 8, Bootstrap 4 and jQuery 3.
 ==========  ============================================================================================================================

@@ -1,8 +1,8 @@
 <f:layout name="Default" />
 
 This example shows a Bootstrap carousel.
-Note 1: you need Bootstrap with Bootstrap Carousel for this example. Download it from here:
-http://getbootstrap.com/javascript/#carousel
+Note 1: you need Bootstrap 4 with Bootstrap Carousel for this example. Download it from here:
+https://getbootstrap.com/docs/4.2/components/carousel/
 Copy the JS- and CSS-file into your fileadmin-folder!
 Or better: install a Bootstrap extension and you are done!
 Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
@@ -29,7 +29,6 @@ $(document).ready(function() {
 
 <div id="myCarousel{uid}" class="carousel slide" data-ride="carousel">
 <f:if condition="{settings.bootstrap.showIndicators} == 1">
-  <!-- Indicators -->
   <ol class="carousel-indicators">
 <f:for each="{contents}" as="content" iteration="iter">
     <li data-target="#myCarousel{uid}" data-slide-to="{iter.index}" {f:if(condition: '{iter.isFirst}', then: 'class="active"')}></li>
@@ -40,15 +39,15 @@ $(document).ready(function() {
   <!-- Carousel items -->
   <div class="carousel-inner" role="listbox">
 <f:for each="{contents}" as="content" iteration="iter">
- <div class="{f:if(condition: '{iter.isFirst}', then: 'active ')}item">
+ <div class="{f:if(condition: '{iter.isFirst}', then: 'active ')}carousel-item">
   <f:if condition="{fal}"><f:then>
     <img src="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:settings.img.width,height:settings.img.height)}"  
          srcset="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:400)} 400w, {f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:800)} 800w, {f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:1920)} 1920w"
-         sizes="100vw" alt="{content.title}" title="{content.title}" />
+         sizes="100vw" alt="{content.title}" title="{content.title}" class="d-block w-100" />
   </f:then><f:else>
-    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
+    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" class="d-block w-100" />
   </f:else></f:if>
-  <div class="carousel-caption">
+  <div class="carousel-caption d-none d-md-block">
     <h3>{content.title}</h3>
     <p><f:format.nl2br>{content.shortdesc}</f:format.nl2br>
 	<f:if condition="{content.link} != ''">
@@ -61,14 +60,13 @@ $(document).ready(function() {
   </div>
 
 <f:if condition="{settings.bootstrap.showControls} == 1">
-  <!-- Controls -->
-  <a class="left carousel-control" href="#myCarousel{uid}" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">&lsaquo; Previous</span>
+  <a class="carousel-control-prev" href="#myCarousel{uid}" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">&lsaquo; {f:translate(key: 'prev')}</span>
   </a>
-  <a class="right carousel-control" href="#myCarousel{uid}" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next &rsaquo;</span>
+  <a class="carousel-control-next" href="#myCarousel{uid}" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">{f:translate(key: 'next')} &rsaquo;</span>
   </a>
 </f:if>
 </div>

@@ -1,12 +1,12 @@
 <f:if condition="{rsearch} == 0">
 <f:then>
 	<div class="row">
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'fulltext')}:</div>
-		<div class="col-sm-3 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'fulltext')}:</div>
+		<div class="col col-sm-3 col-xs-12">
 			<f:form.textfield name="sword" placeholder="{f:translate(key: 'searchword')}" value="{sword}" class="form-control" id="rsword" />
 		</div>
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'place')}:</div>
-		<div class="col-sm-3 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'place')}:</div>
+		<div class="col col-sm-3 col-xs-12">
 			<f:form.textfield name="place" placeholder="{f:translate(key: 'searchword')}" value="{place}" class="form-control" id="rplace" />
 		</div>
 	</div>
@@ -14,18 +14,18 @@
 </f:then>
 <f:else>
 	<div class="row">
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'fulltext')}:</div>
-		<div class="col-sm-9 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'fulltext')}:</div>
+		<div class="col col-sm-9 col-xs-12">
 			<f:form.textfield name="sword" placeholder="{f:translate(key: 'searchword')}" value="{sword}" class="form-control" id="rsword" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'place')}:</div>
-		<div class="col-sm-3 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'place')}:</div>
+		<div class="col col-sm-3 col-xs-12">
 			<f:form.textfield name="place" placeholder="{f:translate(key: 'searchword')}" value="{place}" class="form-control" id="rplace" />
 		</div>
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'radius')}:</div>
-		<div class="col-sm-3 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'radius')}:</div>
+		<div class="col col-sm-3 col-xs-12">
 			<f:form.select options="{radiusArray}" name="radius" value="{radius}" class="form-control" id="rradius" />
 		</div>
 	</div>
@@ -35,12 +35,12 @@
 
 <f:if condition="{settings.extended.restrictSearch} == 0">
 	<div class="row">
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'sortby')}:</div>
-		<div class="col-sm-3 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'sortby')}:</div>
+		<div class="col col-sm-3 col-xs-12">
 			<f:form.select name="sortBy" options="{sorting: 'Standard', title: 'Title', city: 'City', crdate: 'Date'}" class="form-control" value="{sortBy_selected}" />
 		</div>
-		<div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'orderby')}:</div>
-		<div class="col-sm-3 col-xs-12">
+		<div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'orderby')}:</div>
+		<div class="col col-sm-3 col-xs-12">
 			<f:form.select name="sortOrder" options="{asc: 'ascending', desc: 'descending'}" value="{sortOrder_selected}" class="form-control" />
 		</div>
 	</div>
@@ -49,8 +49,8 @@
 
 <f:for each="{categories}" as="catitemVal" key="catitemKey">
    <div class="row">
-    <div class="col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
-    <div class="col-sm-9 col-xs-12">
+    <div class="col col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
+    <div class="col col-sm-9 col-xs-12">
     <f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
       <label for="cat{catitemKey}_0" class="radio-inline">
         <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
@@ -78,8 +78,8 @@
 <f:if condition="{storagePIDsArray -> f:count()} > 1">
   <f:then>
    <div class="row">
-    <div class="col-sm-3 col-xs-12" class="info">{f:translate(key: 'folder')}:</div>
-    <div class="col-sm-9 col-xs-12">
+    <div class="col col-sm-3 col-xs-12" class="info">{f:translate(key: 'folder')}:</div>
+    <div class="col col-sm-9 col-xs-12">
 	<f:for each="{storagePIDsData}" as="storagePIDarray2" key="storagePID">
       <label for="pid_{storagePID}" class="checkbox-inline">
        <f:form.checkbox name="pid_{storagePID}" id="pid_{storagePID}" value="{storagePID}" checked="{storagePIDarray2.selected} == {storagePID}" />

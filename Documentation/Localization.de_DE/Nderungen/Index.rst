@@ -183,9 +183,12 @@ Version     Änderungen
 
             Das Slick-Template und anderes verbessert.
 
-            Der Linkvalidator works now.
+            Der Linkvalidator sollte nun funktionieren mit Camaliga-Elementen.
 
             Kleiner Bug im addPublicResources ViewHelper gefixt.
-8.2.9       Geocoding fixed. Für das Feature "automaisch die Position zu einer Adresse finden" braucht man nun einen Google
+8.2.11      Geocoding fixed. Für das Feature "automaisch die Position zu einer Adresse finden" braucht man nun einen Google
             maps API key! Die bisherige Lösung funktionierte nicht mehr!
+
+            Elegant Responsive Pure CSS3 Slider hinzugefügt.
+8.3.0       Wichtige Änderung: Optimierung für TYPO3 8, Bootstrap 4 und jQuery 3.
 ==========  =====================================================================================================================

@@ -40,7 +40,7 @@ var sshow = {settings.more.slidesToShow};
 var sscroll = {settings.more.slidesToScroll};
 <f:if condition="{settings.more.showPanel}"><f:then>
  <f:if condition="{settings.more.showThumbnails}"><f:then>
-$(window).load(function() {
+jQuery(document).ready(function() {
 	$('.slider-for').slick({
 		  slidesToShow: 1,
 		  slidesToScroll: 1,
@@ -65,7 +65,7 @@ $(window).load(function() {
 	});
 });
  </f:then><f:else>
-$(window).load(function() {
+jQuery(document).ready(function() {
 	$('.slider-for').slick({
 		  slidesToShow: 1,
 		  slidesToScroll: 1,
@@ -81,7 +81,7 @@ $(window).load(function() {
 });
  </f:else></f:if>
 </f:then><f:else>
-$(window).load(function() {
+jQuery(document).ready(function() {
 	$('.slider-nav').slick({
 		  slidesToShow: sshow,
 		  slidesToScroll: sscroll,

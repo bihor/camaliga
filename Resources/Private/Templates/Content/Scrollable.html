@@ -56,7 +56,6 @@ mycarousel_itemList[{iter.index}]['link'] = '{content.link}';
 mycarousel_itemList[{iter.index}]['image'] = '<f:if condition="{fal}"><f:then>{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}</f:then><f:else>/uploads/tx_camaliga/{content.image}</f:else></f:if>';
 </f:for>
 
-/*<![CDATA[*/
 $(function() {
   // initialize scrollable
   $(".scrollable").scrollable();
@@ -104,7 +103,6 @@ $(function() {
 	// when page loads simulate a "click" on the first image
 	}).filter(":first").click();
 });
-/*]]>*/
 </script>
 </f:then>
 <f:else>

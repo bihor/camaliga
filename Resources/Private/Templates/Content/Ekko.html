@@ -36,12 +36,12 @@ Note 4: you must enable setModulo for this template!
 		  		<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}" class="gallery gallery-responsive"
 			 data-toggle="lightbox" data-parent=".wrapper-parent" data-gallery="gallery-{uid}" data-title="{content.title}"
 			 data-footer="{content.shortdesc}"><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}"
-			 maxWidth="{settings.img.width}" class="img-responsive border" treatIdAsReference="1" /></a>
+			 maxWidth="{settings.img.width}" class="img-fluid border" treatIdAsReference="1" /></a>
 		  	</f:then><f:else>
 				<a href="/uploads/tx_camaliga/{content.image}" class="gallery gallery-responsive"
 			 data-toggle="lightbox" data-parent=".wrapper-parent" data-gallery="gallery-{uid}" data-title="{content.title}"
 			 data-footer="{content.shortdesc}"><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}"
-			 maxWidth="{settings.img.width}" class="img-responsive border" /></a>
+			 maxWidth="{settings.img.width}" class="img-fluid border" /></a>
 			</f:else></f:if>
 		</figure>
 	</div>

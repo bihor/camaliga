@@ -38,9 +38,9 @@ AdGallery.html             Template that uses the AD Gallery plugin.
                            Infos: http://adgallery.codeplex.com/documentation
 
                            Demo: http://www.quizpalme.de/fotos/kunst/adgallery.html
-Bootstrap.html             Template for the Twitter Bootstrap Carousel.
+Bootstrap.html             Template for the Twitter Bootstrap 4 Carousel.
 
-                           Infos: http://getbootstrap.com/javascript/#carousel
+                           Infos: https://getbootstrap.com/docs/4.2/components/carousel/
 
                            Demo: http://www.quizpalme.de/fotos/kunst/bootstrap-kunst.html
 Carousel.html              A carousel that uses the Camaliga-plugin. Default template.
@@ -70,8 +70,11 @@ Elastislide.html           Template that uses the Elastislide plugin.
 
                            Demo: http://www.quizpalme.de/fotos/kunst/elastislide-kunst.html
 Elegant.html               Template that uses the Elegant Responsive Pure CSS3 Slider.
+                           Note: works only with exact 5 elements! Otherwise change the CSS file.
 
                            Infos: https://codepen.io/rizkykurniawanritonga/full/shmwC
+
+                           Demo: http://www.quizpalme.de/reiseberichte/rheinsteig/tour5.html
 FancyBox.html              Template that uses only the FancyBox plugin.
                            Note: you must install FancyBox separately.
 
@@ -173,12 +176,10 @@ Roundabout.html            Template that uses the Roundabout plugin.
                            Infos: http://fredhq.com/projects/roundabout/
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos/roundabout.html
-Scrollable.html            Template that uses the jQuery TOOLS Scrollable plugin.
+Scrollable.html            Template that uses the old jQuery TOOLS Scrollable plugin.
                            Note: you must install jQuery TOOLS Scrollable separately.
 
                            Infos: http://jquerytools.org/demos/scrollable/index.html
-
-                           Demo: http://www.quizpalme.de/astronomische-uhren/sonnenuhren.html
 Search.html                An advanced/extended template with all features! It contains a proximity search.
                            You need the opengeodb-tables for this template. Not cached.
                            The action of this template will be used for every search. You will need it,
@@ -202,8 +203,8 @@ Slick.html                 Template that uses the slick carousel plugin.
 
                            Infos: http://kenwheeler.github.io/slick/
 
-                           Demo: http://www.quizpalme.de/reiseberichte/wanderungen/rheinsteig/tour1.html
-Tab.html                   Template that uses the Bootstrap 3 Tabs.
+                           Demo: http://www.quizpalme.de/reiseberichte/rheinsteig/tour1.html
+Tab.html                   Template that uses the Bootstrap 4 Tabs.
 
                            Demo: http://www.quizpalme.de/autor/reiseziele.html
 Test.html                  Only for tests...

@@ -29,16 +29,16 @@ Copy the file to your fileadmin-folder and customise it there.
 				<div class="slidercaption"><section>
 					<h3>{content.title}</h3>
 					<div class="row">
-						<div class="col-md-9 col-sm-8"><f:format.html>{content.shortdesc}</f:format.html></div>
-						<div class="col-md-3 col-sm-4"><f:if condition="{content.link} != ''"><div class="align-right">
+						<div class="col col-md-9 col-sm-8"><f:format.html>{content.shortdesc}</f:format.html></div>
+						<div class="col col-md-3 col-sm-4"><f:if condition="{content.link} != ''"><div class="align-right">
 							<f:link.typolink parameter="{content.link}" class="btn btn-primary">{f:translate(key: 'more')}</f:link.typolink>
 						</div></f:if></div>
 					</div>
 				</section></div>
 				<f:if condition="{fal}"><f:then>
-		  			<f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" class="img-responsive" />
+		  			<f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" class="img-fluid" />
 				</f:then><f:else>
-				    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" class="img-responsive" />
+				    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" class="img-fluid" />
 				</f:else></f:if>
 			  </article>
 			</f:for>

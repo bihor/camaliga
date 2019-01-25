@@ -29,18 +29,18 @@ HTML-Templates
   Installationsanleitungen findet man im jeweiligen Template
   (typo3conf/ext/camaliga/Resources/Private/Templates/Content/).
 
-=========================  ====================================================================================================
+=========================  =========================================================================================================================
 Template                   Information
-=========================  ====================================================================================================
+=========================  =========================================================================================================================
 AdGallery.html             Template, welches das AD Gallery-Plugin benutzt.
                            Achtung: man muss AD Gallery separat installieren.
 
                            Infos: http://adgallery.codeplex.com/documentation
 
                            Demo: http://www.quizpalme.de/fotos/kunst/adgallery.html
-Bootstrap.html             Template für das Twitter Bootstrap Carousel.
+Bootstrap.html             Template für das Twitter Bootstrap 4 Carousel.
 
-                           Infos: http://getbootstrap.com/javascript/#carousel
+                           Infos: https://getbootstrap.com/docs/4.2/components/carousel/
 
                            Demo: http://www.quizpalme.de/fotos/kunst/bootstrap-kunst.html
 Carousel.html              Karussell, welches das Camaliga-Plugin benutzt. Standard-Template.
@@ -70,8 +70,11 @@ Elastislide.html           Template, welches das Elastislide-Plugin benutzt.
 
                            Demo: http://www.quizpalme.de/fotos/kunst/elastislide-kunst.html
 Elegant.html               Template, welches den "Elegant Responsive Pure CSS3 Slider" benutzt.
+                           Funktioniert z.Z. aber nur mit genau 5 Elementen! Es sei denn man ändert die CSS-Datei.
 
                            Infos: https://codepen.io/rizkykurniawanritonga/full/shmwC
+
+                           Demo: http://www.quizpalme.de/reiseberichte/rheinsteig/tour5.html
 FancyBox.html              Template, welches nur das FancyBox-Plugin benutzt.
                            Achtung: man muss FancyBox separat installieren.
 
@@ -173,12 +176,10 @@ Roundabout.html            Template, welches das Roundabout-Plugin benutzt.
                            Infos: http://fredhq.com/projects/roundabout/
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos/roundabout.html
-Scrollable.html            Template, welches das jQuery TOOLS Scrollable-Plugin benutzt.
+Scrollable.html            Template, welches das alte jQuery TOOLS Scrollable-Plugin benutzt.
                            Achtung: man muss jQuery TOOLS Scrollable separat installieren.
 
                            Infos: http://jquerytools.org/demos/scrollable/index.html
-
-                           Demo: http://www.quizpalme.de/astronomische-uhren/sonnenuhren.html
 Search.html                Ein erweitertes Template mit allen möglichen Features! Dazu gehört u.a
                            eine Umkreissuche, für die man opengeodb-Tabellen benötigt. Wird nicht gecached.
                            Man braucht dieses Template, wenn man die Suche einschaltet, denn es wird über diese
@@ -202,9 +203,9 @@ Slick.html                 Template, welches das slick-Plugin benutzt.
 
                            Infos: http://kenwheeler.github.io/slick/
 
-                           Demo: http://www.quizpalme.de/reiseberichte/wanderungen/rheinsteig/tour1.html
-Tab.html                   Template, welches Bootstrap 3 Tabs benutzt.
+                           Demo: http://www.quizpalme.de/reiseberichte/rheinsteig/tour1.html
+Tab.html                   Template, welches Bootstrap 4 Tabs benutzt.
 
                            Demo: http://www.quizpalme.de/autor/reiseziele.html
 Test.html                  Nur für Tests...
-=========================  ====================================================================================================
+=========================  =========================================================================================================================
