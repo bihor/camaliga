@@ -48,9 +48,9 @@ Carousel.html              Karussell, welches das Camaliga-Plugin benutzt. Stand
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos.html
 CarouselSeparated.html     Ein Template, das 2 separate Karussells mit dem Camaliga-Plugin benutzt.
-Collapse.html              Template für Twitter Bootstrap Collapse/Accordion.
+Collapse.html              Template für Twitter Bootstrap 4 Collapse/Accordion.
 
-                           Infos: http://getbootstrap.com/javascript/#collapse
+                           Infos: https://getbootstrap.com/docs/4.2/components/collapse/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/berge.html
 Coolcarousel.html          Template, welches das Coolcarousel-Plugin benutzt.
@@ -133,9 +133,9 @@ ListExtended.html          Listen-Ansicht mit mehr Feldern.
 Map.html                   Eine "google map".
 
                            Demo: http://www.quizpalme.de/astronomische-uhren/astronomische-uhr/camaliga/showExtended/Content/415.html
-Modal.html                 Template für Twitter Bootstrap Modal. Benutze das Feld custom1 für den Modal-Button.
+Modal.html                 Template für Twitter Bootstrap 4 Modal. Benutze das Feld custom1 für den Modal-Button.
 
-                           Infos: http://getbootstrap.com/javascript/#modals
+                           Infos: https://getbootstrap.com/docs/4.2/components/modal/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen.html
 Owl2.html                  Template, welches das responsive Owl2-Plugin benutzt.

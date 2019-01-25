@@ -48,9 +48,9 @@ Carousel.html              A carousel that uses the Camaliga-plugin. Default tem
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos.html
 CarouselSeparated.html     A template with 2 separated carousels that uses the Camaliga-plugin.
-Collapse.html              Template for Twitter Bootstrap Collapse/Accordion.
+Collapse.html              Template for Twitter Bootstrap 4 Collapse/Accordion.
 
-                           Infos: http://getbootstrap.com/javascript/#collapse
+                           Infos: https://getbootstrap.com/docs/4.2/components/collapse/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/berge.html
 Coolcarousel.html          Template that uses the Coolcarousel plugin.
@@ -133,9 +133,9 @@ ListExtended.html          List view with more fields.
 Map.html                   A google map.
 
                            Demo: http://www.quizpalme.de/astronomische-uhren/astronomische-uhr/camaliga/showExtended/Content/415.html
-Modal.html                 Template for Twitter Bootstrap Modal. Use the field custom1 for the modal-button.
+Modal.html                 Template for Twitter Bootstrap 4 Modal. Use the field custom1 for the modal-button.
 
-                           Infos: http://getbootstrap.com/javascript/#modals
+                           Infos: https://getbootstrap.com/docs/4.2/components/modal/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen.html
 Openstreetmap.html         Template that uses the Openstreetmap and Leaflet with markercluster.

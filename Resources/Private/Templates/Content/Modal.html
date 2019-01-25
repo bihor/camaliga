@@ -27,8 +27,8 @@ Note 3: use the field "custom1" for the modal-button/link or change the template
   <div class="modal-dialog {settings.bootstrap.dialog}" role="document">
     <div class="modal-content mymodal">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="{f:translate(key: 'close')}"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="myModalLabel{content.uid}">{content.title}</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="{f:translate(key: 'close')}"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
         <f:if condition="{fal}"><f:then>
@@ -47,7 +47,7 @@ Note 3: use the field "custom1" for the modal-button/link or change the template
 		</p></f:if>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">{f:translate(key: 'close')}</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">{f:translate(key: 'close')}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
