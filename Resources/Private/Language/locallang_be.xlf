@@ -226,10 +226,10 @@
 				<source>open all collapsible elements</source>
 			</trans-unit>
 			<trans-unit id="parent">
-				<source>Open allways max. one collapsible element?</source>
+				<source>Open allways max. one collapsible element (you need to change the template now)?</source>
 			</trans-unit>
 			<trans-unit id="toggle">
-				<source>Toggles the collapsible element on invocation?</source>
+				<source>Toggles the collapsible element on invocation (not in use anymore)?</source>
 			</trans-unit>
 			<trans-unit id="extendedOptions">
 				<source>Extended options</source>

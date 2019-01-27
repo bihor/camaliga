@@ -2,7 +2,7 @@
 
 This example shows a Bootstrap Collapse/Accordion.
 Note 1: you need Bootstrap & Bootstrap Collapse for this example. Download it from here:
-http://getbootstrap.com/javascript/#collapse
+https://getbootstrap.com/docs/4.2/components/collapse/
 Copy the JS- and CSS-file into your fileadmin-folder!
 Or better: install a Bootstrap extension and you are done!
 Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
@@ -11,49 +11,43 @@ Copy this file in a subfolder named "Content" of this folder.
 
 <f:section name="main">
 <f:flashMessages />
-<style>
-.mycollapse .panel-body h4 { margin-top: 0; }
-.mycollapse .panel-body img { margin: 0 20px 6px 0; }
-.mycollapse .panel-body p { margin-bottom: 0; }
-</style>
-<div class="panel-group mycollapse" id="accordion{uid}" role="tablist" aria-multiselectable="true">
+<div class="accordion mycollapse" id="accordion{uid}">
 <f:for each="{contents}" as="content" iteration="iter">
-   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="heading{content.uid}">
-      <h4 class="panel-title">
+   <div class="card">
+    <div class="card-header" id="heading{content.uid}">
+      <h4 class="mb-0">
         <f:if condition="{settings.bootstrap.expanded} == 'all'"><f:then>
-        <a data-toggle="{settings.bootstrap.toggle}" {f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: 'data-parent="#accordion{uid}"')}
-           class="accordion-toggle" aria-expanded="true"
-           aria-controls="collapse{content.uid}" role="button" href="#collapse{content.uid}">
+        <button class="btn btn-link" type="button" data-toggle="collapse" aria-expanded="true" data-target="#collapse{content.uid}" aria-controls="collapse{content.uid}">
         </f:then><f:else>
-        <a data-toggle="{settings.bootstrap.toggle}" {f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: 'data-parent="#accordion{uid}"')}
-           class="{f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: '', else: 'collapsed')} accordion-toggle"
+        <button class="btn btn-link {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: '', else: 'collapsed')}" type="button" data-toggle="collapse"
            aria-expanded="{f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: 'true', else: 'false')}"
-           aria-controls="collapse{content.uid}" role="button" href="#collapse{content.uid}">
+           data-target="#collapse{content.uid}" aria-controls="collapse{content.uid}">
         </f:else></f:if>
            {content.title}
-        </a>
+        </button>
       </h4>
     </div>
     <f:if condition="{settings.bootstrap.expanded} == 'all'"><f:then>
-    <div id="collapse{content.uid}" role="tabpanel" aria-labelledby="heading{content.uid}" class="panel-collapse collapse in">
+    <div id="collapse{content.uid}" aria-labelledby="heading{content.uid}" data-parent="#accordion{uid}" class="collapse show{f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: ' multi-collapse')}">
     </f:then><f:else>
-    <div id="collapse{content.uid}" role="tabpanel" aria-labelledby="heading{content.uid}"
-         class="panel-collapse collapse {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: 'in')}">
+    <div id="collapse{content.uid}" aria-labelledby="heading{content.uid}" data-parent="#accordion{uid}"
+         class="collapse {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: 'show')} {f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: 'multi-collapse')}">
     </f:else></f:if>
-      <div class="panel-body">
-      	<f:if condition="{fal}"><f:then>
-		    <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" additionalAttributes="{align: 'left'}" treatIdAsReference="1" />
-		</f:then><f:else>
+      <div class="card-body"><div class="row">
+      	<f:if condition="{fal}"><f:then><f:if condition="{content.falimage.uid}"><div class="col col-3">
+		    <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" treatIdAsReference="1" />
+		 </div></f:if></f:then><f:else>
 		 <f:if condition="{content.image} != ''">
-      	  <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" additionalAttributes="{align: 'left'}" />
+      	  <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" />
       	 </f:if>
 		</f:else></f:if>
+		<div class="col">
         <h4><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
         <f:format.html>{content.longdesc}</f:format.html>
 		<f:if condition="{content.link} != ''">
 			<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
 		</f:if>
+		</div></div>
       </div>
     </div>
   </div>

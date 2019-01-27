@@ -220,10 +220,10 @@
 				<target>klappe alle Elemente auf</target>
 			</trans-unit>
 			<trans-unit id="parent">
-				<target>Nur höchstens ein Element aufklappen?</target>
+				<target>Nur höchstens ein Element aufklappen (erfordert nun einen Template-Umbau)?</target>
 			</trans-unit>
 			<trans-unit id="toggle">
-				<target>Sollen die Elemente aufklappbar sein?</target>
+				<target>Sollen die Elemente aufklappbar sein (keine Funktion mehr)?</target>
 			</trans-unit>
 			<trans-unit id="extendedOptions">
 				<target>Erweiterte Optionen</target>
