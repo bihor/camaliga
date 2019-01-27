@@ -70,7 +70,6 @@ Elastislide.html           Template that uses the Elastislide plugin.
 
                            Demo: http://www.quizpalme.de/fotos/kunst/elastislide-kunst.html
 Elegant.html               Template that uses the Elegant Responsive Pure CSS3 Slider.
-                           Note: works only with exact 5 elements! Otherwise change the CSS file.
 
                            Infos: https://codepen.io/rizkykurniawanritonga/full/shmwC
 

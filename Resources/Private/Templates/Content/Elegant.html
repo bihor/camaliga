@@ -7,8 +7,6 @@ https://codepen.io/rizkykurniawanritonga/full/shmwC
 Note 1: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
 Copy this file in a subfolder named "Content" of this folder.
-Note 2: works only with 5 slides! If you have another number of slides, you need to change the Elegant.css file from the Public/css-folder.
-Copy the file to your fileadmin-folder and customise it there.
 
 <f:section name="main">
 <cam:addPublicResources path="{f:uri.resource(path:'css/Elegant.css')}"></cam:addPublicResources>
@@ -17,6 +15,23 @@ Copy the file to your fileadmin-folder and customise it there.
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
 
+<style>
+<f:for each="{contents}" as="content" iteration="iter">
+<f:if condition="{iter.isFirst}"><f:then>#slide1:checked ~ #slides .sliderinner{margin-left:0}</f:then><f:else>#slide{iter.cycle}:checked ~ #slides .sliderinner{margin-left:-{iter.index * 100}%}</f:else></f:if></f:for>
+<f:for each="{contents}" as="content" iteration="iter">
+<f:if condition="{iter.isLast}"><f:then>#slide{iter.cycle}:checked ~ #slidercommands label:nth-child(1){background: transparent url(/typo3conf/ext/camaliga/Resources/Public/Icons/hori_large.png) no-repeat 0 0;background-position: 0 -30px;float:right;margin:0 25px 0 0;display:block}
+</f:then><f:else>#slide{iter.cycle}:checked ~ #slidercommands label:nth-child({iter.cycle + 1}),</f:else></f:if></f:for>
+<f:for each="{contents}" as="content" iteration="iter">
+<f:if condition="{iter.isLast}"><f:then>#slide{iter.cycle}:checked ~ #slidercommands label:nth-child({iter.index}){background: transparent url(/typo3conf/ext/camaliga/Resources/Public/Icons/hori_large.png) no-repeat 0 0;float:left;margin:0 0 0 25px;display:block}
+</f:then><f:else><f:if condition="{iter.isFirst}"><f:then>#slide1:checked ~ #slidercommands label:nth-child({iter.total}),
+</f:then><f:else>#slide{iter.cycle}:checked ~ #slidercommands label:nth-child({iter.index}),</f:else></f:if></f:else></f:if></f:for>
+<f:for each="{contents}" as="content" iteration="iter">
+<f:if condition="{iter.isLast}"><f:then>#slide{iter.cycle}:checked ~ #slideractive label:nth-child({iter.cycle}){background:#000;opacity:0.6}</f:then><f:else>#slide{iter.cycle}:checked ~ #slideractive label:nth-child({iter.cycle}),</f:else></f:if></f:for>
+<f:for each="{contents}" as="content" iteration="iter">
+<f:if condition="{iter.isLast}"><f:then>#slide{iter.cycle}:checked ~ #slides article:nth-child({iter.cycle}) .slidercaption{opacity:1;-webkit-transition:all 1s ease-out 0.6s;-moz-transition:all 1s ease-out 0.6s;-o-transition:all 1s ease-out 0.6s;transition:all 1s ease-out 0.6s}
+#slides .sliderinner{width:{iter.cycle * 100}%;line-height:0}
+#slides article{width:{100 / iter.cycle}%;float:left;position:relative}</f:then><f:else>#slide{iter.cycle}:checked ~ #slides article:nth-child({iter.cycle}) .slidercaption,</f:else></f:if></f:for>
+</style>
 <article id="slider">
 <f:for each="{contents}" as="content" iteration="iteration">
 	<input {f:if(condition: iteration.isFirst, then: 'checked')} type='radio' name='slider' id='slide{iteration.cycle}'/>
