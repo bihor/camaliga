@@ -36,7 +36,7 @@ var fspeed = ({settings.more.speed} * 1000);
 var fautoplayspeed = ({settings.more.autoplaySpeed} * 1000);
 <f:if condition="{settings.more.showThumbnails}"><f:then>
 <f:if condition="{settings.more.showPanel}"><f:then>
-$(window).load(function() {
+jQuery(document).ready(function() {
 	  // The slider being synced must be initialized first
 	  $('#carousel'+ttuid).flexslider({
 	    animation: 'slide',
@@ -61,7 +61,7 @@ $(window).load(function() {
 	  });
 });
 </f:then><f:else>
-$(window).load(function() {
+jQuery(document).ready(function() {
 	  $('#carousel'+ttuid).flexslider({
 	    animation: 'slide',
 	    easing: feasing,
@@ -78,7 +78,7 @@ $(window).load(function() {
 });
 </f:else></f:if>
 </f:then><f:else>
-$(window).load(function() {
+jQuery(document).ready(function() {
 	  $('#slider'+ttuid).flexslider({
 	    animation: ffade,
 	    controlNav: fdots,

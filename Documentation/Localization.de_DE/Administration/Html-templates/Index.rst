@@ -187,8 +187,6 @@ Sgallery.html              Template, welches das S Gallery-Plugin benutzt.
                            Achtung: man muss S Gallery separat installieren.
 
                            Infos: http://sarasoueidan.com/blog/s-gallery/
-
-                           Demo: http://www.quizpalme.de/fotos/kunst/sgallery.html
 Show.html                  Einzelansicht.
 ShowExtended.html          Einzelansicht mit mehr Feldern.
 
