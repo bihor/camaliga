@@ -169,12 +169,10 @@ Revolution.html            Deprecated: use the extension fp_fractionslider inste
                            Note: you must install the Revolution Slider separately.
 
                            Infos: https://codecanyon.net/item/slider-revolution-responsive-jquery-plugin/2580848
-Roundabout.html            Template that uses the Roundabout plugin.
+Roundabout.html            Template that uses the jQuery Roundabout plugin.
                            Note: you must install Roundabout separately.
 
-                           Infos: http://fredhq.com/projects/roundabout/
-
-                           Demo: http://www.quizpalme.de/fotos/externe-fotos/roundabout.html
+                           Infos: https://github.com/fredleblanc/roundabout
 Scrollable.html            Template that uses the old jQuery TOOLS Scrollable plugin.
                            Note: you must install jQuery TOOLS Scrollable separately.
 
