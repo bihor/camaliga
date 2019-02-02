@@ -3,12 +3,12 @@
   margin:0;
   color:#fff;
   position:relative;
-  max-height:525px;
   overflow:hidden;
 }
 
 .karussell ul {
   margin:0;
+  padding:0;
 }
 .karussell ul li{
   float:none;
