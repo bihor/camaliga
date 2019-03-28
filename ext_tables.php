@@ -8,17 +8,17 @@ if (TYPO3_MODE === 'BE') {
 	 * Registers a Backend Module
 	 */
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-		'Quizpalme.' . $_EXTKEY,
+		'Quizpalme.Camaliga',
 		'web',	 // Make module a submodule of 'web'
 		'imports',	// Submodule key
 		'',			// Position
 		array(
-			'Backend' => 'index, thumb, import, importNews',
+			'Backend' => 'index, thumb',
 		),
 		array(
 			'access' => 'user,group',
-			'icon'   => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
-			'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be.xlf',
+			'icon'   => 'EXT:camaliga/ext_icon.gif',
+			'labels' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf',
 		)
 	);
 }

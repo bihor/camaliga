@@ -259,7 +259,7 @@ $tcaArray = array(
 				'endtime' => 'endtime',
 		),
 		'searchFields' => 'title,shortdesc,longdesc,street,zip,city,country,person,custom1',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('camaliga') . 'Resources/Public/Icons/tx_camaliga_domain_model_content.gif'
+		'iconfile' => 'EXT:camaliga/Resources/Public/Icons/tx_camaliga_domain_model_content.gif'
 	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc, link, '.$pre.'image',

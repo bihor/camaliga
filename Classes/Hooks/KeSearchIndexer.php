@@ -25,7 +25,7 @@ class KeSearchIndexer
         $customIndexer = array(
             'Camaliga elements (camaliga)',
             $this->indexerConfigurationKey,
-            ExtensionManagementUtility::extRelPath('camaliga') . 'ext_icon.gif'
+            'EXT:camaliga/ext_icon.gif'
         );
         $params['items'][] = $customIndexer;
     }

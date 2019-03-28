@@ -15,6 +15,12 @@
 			<trans-unit id="categories">
 				<source>Categories</source>
 			</trans-unit>
+			<trans-unit id="startingpoint">
+				<source>Startingpoint:</source>
+			</trans-unit>
+			<trans-unit id="recursive">
+				<source>Recursive:</source>
+			</trans-unit>
 			<trans-unit id="title">
 				<source>Layout</source>
 			</trans-unit>

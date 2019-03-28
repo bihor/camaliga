@@ -5,7 +5,7 @@ namespace Quizpalme\Camaliga\Utility;
 class PageTitle {
 	public function getTitleTag($content, $conf) {
 		$id = 0;
-		$trim = $GLOBALS['TSFE']->tmpl->setup['config.']['titleTagFunction.']['noTrimWrap'];
+		//$trim = $GLOBALS['TSFE']->tmpl->setup['config.']['titleTagFunction.']['noTrimWrap'];
 		$params = $_POST['tx_camaliga_pi1'];
 		if (count($params) == 0)
 			$params = $_GET['tx_camaliga_pi1'];

@@ -170,11 +170,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			
 			if (count($categoryUids) > 0) {
 				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? FALSE : TRUE;
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findByCategories($categoryUids, '', '', 0, $this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $normalCatMode, $this->settings['limit']);
 			} else {
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
@@ -428,7 +428,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		} else {
 			if ($cUid > 0) {
 				// nur ein bestimmtes Element anzeigen
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findByUids(array(' . $cUid . '))', 'camaliga', 0);
 				$contents = $this->contentRepository->findByUids(array($cUid));
 			} else if (count($categoryUids) > 0) {
@@ -437,17 +437,17 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				// Sort categories (doesnt work): http://www.php-kurs.com/arrays-mehrdimensional.htm 
 				// find entries by category
 				// enable dev logging if set
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, TRUE,  $this->settings['limit']);
 			} else if ($sword || $place) {
 				// Komplexe Suche, aber ohne Kategorien
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findComplex( ,' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findComplex(array(), $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			} else {
 				// Simple Suche
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findAll($sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
@@ -1139,7 +1139,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				$response = curl_exec($ch);
 				curl_close($ch);
-				if (TYPO3_DLOG || $this->settings['debug'])
+				if ($this->settings['debug'])
 				    \TYPO3\CMS\Core\Utility\GeneralUtility::devLog('geocode response to address "' . $address . '": ' . $response, 'camaliga', 0);
 				$response_a = json_decode($response);
 				$lat = $response_a->results[0]->geometry->location->lat;

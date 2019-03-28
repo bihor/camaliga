@@ -14,6 +14,7 @@ namespace Quizpalme\Camaliga\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+//use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -148,16 +149,6 @@ class PageLayoutView
     /**
      * Get the rendered page title including onclick menu
      *
-     * @param int $detailPid
-     * @return string
-     * @deprecated use getRecordData() instead
-     */
-    public function getPageRecordData($detailPid)
-    {
-        return $this->getRecordData($detailPid, 'pages');
-    }
-
-    /**
      * @param int $id
      * @param string $table
      * @return string
@@ -201,15 +192,14 @@ class PageLayoutView
      */
     public function getStartingPoint($pids)
     {
-        //$value = $this->getFieldFromFlexform('settings.startingpoint');
         if (!empty($pids)) {
             $pageIds = GeneralUtility::intExplode(',', $pids, true);
             $pagesOut = [];
-
+            
             foreach ($pageIds as $id) {
                 $pagesOut[] = $this->getRecordData($id, 'pages');
             }
-
+            
             $recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
             $recursiveLevelText = '';
             if ($recursiveLevel === 250) {
@@ -217,15 +207,14 @@ class PageLayoutView
             } elseif ($recursiveLevel > 0) {
                 $recursiveLevelText = $this->getLanguageService()->sL('LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.' . $recursiveLevel);
             }
-
+            
             if (!empty($recursiveLevelText)) {
                 $recursiveLevelText = '<br />' .
-                    htmlspecialchars($this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.xlf:LGL.recursive')) . ' ' .
-                    $recursiveLevelText;
+                    $this->getLanguageService()->sL(self::LLPATH . 'recursive') . ' ' .  $recursiveLevelText;
             }
-
+            
             $this->tableData[] = [
-                $this->getLanguageService()->sL('LLL:EXT:lang/locallang_general.php:LGL.startingpoint'),
+                $this->getLanguageService()->sL(self::LLPATH . 'startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
             ];
         }
@@ -254,7 +243,7 @@ class PageLayoutView
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Camaliga/PageLayout');
-        $pageRenderer->addCssFile(ExtensionManagementUtility::extRelPath('camaliga') . 'Resources/Public/css/PageLayoutView.css');
+        $pageRenderer->addCssFile('EXT:camaliga/Resources/Public/css/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:camaliga/Resources/Private/Templates/Backend/PageLayoutView.html'));

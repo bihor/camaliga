@@ -14,17 +14,17 @@
   #sortable li h3 { margin-top: 2px; }
   </style>
   <script>
-  TYPO3.jQuery(document).ready(function(){
-	  TYPO3.jQuery( "#sortable" ).sortable();
-	  TYPO3.jQuery( "#sortable" ).disableSelection();
+  $(document).ready(function(){
+	  $( "#sortable" ).sortable();
+	  $( "#sortable" ).disableSelection();
   });
   function saveorder() {
 	  var sorting = 0;
-	  TYPO3.jQuery('#sortable li').each(function( index ) {
+	  $('#sortable li').each(function( index ) {
 		  sorting = (index+1)*10;
-		  TYPO3.jQuery('#e' + TYPO3.jQuery( this ).attr('id')).val(sorting);
+		  $('#e' + $( this ).attr('id')).val(sorting);
 	  });
-	  TYPO3.jQuery('#thumbform').submit();
+	  $('#thumbform').submit();
   }
   </script>
   

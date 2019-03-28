@@ -15,6 +15,12 @@
 			<trans-unit id="categories">
 				<target>Kategorien</target>
 			</trans-unit>
+			<trans-unit id="startingpoint">
+				<target>Ordner mit Inhalten:</target>
+			</trans-unit>
+			<trans-unit id="recursive">
+				<target>Rekursiv:</target>
+			</trans-unit>
 			<trans-unit id="template">
 				<target>HTML-Template:</target>
 			</trans-unit>

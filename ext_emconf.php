@@ -14,19 +14,19 @@ $EM_CONF[$_EXTKEY] = array (
   'title' => 'Camaliga: CArousel/MAp/LIst/GAllery',
   'description' => 'A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick or Isotope. Bootstrap support. Indexer for ke_search. Many features! Big manual (even in german).',
   'category' => 'plugin',
-  'version' => '8.3.0',
+  'version' => '8.3.1',
   'state' => 'stable',
   'uploadfolder' => true,
   'createDirs' => '',
   'clearcacheonload' => false,
   'author' => 'Kurt Gusbeth',
   'author_email' => 'info@quizpalme.de',
-  'author_company' => '',
+  'author_company' => 'fixpunkt werbeagentur gmbh',
   'constraints' => 
   array (
     'depends' => 
     array (
-      'typo3' => '8.0.0-8.7.99',
+      'typo3' => '8.7.13-9.5.99',
     ),
     'conflicts' => 
     array (

@@ -185,4 +185,7 @@ Version     Changes
 
             Elegant Responsive Pure CSS3 Slider added.
 8.3.0       Important change: Optimized for TYPO3 8, Bootstrap 4 and jQuery 3.
+8.3.1       Now for TYPO3 9 too.
+            TYPO3_DLOG removed. Now only settings.debug enables the debug mode.
+            Karusell and tt_news import removed.
 ==========  ============================================================================================================================
