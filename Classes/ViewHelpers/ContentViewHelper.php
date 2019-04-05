@@ -1,5 +1,6 @@
 <?php
 namespace Quizpalme\Camaliga\ViewHelpers;
+
 /**
  * Content-ViewHelper
  * {namespace cam=Quizpalme\Camaliga\ViewHelpers}
@@ -16,6 +17,15 @@ class ContentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 	 */
 	protected $escapeOutput = false;
 	
+	/**
+	 * contentRepository
+	 *
+	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
+	 * @inject
+	 */
+	protected $contentRepository = NULL;
+	
+	
     /**
      * Content-ViewHelper
      * 
@@ -30,26 +40,36 @@ class ContentViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHel
 		else
 			$camaligaArray = array();
 		$uid = intval($camaligaArray['content']);
-		$lang = intval($_GET['L']);
-		$row = array();
+		//$lang = intval($_GET['L']);
+		$row = [];
 		if ($uid > 0) {
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'title as camaliga_title, shortdesc AS camaliga_shortdesc, link AS camaliga_link, image AS camaliga_image, 
-street AS camaliga_street, zip AS camaliga_zip, city AS camaliga_city, country AS camaliga_country, person AS camaliga_person, phone AS camaliga_phone, mobile AS camaliga_mobile, email AS camaliga_email,
-latitude AS camaliga_latitude, longitude AS camaliga_longitude, custom1 AS camaliga_custom1, custom2 AS camaliga_custom_2, custom3 AS camaliga_custom3',
-					'tx_camaliga_domain_model_content',
-					'deleted=0 AND hidden=0 AND sys_language_uid IN (-1, ' . $lang . ') AND uid=' . $uid);
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-				$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4);
-			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+		    //$contentRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ConentRepository');
+		    $entry = $this->contentRepository->findOneByUid2($uid);
+		    if ($entry && $entry->getUid()) {
+		        $row['camaliga_title'] = $entry->getTitle();
+		        $row['camaliga_shortdesc'] = $entry->getShortdesc();
+		        $row['camaliga_link'] = $entry->getLink();
+		        $row['camaliga_image'] = $entry->getImage();
+		        $row['camaliga_street'] = $entry->getStreet();
+		        $row['camaliga_zip'] = $entry->getZip();
+		        $row['camaliga_city'] = $entry->getCity();
+		        $row['camaliga_country'] = $entry->getCountry();
+		        $row['camaliga_person'] = $entry->getPerson();
+		        $row['camaliga_phone'] = $entry->getPhone();
+		        $row['camaliga_mobile'] = $entry->getMobile();
+		        $row['camaliga_email'] = $entry->getEmail();
+		        $row['camaliga_latitude'] = $entry->getLatitude();
+		        $row['camaliga_longitude'] = $entry->getLongitude();
+		        $row['camaliga_custom1'] = $entry->getCustom1();
+		        $row['camaliga_custom2'] = $entry->getCustom2();
+		        $row['camaliga_custom3'] = $entry->getCustom3();
+		    }
      	}
-     	$result = str_replace(
+     	return str_replace(
      			array_keys($row),
      			array_values($row),
      			$param
      	);
-		return $result;
 		//return $this->renderChildren();
 	}
 }

@@ -413,6 +413,19 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 	
 	/**
+	 * findOneByUid2 ohne Ordner-Berücksichtigung
+	 * @param	integer	$uid	UID
+	 */
+	public function findOneByUid2($uid) {
+	    $query = $this->createQuery();
+	    $query->getQuerySettings()->setRespectStoragePage(FALSE);
+	    $result = $query->matching(
+	        $query->equals('uid', $uid)
+	    )->execute()->getFirst();
+	    return $result;
+	}
+	
+	/**
      * Get the PIDs
      * 
 	 * @return array
