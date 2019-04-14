@@ -654,7 +654,7 @@ if (!$disableMother) {
 	$tcaArray['types']['1']['showitem'] .= ',mother';
 }
 
-$tcaArray['types']['1']['showitem'] .= ',--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime';
+$tcaArray['types']['1']['showitem'] .= ',--div--;Access,starttime, endtime';
 
 return $tcaArray;
 ?>

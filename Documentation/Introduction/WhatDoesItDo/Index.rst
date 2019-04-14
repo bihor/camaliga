@@ -34,6 +34,10 @@ This flexible extension can display elements as e.g. carousel, gallery, list or 
 
 - Supports ke_search.
 
-- Many import scripts and a sheduler task for CSV export.
+- Scheduler task for CSV import and export.
 
 The extension is not allways easy to use, but it is very flexible and admins will like that.
+
+.. important::
+
+   If you are using TYPO3 9, then you will need the extension typo3db_legacy too!

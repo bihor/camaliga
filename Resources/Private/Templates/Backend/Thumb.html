@@ -4,6 +4,7 @@
  	Siehe: https://docs.typo3.org/typo3cms/ExtbaseGuide/Fluid/ViewHelper/Be/Container.html
  	includeCssFiles="{0: '{f:uri.external(uri: \'code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css\')}'}"
     0: 'TYPO3/CMS/Backend/Modal', 
+    TODO: Läuft nicht mehr unter TYPO3 9!
 </f:comment>
   
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -14,17 +15,17 @@
   #sortable li h3 { margin-top: 2px; }
   </style>
   <script>
-  $(document).ready(function(){
-	  $( "#sortable" ).sortable();
-	  $( "#sortable" ).disableSelection();
+  TYPO3.jQuery(document).ready(function(){
+	  TYPO3.jQuery( "#sortable" ).sortable();
+	  TYPO3.jQuery( "#sortable" ).disableSelection();
   });
   function saveorder() {
 	  var sorting = 0;
-	  $('#sortable li').each(function( index ) {
+	  TYPO3.jQuery('#sortable li').each(function( index ) {
 		  sorting = (index+1)*10;
-		  $('#e' + $( this ).attr('id')).val(sorting);
+		  TYPO3.jQuery('#e' + TYPO3.jQuery( this ).attr('id')).val(sorting);
 	  });
-	  $('#thumbform').submit();
+	  TYPO3.jQuery('#thumbform').submit();
   }
   </script>
   

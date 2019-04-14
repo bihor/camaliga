@@ -18,8 +18,7 @@
 Was macht die Extension?
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder auf einer Google Karte anzeigen und
-benötigt TYPO3 6.2.2-7.6.99. Features:
+Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder auf einer Karte anzeigen. Features:
 
 - Viele Templates für die Ausgabe vorhanden.
 
@@ -36,6 +35,11 @@ benötigt TYPO3 6.2.2-7.6.99. Features:
 
 - ke_search wird unterstüzt.
 
-- Viele Import-Skripte sind vorhanden. Auch ein Planer-Task für den CSV-Export ist vorhanden.
+- Auch ein Planer-Task für den CSV-Import und -Export ist vorhanden.
 
 Die Extension ist nicht immer einfach zu benutzen, aber sie ist sehr flexibel und Admin werden das mögen.
+
+
+.. important::
+
+   Wenn man TYPO3 9 benutzt, wird z.Z. noch die Extension typo3db_legacy benötigt!

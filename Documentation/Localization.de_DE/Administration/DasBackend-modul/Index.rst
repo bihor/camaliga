@@ -19,10 +19,8 @@
 Das Backend-Modul
 ^^^^^^^^^^^^^^^^^
 
-- Das Camaliga-Backend-Modul hat 3 Features: Alphabetische Auflistung der Camaliga-
-  Elemente eines Ordners/Dokuments, Bilder-Liste eines Ordner mit Sortierfunktion und Import.
-  Ein Import ist möglich aus anderen Tabellen.
-  Zurzeit kann man Einträge folgender Extension importieren: karussell- und tt\_news.
+- Das Camaliga-Backend-Modul hat 2 Features: Alphabetische Auflistung der Camaliga-
+  Elemente eines Ordners/Dokuments und Bilder-Liste eines Ordner mit Sortierfunktion.
 
 |img-16|
 
