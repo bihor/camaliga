@@ -272,27 +272,27 @@ $tcaArray = array(
 		'2' => array('showitem' => ''),
 	),
 	'columns' => array(
-			'sys_language_uid' => array(
-					'exclude' => 1,
-					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-					'config' => array(
-							'type' => 'select',
-							'renderType' => 'selectSingle',
-							'special' => 'languages',
-							'items' => array(
-									array(
-											'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
-											-1,
-											'flags-multiple'
-									),
-							),
-							'default' => 0,
-					)
-			),
+			'sys_language_uid' => [
+				'exclude' => 1,
+				'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.language',
+				'config' => [
+					'type' => 'select',
+					'renderType' => 'selectSingle',
+					'special' => 'languages',
+					'items' => [
+						[
+							'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.allLanguages',
+							-1,
+							'flags-multiple'
+						]
+					],
+					'default' => 0,
+				],
+			],
 			'l10n_parent' => array(
 					'displayCond' => 'FIELD:sys_language_uid:>:0',
 					'exclude' => 1,
-					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.l18n_parent',
 					'config' => array(
 							'type' => 'select',
                				'renderType' => 'selectSingle',
@@ -300,8 +300,7 @@ $tcaArray = array(
 									array('', 0),
 							),
 							'foreign_table' => 'tx_camaliga_domain_model_content',
-							'foreign_table_where' => 'AND tx_camaliga_domain_model_content.pid=###CURRENT_PID### AND tx_camaliga_domain_model_content.sys_language_uid IN (-1,0)',
-			                'showIconTable' => false
+							'foreign_table_where' => 'AND tx_camaliga_domain_model_content.pid=###CURRENT_PID### AND tx_camaliga_domain_model_content.sys_language_uid IN (-1,0)'
 					),
 			),
 			'l10n_diffsource' => array(
@@ -311,24 +310,29 @@ $tcaArray = array(
 					),
 			),
 			't3ver_label' => array(
-					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
+					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.versionLabel',
 					'config' => array(
 							'type' => 'input',
 							'size' => 30,
 							'max' => 255,
 					)
 			),
-			'hidden' => array(
-					'exclude' => 1,
-					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
-					'config' => array(
-							'type' => 'check',
-					),
-			),
+			'hidden' => [
+				'exclude' => 1,
+				'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.hidden',
+				'config' => [
+					'type' => 'check',
+					'items' => [
+						[
+							'0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
+						]
+					],
+				],
+			],
 			'starttime' => array(
 					'exclude' => 1,
 					'l10n_mode' => 'mergeIfNotBlank',
-					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
+					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.starttime',
 					'config' => array(
 							'type' => 'input',
 							'size' => 13,
@@ -344,7 +348,7 @@ $tcaArray = array(
 			'endtime' => array(
 					'exclude' => 1,
 					'l10n_mode' => 'mergeIfNotBlank',
-					'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
+					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.LGL.endtime',
 					'config' => array(
 							'type' => 'input',
 							'size' => 13,
