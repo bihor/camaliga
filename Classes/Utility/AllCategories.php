@@ -26,6 +26,7 @@ class AllCategories {
 			$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
 		$cat_lang = ($catMode) ? 0 : $lang;
 		// Step 1: ggf. orig-cat-uid holen
+		//echo "lang: $lang" . $GLOBALS['TSFE']->config['config']['sys_language_uid'] .'#';
 		if ($lang > 0) {
 			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'uid, t3_origuid, title',

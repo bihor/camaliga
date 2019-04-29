@@ -438,6 +438,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		if (!$pids) {
 			$pids = $this->getStoragePids();
 		}
+		// siehe hier: https://stackoverflow.com/questions/54691047/what-will-be-the-mm-query-in-typo3-version-9
 		$table = 'tx_camaliga_domain_model_content';
 		$joinTable = 'sys_category_record_mm';
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
@@ -457,7 +458,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$queryBuilder->expr()->eq('categoryMM.tablenames', $queryBuilder->createNamedParameter($table)),
 				$queryBuilder->expr()->eq('categoryMM.fieldname', $queryBuilder->createNamedParameter('categories')),
 				$queryBuilder->expr()->in('tx_camaliga_domain_model_content.pid',	$pids)
-			);
+			)
+			->groupBy('categoryMM.uid_local');
 		//debug($queryBuilder->getSQL());
 		$statement = $queryBuilder->execute();
 		return $statement->fetchAll();

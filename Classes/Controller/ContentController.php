@@ -294,8 +294,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
 		$all_cats = $categoriesUtility->getCategoriesarrayComplete();
 		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
-		//$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
-		
+		$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
+		/*var_dump($catRows);
 		$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'DISTINCT mm.uid_local',
 			'sys_category AS cat, sys_category_record_mm AS mm, tx_camaliga_domain_model_content car',
@@ -304,7 +304,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			'',
 			'cat.title');
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
+			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){ */
+		if ($catRows) {
+			foreach ($catRows as $row) {
 				$uid = $row['uid_local'];
 				if (!$all_cats[$uid]['parent']) continue;
 				$parent = $all_cats[$uid]['parent'];
@@ -333,13 +335,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
 				}
 			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
-			
-			// wenn nix ausgewählt wurde, aber doch submitted wurde
-			if ($this->request->hasArgument('search')) $search = TRUE;
+			//$GLOBALS['TYPO3_DB']->sql_free_result($res4);
 		}
 		
-		// falls keine Kategorien da sind, aber doch submitted wurde
+		// es wurde gesucht
 		if ($this->request->hasArgument('search')) $search = TRUE;
 		
 		$cobjData = $this->configurationManager->getContentObject();
