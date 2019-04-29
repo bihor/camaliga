@@ -252,24 +252,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$storagePidsData = array();
 		$storagePidsOnly = array();
 		
-		if (count($storagePidsArray)>1) {	// bei mehr als einer PID eine Auswahl anbieten
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'uid, title',
-				'pages',
-				'uid IN (' . $storagePidsComma . ')');
-			$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-			if ($rows>0) {
-				$storagePidsData_tmp = array();
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-					$uid = $row['uid'];
-					$storagePidsData_tmp[$uid] = array();
-					$storagePidsData_tmp[$uid]['uid'] = $uid;
-					$storagePidsData_tmp[$uid]['title'] = $row['title'];
-					$storagePidsData_tmp[$uid]['selected'] = 0;
-				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
-			}
-			foreach ($storagePidsArray as $key => $value) {
+		if (count($storagePidsArray)>1) {
+			// bei mehr als einer PID eine Auswahl anbieten
+			$storagePidsData_tmp = $this->contentRepository->getStoragePidsData();
+			foreach ($storagePidsArray as $value) {
 				// es kommt eben auf die Reihenfolge der Einspeisung an!
 				$storagePidsData[$value] = $storagePidsData_tmp[$value]; 
 			}
@@ -308,6 +294,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
 		$all_cats = $categoriesUtility->getCategoriesarrayComplete();
 		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
+		//$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
+		
 		$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'DISTINCT mm.uid_local',
 			'sys_category AS cat, sys_category_record_mm AS mm, tx_camaliga_domain_model_content car',

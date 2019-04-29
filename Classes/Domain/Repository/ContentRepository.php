@@ -1,6 +1,9 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Repository;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -423,6 +426,67 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	        $query->equals('uid', $uid)
 	    )->execute()->getFirst();
 	    return $result;
+	}
+	
+	/**
+	 * Get categories, used by camaliga AND used by storagePids
+	 *
+	 * @param	array	$pids	Category PIDs
+	 * @return	array
+	 */
+	public function getRelevantCategories($pids = []) {
+		if (!$pids) {
+			$pids = $this->getStoragePids();
+		}
+		$table = 'tx_camaliga_domain_model_content';
+		$joinTable = 'sys_category_record_mm';
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+		$queryBuilder
+			->select('categoryMM.uid_local')
+			->from($table)
+			->leftJoin(
+				$table,
+				$joinTable,
+				'categoryMM',
+				$queryBuilder->expr()->eq(
+					'categoryMM.uid_foreign',
+					$queryBuilder->quoteIdentifier('tx_camaliga_domain_model_content.uid')
+				)
+			)
+			->where(
+				$queryBuilder->expr()->eq('categoryMM.tablenames', $queryBuilder->createNamedParameter($table)),
+				$queryBuilder->expr()->eq('categoryMM.fieldname', $queryBuilder->createNamedParameter('categories')),
+				$queryBuilder->expr()->in('tx_camaliga_domain_model_content.pid',	$pids)
+			);
+		//debug($queryBuilder->getSQL());
+		$statement = $queryBuilder->execute();
+		return $statement->fetchAll();
+	}
+	
+	/**
+	 * Get the PIDs with Titles
+	 *
+	 * @return array
+	 */
+	public function getStoragePidsData() {
+		$storagePidsData_tmp = array();
+		$pids = $this->getStoragePids();
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
+		$statement = $queryBuilder
+			->select('uid','title')
+			->from('pages')
+			->where(
+				$queryBuilder->expr()->in('uid', $pids)
+			)
+			->execute();
+		while ($row = $statement->fetch()) {
+			$uid = $row['uid'];
+			$storagePidsData_tmp[$uid] = [];
+			$storagePidsData_tmp[$uid]['uid'] = $uid;
+			$storagePidsData_tmp[$uid]['title'] = $row['title'];
+			$storagePidsData_tmp[$uid]['selected'] = 0;
+		}
+		return $storagePidsData_tmp;
 	}
 	
 	/**

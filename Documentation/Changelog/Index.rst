@@ -188,4 +188,5 @@ Version     Changes
 8.4.0       Now for TYPO3 9 too (if typo3db_legacy is installed).
             TYPO3_DLOG removed. Now only settings.debug enables the debug mode.
             Karusell and tt_news import removed.
+8.4.3       TYPO3 9 bugfix.
 ==========  ============================================================================================================================
