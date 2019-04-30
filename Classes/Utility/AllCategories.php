@@ -1,5 +1,7 @@
 <?php
 namespace Quizpalme\Camaliga\Utility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Context\Context;
 
 /**
  * AllCategories: get all categories
@@ -22,11 +24,14 @@ class AllCategories {
 		$orig_titles = array();
 		$configuration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
 		$catMode = intval($configuration["categoryMode"]);	// mode 0: use translated relations; 1: use original relations
-		if ($lang == -1)
-			$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
+		if ($lang == -1) {
+			//$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
+			$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+			$lang = intval($languageAspect->getId());
+		}
 		$cat_lang = ($catMode) ? 0 : $lang;
 		// Step 1: ggf. orig-cat-uid holen
-		//echo "lang: $lang" . $GLOBALS['TSFE']->config['config']['sys_language_uid'] .'#';
+		//echo "lang: $lang +" . $GLOBALS['TSFE']->config['config']['sys_language_uid'] .'#';
 		if ($lang > 0) {
 			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'uid, t3_origuid, title',

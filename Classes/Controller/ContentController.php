@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Controller;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -171,11 +173,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			if (count($categoryUids) > 0) {
 				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? FALSE : TRUE;
 				if ($this->settings['debug'])
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+					GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findByCategories($categoryUids, '', '', 0, $this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $normalCatMode, $this->settings['limit']);
 			} else {
 				if ($this->settings['debug'])
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+					GeneralUtility::devLog('findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
 			if ($this->settings['random']) $contents = $this->sortObjects($contents);
@@ -240,12 +242,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
 		$distanceArray = array();
 		$categoryUids = array();
+		/*
 		$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
 		$catMode = intval($configurationUtility["categoryMode"]);
 		//$catMode = intval($this->settings['categoryMode']);
-		$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
+		$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+		$lang = $languageAspect->getId();
+		//$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
 		$cat_lang = ($catMode) ? 0 : $lang;
 		$tableName = 'tx_camaliga_domain_model_content';
+		*/
 		$start = ($this->request->hasArgument('start')) ? intval($this->request->getArgument('start')) : 1;
 		$storagePidsArray = $this->contentRepository->getStoragePids();
 		$storagePidsComma = implode(',', $storagePidsArray);
@@ -291,7 +297,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		// Step 0: Categories
 		$cats = array();
 		// Step 1: get all categories
-		$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
+		$categoriesUtility = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
 		$all_cats = $categoriesUtility->getCategoriesarrayComplete();
 		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
 		$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
@@ -416,7 +422,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			if ($cUid > 0) {
 				// nur ein bestimmtes Element anzeigen
 				if ($this->settings['debug'])
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findByUids(array(' . $cUid . '))', 'camaliga', 0);
+					GeneralUtility::devLog('findByUids(array(' . $cUid . '))', 'camaliga', 0);
 				$contents = $this->contentRepository->findByUids(array($cUid));
 			} else if (count($categoryUids) > 0) {
 				// Umfangreiche Suche betreiben
@@ -425,17 +431,17 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				// find entries by category
 				// enable dev logging if set
 				if ($this->settings['debug'])
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+					GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, TRUE,  $this->settings['limit']);
 			} else if ($sword || $place) {
 				// Komplexe Suche, aber ohne Kategorien
 				if ($this->settings['debug'])
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findComplex( ,' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+					GeneralUtility::devLog('findComplex( ,' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findComplex(array(), $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			} else {
 				// Simple Suche
 				if ($this->settings['debug'])
-					\TYPO3\CMS\Core\Utility\GeneralUtility::devLog('findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+					GeneralUtility::devLog('findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findAll($sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
 			if ($place)	$distanceArray = $this->contentRepository->getDistanceArray();	// Distanz-Array vorhanden?
@@ -1105,7 +1111,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * Lösung von hier: http://stackoverflow.com/questions/8633574/get-latitude-and-longitude-automatically-using-php-api
 	 */
 	private function getLatLon(&$objects) {
-		//$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
+		//$persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
 		/**
 		 * prüfen, welche Objekte eine Adresse (mind. einen Ort), aber keine Position haben
 		 */
@@ -1127,7 +1133,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				$response = curl_exec($ch);
 				curl_close($ch);
 				if ($this->settings['debug'])
-				    \TYPO3\CMS\Core\Utility\GeneralUtility::devLog('geocode response to address "' . $address . '": ' . $response, 'camaliga', 0);
+				    GeneralUtility::devLog('geocode response to address "' . $address . '": ' . $response, 'camaliga', 0);
 				$response_a = json_decode($response);
 				$lat = $response_a->results[0]->geometry->location->lat;
 				$long = $response_a->results[0]->geometry->location->lng;
