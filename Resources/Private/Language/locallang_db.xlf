@@ -7,27 +7,6 @@
 			<trans-unit id="tx_camaliga_domain_model_content">
 				<source>Carousel/gallery/map element</source>
 			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.language">
-				<source>Language</source>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.allLanguages">
-				<source>All languages</source>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.l18n_parent">
-				<source>Parent language</source>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.versionLabel">
-				<source>Version</source>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.hidden">
-				<source>Hide?</source>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.starttime">
-				<source>Starttime</source>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.endtime">
-				<source>Endtime</source>
-			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.title">
 				<source>Title</source>
 			</trans-unit>

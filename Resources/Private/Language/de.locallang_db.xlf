@@ -3,30 +3,8 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
 		<header/>
 		<body>
-
 			<trans-unit id="tx_camaliga_domain_model_content">
 				<target>Camaliga-Element</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.language">
-				<target>Sprache</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.allLanguages">
-				<target>Alle Sprachen</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.l18n_parent">
-				<target>Ursprungs-Sprache</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.versionLabel">
-				<target>Version</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.hidden">
-				<target>Verbergen?</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.starttime">
-				<target>Start-Zeit</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.LGL.endtime">
-				<target>End-Zeit</target>
 			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.title">
 				<target>Titel</target>
