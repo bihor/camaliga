@@ -112,6 +112,12 @@ plugin.tx_camaliga {
 			animation = fade
 			escape = true
 		}
+		pagebrowser {
+			itemsPerPage         = 100
+			insertAbove          = 0
+			insertBelow          = 1
+			maximumNumberOfLinks = 50
+		}
 		overrideFlexformSettingsIfEmpty = 1
 		defaultStoragePids =
 		defaultCatIDs =

@@ -14,7 +14,8 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
  <table class="carousel-list">
- <f:for each="{contents}" as="content">
+ <f:widget.paginate objects="{contents}" as="paginatedContents" configuration="{settings.pagebrowser}">
+ <f:for each="{paginatedContents}" as="content" iteration="pageiterator">
   <tr>
    <td class="carousel-list-img">
    <f:if condition="{fal}"><f:then>
@@ -56,8 +57,9 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 	</div>
    </td>
   </tr>
+  <f:if condition="{pageiterator.isLast}"></table></f:if>
  </f:for>
- </table>
+ </f:widget.paginate>
  <p>{contents -> f:count()} {f:translate(key: 'entries_found')}</p>
 </f:then>
 <f:else>
