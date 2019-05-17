@@ -2,8 +2,6 @@
 // set you own vendor name adjust the extension name part of the namespace to your extension key
 namespace Quizpalme\Camaliga\Hooks;
 
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-
 // set you own class name
 class KeSearchIndexer
 {
