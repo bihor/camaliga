@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Controller;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -37,15 +39,15 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	/**
 	 * contentRepository
 	 *
+	 * @Extbase\Inject
 	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
-	 * @inject
 	 */
 	protected $contentRepository;
 	
 	/**
 	 * Zähler
 	 *
-	 * @var \integer
+	 * @var integer
 	 */
 	protected $nr = 0;
 	

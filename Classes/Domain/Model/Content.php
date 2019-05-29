@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -36,93 +38,92 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	
 	/**
 	 * Title
-	 *
-	 * @var \string
-	 * @validate NotEmpty
+	 * @Extbase\Validate("NotEmpty")
+	 * @var string
 	 */
 	protected $title;
 
 	/**
 	 * Short description
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $shortdesc;
 
 	/**
 	 * Long description
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $longdesc;
 
 	/**
 	 * Link to a page
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $link;
 
 	/**
 	 * Image
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $image;
 
 	/**
 	 * Image 2
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $image2;
 
 	/**
 	 * Caption 2
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $caption2;
 	
 	/**
 	 * Image 3
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $image3;
 
 	/**
 	 * Caption 3
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $caption3;
 
 	/**
 	 * Image 4
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $image4;
 
 	/**
 	 * Caption 4
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $caption4;
 
 	/**
 	 * Image 5
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $image5;
 
 	/**
 	 * Caption 5
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $caption5;
 
@@ -169,98 +170,98 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Street
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $street;
 	
 	/**
 	 * Zip code
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $zip;
 	
 	/**
 	 * City
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $city;
 	
 	/**
 	 * Country
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $country;
 
 	/**
 	 * Person number
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $person;
 	
 	/**
 	 * Phone number
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $phone;
 	
 	/**
 	 * Mobile number
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $mobile;
 	
 	/**
 	 * E-Mail
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $email;
 	
 	/**
 	 * Latitude
 	 *
-	 * @var \float
+	 * @var float
 	 */
 	protected $latitude;
 
 	/**
 	 * Longitude
 	 *
-	 * @var \float
+	 * @var float
 	 */
 	protected $longitude;
 
 	/**
 	 * Distance bei Umkreissuche
 	 *
-	 * @var \float
+	 * @var float
 	 */
 	protected $distance = 0.0;
 	
 	/**
 	 * Custom variable 1
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $custom1;
 
 	/**
 	 * Custom variable 2
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $custom2;
 
 	/**
 	 * Custom variable 3
 	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $custom3;
 
@@ -282,14 +283,14 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Modulo begin
 	 *
-	 * @var \integer
+	 * @var integer
 	 */
 	protected $moduloBegin = 0;
 
 	/**
 	 * Modulo end
 	 *
-	 * @var \integer
+	 * @var integer
 	 */
 	protected $moduloEnd = 0;
 	
@@ -319,7 +320,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Gets the title nl2br
 	 *
-	 * @return \string $title
+	 * @return string $title
 	 */
 	public function getTitleNl2br() {
 		$title = str_replace(array("'"), "\'", $this->title);
@@ -329,7 +330,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the title
 	 *
-	 * @return \string $title
+	 * @return string $title
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -338,7 +339,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the title
 	 *
-	 * @param \string $title
+	 * @param string $title
 	 * @return void
 	 */
 	public function setTitle($title) {
@@ -348,7 +349,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Gets the shortdesc nl2br
 	 *
-	 * @return \string $shortdesc
+	 * @return string $shortdesc
 	 */
 	public function getShortdescNl2br() {
 		$shortdesc = str_replace(array("'"), "\'", $this->shortdesc);
@@ -358,7 +359,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the shortdesc
 	 *
-	 * @return \string $shortdesc
+	 * @return string $shortdesc
 	 */
 	public function getShortdesc() {
 		return $this->shortdesc;
@@ -367,7 +368,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the shortdesc
 	 *
-	 * @param \string $shortdesc
+	 * @param string $shortdesc
 	 * @return void
 	 */
 	public function setShortdesc($shortdesc) {
@@ -377,7 +378,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Gets the longdesc nl2br
 	 *
-	 * @return \string $longdesc
+	 * @return string $longdesc
 	 */
 	public function getLongdescNl2br() {
 		$longdesc = str_replace(array("'"), "\'", $this->longdesc);
@@ -387,7 +388,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the longdesc
 	 *
-	 * @return \string $longdesc
+	 * @return string $longdesc
 	 */
 	public function getLongdesc() {
 		return $this->longdesc;
@@ -396,7 +397,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the longdesc
 	 *
-	 * @param \string $longdesc
+	 * @param string $longdesc
 	 * @return void
 	 */
 	public function setLongdesc($longdesc) {
@@ -406,7 +407,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the resolved link
 	 *
-	 * @return \string $link
+	 * @return string $link
 	 */
 	public function getLinkResolved() {
 		$output = '';
@@ -430,7 +431,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns all link
 	 *
-	 * @return \array $links
+	 * @return array $links
 	 */
 	public function getLinks() {
 		$links_tmp = explode(' ', $this->link);
@@ -458,7 +459,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the link
 	 *
-	 * @return \string $link
+	 * @return string $link
 	 */
 	public function getLink() {
 		// TODO: Link anders speichern!
@@ -468,7 +469,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the link
 	 *
-	 * @param \string $link
+	 * @param string $link
 	 * @return void
 	 */
 	public function setLink($link) {
@@ -478,7 +479,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the image
 	 *
-	 * @return \string $image
+	 * @return string $image
 	 */
 	public function getImage() {
 		return $this->image;
@@ -487,7 +488,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the image
 	 *
-	 * @param \string $image
+	 * @param string $image
 	 * @return void
 	 */
 	public function setImage($image) {
@@ -497,7 +498,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the image2
 	 *
-	 * @return \string $image2
+	 * @return string $image2
 	 */
 	public function getImage2() {
 		return $this->image2;
@@ -506,7 +507,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the image2
 	 *
-	 * @param \string $image2
+	 * @param string $image2
 	 * @return void
 	 */
 	public function setImage2($image2) {
@@ -516,7 +517,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the caption 2
 	 *
-	 * @return \string $caption2
+	 * @return string $caption2
 	 */
 	public function getCaption2() {
 		return $this->caption2;
@@ -525,7 +526,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the caption 2
 	 *
-	 * @param \string $caption2
+	 * @param string $caption2
 	 * @return void
 	 */
 	public function setCaption2($caption2) {
@@ -535,7 +536,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the image3
 	 *
-	 * @return \string $image3
+	 * @return string $image3
 	 */
 	public function getImage3() {
 		return $this->image3;
@@ -544,7 +545,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the image 3
 	 *
-	 * @param \string $image3
+	 * @param string $image3
 	 * @return void
 	 */
 	public function setImage3($image3) {
@@ -554,7 +555,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the caption 3
 	 *
-	 * @return \string $caption3
+	 * @return string $caption3
 	 */
 	public function getCaption3() {
 		return $this->caption3;
@@ -563,7 +564,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the caption 3
 	 *
-	 * @param \string $caption3
+	 * @param string $caption3
 	 * @return void
 	 */
 	public function setCaption3($caption3) {
@@ -573,7 +574,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the image4
 	 *
-	 * @return \string $image4
+	 * @return string $image4
 	 */
 	public function getImage4() {
 		return $this->image4;
@@ -582,7 +583,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the image 4
 	 *
-	 * @param \string $image4
+	 * @param string $image4
 	 * @return void
 	 */
 	public function setImage4($image4) {
@@ -592,7 +593,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the caption 4
 	 *
-	 * @return \string $caption4
+	 * @return string $caption4
 	 */
 	public function getCaption4() {
 		return $this->caption4;
@@ -601,7 +602,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the image5
 	 *
-	 * @return \string $image5
+	 * @return string $image5
 	 */
 	public function getImage5() {
 		return $this->image5;
@@ -610,7 +611,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the caption 4
 	 *
-	 * @param \string $caption4
+	 * @param string $caption4
 	 * @return void
 	 */
 	public function setCaption4($caption4) {
@@ -620,7 +621,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the image 5
 	 *
-	 * @param \string $image5
+	 * @param string $image5
 	 * @return void
 	 */
 	public function setImage5($image5) {
@@ -630,7 +631,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the caption 5
 	 *
-	 * @return \string $caption5
+	 * @return string $caption5
 	 */
 	public function getCaption5() {
 		return $this->caption5;
@@ -639,7 +640,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the caption 5
 	 *
-	 * @param \string $caption5
+	 * @param string $caption5
 	 * @return void
 	 */
 	public function setCaption5($caption5) {
@@ -754,7 +755,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the street
 	 *
-	 * @return \string $street
+	 * @return string $street
 	 */
 	public function getStreet() {
 		return $this->street;
@@ -763,7 +764,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Gets the street nl2br
 	 *
-	 * @return \string $street
+	 * @return string $street
 	 */
 	public function getStreetNl2br() {
 		$street = str_replace(array("'"), "\'", $this->street);
@@ -773,7 +774,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the street
 	 *
-	 * @param \string $street
+	 * @param string $street
 	 * @return void
 	 */
 	public function setStreet($street) {
@@ -783,7 +784,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the zip
 	 *
-	 * @return \string $zip
+	 * @return string $zip
 	 */
 	public function getZip() {
 		return $this->zip;
@@ -792,7 +793,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the zip
 	 *
-	 * @param \string $zip
+	 * @param string $zip
 	 * @return void
 	 */
 	public function setZip($zip) {
@@ -802,7 +803,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the city
 	 *
-	 * @return \string $city
+	 * @return string $city
 	 */
 	public function getCity() {
 		return $this->city;
@@ -811,7 +812,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the city
 	 *
-	 * @param \string $city
+	 * @param string $city
 	 * @return void
 	 */
 	public function setCity($city) {
@@ -821,7 +822,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the country
 	 *
-	 * @return \string $country
+	 * @return string $country
 	 */
 	public function getCountry() {
 		return $this->country;
@@ -830,7 +831,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the country
 	 *
-	 * @param \string $country
+	 * @param string $country
 	 * @return void
 	 */
 	public function setCountry($country) {
@@ -840,7 +841,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the person
 	 *
-	 * @return \string $person
+	 * @return string $person
 	 */
 	public function getPerson() {
 		return $this->person;
@@ -849,7 +850,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the person
 	 *
-	 * @param \string $person
+	 * @param string $person
 	 * @return void
 	 */
 	public function setPerson($person) {
@@ -859,7 +860,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the phone
 	 *
-	 * @return \string $phone
+	 * @return string $phone
 	 */
 	public function getPhone() {
 		return $this->phone;
@@ -868,7 +869,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the phone
 	 *
-	 * @param \string $phone
+	 * @param string $phone
 	 * @return void
 	 */
 	public function setPhone($phone) {
@@ -878,7 +879,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the mobile
 	 *
-	 * @return \string $mobile
+	 * @return string $mobile
 	 */
 	public function getMobile() {
 		return $this->mobile;
@@ -887,7 +888,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the mobile
 	 *
-	 * @param \string $mobile
+	 * @param string $mobile
 	 * @return void
 	 */
 	public function setMobile($mobile) {
@@ -897,7 +898,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the email
 	 *
-	 * @return \string $email
+	 * @return string $email
 	 */
 	public function getEmail() {
 		return $this->email;
@@ -906,7 +907,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the email
 	 *
-	 * @param \string $email
+	 * @param string $email
 	 * @return void
 	 */
 	public function setEmail($email) {
@@ -973,7 +974,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the custom1
 	 *
-	 * @return \string $custom1
+	 * @return string $custom1
 	 */
 	public function getCustom1() {
 		return $this->custom1;
@@ -982,7 +983,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the custom1
 	 *
-	 * @param \string $custom1
+	 * @param string $custom1
 	 * @return void
 	 */
 	public function setCustom1($custom1) {
@@ -992,7 +993,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the custom2
 	 *
-	 * @return \string $custom2
+	 * @return string $custom2
 	 */
 	public function getCustom2() {
 		return $this->custom2;
@@ -1001,7 +1002,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the custom2
 	 *
-	 * @param \string $custom2
+	 * @param string $custom2
 	 * @return void
 	 */
 	public function setCustom2($custom2) {
@@ -1011,7 +1012,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the custom3
 	 *
-	 * @return \string $custom3
+	 * @return string $custom3
 	 */
 	public function getCustom3() {
 		return $this->custom3;
@@ -1020,7 +1021,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the custom3
 	 *
-	 * @param \string $custom3
+	 * @param string $custom3
 	 * @return void
 	 */
 	public function setCustom3($custom3) {
@@ -1088,7 +1089,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the categories: Kategorien und dessen Vater eines Elements
 	 *
-	 * @return \array categories
+	 * @return array categories
 	 */
 	public function getCategoriesAndParents() {
 		$cats = array();
@@ -1142,7 +1143,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the modulo begin
 	 *
-	 * @return \integer $moduloBegin
+	 * @return integer $moduloBegin
 	 */
 	public function getModuloBegin() {
 		return $this->moduloBegin;
@@ -1151,7 +1152,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the modulo begin
 	 *
-	 * @param \integer $moduloBegin
+	 * @param integer $moduloBegin
 	 * @return void
 	 */
 	public function setModuloBegin($moduloBegin) {
@@ -1161,7 +1162,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the modulo end
 	 *
-	 * @return \integer $moduloEnd
+	 * @return integer $moduloEnd
 	 */
 	public function getModuloEnd() {
 		return $this->moduloEnd;
@@ -1170,7 +1171,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Sets the modulo end
 	 *
-	 * @param \integer $moduloEnd
+	 * @param integer $moduloEnd
 	 * @return void
 	 */
 	public function setModuloEnd($moduloEnd) {
@@ -1181,7 +1182,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Returns the extended fields: custom extended fields
 	 *
-	 * @return \array fields
+	 * @return array fields
 	 */
 	public function getExtended() {
 		$extended = array();

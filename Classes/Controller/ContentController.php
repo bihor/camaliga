@@ -2,6 +2,7 @@
 namespace Quizpalme\Camaliga\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /***************************************************************
  *  Copyright notice
@@ -53,7 +54,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	/**
 	 * templatePath
 	 *
-	 * @var \string	Pfad zu den Templates
+	 * @var string	Pfad zu den Templates
 	 */
 	protected $templatePath;
 	
@@ -578,7 +579,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * action show one element. ignorevalidation added because of validation erros
 	 *
 	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-     * @ignorevalidation $content
+	 * @Extbase\IgnoreValidation("content")
 	 * @return void
 	 */
 	public function showAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
@@ -601,7 +602,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * action show one element, extended. ignorevalidation added because of validation erros
 	 *
  	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-     * @ignorevalidation $content
+	 * @Extbase\IgnoreValidation("content")
 	 * @return void
 	 */
 	public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
