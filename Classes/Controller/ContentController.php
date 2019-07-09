@@ -77,9 +77,14 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$tsSettings = $this->configurationManager->getConfiguration(
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
-		$this->templatePath = $tsSettings['plugin.']['tx_camaliga.']['view.']['templateRootPaths.'][1];
-		if ($this->templatePath == 'EXT:camaliga/Resources/Private/Templates/')	// wird so nicht verdaut ;-(
-			$this->templatePath = 'typo3conf/ext/camaliga/Resources/Private/Templates/';
+		for ($i=10; $i>0; $i--) {
+			$this->templatePath = $tsSettings['plugin.']['tx_camaliga.']['view.']['templateRootPaths.'][$i];
+			if ($this->templatePath) {
+				break;
+			}
+		}
+		/*if ($this->templatePath == 'EXT:camaliga/Resources/Private/Templates/')	// wird so nicht verdaut ;-(
+		 $this->templatePath = 'typo3conf/ext/camaliga/Resources/Private/Templates/';*/
 		$tsSettings = $tsSettings['plugin.']['tx_camaliga.']['settings.'];
 		$originalSettings = $this->configurationManager->getConfiguration(
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
