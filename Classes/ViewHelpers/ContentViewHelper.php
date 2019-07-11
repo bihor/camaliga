@@ -31,8 +31,8 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
 	public function initializeArguments()
 	{
 		parent::initializeArguments();
-		$this->registerUniversalTagAttributes();
-		$this->registerTagAttribute('param', 'string', 'Parameter of the tag');
+		//$this->registerUniversalTagAttributes();
+		$this->registerArgument('param', 'string', 'Parameter of the tag');
 	}
 	
 	/**
