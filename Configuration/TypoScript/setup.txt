@@ -16,6 +16,14 @@ plugin.tx_camaliga {
 	persistence {
 		storagePid = {$plugin.tx_camaliga.persistence.storagePid}
 		# storagePid.ifEmpty.data = {page:uid}
+		classes {
+			Quizpalme\Camaliga\Domain\Model\Category {
+				mapping {
+					recordType = 0
+					tableName = sys_category
+				}
+			}
+		}
 	}
 	features {
 		rewrittenPropertyMapper = 1

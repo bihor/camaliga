@@ -305,6 +305,18 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		// Step 1: get all categories
 		$categoriesUtility = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
 		$all_cats = $categoriesUtility->getCategoriesarrayComplete();
+		/* 
+		 * TODO
+		// gets all categories, all across the site
+		$categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$allCats2 = $categoryRepository->findAll();
+		//var_dump($allCats2);
+		//echo $allCats2[2];
+		/*
+		// gets categories for this model
+		$myModel->getCategories();
+		*/
+		
 		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
 		$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
 		/*var_dump($catRows);

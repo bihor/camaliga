@@ -67,3 +67,7 @@ CREATE TABLE tx_camaliga_domain_model_content (
 	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
 	KEY language (l10n_parent,sys_language_uid)
 );
+
+CREATE TABLE tx_camaliga_domain_model_content (
+	categories int(11) unsigned DEFAULT '0' NOT NULL,
+);
