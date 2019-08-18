@@ -301,65 +301,77 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$storagePidsOnlyComma = $storagePidsComma;
 			
 		// Step 0: Categories
-		$cats = array();
+		$cats = [];
 		// Step 1: get all categories
-		$categoriesUtility = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
-		$all_cats = $categoriesUtility->getCategoriesarrayComplete();
-		/* 
-		 * TODO
-		// gets all categories, all across the site
+		//$categoriesUtility = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
+		$all_cats = []; //$categoriesUtility->getCategoriesarrayComplete();
+		// gets all categories, which we want for the options
 		$categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
-		$allCats2 = $categoryRepository->findAll();
-		//var_dump($allCats2);
-		//echo $allCats2[2];
-		/*
-		// gets categories for this model
-		$myModel->getCategories();
-		*/
+		if ($this->settings['category']['storagePids']) {
+			if ($this->settings['category']['storagePids'] == -1) {
+				$catStoragePids = [];
+			} else {
+				$catStoragePids = explode(',', $this->settings['category']['storagePids']);
+			}
+		} else {
+			$catStoragePids = $storagePidsArray;
+		}
+		$catRows = $categoryRepository->findAll($this->settings['category']['sortBy'], $this->settings['category']['orderBy'], $catStoragePids);
+		// gets categories for this model??
+		//$catRows = $myModel->getCategories();
 		
 		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
-		$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
-		/*var_dump($catRows);
-		$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'DISTINCT mm.uid_local',
-			'sys_category AS cat, sys_category_record_mm AS mm, tx_camaliga_domain_model_content car',
-			"cat.uid = mm.uid_local AND mm.tablenames='" . $tableName . "' AND mm.uid_foreign=car.uid".
-				" AND car.pid IN (" . $storagePidsOnlyComma . ') AND cat.sys_language_uid=' . $cat_lang,
-			'',
-			'cat.title');
-		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){ */
+		//$catRows = $this->contentRepository->getRelevantCategories($storagePidsOnly);
 		if ($catRows) {
+			$parentUids = [];
 			foreach ($catRows as $row) {
-				$uid = $row['uid_local'];
-				if (!$all_cats[$uid]['parent']) continue;
-				$parent = $all_cats[$uid]['parent'];
-				if (!is_array($cats[$parent])) {
-					$selected = ($this->request->hasArgument('cat'.$parent)) ?
-						  intval($this->request->getArgument('cat'.$parent)) : 0;
-					if ($selected > 0) {
-						$categoryUids[$selected] = $selected;
-						$search = TRUE;
+				// Die Parents sind für die Options sehr wichtig
+				$parent = $row->getParent();
+				if (!$parent) continue;
+				$parentUids[$parent->getUid()] = 1;
+			}
+			for ($i=1; $i<=2; $i++) {
+				foreach ($catRows as $row) {
+					//$uid = $row['uid_local'];
+					$uid = $row->getUid();
+					if (($i==1 && $parentUids[$uid]==1) || ($i==2 && !$parentUids[$uid])) {
+						$parent = $row->getParent();
+						if (!$parent) continue;
+						$all_cats[$uid] = [];
+						$all_cats[$uid]['uid'] = $uid;
+						$all_cats[$uid]['parent'] = $parent->getUid();
+						$all_cats[$uid]['title']  = $row->getTitle();
+						$all_cats[$uid]['description'] = $row->getDescription();
+						
+						//if (!$all_cats[$uid]['parent']) continue;
+						$parent = $all_cats[$uid]['parent'];
+						if (!is_array($cats[$parent])) {
+							$selected = ($this->request->hasArgument('cat'.$parent)) ?
+								  intval($this->request->getArgument('cat'.$parent)) : 0;
+							if ($selected > 0) {
+								$categoryUids[$selected] = $selected;
+								$search = TRUE;
+							}
+							$cats[$parent] = [];
+							$cats[$parent]['childs'] = [];
+							$cats[$parent]['selected'] = $selected;
+							$cats[$parent]['title'] = $all_cats[$parent]['title'];
+							$cats[$parent]['description'] = $all_cats[$parent]['description'];
+						}
+						$selected = ($this->request->hasArgument('cat'.$parent.'_'.$uid)) ?
+							  intval($this->request->getArgument('cat'.$parent.'_'.$uid)) : 0;
+						if ($selected > 0) {
+							$categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].",$selected" : $selected;
+							$search = TRUE;
+						}
+						if ($all_cats[$uid]['title']) {
+							$cats[$parent]['childs'][$uid] = array();
+							$cats[$parent]['childs'][$uid]['selected'] = $selected;
+							$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
+						}
 					}
-					$cats[$parent] = array();
-					$cats[$parent]['childs'] = array();
-					$cats[$parent]['selected'] = $selected;
-					$cats[$parent]['title'] = $all_cats[$parent]['title'];
-					$cats[$parent]['description'] = $all_cats[$parent]['description'];
-				}
-				$selected = ($this->request->hasArgument('cat'.$parent.'_'.$uid)) ?
-					  intval($this->request->getArgument('cat'.$parent.'_'.$uid)) : 0;
-				if ($selected > 0) {
-					$categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].",$selected" : $selected;
-					$search = TRUE;
-				}
-				if ($all_cats[$uid]['title']) {
-					$cats[$parent]['childs'][$uid] = array();
-					$cats[$parent]['childs'][$uid]['selected'] = $selected;
-					$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
 				}
 			}
-			//$GLOBALS['TYPO3_DB']->sql_free_result($res4);
 		}
 		
 		// es wurde gesucht
@@ -490,6 +502,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('sortBy_selected', $sortBy);
 		$this->view->assign('sortOrder_selected', $sortOrder);
 		$this->view->assign('all_categories', $all_cats);
+		$this->view->assign('all_cats2', $catRows);
 		$this->view->assign('categories', $cats);
 		$this->view->assign('defaultCatIDs', $this->settings['defaultCatIDs']);
 		$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array

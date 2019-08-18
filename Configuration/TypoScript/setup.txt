@@ -126,11 +126,15 @@ plugin.tx_camaliga {
 			insertBelow          = 1
 			maximumNumberOfLinks = 50
 		}
+		category {
+			storagePids =
+			sortBy =
+			orderBy =
+		}
 		overrideFlexformSettingsIfEmpty = 1
 		defaultStoragePids =
 		defaultCatIDs =
 		normalCategoryMode =
-		# categoryMode = see extension-configuration
 		debug = 0
 	}
 }
