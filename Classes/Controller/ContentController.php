@@ -295,11 +295,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$storagePidsArray = array($storagePidsComma);
 			$storagePidsOnly  = array($storagePidsComma);
 		}
-		if (count($storagePidsOnly)>0)
+		/*if (count($storagePidsOnly)>0)
 			$storagePidsOnlyComma = implode(',', $storagePidsOnly);
 		else
 			$storagePidsOnlyComma = $storagePidsComma;
-			
+		*/	
 		// Step 0: Categories
 		$cats = [];
 		// Step 1: get all categories
@@ -335,17 +335,43 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					//$uid = $row['uid_local'];
 					$uid = $row->getUid();
 					if (($i==1 && $parentUids[$uid]==1) || ($i==2 && !$parentUids[$uid])) {
+						// In Durchgang 1 die Parents aufnehmen und in Durchgang 2 die Childs
 						$parent = $row->getParent();
-						if (!$parent) continue;
+						if (!$parent) continue;		// wer keinen Parent hat, interessiert uns nicht
 						$all_cats[$uid] = [];
 						$all_cats[$uid]['uid'] = $uid;
 						$all_cats[$uid]['parent'] = $parent->getUid();
 						$all_cats[$uid]['title']  = $row->getTitle();
+						//echo $uid . " " . $row->getTitle() . "\n";
 						$all_cats[$uid]['description'] = $row->getDescription();
-						
+						if (!$all_cats[$uid]['title']) continue;
 						//if (!$all_cats[$uid]['parent']) continue;
 						$parent = $all_cats[$uid]['parent'];
-						if (!is_array($cats[$parent])) {
+						
+						if ($i==1) {
+							// nur parents sind dran
+							$selected = ($this->request->hasArgument('cat'.$uid)) ?	intval($this->request->getArgument('cat'.$uid)) : 0;
+							if ($selected > 0) {
+								$categoryUids[$selected] = $selected;
+								$search = TRUE;
+							}
+							$cats[$uid] = [];
+							$cats[$uid]['childs'] = [];
+							$cats[$uid]['selected'] = $selected;
+							$cats[$uid]['title'] = $all_cats[$uid]['title'];
+							$cats[$uid]['description'] = $all_cats[$uid]['description'];
+						} else {
+							// nur childs sind dran
+							$selected = ($this->request->hasArgument('cat'.$parent.'_'.$uid)) ?	intval($this->request->getArgument('cat'.$parent.'_'.$uid)) : 0;
+							if ($selected > 0) {
+								$categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].",$selected" : $selected;
+								$search = TRUE;
+							}
+							$cats[$parent]['childs'][$uid] = [];
+							$cats[$parent]['childs'][$uid]['selected'] = $selected;
+							$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
+						}
+					/*	if (!is_array($cats[$parent])) {
 							$selected = ($this->request->hasArgument('cat'.$parent)) ?
 								  intval($this->request->getArgument('cat'.$parent)) : 0;
 							if ($selected > 0) {
@@ -368,7 +394,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 							$cats[$parent]['childs'][$uid] = array();
 							$cats[$parent]['childs'][$uid]['selected'] = $selected;
 							$cats[$parent]['childs'][$uid]['title'] = $all_cats[$uid]['title'];
-						}
+						}*/
 					}
 				}
 			}
@@ -412,10 +438,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				foreach ($storagePidsOnly as $aPID) {	// set new
 					$storagePidsData[$aPID]['selected'] = $aPID;
 				}
-				if (count($storagePidsOnly)>0)
+				/*if (count($storagePidsOnly)>0)
 					$storagePidsOnlyComma = implode(',', $storagePidsOnly);
 				else
 					$storagePidsOnlyComma = $storagePidsComma;
+				*/
 				foreach ($categoryUids as $defCat) {
 					foreach (explode(',', $defCat) as $selected) {
 						$uid = intval(trim($selected));
@@ -502,7 +529,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('sortBy_selected', $sortBy);
 		$this->view->assign('sortOrder_selected', $sortOrder);
 		$this->view->assign('all_categories', $all_cats);
-		$this->view->assign('all_cats2', $catRows);
 		$this->view->assign('categories', $cats);
 		$this->view->assign('defaultCatIDs', $this->settings['defaultCatIDs']);
 		$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array
