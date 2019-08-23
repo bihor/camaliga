@@ -20,11 +20,12 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 		if (count($pids)>0) {
 			$constraints[] = $query->in('pid', $pids);
 		}
-		if (count($constraints) > 0)
+		if (count($constraints) > 0) {
 			$query->matching($query->logicalAnd($constraints));
-			$result = $query
-				->setOrderings(	array($sortBy => $order) )
-				->execute();
-			return $result;
+		}
+		$result = $query
+			->setOrderings(	array($sortBy => $order) )
+			->execute();
+		return $result;
 	}
 }

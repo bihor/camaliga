@@ -2,6 +2,7 @@
 namespace Quizpalme\Camaliga\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /***************************************************************
@@ -201,8 +202,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 			
 			$cobjData = $this->configurationManager->getContentObject();
-			$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-			$enableFal = intval($configurationUtility['enableFal']);
+			$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			
 			$this->view->assign('fal', $enableFal);
 			$this->view->assign('uid', $cobjData->data['uid']);
@@ -518,8 +518,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 		}
 				
-		$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-		$enableFal = intval($configurationUtility['enableFal']);
+		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			
 		$this->view->assign('fal', $enableFal);
 		$this->view->assign('lang', $cobjData->data['sys_language_uid']);
@@ -644,8 +643,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			// $this->view->setTemplatePathAndFilename($this->templatePath . 'Content/ShowExtended.html');
 			$this->showExtendedAction($content);
 		} else {
-			$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-			$enableFal = intval($configurationUtility['enableFal']);
+			$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			$this->setSeo($content, $enableFal);
 				
 			$this->view->assign('fal', $enableFal);
@@ -662,8 +660,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
-		$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-		$enableFal = intval($configurationUtility['enableFal']);
+		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 		$this->setSeo($content, $enableFal);
 			
 		$this->view->assign('fal', $enableFal);
@@ -1121,8 +1118,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function randomAction() {
 		$contents = $this->contentRepository->findRandom();
-		$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-		$enableFal = intval($configurationUtility['enableFal']);
+		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			
 		$this->view->assign('fal', $enableFal);
 		$this->view->assign('contents', $contents);

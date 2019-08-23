@@ -1094,8 +1094,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	public function getCategoriesAndParents() {
 		$cats = array();
 		if ($this->categories) {
-			$configuration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-			$catMode = intval($configuration["categoryMode"]);
+			// TODO: mergen mit der anderen Liste
+			$catMode = 0;
 			$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
 			// Step 1: select all categories of the current language
 			$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
@@ -1186,8 +1186,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 */
 	public function getExtended() {
 		$extended = array();
-		$configuration = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-		$extendedFields = $configuration["extendedFields"];
+		$extendedFields = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
 		if ($extendedFields) {
 			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
 			$fieldsArray = explode(' ', trim($extendedFields));

@@ -500,5 +500,27 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
         $query = $this->createQuery();
 		return $query->getQuerySettings()->getStoragePageIds();
     }
+    
+    /**
+     * Get the siteroot
+     *
+     * @return integer
+     */
+    public function getSiteRoot() {
+    	$uid = 1;
+    	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
+    	$statement = $queryBuilder
+    	->select('uid')
+    	->from('pages')
+    	->where(
+    		$queryBuilder->expr()->eq('is_siteroot', 1)
+   		)
+   		->setMaxResults(1)
+   		->execute();
+   		while ($row = $statement->fetch()) {
+   			$uid = $row['uid'];
+   		}
+   		return $uid;
+    }
 }
 ?>

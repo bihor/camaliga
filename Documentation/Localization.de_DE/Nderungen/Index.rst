@@ -196,4 +196,7 @@ Version     Änderungen
             Karusell- und tt_news-import entfernt.
 8.4.4       TYPO3 9 Bugfix.
 8.5.0       Anpassungen an TYPO3 9 und die neue Dokumentations-Struktur bei typo3.org. typo3db_legacy noch notwendig.
+8.6.0       Extension-Konfiguration categoryMode entfernt! Die Kategorien werden nun durch eine TYPO3-Core-Methode geholt!
+            Die Kategorien in den Optionen werden nun richtig sortiert.
+            TS category.storagePids, category.sortBy und category.orderBy hinzugefügt.
 ==========  =====================================================================================================================

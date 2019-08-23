@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Controller;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /***************************************************************
@@ -58,17 +60,12 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return integer
 	 */
 	protected function getCurrentPageId() {
-		$pageId = (integer) \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('id');
+		$pageId = (integer) GeneralUtility::_GP('id');
 		if ($pageId > 0) {
 		  return $pageId;
 		}
-		// get current site root
-		$rootPages = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid', 'pages', 'deleted=0 AND hidden=0 AND is_siteroot=1', '', '', '1');
-		if (count($rootPages) > 0) {
-		  return (integer) $rootPages[0]['uid'];
-		}
-		// fallback
-		return (integer) self::DEFAULT_BACKEND_STORAGE_PID;
+		// get a site root
+		return (integer) $this->contentRepository->getSiteRoot();
 	}
 
 	/**
@@ -88,10 +85,10 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	public function thumbAction() {
 		$pid = intval($this->getCurrentPageId());
 		$saved = 0;
-		$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-		$enableFal = intval($configurationUtility['enableFal']);
+		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 		
 		// save new order first
+		/* Funktioniert mit TYPO3 nicht mehr, wegen jQuery-Fehler
 		if ($this->request->hasArgument('camelements')) {
 			$updateA = array();
 			$order = $this->request->getArgument('camelements');
@@ -105,7 +102,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 			}
 		}
-		
+		*/
 		// Elemente sortiert holen
 		$contents = $this->contentRepository->findAll('sorting', 'asc', FALSE, array($pid));
 		
