@@ -52,7 +52,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 	   	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
 			{catMMval.title}:
 			<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
-				<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>
+				<f:then>{catMMchildVal.title}.</f:then><f:else>{catMMchildVal.title}, </f:else></f:if></f:for>
 		</f:for>
 	</div>
    </td>

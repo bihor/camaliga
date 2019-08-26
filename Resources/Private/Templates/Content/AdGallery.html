@@ -103,7 +103,7 @@ Copy this file in the subfolder "Content" of this folder.
 	    <f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
 	desc = desc+' {catMMval.title}: ';
 	      <f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isFirst}">
-	<f:then>desc = desc+'{catMMchildVal}';</f:then><f:else>desc = desc+', {catMMchildVal}';</f:else></f:if></f:for>
+	<f:then>desc = desc+'{catMMchildVal.title}';</f:then><f:else>desc = desc+', {catMMchildVal.title}';</f:else></f:if></f:for>
 	desc = desc+'.';</f:for>
 	<f:if condition="{content.link} != ''">desc = desc+' <f:link.typolink parameter="{content.link}">{f:translate(key: 'more', default: 'more')}</f:link.typolink>';</f:if>
 	desc = desc+'</p>';

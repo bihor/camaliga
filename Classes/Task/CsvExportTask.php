@@ -265,6 +265,7 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$i = 0;									// Counter
 		
 		// Step 1: select all categories of the current language
+		// TODO: ersetzen!
 		$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
 		$all_cats = $categoriesUtility->getCategoriesarrayComplete($lang_uid);
 		

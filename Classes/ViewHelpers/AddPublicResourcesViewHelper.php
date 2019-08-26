@@ -38,7 +38,7 @@ class AddPublicResourcesViewHelper extends AbstractViewHelper
         $this->registerArgument('compress', 'bool', 'Define if file should be compressed', false, false);
         $this->registerArgument('footer', 'bool', 'Only JS files: Whether the file should be included in the footer', false, false);
         $this->registerArgument('library', 'string', 'Whether the file should be included as a library', false, '');
-        $this->registerArgument('addSlash', 'bool', 'Define if file should be compressed', false, false);
+        $this->registerArgument('addSlash', 'bool', 'Define if to add a slash at the beginning', false, false);
     }
     
     /**

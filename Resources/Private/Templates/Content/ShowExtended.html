@@ -49,7 +49,7 @@ https://developers.google.com/maps/documentation/directions/intro?hl=de#Directio
 	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
 		{catMMval.title}:
 		<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
-			<f:then>{catMMchildVal}.</f:then><f:else>{catMMchildVal}, </f:else></f:if></f:for>
+			<f:then>{catMMchildVal.title}.</f:then><f:else>{catMMchildVal.title}, </f:else></f:if></f:for>
 	</f:for>
 	<f:if condition="{content.link} != ''"><p>
 		<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>

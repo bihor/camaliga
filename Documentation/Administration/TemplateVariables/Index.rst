@@ -75,7 +75,7 @@ start                          Argument start.
 defaultCatIDs                  Settings.defaulCatIDs.
 storagePIDsData                Array with the storage PIDs and the information about which are selected.
 all_categories                 Array of all categories.
-categories                     Array of all used categories and their parent category.
+categories                     Array of categories and their parent category.
 contents.categoriesAndParents  Array of all used categories and their parent category.
 sword                          Fulltext search word.
 place                          Place search word.

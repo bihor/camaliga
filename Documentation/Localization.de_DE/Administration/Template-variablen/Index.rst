@@ -77,7 +77,7 @@ start                            Übergabevariable start.
 defaultCatIDs                    Settings.defaulCatIDs.
 storagePIDsData                  Array mit den Datensatzsammlungs-PIDs und der Info, welche davon ausgewählt sind.
 all_categories                   Array mit allen Kategorien.
-categories                       Array mit allen benutzten Kategorien und den übergeordneten Kategorien.
+categories                       Array mit Kategorien und den übergeordneten Kategorien.
 contents.categoriesAndParents    Array mit allen benutzten Kategorien und den übergeordneten Kategorien.
 sword                            Volltext-Such-Wort.
 place                            Ort, der gesucht wird.

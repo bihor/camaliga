@@ -199,4 +199,5 @@ Version     Änderungen
 8.6.0       Extension-Konfiguration categoryMode entfernt! Die Kategorien werden nun durch eine TYPO3-Core-Methode geholt!
             Die Kategorien in den Optionen werden nun richtig sortiert.
             TS category.storagePids, category.sortBy und category.orderBy hinzugefügt.
+            Das Feld "childs" von {content.categoriesAndParents} ist jetzt ein Array und kein String mehr.
 ==========  =====================================================================================================================

@@ -38,6 +38,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	
 	/**
 	 * Title
+	 * 
 	 * @Extbase\Validate("NotEmpty")
 	 * @var string
 	 */
@@ -130,40 +131,40 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Image
 	 *
+	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @cascade remove
 	 */
 	protected $falimage = null;
 
 	/**
 	 * Image
 	 *
+	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @cascade remove
 	 */
 	protected $falimage2 = null;
 
 	/**
 	 * Image
 	 *
+	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @cascade remove
 	 */
 	protected $falimage3 = null;
 
 	/**
 	 * Image
-	 *
+	 * 
+	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @cascade remove
 	 */
 	protected $falimage4 = null;
 
 	/**
 	 * Image
 	 *
+	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 * @cascade remove
 	 */
 	protected $falimage5 = null;
 	
@@ -268,8 +269,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	/**
 	 * Mutter-Element: Quizpalme\Camaliga\Domain\Model\Content. Früher integer
 	 *
+	 * @Extbase\ORM\Lazy
 	 * @var \Quizpalme\Camaliga\Domain\Model\Content
-     * @lazy
 	 */
 	protected $mother;
 	
@@ -1092,52 +1093,35 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 * @return array categories
 	 */
 	public function getCategoriesAndParents() {
-		$cats = array();
-		if ($this->categories) {
-			// TODO: mergen mit der anderen Liste
-			$catMode = 0;
-			$lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
-			// Step 1: select all categories of the current language
-			$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
-			$all_cats = $categoriesUtility->getCategoriesarrayComplete();
-			// Step 2: aktuelle orig_uid herausfinden
-			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
-			if ($lang > 0 && $catMode == 0) {
-				$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-						'uid',
-						'tx_camaliga_domain_model_content',
-						'deleted=0 AND hidden=0 AND sys_language_uid=' . $lang . ' AND t3_origuid=' . $orig_uid);
-				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-					while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4))
-						if ($row['uid']) {
-							$orig_uid = intval($row['uid']);	// uid of the translated element
-						}
-				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$configurationManager = $objectManager->get('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
+		$settings = $configurationManager->getConfiguration(
+			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+		);
+		$categorySettings = $settings['plugin.']['tx_camaliga.']['settings.']['category.'];
+		if ($categorySettings['storagePids']) {
+			if ($categorySettings['storagePids'] == -1) {
+				$catStoragePids = [];
+			} else {
+				$catStoragePids = explode(',', $categorySettings['storagePids']);
 			}
-			// Step 3: get the mm-categories of the current element (from the original or translated element)
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'uid_local',
-				'sys_category_record_mm',
-				"tablenames='tx_camaliga_domain_model_content' AND uid_foreign=" . $orig_uid);
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-					$uid = $row['uid_local'];
-					if (!isset($all_cats[$uid]['parent'])) continue;
-					$parent = (int) $all_cats[$uid]['parent'];
-					//if (!$all_cats[$parent]['title'])	continue;
-					if (!isset($cats[$parent])) {
-						$cats[$parent] = array();
-						$cats[$parent]['childs'] = array();
-						$cats[$parent]['title'] = $all_cats[$parent]['title'];
-					}
-					if ($all_cats[$uid]['title'])
-						$cats[$parent]['childs'][$uid] = $all_cats[$uid]['title'];
-				}
-			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+		} else {
+			$contentRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
+			$catStoragePids = $contentRepository->getStoragePids();
 		}
-		return $cats;
+		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$all_cats = $categoryRepository->getAllCats($categorySettings['sortBy'], $categorySettings['orderBy'], $catStoragePids);
+		$used_cats = [];
+		foreach ($this->getCategories() as $category) {
+			$cat_uid = $category->getUid();
+			$parent = $category->getParent();
+			$used_cats[$cat_uid] = $cat_uid;
+			if ($parent) {
+				$cat_uid = $parent->getUid();
+				$used_cats[$cat_uid] = $cat_uid;
+			}
+		}
+		return $categoryRepository->getCategoriesAndParents($all_cats, $used_cats);
 	}
 
 	/**
