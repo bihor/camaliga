@@ -68,6 +68,10 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 */
 	protected $convert = 0;
 	
+	/**
+	 * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
 	
 	/**
 	 * Get the value of the csv file
@@ -255,8 +259,7 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$cat_del = $this->getCatdelimiter();	// Feldtrenner bei Kategorien
 		$convert = ($this->getConvert()) ? TRUE : FALSE;	// convert from UTF-8 to ASCII?
 		$text = $this->getHeader();
-		if ($convert)
-			$text = iconv('utf-8', 'iso-8859-1', $text);
+		if ($convert) $text = iconv('utf-8', 'iso-8859-1', $text);
 		$content = $text . $ln;					// header of the csv file
 		$cat_keys = array();					// uids of category names
 		$cat_parents = array();					// parent of the categories
@@ -264,10 +267,27 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$cat_counts = array();					// count $cats categories
 		$i = 0;									// Counter
 		
+		// Step 0: init
+		$configurationArray = [
+			'persistence' => [
+				'storagePid' => '',
+				'classes' => [
+					'Quizpalme\Camaliga\Domain\Model\Category' => [
+						'mapping' => [
+							'recordType' => 0,
+							'tableName' => 'sys_category'
+						]
+					]
+				]
+			]
+		];
+		$this->configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
+		$this->configurationManager->setConfiguration($configurationArray);
+		
 		// Step 1: select all categories of the current language
-		// TODO: ersetzen!
-		$categoriesUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\AllCategories');
-		$all_cats = $categoriesUtility->getCategoriesarrayComplete($lang_uid);
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$all_cats = $categoryRepository->getAllCats('sorting', 'asc', []);
 		
 		// Step 2: store more category datas in arrays
 		foreach ($all_cats as $key => $one_cat) {

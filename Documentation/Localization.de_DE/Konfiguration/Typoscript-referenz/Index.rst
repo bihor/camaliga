@@ -113,6 +113,9 @@ settings.overrideFlexformSettingsIfEmpty  boolean        Überschreibe die FlexF
                                                          0: nein.
 
                                                          1: ja (funktioniert gut, außer bei den Checkbox-Einstellungen).
+settings.category.storagePids             string         Ordner mit den Kategorien. -1: alle Kategorien; Leer: normalen Ordner verwenden.
+settings.category.sortBy                  string         Kategorien sortieren nach: sorting (default), tstamp, crdate, title oder uid.
+settings.category.orderBy                 string         Kategorien ordnen nach: asc (default) oder desc.
 settings.img.width                        int            Breite eines Bildes. Kann im Template benutzt werden...                            700
 settings.img.height                       int            Höhe eines Bildes.                                                                 500
 settings.img.thumbWidth                   int            Thumbnail-Breite eines Bildes.                                                     195

@@ -165,15 +165,6 @@
 			<trans-unit id="default_categories">
 				<target>Ausgewählte Kategorien (bei erweiterten Templates: UND für radio-Buttons und ODER für Checkboxen):</target>
 			</trans-unit>
-			<trans-unit id="categoryMode">
-				<target>Kategorie-Modus:</target>
-			</trans-unit>
-			<trans-unit id="categoryMode.original">
-				<target>Benutze die Kategorie-Relationen der Original-Elemente</target>
-			</trans-unit>
-			<trans-unit id="categoryMode.translated">
-				<target>Benutze die Kategorie-Relationen der übersetzen Elemente (bugy)</target>
-			</trans-unit>
 			<trans-unit id="normalCategoryMode">
 				<target>Kategorie-Modus (bei normalen Templates):</target>
 			</trans-unit>

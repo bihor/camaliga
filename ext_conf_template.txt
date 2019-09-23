@@ -1,6 +1,3 @@
-# cat=basic/enable; type=boolean; label=Ignore the category relations of translated elements:
-categoryMode = 1
-
 # cat=basic/enable; type=boolean; label=Do not switch controller and action at the ke_search hook?
 dontSwitchContAct = 0
 

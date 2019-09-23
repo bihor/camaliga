@@ -108,6 +108,9 @@ overrideFlexformSettingsIfEmpty           boolean        Override FlexForm setti
                                                          0: no.
 
                                                          1: yes (works good, except for checkboxes).
+settings.category.storagePids             string         Folder with categories. -1: all categories; empty: use normal folder.
+settings.category.sortBy                  string         Sort categories by: sorting (default), tstamp, crdate, title or uid.
+settings.category.orderBy                 string         Order categories by: asc (default) or desc.
 settings.img.width                        int            Width of the images. Can be used in the template.                                  700
 settings.img.height                       int            Height of the images. Can be used in the template.                                 500
 settings.img.thumbWidth                   int            Thumbnail width of the images. Can be used in the template.                        195

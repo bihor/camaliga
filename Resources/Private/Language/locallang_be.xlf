@@ -168,15 +168,6 @@
 			<trans-unit id="default_categories">
 				<source>Selected default categories (for extended templates: AND for radio-buttons and OR for checkboxes):</source>
 			</trans-unit>
-			<trans-unit id="categoryMode">
-				<source>Category mode:</source>
-			</trans-unit>
-			<trans-unit id="categoryMode.translated">
-				<source>Use the category relations of translated elements (bugy)</source>
-			</trans-unit>
-			<trans-unit id="categoryMode.original">
-				<source>Use the category relations of the original element</source>
-			</trans-unit>
 			<trans-unit id="normalCategoryMode">
 				<source>Category mode (for normal templates):</source>
 			</trans-unit>
