@@ -1,14 +1,12 @@
 <?php
-$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
-// TODO:
-//$backendConfiguration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('backend');
-//var_dump($backendConfiguration);
-$disableFurtherImages = intval($configurationUtility['disableFurtherImages']);
-$disableAddress = intval($configurationUtility['disableAddress']);
-$disableContact = intval($configurationUtility['disableContact']);
-$disableCustom = intval($configurationUtility['disableCustom']);
-$disableMother = intval($configurationUtility['disableMother']);
-$enableFal = intval($configurationUtility['enableFal']);
+//$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
+$configurationUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('camaliga');
+$disableFurtherImages = (bool)$configurationUtility['disableFurtherImages'];
+$disableAddress = (bool)$configurationUtility['disableAddress'];
+$disableContact = (bool)$configurationUtility['disableContact'];
+$disableCustom = (bool)$configurationUtility['disableCustom'];
+$disableMother = (bool)$configurationUtility['disableMother'];
+$enableFal = (bool)$configurationUtility['enableFal'];
 $pre = ($enableFal) ? 'fal' : '';
 
 if ($enableFal) {

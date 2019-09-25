@@ -354,7 +354,7 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		}
 		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		
-		$fp = fopen(PATH_site . $this->getCsvfile(), 'w');
+		$fp = fopen(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $this->getCsvfile(), 'w');
 		$ergebnis = fwrite($fp, $content);
 		fclose($fp);
 		if (!$ergebnis)
