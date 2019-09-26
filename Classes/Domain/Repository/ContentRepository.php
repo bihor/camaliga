@@ -62,11 +62,11 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				'/\x0c/',                   // 12
 				'/[\x0e-\x1f]/'             // 14-31
 		);
-		foreach ( $non_displayables as $regex )
-			$data = preg_replace( $regex, '', $data );
 		$entf = array('\\', '"', "'", '%', '´', '`');
-		$data = str_replace($entf, '', $data );
-		return $data;
+		foreach ( $non_displayables as $regex ) {
+			$data = preg_replace( $regex, '', $data );
+		}
+		return str_replace( $entf, '', $data );
 	}
 	
 	/**
@@ -157,44 +157,45 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		
 		// Umkreissuche von hier: http://opengeodb.org/wiki/OpenGeoDB_-_Umkreissuche
 		if ($place && $radius) {
+			// Achtung: die Tabelle geodb_zip_coordinates muss vorhanden und befüllt sein!
 			$ort = $this->ms_escape_string($place);
 			$radius = intval($radius);
+			$zc_id = 0;
 			
 			// Position des Suchortes finden
 			$where = (is_numeric($ort)) ? "zc_zip = '" . $ort . "'" : "zc_location_name LIKE '" . $ort . "%'";
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'zc_id, zc_location_name, zc_lat, zc_lon',
-					'geodb_zip_coordinates',
-					$where,
-					'',
-					'zc_location_name',
-					'1');
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-					$zc_id = $row['zc_id'];
-					$zc_name = $row['zc_location_name'];
-					$zc_lat = $row['zc_lat'];
-					$zc_lon = $row['zc_lon'];
+			$statement = 'SELECT zc_id, zc_location_name FROM geodb_zip_coordinates WHERE ' . $where . ' GROUP BY zc_location_name LIMIT 1';
+			$query = $this->createQuery();
+			$query->getQuerySettings()->setRespectStoragePage(FALSE);
+			$query->statement($statement);
+			$resultArray = $query->execute(TRUE);
+			if (count($resultArray) >= 1) {
+				foreach ($resultArray as $row) {
+					$zc_id = $row['zc_id'];		// Die erst beste ID nehmen. Nicht immer die beste Wahl!
 				}
 			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
 			
 			// Elemente in der Umgebung des Suchortes finden
 			if ($zc_id) {
-				$new_uids = array();
-				$res4 = $GLOBALS['TYPO3_DB']->sql_query(
-						'SELECT dest.uid, dest.zip, dest.city,
-							ACOS(
-						         SIN(RADIANS(src.zc_lat)) * SIN(RADIANS(dest.latitude)) 
-						         + COS(RADIANS(src.zc_lat)) * COS(RADIANS(dest.latitude))
-						         * COS(RADIANS(src.zc_lon) - RADIANS(dest.longitude))
-						    ) * 6380 AS distance
-						FROM tx_camaliga_domain_model_content dest
-						CROSS JOIN geodb_zip_coordinates src
-						WHERE src.zc_id = ' . $zc_id .'
-						HAVING distance < ' . $radius);  // . 'ORDER BY distance');
-				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-					while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
+				$new_uids = [];
+				$statement = 'SELECT dest.uid, dest.zip, dest.city,
+						ACOS(
+					         SIN(RADIANS(src.zc_lat)) * SIN(RADIANS(dest.latitude))
+					         + COS(RADIANS(src.zc_lat)) * COS(RADIANS(dest.latitude))
+					         * COS(RADIANS(src.zc_lon) - RADIANS(dest.longitude))
+					    ) * 6380 AS distance
+					FROM tx_camaliga_domain_model_content dest
+					CROSS JOIN geodb_zip_coordinates src
+					WHERE src.zc_id = ' . $zc_id .'
+					HAVING distance < ' . $radius .'
+			 		ORDER BY dest.uid';		// . 'ORDER BY distance'); Außerdem fehlt a.x=b.y !
+				//echo $statement;
+				$query = $this->createQuery();
+				$query->getQuerySettings()->setRespectStoragePage(FALSE);
+				$query->statement($statement);
+				$resultArray = $query->execute(TRUE);
+				if (count($resultArray) >= 1) {
+					foreach ($resultArray as $row) {
 						$uid = intval($row['uid']);
 						//echo "\nGefunden: " . $uid . ': ' . $row['zip'] . ' ' . $row['city'];
 						if ($catSearch) {
@@ -210,10 +211,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 						}
 					}
 				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
 				// nur die UIDs übernehmen, wo Kategorie-Suche und PLZ/Ort-Suche das selbe gefunden hat!
-				if ($catSearch)
-					$uids = $new_uids;
+				if ($catSearch)	$uids = $new_uids;
 			} else {
 				// nix gefunden
 				$uids = array();
@@ -231,10 +230,12 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$query->getQuerySettings()->setRespectStoragePage(FALSE);
 				$constraints[] = $query->in('pid', $pids);
 			}
-			if ($onlyDistinct)
+			if ($onlyDistinct) {
 				$constraints[] = $query->equals('mother', 0);
-			if (count($uids) > 0)
+			}
+			if (count($uids) > 0) {
 				$constraints[] = $query->in('uid', $uids);
+			}
 			if ($place && !$radius) {
 				$constraints[] = $query->logicalOr(
 					$query->like('city', $place),
@@ -256,18 +257,20 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 							$query->logicalOr(
 									$query->like('custom1', $sword),
 									$query->like('custom2', $sword)
-									),
+							),
 							$query->logicalOr(
 									$query->like('city', $sword),
 									$query->like('zip', $sword)
-									)
+							)
 					)
 				);
 			}
-			if (count($constraints) > 0)
+			if (count($constraints) > 0) {
 				$query->matching($query->logicalAnd($constraints));
-			if ($limit > 0)
+			}
+			if ($limit > 0) {
 				$query->setLimit(intval($limit));
+			}
 			return $query
 				->setOrderings(array($sortBy => $order))
 				->execute();
