@@ -312,14 +312,49 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findByCategories($cat_uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $checkMax = TRUE, $limit = 0) {
 		if (count($cat_uids) > 0) {
 			$max = 0;
-			$parents = array();	// Übergeordnete Elemente
-			$childs = array();	// Kind-Elemente, die angezeigt werden sollen
-			$twice = array();	// Kind-Elemente, die entfernt werden sollen
-			$elements = array();	// Elemente, die gefunden wurden, mit Anzahl der Treffer bei der Suche zu diesem Element
-			$results = array();		// Elemente, die zum Schluss übrig bleiben
-			if (count($pids)>0) $where = ' AND con.pid IN (' . implode(',', $pids) . ')'; else $where = '';
+			$parents = [];	// Übergeordnete Elemente
+			$childs = [];	// Kind-Elemente, die angezeigt werden sollen
+			$twice = [];	// Kind-Elemente, die entfernt werden sollen
+			$elements = [];	// Elemente, die gefunden wurden, mit Anzahl der Treffer bei der Suche zu diesem Element
+			$results = [];	// Elemente, die zum Schluss übrig bleiben
+			$table = 'tx_camaliga_domain_model_content';
+			$joinTable = 'sys_category_record_mm';
+			//if (count($pids)>0) $where = ' AND con.pid IN (' . implode(',', $pids) . ')'; else $where = '';
+			
 			foreach ($cat_uids as $uidsChilds) {
 				// Search all elements of specified category/ies
+				$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);	// muss jedes mal neu gezogen werden!
+				$queryBuilder
+					->select('uid', 'mother')
+					->from($table)
+					->leftJoin(
+						$table,
+						$joinTable,
+						'categoryMM',
+						$queryBuilder->expr()->eq(
+							'tx_camaliga_domain_model_content.uid',
+							$queryBuilder->quoteIdentifier('categoryMM.uid_foreign')
+						)
+					)
+					->where(
+						$queryBuilder->expr()->eq('categoryMM.tablenames', $queryBuilder->createNamedParameter($table)),
+						$queryBuilder->expr()->eq('categoryMM.fieldname', $queryBuilder->createNamedParameter('categories')),
+						$queryBuilder->expr()->in('categoryMM.uid_local', explode(',', $uidsChilds))
+					);
+				if (count($pids)>0) {
+					$queryBuilder->andWhere( $queryBuilder->expr()->in('tx_camaliga_domain_model_content.pid', $pids) );
+				}
+				$queryBuilder->groupBy('tx_camaliga_domain_model_content.uid');
+				//debug($queryBuilder->getSQL());
+				$result = $queryBuilder->execute()->fetchAll();
+				//debug($result);
+				foreach ($result as $row) {
+					$cam_uid = $row['uid'];
+					$elements[$cam_uid]++;
+					$parents[$cam_uid] = $row['mother'];
+					$childs[$cam_uid] = 0;
+				}
+				/* ALT:
 				$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 					'DISTINCT mm.uid_foreign, con.mother',
 					'sys_category_record_mm AS mm, tx_camaliga_domain_model_content AS con',
@@ -334,6 +369,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 					}
 				}
 				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+				*/
 				$max++;
 			}
 			//var_dump($uids); echo "max: $max -- "; var_dump($elements);
@@ -429,7 +465,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 	
 	/**
-	 * Get categories, used by camaliga AND used by storagePids
+	 * Get categories, used by camaliga AND used by storagePids: wird anscheinend nirgends benutzt!?
 	 *
 	 * @param	array	$pids	Category PIDs
 	 * @return	array
@@ -450,8 +486,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 				$joinTable,
 				'categoryMM',
 				$queryBuilder->expr()->eq(
-					'categoryMM.uid_foreign',
-					$queryBuilder->quoteIdentifier('tx_camaliga_domain_model_content.uid')
+					'tx_camaliga_domain_model_content.uid',
+					$queryBuilder->quoteIdentifier('categoryMM.uid_foreign')
 				)
 			)
 			->where(

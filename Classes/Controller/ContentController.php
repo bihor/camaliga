@@ -377,7 +377,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				$parent = $all_cats[$uid]['parent'];
 				if ($cats[$parent]['description'] == 'checkbox') {
 					$cats[$parent]['childs'][$uid]['selected'] = $selected;
-					$categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].",$selected" : $selected;
+					$categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].','.$selected : $selected;
 				} else {
 					$cats[$parent]['selected'] = $selected;
 					$categoryUids[$selected] = $selected;
@@ -399,8 +399,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				// Umfangreiche Suche betreiben
 				// official solution (not enough): http://wiki.typo3.org/TYPO3_6.0#Category
 				// Sort categories (doesnt work): http://www.php-kurs.com/arrays-mehrdimensional.htm 
-				// find entries by category
-				// enable dev logging if set
+				// find entries by category-uids
 				if ($this->settings['debug'])
 					GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
 				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, TRUE,  $this->settings['limit']);
