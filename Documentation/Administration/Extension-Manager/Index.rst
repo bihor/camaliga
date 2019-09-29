@@ -18,9 +18,7 @@
 Configuration via Extension-Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-At the configuration in the extension-manager you can set 4 things:
-
-- The category-mode. See chapter "Categories".
+At the configuration in the extension-manager you can set 3 things:
 
 - You can define new fields, which you have created.
 

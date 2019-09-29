@@ -196,8 +196,10 @@ Version     Änderungen
             Karusell- und tt_news-import entfernt.
 8.4.4       TYPO3 9 Bugfix.
 8.5.0       Anpassungen an TYPO3 9 und die neue Dokumentations-Struktur bei typo3.org. typo3db_legacy noch notwendig.
-8.6.0       Extension-Konfiguration categoryMode entfernt! Die Kategorien werden nun durch eine TYPO3-Core-Methode geholt!
+9.0.0       Extension-Konfiguration categoryMode entfernt! Die Kategorien werden nun durch eine TYPO3-Core-Methode geholt!
             Die Kategorien in den Optionen werden nun richtig sortiert.
             TS category.storagePids, category.sortBy und category.orderBy hinzugefügt.
             Das Feld "childs" von {content.categoriesAndParents} ist jetzt ein Array und kein String mehr.
+            Siehe Kapitel "Updaten auf Camaliga 9.0.0".
+            Das Repository läuft nun auch ohne die Extension typo3db_legacy.
 ==========  =====================================================================================================================

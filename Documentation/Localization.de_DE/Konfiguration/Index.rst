@@ -31,6 +31,5 @@ Konfiguration
    Karussell-konfiguration/Index
    PageTSconfig/Index
    Verlinkung/Index
-   realurl/Index
    Faq/Index
 

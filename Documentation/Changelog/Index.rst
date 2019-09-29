@@ -190,8 +190,9 @@ Version     Changes
             Karusell and tt_news import removed.
 8.4.4       TYPO3 9 bugfix.
 8.5.0       TYPO3 9 and documentation adjustments. typo3db_legacy still necessary.
-8.6.0       Extension configuration categoryMode removed! The categories are now get by a TYPO3 core method.
+9.0.0       Extension configuration categoryMode removed! The categories are now get by a TYPO3 core method.
             Correct ordering of categories in the options.
             TS category.storagePids, category.sortBy and category.orderBy added.
             The field "childs" of {content.categoriesAndParents} is now an array, not a string.
+            The repository works now without the typo3db_legacy extension.
 ==========  ============================================================================================================================

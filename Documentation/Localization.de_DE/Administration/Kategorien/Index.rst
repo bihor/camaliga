@@ -1,4 +1,4 @@
-﻿..  include:: Images.txt
+﻿
 
 .. ==================================================
 .. FOR YOUR INFORMATION
@@ -21,16 +21,4 @@ Kategorien
 - Diese Extension benutzt die normalen TYPO3-Kategorien. Es gibt verschiedene Arten diese zu benutzen.
   Mit {content.categories} kann man die markierten Kategorien anzeigen.
   Mit {content.categoriesAndParents} kann man die markierten Kategorien und deren Mutter-Kategorie anzeigen.
-
-- Weiterhin kann man diese Extension im Extension-Manager konfigurieren.
-  Das ist nur von Bedeutung, wenn man mehrere Sprachen benutzt. Es gibt 2 Optionen:
-  Benutze die Kategorie-Relationen der übersetzten Camaliga-Elemente oder der Original-Elemente.
-  Es wird empfohlen, die Kategorie-Relationen der übersetzten Elemente zu ignorieren, weil es einen TYPO3-Bug gibt.
-  TYPO3 verliert die Relationen zu den übersetzten Kategorien, wenn man ein übersetztes Camaliga-Element speichert.
-  Wenn dieser Bug gefixt ist, kann die Extension wieder umkonfigurieren...
-
-|img-15|
-
-*Bild 15: Relationen der Kategorien*
-
-- Mehr zum Thema Kategorien findet man im Kapitel "Benutzerhandbuch".
+  Beide Variablen sind Arrays. Sie enthalten diese Werte/Strings: uid, title und description.

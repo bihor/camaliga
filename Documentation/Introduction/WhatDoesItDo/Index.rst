@@ -18,7 +18,7 @@
 What does it do?
 ^^^^^^^^^^^^^^^^
 
-This flexible extension can display elements as e.g. carousel, gallery, list or on a google map and requires TYPO3 6.2.2 - 7.6.99. Features:
+This flexible extension can display elements as e.g. carousel, gallery, list or on a google map. Features:
 
 - Many templates for the output.
 
@@ -40,4 +40,4 @@ The extension is not allways easy to use, but it is very flexible and admins wil
 
 .. important::
 
-   If you are using TYPO3 9, then you will need the extension typo3db_legacy too!
+   If you are using TYPO3 9, then you will need the extension typo3db_legacy for some special cases like exports or imports.

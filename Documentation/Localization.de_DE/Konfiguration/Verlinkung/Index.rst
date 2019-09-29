@@ -18,6 +18,8 @@
 Verlinkung
 ^^^^^^^^^^
 
+- Achtung: diese Anleitung ist veraltert! In TYPO3 9 gibt es einen internen Linkhandler, den man stattdessen benutzen sollte!
+
 - Mittels der TypoScript-Konfiguration und über Seiten-TSconfig kann man es einrichten,
   dass man auch auf die Einzelansicht eines Camaliga-Elements direkt im RTE verlinken kann.
 

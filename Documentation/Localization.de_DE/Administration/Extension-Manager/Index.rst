@@ -18,9 +18,7 @@
 Konfiguration via Extension-Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Bei der Konfiguration im Extension-Manager kann man 4 Sachen einstellen:
-
-- Den Kategorie-Modus. Siehe Kapitel Kategorien.
+Bei der Konfiguration im Extension-Manager kann man 3 Sachen einstellen:
 
 - Man kann neu erzeugte Felder dort angeben.
 

@@ -18,6 +18,8 @@
 Linkhandler
 ^^^^^^^^^^^
 
+Note: this here is not uptodate! TYPO3 9 has an own Linkhandler extension. Use that one instead! 
+
 With the TypoScript configuration and the Page TSconfig you can set it up,
 that you can also link to the single view of a Camaliga element directly in the RTE.
 

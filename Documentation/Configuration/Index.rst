@@ -30,6 +30,5 @@ Configuration
    Carousel-configuration/Index
    PageTSconfig/Index
    Verlinkung/Index
-   realurl/Index
    Faq/Index
 

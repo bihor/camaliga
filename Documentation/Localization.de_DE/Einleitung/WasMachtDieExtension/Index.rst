@@ -42,4 +42,4 @@ Die Extension ist nicht immer einfach zu benutzen, aber sie ist sehr flexibel un
 
 .. important::
 
-   Wenn man TYPO3 9 benutzt, wird z.Z. noch die Extension typo3db_legacy benötigt!
+   Wenn man TYPO3 9 benutzt, wird z.Z. noch die Extension typo3db_legacy an einigen Stellen benötigt. Für den Normalfall braucht man sie aber nicht mehr.
