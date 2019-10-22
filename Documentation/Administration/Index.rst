@@ -64,6 +64,7 @@ Administration
    ViewHelper/Index
    Categories/Index
    TheBackendModule/Index
+   Slug/Index
    Scheduler/Index
    Extend/Index
    Faq/Index

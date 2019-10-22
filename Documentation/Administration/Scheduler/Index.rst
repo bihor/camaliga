@@ -21,9 +21,9 @@ Scheduler-Tasks
 - There are 3 Scheduler Tasks: import and export CSV files. You can configure many things in both tasks.
   The third task can move images from the /uploads/tx_camaliga-folder to FAL.
   Please make a backup of the camaliga-table and your uploads-images before you switch to FAL!
-  After you have switched all yout images to FAL, you need to tell Camaliga that it should use the FAL images.
+  After you have switched all your images to FAL, you need to tell Camaliga that it should use the FAL images.
   Go to the extension manager and configure camaliga there. Click at the checkbox "Use images from FAL instead of images from uploads/".
-  Now you must uninstall and install camaliga again.
+  Now you must uninstall and install camaliga again (or delete all caches).
 
 - Finally you must change your customised templates! Merge it with the templates from the typo3conf-folder.
   Old example::
