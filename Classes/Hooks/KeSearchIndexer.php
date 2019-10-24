@@ -21,9 +21,9 @@ class KeSearchIndexer
     {
         // Set a name and an icon for your indexer.
         $customIndexer = array(
-            'Camaliga elements (camaliga)',
+            'Camaliga elements (ext:camaliga)',
             $this->indexerConfigurationKey,
-            'EXT:camaliga/ext_icon.gif'
+        	'EXT:camaliga/ext_icon.gif'
         );
         $params['items'][] = $customIndexer;
     }
@@ -72,9 +72,7 @@ class KeSearchIndexer
 					$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
 					$tags = ''; // oder '#camaliga#';
 					if ($configurationUtility['dontSwitchContAct']) {
-						$params = '&tx_camaliga_pi1[action]=show&tx_camaliga_pi1[controller]=Content&tx_camaliga_pi1[content]=' . $record['uid'];
-					} else {
-						$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
+						$params = '&tx_camaliga_pi1[action]=show&tx_camaliga_pi1[controller]=Content' . $params;
 					}
 
                     // Additional information

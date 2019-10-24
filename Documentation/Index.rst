@@ -37,7 +37,7 @@ EXT: Camaliga - carousel/map/list/gallery
       `www.quizpalme.de <http://www.quizpalme.de/>`_
 
 :Spachen:
-      `english Version <http://docs.typo3.org/typo3cms/extensions/camaliga/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/camaliga/de-de/>`_
+      `english Version <https://docs.typo3.org/p/quizpalme/camaliga/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/>`_
 
 
 .. toctree::
