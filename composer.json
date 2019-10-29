@@ -8,7 +8,7 @@
 		}
 	],
 	"require" : {
-		"typo3/cms-core" : ">9.5.0"
+		"typo3/cms-core" : "^9.5"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -21,14 +21,17 @@
 		}
 	},
 	"replace" : {
-		"camaliga" : "self.version",
 		"typo3-ter/camaliga" : "self.version"
 	},
 	"support" : {
 		"email" : "info@quizpalme.de"
 	},
 	"homepage" : "https://github.com/bihor/camaliga",
+	"license" : "GPL-3.0-or-later",
 	"keywords" : [
-		"slider carousel maps gallery"
+		"slider",
+		"carousel",
+		"maps",
+		"gallery"
 	]
 }
