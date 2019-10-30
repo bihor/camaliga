@@ -2,6 +2,10 @@
 // set you own vendor name adjust the extension name part of the namespace to your extension key
 namespace Quizpalme\Camaliga\Hooks;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+
 // set you own class name
 class KeSearchIndexer
 {
@@ -41,25 +45,31 @@ class KeSearchIndexer
     {
         if ($indexerConfig['type'] == $this->indexerConfigurationKey) {
             $content = '';
-            $configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
+            $counter = 0;
+            $dontSwitchContAct = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'dontSwitchContAct');
 
             // get all the entries to index
             // don't index hidden or deleted elements, but
             // get the elements with frontend user group access restrictions
             // or time (start / stop) restrictions, in order to copy those restrictions to the index.
-            $fields = '*';
-            $table = 'tx_camaliga_domain_model_content';
-            $where = 'pid IN (' . $indexerConfig['sysfolder'] . ') AND hidden = 0 AND deleted = 0';
-            $groupBy = '';
-            $orderBy = '';
-            $limit = '';
-            $res = $GLOBALS['TYPO3_DB']->exec_SELECTquery($fields, $table, $where, $groupBy, $orderBy, $limit);
-            $resCount = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+            $queryBuilder->getRestrictions()->removeAll();
+            $statement = $queryBuilder
+            	->select('*')
+            	->from('tx_camaliga_domain_model_content')
+            	->where(
+            		$queryBuilder->expr()->in('pid', explode(',', $indexerConfig['sysfolder']))
+            	)
+            	->andWhere(
+            		$queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
+            	)
+            	->andWhere(
+            		$queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
+            	)
+            	->execute();
 
             // Loop through the records and write them to the index.
-            if ($resCount) {
-                $counter = 0;
-                while (($record = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res))) {
+            while ($record = $statement->fetch()) {
                     // compile the information which should go into the index
                     // the field names depend on the table you want to index!
                     $title = strip_tags($record['title']);
@@ -69,9 +79,9 @@ class KeSearchIndexer
 					$place .= ($record['city'] && $record['country']) ? ', ' . strip_tags($record['country'])
 																	  : ' ' . strip_tags($record['country']);
 					$fullContent = $title . "\n" . $abstract . "\n" . $content . "\n" .$place;
-					$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
 					$tags = ''; // oder '#camaliga#';
-					if ($configurationUtility['dontSwitchContAct']) {
+					$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
+					if ($dontSwitchContAct) {
 						$params = '&tx_camaliga_pi1[action]=show&tx_camaliga_pi1[controller]=Content' . $params;
 					}
 
@@ -104,13 +114,12 @@ class KeSearchIndexer
                         $additionalFields               // additionalFields
                     );
                     $counter++;
-                }
+            }
 
-                $content =
+            $content =
                     '<p><b>Custom Indexer "'
                     . $indexerConfig['title'] . '":</b><br> ' . $counter
                     . ' camaliga-elements have been indexed.</p>';
-            }
 
             return $content;
         }
