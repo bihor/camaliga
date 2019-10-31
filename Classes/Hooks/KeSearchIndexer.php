@@ -47,6 +47,10 @@ class KeSearchIndexer
             $content = '';
             $counter = 0;
             $dontSwitchContAct = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'dontSwitchContAct');
+            $actionForLinks = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'actionForLinks');
+            if (!$actionForLinks) {
+            	$actionForLinks = 'show';
+            }
 
             // get all the entries to index
             // don't index hidden or deleted elements, but
@@ -82,7 +86,7 @@ class KeSearchIndexer
 					$tags = ''; // oder '#camaliga#';
 					$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
 					if ($dontSwitchContAct) {
-						$params = '&tx_camaliga_pi1[action]=show&tx_camaliga_pi1[controller]=Content' . $params;
+						$params = '&tx_camaliga_pi1[action]=' . $actionForLinks . '&tx_camaliga_pi1[controller]=Content' . $params;
 					}
 
                     // Additional information

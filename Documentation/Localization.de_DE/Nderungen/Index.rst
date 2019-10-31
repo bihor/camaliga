@@ -202,4 +202,5 @@ Version     Änderungen
             Das Feld "childs" von {content.categoriesAndParents} ist jetzt ein Array und kein String mehr.
             Siehe Kapitel "Updaten auf Camaliga 9.0.0".
             Das Repository läuft nun auch ohne die Extension typo3db_legacy.
+9.0.6       Neue Konfigurationsmöglichkeit: actionForLinks (für ke_search).
 ==========  =====================================================================================================================
