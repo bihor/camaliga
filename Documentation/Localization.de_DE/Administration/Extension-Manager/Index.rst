@@ -18,7 +18,7 @@
 Konfiguration via Extension-Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Bei der Konfiguration im Extension-Manager kann man 3 Sachen einstellen:
+Bei der Konfiguration im Extension-Manager kann man 4 verschiedene Sachen einstellen:
 
 - Man kann neu erzeugte Felder dort angeben.
 
@@ -29,4 +29,10 @@ Bei der Konfiguration im Extension-Manager kann man 3 Sachen einstellen:
   Außerdem muss man die Extension deinstallieren und neu installieren, nachdem man hier eine Änderung vorgenommen hat.
   Das ist sehr wichtig, damit TYPO3 die Bild-Konfiguration umstellt.
   Lies das Kapitel Administration → Scheduler-Tasks, bevor du was umstellst!
-  Beachte weiterhin: die Standardeinstellung ist, den Ordner /uploads/tx_camaliga zu benutzen. 
+  Beachte weiterhin: die Standardeinstellung ist, den Ordner /uploads/tx_camaliga zu benutzen.
+
+- Man kann einstellen, wie die Links zu einem Camaliga-Eintrag bei ke_search gebildet werden sollen::
+
+  Do not switch controller and action at the ke_search hook?
+
+  Action (e.g. show or list) for the ke_search hook, if it is not switched

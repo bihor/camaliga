@@ -18,7 +18,7 @@
 Configuration via Extension-Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-At the configuration in the extension-manager you can set 3 things:
+At the configuration in the extension-manager you can set 4 things:
 
 - You can define new fields, which you have created.
 
@@ -29,3 +29,9 @@ At the configuration in the extension-manager you can set 3 things:
   because TYPO3 changes the image configuration only then. Furthermore: you can move images from /uploads to FAL
   with a scheduler task. Read the chapter Administration → Scheduler-Tasks before you change a value!
   The default value is to use the /uploads/tx_camaliga folder!
+
+- You can make 2 settings for the extension ke_search. Both are important for the link-generation to one camaliga-entry::
+
+  Do not switch controller and action at the ke_search hook?
+
+  Action (e.g. show or list) for the ke_search hook, if it is not switched

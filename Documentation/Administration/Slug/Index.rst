@@ -27,10 +27,50 @@ From TYPO3 9 you can use routeEnhancers to modify the format of links to single 
 	    extension: Camaliga
 	    plugin: Pi1
 	    routes:
-	      - { routePath: '/more/{camaliga_title}', _controller: 'Content::show', _arguments: {'camaliga_title': 'content'} }
-	    defaultController: 'Camaliga::list'
+	      - { routePath: '/more/{camaliga_uid}', _controller: 'Content::show', _arguments: {'camaliga_uid': 'content'} }
+	    defaultController: 'Content::list'
 
-limitToPages is optional. You can list there all your single-pages with camaliga elements.
+limitToPages is optional. You can list there all your single-pages with camaliga elements. Replace the 24!
+In this example the uid of a camaliga element is used after "more". Here another example::
+
+	routeEnhancers:
+	  CamaligaPlugin:
+		type: Extbase
+		limitToPages: [382]
+		extension: Camaliga
+		plugin: Pi1
+		routes:
+		  - { routePath: '/googlemaps/{camaliga_place}', _controller: 'Content::map', _arguments: {'camaliga_place': 'content'} }
+		defaultController: 'Content::map'
+		aspects:
+		  camaliga_place:
+			type: PersistedPatternMapper
+			tableName: 'tx_camaliga_domain_model_content'
+			routeFieldPattern: '^(?P<city>.+)-(?P<uid>\d+)$'
+			routeFieldResult: '{city}-{uid}'
+
+In this example we use the city and the uid of a camaliga entry to show one entry at a Google map.
+Note: currently there is no slug field in the camaliga database-table, so there is no convert to a good link-string.
+Attention: The example will not work, if you use the "/" in the city field.
+
+You can use another version too. The result is the same (but without /googlemaps)::
+
+	routeEnhancers:
+	  CamaligaPlugin:
+		type: Plugin
+		limitToPages: [382]
+		namespace: 'tx_camaliga_pi1'
+		routePath: '/{content}'
+		requirements:
+		  content: '[0-9]{1..5}'
+		aspects:
+		  content:
+			type: PersistedPatternMapper
+			tableName: 'tx_camaliga_domain_model_content'
+			routeFieldPattern: '^(?P<city>.+)-(?P<uid>\d+)$'
+			routeFieldResult: '{city}-{uid}'
+
+You find more about this things here: https://typo3worx.eu/2018/12/typo3-routing-extensions-and-enhancers/
 
 RealUrl
 ^^^^^^^
