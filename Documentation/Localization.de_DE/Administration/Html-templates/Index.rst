@@ -32,7 +32,7 @@ HTML-Templates
 =========================  =========================================================================================================================
 Template                   Information
 =========================  =========================================================================================================================
-AdGallery.html             Template, welches das AD Gallery-Plugin benutzt.
+AdGallery.html             Template, welches das AD Gallery-Plugin benutzt. Outdated!
                            Achtung: man muss AD Gallery separat installieren.
 
                            Infos: http://adgallery.codeplex.com/documentation
@@ -43,8 +43,7 @@ Bootstrap.html             Template für das Twitter Bootstrap 4 Carousel.
                            Infos: https://getbootstrap.com/docs/4.2/components/carousel/
 
                            Demo: http://www.quizpalme.de/fotos/kunst/bootstrap-kunst.html
-Carousel.html              Karussell, welches das Camaliga-Plugin benutzt. Standard-Template.
-                           Achtung: alle Elemente-Einstellungen wirken sich nur hier aus.
+Carousel.html              Karussell, welches das Camaliga-Plugin benutzt. Standard-Template. Nicht responsive!
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos.html
 CarouselSeparated.html     Ein Template, das 2 separate Karussells mit dem Camaliga-Plugin benutzt.
@@ -57,8 +56,6 @@ Coolcarousel.html          Template, welches das Coolcarousel-Plugin benutzt.
                            Achtung: man muss Coolcarousel separat installieren.
 
                            Infos: http://coolcarousels.frebsite.nl/c/66/
-
-                           Demo: http://www.quizpalme.de/fotos/kunst/coolcarousel-ansicht.html
 Ekko.html                  Template, welches die Bootstrap-Ekko-Lightbox benutzt. Achtung: man muss Ekko separat installieren.
                            Funktioniert nur, wenn man settings.more.setModulo=1 setzt.
 

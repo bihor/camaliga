@@ -32,10 +32,10 @@ HTML-Templates
 =========================  ==================================================================================================================
 Template                   Information
 =========================  ==================================================================================================================
-AdGallery.html             Template that uses the AD Gallery plugin.
+AdGallery.html             Template that uses the AD Gallery plugin. Outdated!
                            Note: you must install AD Gallery separately.
 
-                           Infos: http://adgallery.codeplex.com/documentation
+                           Infos: https://archive.codeplex.com/?p=adgallery
 
                            Demo: http://www.quizpalme.de/fotos/kunst/adgallery.html
 Bootstrap.html             Template for the Twitter Bootstrap 4 Carousel.
@@ -43,7 +43,7 @@ Bootstrap.html             Template for the Twitter Bootstrap 4 Carousel.
                            Infos: https://getbootstrap.com/docs/4.2/components/carousel/
 
                            Demo: http://www.quizpalme.de/fotos/kunst/bootstrap-kunst.html
-Carousel.html              A carousel that uses the Camaliga-plugin. Default template.
+Carousel.html              A carousel that uses the Camaliga-plugin. Default template. Not responsive!
                            Note: all item-settings affect only here.
 
                            Demo: http://www.quizpalme.de/fotos/externe-fotos.html
@@ -57,8 +57,6 @@ Coolcarousel.html          Template that uses the Coolcarousel plugin.
                            Note: you must install Coolcarousel separately.
 
                            Infos: http://coolcarousels.frebsite.nl/c/66/
-
-                           Demo: http://www.quizpalme.de/fotos/kunst/coolcarousel-ansicht.html
 Ekko.html                  Template that uses the Bootstrap-Ekko-Lightbox. Not: you must install Ekko separately.
                            Runs only, if you set settings.more.setModulo=1
 
