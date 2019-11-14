@@ -32,12 +32,10 @@ HTML-Templates
 =========================  =========================================================================================================================
 Template                   Information
 =========================  =========================================================================================================================
-AdGallery.html             Template, welches das AD Gallery-Plugin benutzt. Outdated!
+AdGallery.html             Template, welches das AD Gallery-Plugin benutzt. Veraltert!
                            Achtung: man muss AD Gallery separat installieren.
 
                            Infos: http://adgallery.codeplex.com/documentation
-
-                           Demo: http://www.quizpalme.de/fotos/kunst/adgallery.html
 Bootstrap.html             Template für das Twitter Bootstrap 4 Carousel.
 
                            Infos: https://getbootstrap.com/docs/4.2/components/carousel/

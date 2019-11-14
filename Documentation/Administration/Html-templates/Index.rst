@@ -36,8 +36,6 @@ AdGallery.html             Template that uses the AD Gallery plugin. Outdated!
                            Note: you must install AD Gallery separately.
 
                            Infos: https://archive.codeplex.com/?p=adgallery
-
-                           Demo: http://www.quizpalme.de/fotos/kunst/adgallery.html
 Bootstrap.html             Template for the Twitter Bootstrap 4 Carousel.
 
                            Infos: https://getbootstrap.com/docs/4.2/components/carousel/
