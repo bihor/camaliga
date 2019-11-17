@@ -3,6 +3,7 @@ namespace Quizpalme\Camaliga\ViewHelpers;
 
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
@@ -54,26 +55,33 @@ class AddPublicResourcesViewHelper extends AbstractViewHelper
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
         ) {
-            $path = $arguments['path'];
+            $path1 = $arguments['path'];
             $compress = (bool)$arguments['compress'];
             $footer = (bool)$arguments['footer'];
             $library = $arguments['library'];
-            $addSlash = (bool)$arguments['addSlash'];
+           // $addSlash = (bool)$arguments['addSlash'];
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-            $js = (strtolower(substr($path, -3)) === '.js') ? 1 : 0;
-            $css = (strtolower(substr($path, -4)) === '.css') ? 1 : 0;
+            $js = (strtolower(substr($path1, -3)) === '.js') ? 1 : 0;
+            $css = (strtolower(substr($path1, -4)) === '.css') ? 1 : 0;
+            $basis = Environment::getPublicPath();
             if (!($js || $css)) {
                 return;
             }
             if (TYPO3_MODE === 'FE') {
-                $path = $GLOBALS['TSFE']->tmpl->getFileName($path);
-                if ($path === '' || !file_exists($path)) {
-                    return;
+            	$sani = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class);
+            	$path = $sani->sanitize($path1);
+            	// KGB: am Anfang wird immer ein / benötigt!
+            	if (substr($path,0,1) != '/') {
+            		$path = '/' . $path;
+            	}
+            	if ($path === '' || !file_exists($basis . $path)) {
+            		//echo " not found: $basis$path ";
+            		return;
                 }
                 // KGB: am Anfang wird manchmal noch ein / benötigt!
-                if ($addSlash && substr($path,0,1) != '/') {
-                    $path = '/' . $path;
-                }
+                //if ($addSlash && substr($path,0,1) != '/') {
+                //    $path = '/' . $path;
+                //}
                 if ($js) {
                     if ($footer) {
                         if ($library != '') {

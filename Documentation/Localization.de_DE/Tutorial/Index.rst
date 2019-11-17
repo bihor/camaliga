@@ -288,6 +288,6 @@ Beispiel 2: etwas wie Rezepte präsentieren.
 	</f:if>
 	</f:section>
 
-- Das ganze `sieht dann so aus`_.
+- Das ganze `sieht dann aus wie ein Rezept von hier`_.
 
-.. _sieht dann so aus: http://www.quizpalme.de/autor/rezepte/rezept/camaliga/show/Content/2113.html
+.. _sieht dann so aus: http://www.quizpalme.de/autor/rezepte
