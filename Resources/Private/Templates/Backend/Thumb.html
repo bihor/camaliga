@@ -1,41 +1,20 @@
 <f:layout name="Backend" />
 <f:section name="main">
-<f:comment>
- 	Siehe: https://docs.typo3.org/typo3cms/ExtbaseGuide/Fluid/ViewHelper/Be/Container.html
- 	includeCssFiles="{0: '{f:uri.external(uri: \'code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css\')}'}"
-    0: 'TYPO3/CMS/Backend/Modal', 
-    TODO: Läuft nicht mehr unter TYPO3 9!
-</f:comment>
-  
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <style>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<style>
   #sortable { list-style-type: none; margin: 0; padding: 0; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; min-height: 75px; }
   #sortable li span { position: absolute; margin-left: -1.3em; }
   #sortable li h3 { margin-top: 2px; }
-  </style>
-  <script>
-  TYPO3.jQuery(document).ready(function(){
-	  TYPO3.jQuery( "#sortable" ).sortable();
-	  TYPO3.jQuery( "#sortable" ).disableSelection();
-  });
-  function saveorder() {
-	  var sorting = 0;
-	  TYPO3.jQuery('#sortable li').each(function( index ) {
-		  sorting = (index+1)*10;
-		  TYPO3.jQuery('#e' + TYPO3.jQuery( this ).attr('id')).val(sorting);
-	  });
-	  TYPO3.jQuery('#thumbform').submit();
-  }
-  </script>
+</style>
   
-    <div id="typo3-docheader">
-		<div class="typo3-docheader-functions"><h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title" /></h1></div>
-		<div class="typo3-docheader-buttons"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" /></div>
-	</div>
+<div id="typo3-docheader">
+	<div class="typo3-docheader-functions"><h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title" /></h1></div>
+	<div class="typo3-docheader-buttons"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" /></div>
+</div>
 
-	<div id="typo3-docbody">
-		<div id="typo3-mod-help-about-index-php-outer">
+<div id="typo3-docbody">
+	<div id="typo3-mod-help-about-index-php-outer">
 		  
     <br><br><br>
 	<f:if condition="{saved} == 1">
@@ -62,9 +41,26 @@
 	</f:for>
 	</ul>
 	<br>
-	<!-- f:form.button type="button" onclick="saveorder();"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button -->
+	<f:form.button type="button" onclick="saveorder();" class="btn btn-primary"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button>
 	</f:form>
 			
-		</div>
 	</div>
+</div>
+
+<script>
+  require(["jquery","jquery-ui/sortable"], function($) {
+	  $(document).ready(function(){
+		  $( "#sortable" ).sortable();
+		  $( "#sortable" ).disableSelection();
+	  });
+  });
+  function saveorder() {
+	  let sorting = 0;
+	  $('ul#sortable li').each(function( index ) {
+		  sorting = (index+1)*10;
+		  $('#e' + $( this ).attr('id')).val(sorting);
+	  });
+	  $('#thumbform').submit();
+  }
+</script>
 </f:section>

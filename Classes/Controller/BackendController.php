@@ -88,21 +88,17 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 		
 		// save new order first
-		/* Funktioniert mit TYPO3 nicht mehr, wegen jQuery-Fehler
 		if ($this->request->hasArgument('camelements')) {
-			$updateA = array();
 			$order = $this->request->getArgument('camelements');
 			if (is_array($order)) {
 				foreach ($order as $key => $value) {
 					if ($key > 0 && $value > 0) {
-						$updateA['sorting'] = $value;
-						$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_camaliga_domain_model_content', 'uid=' . intval($key), $updateA);
+						$this->contentRepository->setNewSorting($key, $value);
 						$saved = 1;
 					}
 				}
 			}
 		}
-		*/
 		// Elemente sortiert holen
 		$contents = $this->contentRepository->findAll('sorting', 'asc', FALSE, array($pid));
 		

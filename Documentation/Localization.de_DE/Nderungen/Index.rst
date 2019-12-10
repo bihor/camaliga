@@ -203,5 +203,6 @@ Version     Änderungen
             Siehe Kapitel "Updaten auf Camaliga 9.0.0".
             Das Repository läuft nun auch ohne die Extension typo3db_legacy.
 9.1.0       Neue Konfigurationsmöglichkeit: actionForLinks (für ke_search).
+            Bugfix: Thumbnail-Ansicht im Backend kann wieder sortiert werden.
             Bugfix: AddPublicResourcesViewHelper.
 ==========  =====================================================================================================================

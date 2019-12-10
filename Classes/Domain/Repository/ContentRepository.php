@@ -357,22 +357,6 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 					$parents[$cam_uid] = $row['mother'];
 					$childs[$cam_uid] = 0;
 				}
-				/* ALT:
-				$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'DISTINCT mm.uid_foreign, con.mother',
-					'sys_category_record_mm AS mm, tx_camaliga_domain_model_content AS con',
-					"mm.tablenames='tx_camaliga_domain_model_content' AND
-					 mm.uid_foreign=con.uid AND mm.uid_local IN (" . $uidsChilds . ')' . $where);
-				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-					while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4)){
-						$cam_uid = $row['uid_foreign'];
-						$elements[$cam_uid]++;
-						$parents[$cam_uid] = $row['mother'];
-						$childs[$cam_uid] = 0;
-					}
-				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
-				*/
 				$max++;
 			}
 			//var_dump($uids); echo "max: $max -- "; var_dump($elements);
@@ -465,6 +449,24 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	        $query->equals('uid', $uid)
 	    )->execute()->getFirst();
 	    return $result;
+	}
+	
+	/**
+	 * set new sorting
+	 * @param	integer	$uid		UID
+	 * @param	integer	$sorting	Sorting order
+	 */
+	public function setNewSorting($uid, $sorting) {
+		$table = 'tx_camaliga_domain_model_content';
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+		$queryBuilder
+		->update($table)
+		->where(
+			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+		)
+		->set('sorting', intval($sorting))
+		->set('tstamp', time())
+		->execute();
 	}
 	
 	/**

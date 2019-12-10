@@ -196,5 +196,6 @@ Version     Changes
             The field "childs" of {content.categoriesAndParents} is now an array, not a string.
             The repository works now without the typo3db_legacy extension.
 9.1.0       New configuration option: actionForLinks (for ke_search).
+            Bugfix: the thumbnail-view in the backend-module is now sortable again.
             Bugfix: AddPublicResourcesViewHelper.
 ==========  ============================================================================================================================
