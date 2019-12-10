@@ -21,5 +21,5 @@ Kontakt
 - Man kann mir eine Nachricht über meine Homepage schreiben:
 
   `www.quizpalme.de/kontakt.html
-  <http://www.quizpalme.de/kontakt.html>`_
+  <http://www.quizpalme.de/kontakt>`_
 

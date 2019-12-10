@@ -43,7 +43,5 @@ ViewHelpers
   This is an example of the template Carousel.html. Use see, which parameters can be set.
   The ViewHelper indicates the files on the file-ending .css or .js. Second example with all parameters::
 
-    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/css/jquery.galleryview-3.0-dev.css" addSlash="TRUE"></cam:addPublicResources>
-    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/js/jquery.galleryview-3.0-dev.js" compress="FALSE" footer="TRUE" library="" addSlash="TRUE"></cam:addPublicResources>
-
-  addSlah-parameter: add a slash at the beginn of the path?
+    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/css/jquery.galleryview-3.0-dev.css"></cam:addPublicResources>
+    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/js/jquery.galleryview-3.0-dev.js" compress="FALSE" footer="TRUE" library=""></cam:addPublicResources>

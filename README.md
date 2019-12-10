@@ -1,6 +1,6 @@
 # camaliga
 
-version 9.0.8
+version 9.0.9
 
 A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick or Isotope. 
 Bootstrap support. Indexer for ke_search. Many features.
@@ -11,4 +11,4 @@ and
 https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/
 (currently broken due to a problem at typo3.org)
 
-Last feature: documenation and AddPublicResourcesViewHelper.
+Last feature: documenation.

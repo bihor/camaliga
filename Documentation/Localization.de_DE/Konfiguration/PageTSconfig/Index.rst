@@ -18,7 +18,8 @@
 Seiten-TSconfig
 ^^^^^^^^^^^^^^^
 
-- Mittels der TypoScript-Konfiguration über Seiten-TSconfig kann man mehrere Layout für ein Template definieren.
+- Mittels der TypoScript-Konfiguration über Seiten-TSconfig kann man das Backend beeinflussen.
+  Z.B. kann man mehrere Layouts für ein Template definieren.
 
 Beispiel
 ~~~~~~~~
@@ -67,3 +68,24 @@ Hier ein Beispiel mit 2 Layouts:
 |img-17|
 
 *Abbildung 17: Dies findet man im Ressources-Tab einer Seite*
+
+- Man kann über die TSconfig auch unnötige FlexForm-Felder ausblenden. Ein Beispiel:
+
+::
+
+	TCEFORM {
+		tt_content {
+			pi_flexform {
+				camaliga_pi1 {
+					sDEF {
+						switchableControllerActions.removeItems = Content->adGallery;Content->search;Content->show,Content->coolcarousel;Content->search;Content->show,Content->ekko;Content->search;Content->show,Content->elastislide;Content->search;Content->show,Content->fancyBox;Content->search;Content->show,Content->flipster;Content->search;Content->show,Content->fractionSlider;Content->search;Content->show,Content->fullwidth;Content->search;Content->show,Content->galleryview;Content->search;Content->show
+					}
+					sMORE {
+						settings\.more\.setModulo.disabled = 1
+						settings\.more\.slidesToShow.disabled = 1
+						settings\.more\.slidesToScroll.disabled = 1
+					}
+				}
+			}
+		}
+	}

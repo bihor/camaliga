@@ -45,7 +45,5 @@ ViewHelpers
   Das Beispiel stammt aus dem Carousel.html Template. Da kann man also schon mal sehen, welche Parameter man angeben kann.
   Die CSS- und JS-Dateien werden Anhand der Endung erkannt. Zweites Beispiel mit allen Parametern::
 
-    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/css/jquery.galleryview-3.0-dev.css" addSlash="TRUE"></cam:addPublicResources>
-    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/js/jquery.galleryview-3.0-dev.js" compress="FALSE" footer="TRUE" library="" addSlash="TRUE"></cam:addPublicResources>
-
-  addSlah-parameter: füge einen Slash (/) am Anfang des Pfades hinzu?
+    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/css/jquery.galleryview-3.0-dev.css"></cam:addPublicResources>
+    <cam:addPublicResources path="fileadmin/Resources/Public/Scripts/galleryview/js/jquery.galleryview-3.0-dev.js" compress="FALSE" footer="TRUE" library=""></cam:addPublicResources>

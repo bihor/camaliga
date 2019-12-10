@@ -195,5 +195,6 @@ Version     Changes
             TS category.storagePids, category.sortBy and category.orderBy added.
             The field "childs" of {content.categoriesAndParents} is now an array, not a string.
             The repository works now without the typo3db_legacy extension.
-9.0.6       New configuration option: actionForLinks (for ke_search).
+9.1.0       New configuration option: actionForLinks (for ke_search).
+            Bugfix: AddPublicResourcesViewHelper.
 ==========  ============================================================================================================================

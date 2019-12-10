@@ -18,7 +18,7 @@
 Page TSconfig
 ^^^^^^^^^^^^^
 
-- You can use the Page TSconfig to define some template layouts.
+- You can use the Page TSconfig to configure the backend. E.g. you can define some template layouts.
 
 Example
 ~~~~~~~
@@ -66,3 +66,24 @@ Here an example for a template (extract) with 2 layouts:
 |img-19|
 
 *Image 17: You find this on the Ressources tab of a page*
+
+- Furthermore you can use TSconfig to hide/remove FlexForm-settings. Examples:
+
+::
+
+	TCEFORM {
+		tt_content {
+			pi_flexform {
+				camaliga_pi1 {
+					sDEF {
+						switchableControllerActions.removeItems = Content->adGallery;Content->search;Content->show,Content->coolcarousel;Content->search;Content->show,Content->ekko;Content->search;Content->show,Content->elastislide;Content->search;Content->show,Content->fancyBox;Content->search;Content->show,Content->flipster;Content->search;Content->show,Content->fractionSlider;Content->search;Content->show,Content->fullwidth;Content->search;Content->show,Content->galleryview;Content->search;Content->show
+					}
+					sMORE {
+						settings\.more\.setModulo.disabled = 1
+						settings\.more\.slidesToShow.disabled = 1
+						settings\.more\.slidesToScroll.disabled = 1
+					}
+				}
+			}
+		}
+	}
