@@ -18,7 +18,7 @@
 Danke an ...
 ^^^^^^^^^^^^
 
-Ich habe sehr viel Zeit in diese Extension investiert. Ich hoffe sie gefällt dir. Sie wurde teilweise gesponsort von:
+Ich habe sehr viel Zeit in diese Extension investiert. Ich hoffe sie gefällt dir. Sie wurde teilweise gesponsort (nicht mit Geld, sondern mit Zeit) von:
 `www.fixpunkt.com <https://www.fixpunkt.com/>`_
 
 Danke an die

@@ -38,7 +38,8 @@ EXT: Camaliga - carousel/map/list/gallery
       `www.quizpalme.de <http://www.quizpalme.de/>`_
 
 :Spachen:
-      `english Version <http://docs.typo3.org/typo3cms/extensions/camaliga/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/camaliga/de-de/>`_
+      `english Version <http://docs.typo3.org/typo3cms/extensions/camaliga/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/camaliga/de-de/>`_ bzw. https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE
+
 
 
 .. toctree::

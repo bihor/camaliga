@@ -20,5 +20,5 @@ Contact
 
 - You can write me a message on my homepage:
 
-`www.quizpalme.de/kontakt.html <http://www.quizpalme.de/kontakt>`_
+`www.quizpalme.de/kontakt <http://www.quizpalme.de/kontakt>`_
 

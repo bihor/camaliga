@@ -18,7 +18,7 @@
 Thanks to ...
 ^^^^^^^^^^^^^
 
-I have spent many hours for this extension. I hope you like it. It is partly sponsored by
+I have spent many hours for this extension. I hope you like it. It is partly sponsored (not with money, but with time) by
 `www.fixpunkt.com <https://www.fixpunkt.com/>`_
 
 Thanks to the

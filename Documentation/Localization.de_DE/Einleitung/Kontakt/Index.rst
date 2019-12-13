@@ -20,6 +20,6 @@ Kontakt
 
 - Man kann mir eine Nachricht über meine Homepage schreiben:
 
-  `www.quizpalme.de/kontakt.html
+  `www.quizpalme.de/kontakt
   <http://www.quizpalme.de/kontakt>`_
 
