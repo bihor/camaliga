@@ -198,4 +198,5 @@ Version     Changes
 9.1.0       New configuration option: actionForLinks (for ke_search).
             Bugfix: the thumbnail-view in the backend-module is now sortable again.
             Bugfix: AddPublicResourcesViewHelper.
+            Update-script is now deprecated and will be removed in version 10.0.
 ==========  ============================================================================================================================
