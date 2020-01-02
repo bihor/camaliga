@@ -10,6 +10,7 @@ CREATE TABLE tx_camaliga_domain_model_content (
 	shortdesc text,
 	longdesc text,
 	link tinytext,
+	slug varchar(512),
 	image tinytext,
 	image2 tinytext,
 	caption2 varchar(255) DEFAULT '' NOT NULL,

@@ -18,7 +18,7 @@
 Konfiguration via Extension-Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Bei der Konfiguration im Extension-Manager kann man 4 verschiedene Sachen einstellen:
+Bei der Konfiguration im Extension-Manager kann man verschiedene Sachen einstellen:
 
 - Man kann neu erzeugte Felder dort angeben.
 
@@ -36,3 +36,5 @@ Bei der Konfiguration im Extension-Manager kann man 4 verschiedene Sachen einste
   Do not switch controller and action at the ke_search hook?
 
   Action (e.g. show or list) for the ke_search hook, if it is not switched
+
+- Bei slugField1 und slugField1 kann man definieren, welche Felder für den Slug benutzt werden sollen. 

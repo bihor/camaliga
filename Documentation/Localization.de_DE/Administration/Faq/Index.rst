@@ -32,3 +32,7 @@ FAQ
 - Wie kann ich den Feld-Typ ändern?
 
   Siehe Kapitel "Administration / Camaliga-Tabellen erweitern"
+
+- Welche Felder werden durchsucht?
+
+  Es sind diese Felder: title, shortdesc, longdesc, street, zip, city, country, person and custom1.

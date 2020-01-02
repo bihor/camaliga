@@ -85,6 +85,9 @@
 			<trans-unit id="mother.description">
 				<target>Übergeordnetes Element von diesem Element</target>
 			</trans-unit>
+			<trans-unit id="slug.description">
+				<target>Slug</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

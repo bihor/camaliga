@@ -7,7 +7,37 @@ $disableContact = (bool)$configurationUtility['disableContact'];
 $disableCustom = (bool)$configurationUtility['disableCustom'];
 $disableMother = (bool)$configurationUtility['disableMother'];
 $enableFal = (bool)$configurationUtility['enableFal'];
+$slugField1 = $configurationUtility['slugField1'];
+$slugField2 = $configurationUtility['slugField2'];
+
 $pre = ($enableFal) ? 'fal' : '';
+$slugFields = [];
+if ($slugField1) {
+	$fieldsArray = explode(' ', trim($slugField1));
+	if (count($fieldsArray) > 1) {
+		$slugField1a = [];
+		foreach ($fieldsArray as $field) {
+			$slugField1a[] = $field;
+		}
+	} else {
+		$slugField1a = $slugField1;
+	}
+} else {
+	$slugField1a = 'title';
+}
+$slugFields[] = $slugField1a;
+if ($slugField2) {
+	$fieldsArray = explode(' ', trim($slugField2));
+	if (count($fieldsArray) > 1) {
+		$slugField2a = [];
+		foreach ($fieldsArray as $field) {
+			$slugField2a[] = $field;
+		}
+	} else {
+		$slugField2a = $slugField1;
+	}
+	$slugFields[] = $slugField2a;
+}
 
 if ($enableFal) {
 	$imgConfig1 = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
@@ -263,14 +293,10 @@ $tcaArray = array(
 		'iconfile' => 'EXT:camaliga/Resources/Public/Icons/tx_camaliga_domain_model_content.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc, link, '.$pre.'image',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc, link, slug, '.$pre.'image',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, shortdesc, longdesc;;;richtext:rte_transform[mode=ts_links], link, '.$pre.'image;;2'),
-	),
-	'palettes' => array(
-		'1' => array('showitem' => ''),
-		'2' => array('showitem' => ''),
+		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc;;;richtext:rte_transform[mode=ts_links], link, slug, '.$pre.'image;;2'),
 	),
 	'columns' => array(
 		'sys_language_uid' => [
@@ -362,55 +388,77 @@ $tcaArray = array(
 				]
 			],
 		],
-			'title' => array(
-					'exclude' => 0,
-					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.title',
-					'config' => array(
-							'type' => 'input',
-							'size' => 30,
-							'eval' => 'trim,required'
-					),
-			),
-			'shortdesc' => array(
-					'exclude' => 0,
-					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.shortdesc',
-					'config' => array(
-							'type' => 'text',
-							'cols' => 40,
-							'rows' => 3,
-							'eval' => 'trim'
-					),
-			),
-			'longdesc' => array(
-				'exclude' => 0,
-				'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.longdesc',
-				'config' => [
-					'type' => 'text',
-					'enableRichtext' => true,
-					'richtextConfiguration' => 'default',
-					'fieldControl' => [
-						'fullScreenRichtext' => [
-							'disabled' => false,
-						],
+		'title' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.title',
+			'config' => [
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim,required'
+			],
+		],
+		'shortdesc' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.shortdesc',
+			'config' => [
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 3,
+				'eval' => 'trim'
+			],
+		],
+		'longdesc' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.longdesc',
+			'config' => [
+				'type' => 'text',
+				'enableRichtext' => true,
+				'richtextConfiguration' => 'default',
+				'fieldControl' => [
+					'fullScreenRichtext' => [
+						'disabled' => false,
 					],
-					'cols' => 40,
-					'rows' => 15,
-					'eval' => 'trim',
 				],
-			),
-			'link' => array(
-				'exclude' => 0,
-				'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.link',
-				'config' => [
-					'type' => 'input',
-					'renderType' => 'inputLink',
+				'cols' => 40,
+				'rows' => 15,
+				'eval' => 'trim',
+			],
+		],
+		'link' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.link',
+			'config' => [
+				'type' => 'input',
+				'renderType' => 'inputLink',
+			],
+		],
+		'slug' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.slug',
+			'config' => [
+				'type' => 'slug',
+				'generatorOptions' => [
+					'fields' => $slugFields,
+					'fieldSeparator' => '/',
+					'prefixParentPageSlug' => true,
+					'replacements' => [
+						'/' => '',
+						'[' => '',
+						']' => '',
+						'(' => '',
+						')' => '',
+					],
 				],
-			),
-			$pre.'image' => array(
-					'exclude' => 0,
-					'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image',
-					'config' => $imgConfig1,
-			),
+				'fallbackCharacter' => '-',
+				'eval' => 'uniqueInSite',
+				'default' => ''
+			]
+		],
+		$pre.'image' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image',
+			'config' => $imgConfig1,
+		],
 	),
 );
 

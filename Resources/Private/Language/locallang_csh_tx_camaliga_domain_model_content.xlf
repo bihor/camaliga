@@ -84,6 +84,9 @@
 			<trans-unit id="mother.description">
 				<source>Parent element of this element</source>
 			</trans-unit>
+			<trans-unit id="slug.description">
+				<source>Slug</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

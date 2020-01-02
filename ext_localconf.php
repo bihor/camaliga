@@ -66,6 +66,13 @@ if (TYPO3_MODE === 'BE') {
 			'additionalFields' => 'Quizpalme\\Camaliga\\Task\\MoveUploadsToFalFieldProvider'
 	);
 	
+	// Add Slug-builder task (sheduler)
+	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\BuildSlugTask'] = array(
+		'extension' => $_EXTKEY,
+		'title' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be.xlf:slugtasks.title',
+		'description' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_be.xlf:slugtasks.description'
+	);
+	
 	/** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
 	$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
 	$iconRegistry->registerIcon(

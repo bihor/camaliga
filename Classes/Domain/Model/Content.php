@@ -1170,7 +1170,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 */
 	public function getExtended() {
 		$extended = array();
-		$extendedFields = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
+		$extendedFields = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
 		if ($extendedFields) {
 			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
 			$fieldsArray = explode(' ', trim($extendedFields));

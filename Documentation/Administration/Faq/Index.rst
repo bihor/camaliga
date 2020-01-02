@@ -32,3 +32,7 @@ FAQ
 - How can I change a field?
 
   See chapter “Administration / Extend the camaliga tables”.
+
+- Which fields are searchfields?
+
+  This fields: title, shortdesc, longdesc, street, zip, city, country, person and custom1.

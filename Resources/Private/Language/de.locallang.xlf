@@ -64,6 +64,9 @@
 			<trans-unit id="tx_camaliga_domain_model_content.mother">
 				<target>Übergeordnetes Element von diesem Element</target>
 			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.slug">
+				<target>Slug</target>
+			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.category">
 				<target>Kategorie</target>
 			</trans-unit>

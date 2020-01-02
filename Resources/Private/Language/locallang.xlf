@@ -64,6 +64,9 @@
 			<trans-unit id="tx_camaliga_domain_model_content.mother">
 				<source>Parent element of this element</source>
 			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.slug">
+				<source>Slug</source>
+			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.category">
 				<source>Category</source>
 			</trans-unit>

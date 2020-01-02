@@ -31,7 +31,27 @@ Ab TYPO3 9 kann man routeEnhancers benutzen, um das Format der Links zu Einzelse
 	    defaultController: 'Content::list'
 
 limitToPages ist optional. Man kann die Regel auf bestimmte Seiten beschränken, die Einzelansichten anzeigen. Ersetze die 24!
-In diesem Beispiel wird die uid eines Camaliga-Elements hier "more" eingefügt. Hier ein anderes Beispiel::
+In diesem Beispiel wird die uid eines Camaliga-Elements hinter "more" eingefügt. Hier ein anderes Beispiel, welches das Slug-Feld benutzt::
+
+	routeEnhancers:
+	  CamaligaPlugin:
+		type: Extbase
+		limitToPages: [24]
+		extension: Camaliga
+		plugin: Pi1
+		routes:
+		  - { routePath: '/entry/{camaliga_title}', _controller: 'Content::map', _arguments: {'camaliga_title': 'content'} }
+		defaultController: 'Content::show'
+		aspects:
+		  camaliga_title:
+			type: PersistedAliasMapper
+			tableName: 'tx_camaliga_domain_model_content'
+			routeFieldName: 'slug'
+			routeValuePrefix: '/'
+
+Achtung: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug-Felder auch befüllt sind. Dazu kann man einen Scheduler-Task von camaliga benutzen.
+
+Hier noch 2 nicht so schöne Beispiele::
 
 	routeEnhancers:
 	  CamaligaPlugin:

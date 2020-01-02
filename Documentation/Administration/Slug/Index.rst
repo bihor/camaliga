@@ -31,7 +31,27 @@ From TYPO3 9 you can use routeEnhancers to modify the format of links to single 
 	    defaultController: 'Content::list'
 
 limitToPages is optional. You can list there all your single-pages with camaliga elements. Replace the 24!
-In this example the uid of a camaliga element is used after "more". Here another example::
+In this example the uid of a camaliga element is used after "more". Here another example, that uses the slug-field::
+
+	routeEnhancers:
+	  CamaligaPlugin:
+		type: Extbase
+		limitToPages: [24]
+		extension: Camaliga
+		plugin: Pi1
+		routes:
+		  - { routePath: '/entry/{camaliga_title}', _controller: 'Content::map', _arguments: {'camaliga_title': 'content'} }
+		defaultController: 'Content::show'
+		aspects:
+		  camaliga_title:
+			type: PersistedAliasMapper
+			tableName: 'tx_camaliga_domain_model_content'
+			routeFieldName: 'slug'
+			routeValuePrefix: '/'
+
+Note: if you want to use the slug field, make sure it is not empty! You can use a scheduler task of camaliga to create values for the slug field.
+
+Here some not so good examples::
 
 	routeEnhancers:
 	  CamaligaPlugin:
@@ -50,7 +70,7 @@ In this example the uid of a camaliga element is used after "more". Here another
 			routeFieldResult: '{city}-{uid}'
 
 In this example we use the city and the uid of a camaliga entry to show one entry at a Google map.
-Note: currently there is no slug field in the camaliga database-table, so there is no convert to a good link-string.
+Note: here there is no convert to a good link-string.
 Attention: The example will not work, if you use the "/" in the city field.
 
 You can use another version too. The result is the same (but without /googlemaps)::

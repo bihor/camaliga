@@ -18,7 +18,7 @@
 Configuration via Extension-Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-At the configuration in the extension-manager you can set 4 things:
+At the configuration in the extension-manager you can set some things:
 
 - You can define new fields, which you have created.
 
@@ -35,3 +35,5 @@ At the configuration in the extension-manager you can set 4 things:
   Do not switch controller and action at the ke_search hook?
 
   Action (e.g. show or list) for the ke_search hook, if it is not switched
+
+- slugField1 and slugField1 defines the fields that should be used for the slug. Standard: title.

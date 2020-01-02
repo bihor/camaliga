@@ -18,7 +18,7 @@
 Scheduler-Tasks
 ^^^^^^^^^^^^^^^
 
-- Es gibt 3 Planer-Tasks: Import und Export von CSV-Dateien. In den Tasks kann man jede Menge Einstellungen vornehmen!
+- Es gibt 4 Planer-Tasks: Import und Export von CSV-Dateien. In den Tasks kann man jede Menge Einstellungen vornehmen!
   Der 3. Planer kann Bilder aus dem /uploads/tx_camaliga-Ordner nach FAL verschieben/umändern.
   Bitte ein Backup der Camaliga-Tabellen und der uploads-Bilder machen, bevor du diesen Task benutzt!
   Nachdem man diesen Task ausgeführt hat, muss man noch Camaliga sagen, dass es FAL benutzen soll.
@@ -39,3 +39,6 @@ Scheduler-Tasks
     </f:if>
 
 Beachte: gelöschte Elemente werden ignoriert!
+
+- Der 4. Task kann das slug-Feld befüllen. Da es vor camaliga 9.1.1 nicht existierte, ist es bei alten Einträgen leer.
+  Dieser Task befüllt alle slug-Felder mit Werten. 
