@@ -37,4 +37,5 @@ Bei der Konfiguration im Extension-Manager kann man verschiedene Sachen einstell
 
   Action (e.g. show or list) for the ke_search hook, if it is not switched
 
-- Bei slugField1 und slugField1 kann man definieren, welche Felder für den Slug benutzt werden sollen. 
+- Bei slugField1 und slugField1 kann man definieren, welche Felder für den Slug benutzt werden sollen.
+  "person city" meint: person oder city (falls city nicht gesetzt ist).

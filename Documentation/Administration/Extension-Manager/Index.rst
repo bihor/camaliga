@@ -37,3 +37,4 @@ At the configuration in the extension-manager you can set some things:
   Action (e.g. show or list) for the ke_search hook, if it is not switched
 
 - slugField1 and slugField1 defines the fields that should be used for the slug. Standard: title.
+  "person city" means: person or city (if person is not set).

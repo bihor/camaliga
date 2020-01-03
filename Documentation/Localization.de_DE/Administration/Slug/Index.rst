@@ -47,7 +47,6 @@ In diesem Beispiel wird die uid eines Camaliga-Elements hinter "more" eingefügt
 			type: PersistedAliasMapper
 			tableName: 'tx_camaliga_domain_model_content'
 			routeFieldName: 'slug'
-			routeValuePrefix: '/'
 
 Achtung: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug-Felder auch befüllt sind. Dazu kann man einen Scheduler-Task von camaliga benutzen.
 

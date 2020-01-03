@@ -293,10 +293,10 @@ $tcaArray = array(
 		'iconfile' => 'EXT:camaliga/Resources/Public/Icons/tx_camaliga_domain_model_content.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc, link, slug, '.$pre.'image',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc, link, '.$pre.'image',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, shortdesc, longdesc;;;richtext:rte_transform[mode=ts_links], link, slug, '.$pre.'image;;2'),
+		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc;;;richtext:rte_transform[mode=ts_links], link, '.$pre.'image;;2'),
 	),
 	'columns' => array(
 		'sys_language_uid' => [
@@ -397,6 +397,28 @@ $tcaArray = array(
 				'eval' => 'trim,required'
 			],
 		],
+		'slug' => [
+			'exclude' => 0,
+			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.slug',
+			'config' => [
+				'type' => 'slug',
+				'generatorOptions' => [
+					'fields' => $slugFields,
+					'fieldSeparator' => '/',
+					'prefixParentPageSlug' => true,
+					'replacements' => [
+						'/' => '',
+						'[' => '',
+						']' => '',
+						'(' => '',
+						')' => '',
+					],
+				],
+				'fallbackCharacter' => '-',
+				'eval' => 'uniqueInSite',
+				'default' => ''
+			]
+		],
 		'shortdesc' => [
 			'exclude' => 0,
 			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.shortdesc',
@@ -431,28 +453,6 @@ $tcaArray = array(
 				'type' => 'input',
 				'renderType' => 'inputLink',
 			],
-		],
-		'slug' => [
-			'exclude' => 0,
-			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.slug',
-			'config' => [
-				'type' => 'slug',
-				'generatorOptions' => [
-					'fields' => $slugFields,
-					'fieldSeparator' => '/',
-					'prefixParentPageSlug' => true,
-					'replacements' => [
-						'/' => '',
-						'[' => '',
-						']' => '',
-						'(' => '',
-						')' => '',
-					],
-				],
-				'fallbackCharacter' => '-',
-				'eval' => 'uniqueInSite',
-				'default' => ''
-			]
 		],
 		$pre.'image' => [
 			'exclude' => 0,

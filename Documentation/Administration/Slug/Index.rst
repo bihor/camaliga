@@ -47,7 +47,6 @@ In this example the uid of a camaliga element is used after "more". Here another
 			type: PersistedAliasMapper
 			tableName: 'tx_camaliga_domain_model_content'
 			routeFieldName: 'slug'
-			routeValuePrefix: '/'
 
 Note: if you want to use the slug field, make sure it is not empty! You can use a scheduler task of camaliga to create values for the slug field.
 
