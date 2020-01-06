@@ -2,6 +2,10 @@
 namespace Quizpalme\Camaliga\Task;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 
 class CsvImportAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\AdditionalFieldProviderInterface {
 	
@@ -226,38 +230,54 @@ class CsvImportAdditionalFieldProvider implements \TYPO3\CMS\Scheduler\Additiona
 	 */
 	public function validateAdditionalFields(array &$submittedData, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule) {
 		$isValid = TRUE;
-		if ($res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'pages', 'uid = ' . (int)$submittedData['camaliga']['page'])) {
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res) == 0 && $submittedData['camaliga']['page'] > 0) {
+		if ($submittedData['camaliga']['page'] > 0) {
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
+			$count = $queryBuilder
+			->count('uid')
+			->from('pages')
+			->where(
+				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter((int)$submittedData['camaliga']['page'], \PDO::PARAM_INT))
+			)
+			->execute()
+			->fetchColumn(0);
+			if ($count == 0) {
 				$isValid = FALSE;
 				$schedulerModule->addMessage(
-						$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidPage'),
-						\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
-						);
+					$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidPage'),
+					\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+				);
 			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		} else {
 			$isValid = FALSE;
 			$schedulerModule->addMessage(
-					$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidPage'),
-					\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+				$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidPage'),
+				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);
 		}
 		$lang = (int)$submittedData['camaliga']['language'];
-		if (($lang > 0) && ($res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'sys_language', 'uid = ' . $lang))) {
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res) == 0) {
+		if ($lang > 0) {
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_language');
+			$count = $queryBuilder
+			->count('uid')
+			->from('sys_language')
+			->where(
+				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($lang, \PDO::PARAM_INT))
+			)
+			->execute()
+			->fetchColumn(0);
+			if ($count == 0) {
 				$isValid = FALSE;
 				$schedulerModule->addMessage(
-						$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidLanguage'),
-						\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
-						);
+					$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidLanguage'),
+					\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+				);
 			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		}
 		if (substr($submittedData['camaliga']['csvfile'],0,10) != 'fileadmin/') {
 			$isValid = FALSE;
 			$schedulerModule->addMessage(
-					$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidCsvfile'),
-					\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+				$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidCsvfile'),
+				\TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
 			);
 		}
 		return $isValid;

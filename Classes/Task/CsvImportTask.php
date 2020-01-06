@@ -1,6 +1,12 @@
 <?php
 namespace Quizpalme\Camaliga\Task;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+
 class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
 	/**
@@ -86,6 +92,11 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 * @var integer
 	 */
 	protected $simulate = 0;
+	
+	/**
+	 * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+	 */
+	protected $configurationManager;
 	
 	
 	/**
@@ -348,47 +359,97 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		
 		if ($delete && !$simulate) {
 			// erst löschen
-			$res = $GLOBALS['TYPO3_DB']->exec_DELETEquery( 'sys_category_record_mm', 'uid_foreign IN 
-					(SELECT uid FROM tx_camaliga_domain_model_content WHERE pid=' . $pid . ' AND sys_language_uid=' . $syslanguid . ')' );
-			$res = $GLOBALS['TYPO3_DB']->exec_DELETEquery( 'tx_camaliga_domain_model_content', 'pid=' . $pid . ' AND sys_language_uid=' . $syslanguid );
-		}
-		
-		// search all categories
-		$catArray = array();
-		$catParentArray = array();
-		$where = ($catpage) ? ' AND pid=' . $pid : '';
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid, parent, title',
-				'sys_category',
-				'hidden=0 AND deleted=0' . $where,		// TODO: language berücksichtigen
-				'',
-				'uid ASC');
-		$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
-		if ($rows>0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)){
-				$catArray[$row['title']] = $row['uid'];
-				if (!is_array($catParentArray[$row['parent']]))
-					$catParentArray[$row['parent']] = array();
-					$catParentArray[$row['parent']][$row['title']] = $row['uid'];
+			$uids = [];
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+			$statement = $queryBuilder
+			->select('uid')
+			->from('tx_camaliga_domain_model_content')
+			->where(
+				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT))
+			)
+			->andWhere(
+				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \PDO::PARAM_INT))
+			)
+			->orderBy('sorting')
+			->execute();
+			while ($row = $statement->fetch()) {
+				$uids[] = $row['uid'];
 			}
+					
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
+			$affectedRows = $queryBuilder
+			->delete('sys_category_record_mm')
+			->where(
+				$queryBuilder->expr()->in('uid_foreign', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
+			)
+			->execute();
+			
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+			$affectedRows = $queryBuilder
+			->delete('tx_camaliga_domain_model_content')
+			->where(
+				$queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
+			)
+			->execute();
 		}
-		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		
-		// max sorting till now
+		// Step 0: init
+		$configurationArray = [
+			'persistence' => [
+				'storagePid' => '',
+				'classes' => [
+					'Quizpalme\Camaliga\Domain\Model\Category' => [
+						'mapping' => [
+							'recordType' => 0,
+							'tableName' => 'sys_category'
+						]
+					]
+				]
+			]
+		];
+		$this->configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
+		$this->configurationManager->setConfiguration($configurationArray);
+		
+		// Step 1: search all categories
+		$catArray = [];
+		$catParentArray = [];
+		$cat_pids = [];
+		if ($catpage) {
+			$cat_pids[] = $pid;
+		}
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$all_cats = $categoryRepository->getAllCats('uid', 'asc', $cat_pids);
+		foreach ($all_cats as $row) {
+			$catArray[$row['title']] = $row['uid'];
+			if (!is_array($catParentArray[$row['parent']])) {
+				$catParentArray[$row['parent']] = [];
+			}
+			$catParentArray[$row['parent']][$row['title']] = $row['uid'];
+		}
+		
+		// Step 2: max sorting till now
 		$sorting=0;
 		if (!$delete) {
-			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('MAX(sorting) AS maxi',
-					'tx_camaliga_domain_model_content',
-					'hidden=0 AND deleted=0 AND pid=' . $pid);
-			$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
-			if ($rows>0) {
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)){
-					$sorting = $row['maxi'];
-				}
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+			$statement = $queryBuilder
+			->select('sorting')
+			->from('tx_camaliga_domain_model_content')
+			->where(
+				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT))
+			)
+			->andWhere(
+				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \PDO::PARAM_INT))
+			)
+			->orderBy('sorting', 'DESC')
+			->setMaxResults(1)
+			->execute();
+			while ($row = $statement->fetch()) {
+				$sorting = $row['sorting'];
 			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		}
 		
-		// Import
+		// Step 3: Import
 		$lines = array();
 		if ($newestFile)
 			$lines = file($newestFile);
@@ -473,9 +534,15 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			}
 		}
 		if (!$simulate) {
-			$success_camaliga = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tx_camaliga_domain_model_content', $values);
+			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+			$success_camaliga = $queryBuilder
+			->insert('tx_camaliga_domain_model_content')
+			->values($values)
+			->execute();
 			if ($success_camaliga) {
-				$values['uid'] = $GLOBALS['TYPO3_DB']->sql_insert_id();
+				$values['uid'] = $queryBuilder->getConnection()->lastInsertId();
+				
+				// TODO: slug setzen!
 			} else {
 				$values['uid'] = 0;
 				$success_global = FALSE;
@@ -487,7 +554,6 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		if (($values['uid'] > 0) || $simulate) {
 			// Kategorie-Relationen einfügen? Kategorien müssen vorhanden sein!
 			$cats = 0;
-			$updateA = array();
 			$catIDs = array(); 
 			for ($i=0; $i<count($names); $i++) {
 				$feld = $names[$i];
@@ -540,7 +606,11 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 							$mmInsertArray['uid_foreign'] = $values['uid'];			// Das Camaliga-Element
 							$mmInsertArray['sorting'] = ($cats+1)*10;
 							$mmInsertArray['sorting_foreign'] = ($cats+1)*10;
-							$success_cats = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_category_record_mm', $mmInsertArray);
+							$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
+							$success_cats = $queryBuilder
+							->insert('sys_category_record_mm')
+							->values($mmInsertArray)
+							->execute();
 							if ($success_cats) {
 								$cats++;
 							} else {
@@ -552,8 +622,14 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			}
 			
 			if (!$simulate && ($cats > 0)) {
-				$updateA['categories'] = $cats;
-				$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_camaliga_domain_model_content', 'uid=' . $values['uid'], $updateA);
+				$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+				$queryBuilder
+				->update('tx_camaliga_domain_model_content')
+				->where(
+					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
+				)
+				->set('categories', $cats)
+				->execute();
 			}
 		}
 		

@@ -2,6 +2,9 @@
 namespace Quizpalme\Camaliga\Task;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 
 class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
@@ -296,14 +299,24 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		}
 
 		// Step 3: select camaliga-category-relations
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid_foreign, uid_local',
-				'tx_camaliga_domain_model_content AS camaliga, sys_category_record_mm AS mm',
-				'mm.uid_foreign=camaliga.uid AND camaliga.hidden=0 AND camaliga.deleted=0 AND camaliga.sys_language_uid=' . $lang_uid . ' AND camaliga.pid=' . $uid,
-				'',
-				'camaliga.uid');
-		$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
-		if ($rows>0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)){
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+		$statement = $queryBuilder
+		->select('uid_foreign', 'uid_local')
+		->from('tx_camaliga_domain_model_content')
+		->join(
+			'tx_camaliga_domain_model_content',
+			'sys_category_record_mm',
+			'mm',
+			$queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->quoteIdentifier('tx_camaliga_domain_model_content.uid'))
+		)
+		->where(
+			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.pid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+		)
+		->andWhere(
+			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \PDO::PARAM_INT))
+		)
+		->execute();
+		while ($row = $statement->fetch()) {
 				$uid_cam = $row['uid_foreign'];
 				$uid_cat = $row['uid_local'];
 				if (!is_array($cat_rel[$uid_cam]))
@@ -315,18 +328,22 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 					if ($aCat == $uid_cat)	// gesuchte Kategorie vorhanden?
 						$cat_counts[$uid_cam]++;
 				}
-			}
 		}
 				
 		// Step 4: select camaliga entries
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*',
-				'tx_camaliga_domain_model_content',
-				'hidden=0 AND deleted=0 AND sys_language_uid=' . $lang_uid . ' AND pid=' . $uid,
-				'',
-				'sorting ASC');
-		$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
-		if ($rows>0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)){
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+		$statement = $queryBuilder
+		->select('*')
+		->from('tx_camaliga_domain_model_content')
+		->where(
+			$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+		)
+		->andWhere(
+			$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \PDO::PARAM_INT))
+		)
+		->orderBy('sorting')
+		->execute();
+		while ($row = $statement->fetch()) {
 				$uid = $row['uid'];
 				if (!$cats || ($cat_counts[$uid]>0)) {
 					if ($i > 0)
@@ -348,11 +365,7 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 					}
 					$i++;
 				}
-			}
-		} else {
-			$successfullyExecuted = FALSE;
 		}
-		$GLOBALS['TYPO3_DB']->sql_free_result($res);
 		
 		$fp = fopen(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $this->getCsvfile(), 'w');
 		$ergebnis = fwrite($fp, $content);

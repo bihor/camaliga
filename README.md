@@ -1,6 +1,6 @@
 # camaliga
 
-version 9.1.2
+version 9.1.3
 
 A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick or Isotope. 
 Bootstrap support. Indexer for ke_search. Many features.
@@ -13,4 +13,4 @@ https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/
 Bis docs.typo3.org den Fehler behebt, kann man sich durch die deutsche Anleitung auch hier durchklicken:
 https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE
 
-Last feature: slug info fixed.
+Last feature: Tasks with use of Query Builder.
