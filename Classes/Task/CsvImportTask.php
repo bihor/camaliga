@@ -417,7 +417,7 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		if ($catpage) {
 			$cat_pids[] = $pid;
 		}
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
 		$all_cats = $categoryRepository->getAllCats('uid', 'asc', $cat_pids);
 		foreach ($all_cats as $row) {
@@ -500,13 +500,13 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			fclose ($handle);
 			if ($simulate) {
 				$output = $this->build_table($insert);
-				$message = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 						$output,
 						'Simulation:', // the header is optional
 						\TYPO3\CMS\Core\Messaging\FlashMessage::INFO,
 						FALSE
 				);
-				$flashMessageService = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessageService');
+				$flashMessageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessageService');
 				$messageQueue = $flashMessageService->getMessageQueueByIdentifier();
 				$messageQueue->addMessage($message);
 			}
@@ -523,6 +523,10 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 */
 	function insertLine($names, $values, $fields, $simulate, $convert, $catArray, $catParentArray) {
 		$success_global = TRUE;
+		$connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
+		$fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
+		$slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
+		
 		for ($i=0; $i<count($names); $i++) {
 			$feld = trim($names[$i]);
 			if (substr($feld, 0, 8) != 'category') {
@@ -534,7 +538,7 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			}
 		}
 		if (!$simulate) {
-			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+			$queryBuilder = $connection->createQueryBuilder();
 			$success_camaliga = $queryBuilder
 			->insert('tx_camaliga_domain_model_content')
 			->values($values)
@@ -542,7 +546,19 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			if ($success_camaliga) {
 				$values['uid'] = $queryBuilder->getConnection()->lastInsertId();
 				
-				// TODO: slug setzen!
+				// slug setzen!
+				$queryBuilder = $connection->createQueryBuilder();
+				$statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
+					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
+				)->execute();
+				$record = $statement->fetch();
+				$slug = $slugHelper->generate($record, $record['pid']);
+					
+				// Update
+				$queryBuilder = $connection->createQueryBuilder();
+				$queryBuilder->update('tx_camaliga_domain_model_content')->where(
+					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
+				)->set('slug', $slug)->execute();
 			} else {
 				$values['uid'] = 0;
 				$success_global = FALSE;
@@ -622,7 +638,7 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			}
 			
 			if (!$simulate && ($cats > 0)) {
-				$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+				$queryBuilder = $connection->createQueryBuilder();
 				$queryBuilder
 				->update('tx_camaliga_domain_model_content')
 				->where(
