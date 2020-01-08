@@ -40,4 +40,4 @@ The extension is not allways easy to use, but it is very flexible and admins wil
 
 .. important::
 
-   If you are using TYPO3 9, then you will need the extension typo3db_legacy for some special cases like exports or imports.
+   If you are using TYPO3 9, then you will need the extension typo3db_legacy for some special cases like extended fields.

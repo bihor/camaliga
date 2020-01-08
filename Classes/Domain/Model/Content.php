@@ -411,20 +411,14 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 * @return string $link
 	 */
 	public function getLinkResolved() {
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$contentRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
 		$output = '';
 		$link = $this->link;
-		$linkArray = explode(':', $link);
-		if ($linkArray[0] == 'file') {
-			$uid = intval($linkArray[1]); // content element uid
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'identifier, storage',
-					'sys_file',
-					'uid=' . $uid);
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-				while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4))
-					$output = ($row['storage'] == 1) ? '/fileadmin' . $row['identifier'] : $row['identifier'];
-			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+		$linkArray = explode('?', $link);
+		if ($linkArray[0] == 't3://file') {
+			$linkArray2 = explode('=', $linkArray[1]);
+			$output = $contentRepository->getFileLink(intval($linkArray2[1]));	// content element uid
 		}
 		return $output;
 	}

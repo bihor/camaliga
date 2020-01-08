@@ -2,6 +2,8 @@
 namespace Quizpalme\Camaliga\Task;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 
 class MoveUploadsToFalTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 
@@ -94,7 +96,7 @@ class MoveUploadsToFalTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			$targetFolder,
 			$image
 		);
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+		$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
 		$objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager')->persistAll();
 		
 		// Link in der Caption?
@@ -138,39 +140,33 @@ class MoveUploadsToFalTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		// Get an instance of the DataHandler and process the data
 		/** var \TYPO3\CMS\Core\DataHandling\DataHandler $dataHandler */
 		//$dataHandler = GeneralUtility::makeInstance(DataHandler::class);
-		$dataHandler = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler');
+		$dataHandler = GeneralUtility::makeInstance('TYPO3\CMS\Core\DataHandling\DataHandler');
 		$dataHandler->start($data, array());
 		$dataHandler->process_datamap();
 		// Error or success reporting
 		if (count($dataHandler->errorLog) === 0) {
 			// noch kein return
-			//return TRUE;
 		} else {
 			return FALSE;
 		}
 		
-		
-		// insert into sys_file_reference: wird nicht mehr gebraucht!
-	/*	$success_reference = $GLOBALS['TYPO3_DB']->exec_INSERTquery('sys_file_reference', $data['sys_file_reference'][$newId]);
-		if ($success_reference) {
-			$data['sys_file_reference'][$newId]['uid'] = $GLOBALS['TYPO3_DB']->sql_insert_id();
-		} else {
-			return FALSE;
-		}
-		*/
-		// update camaliga-element
-		$updateA = [];
-		$updateA['image' . $source] = '';
-		$updateA['falimage' . $source] = 1;
-		$updateA['tstamp'] = time();
+		// Update camaliga
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+		$queryBuilder
+		->update('tx_camaliga_domain_model_content')
+		->where(
+			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+		)
+		->set('image' . $source, '')
+		->set('falimage' . $source, 1)
+		->set('tstamp', time());
 		if ($source) {
-			$updateA['caption' . $source] = '';
+			$queryBuilder->set('caption' . $source, '');
 		}
-		$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_camaliga_domain_model_content', 'uid=' . $uid, $updateA);
+		$queryBuilder->execute();
 		
 		// delete image in the uploads-folder: ist aber nicht nötig, da das Bild verschoben wurde!
 		//unlink();
-		
 		return TRUE;
 	}
 	
@@ -178,23 +174,25 @@ class MoveUploadsToFalTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$successfullyExecuted = TRUE;
 		$pid = (int) $this->getPage();			// folder with camaliga elements
 		$maxi = 0;								// Counter
-		$camArray = array();
+		$camArray = [];
 
-		// select all visible camaliga elements of one folder
-		$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'uid, t3_origuid, sys_language_uid, l10n_parent, image, image2, image3, image4, image5, title, caption2, caption3, caption4, caption5, falimage, falimage2, falimage3, falimage4, falimage5',
-				'tx_camaliga_domain_model_content',
-				'deleted=0 AND pid=' . $pid,
-				'',
-				'uid ASC');
-		$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res);
-		if ($rows>0) {
-			while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)){
-				$camArray[$row['uid']] = $row;
-			}
+		// select all not deleted camaliga elements of one folder
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+		// Remove all restrictions but add DeletedRestriction again
+		$queryBuilder
+		->getRestrictions()
+		->removeAll()
+		->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+		$statement = $queryBuilder
+		->select('*')
+		->from('tx_camaliga_domain_model_content')
+		->where($queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT)))
+		->orderBy('uid')
+		->execute();
+		while ($row = $statement->fetch()) {
+			$camArray[$row['uid']] = $row;
 		}
-		$GLOBALS['TYPO3_DB']->sql_free_result($res);
-		
+
 		foreach ($camArray as $row) {
 			if ($row['image'] && !$row['falimage']) {
 				$maxi++;

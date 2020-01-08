@@ -563,5 +563,28 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
    		}
    		return $uid;
     }
+    
+    /**
+     * Get the link to a file
+     *
+     * @param	int	$uid	UID of a file
+     * @return string
+     */
+    public function getFileLink($uid) {
+    	$output = '';
+    	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file');
+    	$statement = $queryBuilder
+    	->select('identifier', 'storage')
+    	->from('sys_file')
+    	->where(
+    		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+   		)
+   		->setMaxResults(1)
+   		->execute();
+   		while ($row = $statement->fetch()) {
+   			$output = ($row['storage'] == 1) ? '/fileadmin' . $row['identifier'] : $row['identifier'];
+   		}
+   		return $output;
+    }
 }
 ?>

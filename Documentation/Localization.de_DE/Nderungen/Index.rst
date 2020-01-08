@@ -206,4 +206,6 @@ Version     Änderungen
             Bugfix: Thumbnail-Ansicht im Backend kann wieder sortiert werden.
             Bugfix: AddPublicResourcesViewHelper.
 9.2.0       slug-Feld hinzugefügt. Bevor man es benutzt, sollte man den zugehörigen Scheduler-Task ausführen.
+            Wechsel zum QueryBuilder bei den Tasks.
+            Bugfix: getLinkResolved.
 ==========  =====================================================================================================================
