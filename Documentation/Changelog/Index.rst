@@ -200,6 +200,6 @@ Version     Changes
             Bugfix: AddPublicResourcesViewHelper.
             Update-script is now deprecated and will be removed in version 10.0.
 9.2.0       slug-field added. If you want to use, you should generate slugs via a scheduler task.
-            Switch to the QueryBuilder at the taks.
+            Switch to the QueryBuilder at the tasks.
             Bugfix: getLinkResolved.
 ==========  ============================================================================================================================
