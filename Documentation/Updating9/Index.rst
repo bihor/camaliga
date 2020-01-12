@@ -36,3 +36,5 @@ You need to add ".title" at catMMchildVal::
 		<f:then>{catMMchildVal.title}.</f:then><f:else>{catMMchildVal.title}, </f:else></f:if></f:for>
 
 Reason: catMMchildVal of catMMval.childs is now an array like in {content.categories}. You can use: uid, title and description.
+
+Deprecation: this feature will be removed in version 10.0. Please execute this script with camaliga version 9.

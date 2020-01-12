@@ -40,17 +40,20 @@ In diesem Beispiel wird die uid eines Camaliga-Elements hinter "more" eingefügt
 		extension: Camaliga
 		plugin: Pi1
 		routes:
-		  - { routePath: '/entry/{camaliga_title}', _controller: 'Content::map', _arguments: {'camaliga_title': 'content'} }
-		defaultController: 'Content::show'
+		  - { routePath: '/eintrag/{camaliga_title}', _controller: 'Content::show', _arguments: {'camaliga_title': 'content'} }
+		defaultController: 'Content::list'
 		aspects:
 		  camaliga_title:
 			type: PersistedAliasMapper
 			tableName: 'tx_camaliga_domain_model_content'
 			routeFieldName: 'slug'
 
-Achtung: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug-Felder auch befüllt sind. Dazu kann man einen Scheduler-Task von camaliga benutzen.
+Achtung 1: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug-Felder auch befüllt sind. Dazu kann man einen Scheduler-Task von camaliga benutzen.
 
-Hier noch 2 nicht so schöne Beispiele::
+Achtung 2: wenn man 2 Felder für das slug-Feld konfiguriert hat, wird '_' oder '-' statt '/' als Separator benutzt, wegen diesem Problem:
+https://forge.typo3.org/issues/87333
+
+Hier noch 2 nicht so schöne / alte Beispiele::
 
 	routeEnhancers:
 	  CamaligaPlugin:

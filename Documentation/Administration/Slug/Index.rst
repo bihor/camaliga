@@ -40,17 +40,20 @@ In this example the uid of a camaliga element is used after "more". Here another
 		extension: Camaliga
 		plugin: Pi1
 		routes:
-		  - { routePath: '/entry/{camaliga_title}', _controller: 'Content::map', _arguments: {'camaliga_title': 'content'} }
-		defaultController: 'Content::show'
+		  - { routePath: '/entry/{camaliga_title}', _controller: 'Content::show', _arguments: {'camaliga_title': 'content'} }
+		defaultController: 'Content::list'
 		aspects:
 		  camaliga_title:
 			type: PersistedAliasMapper
 			tableName: 'tx_camaliga_domain_model_content'
 			routeFieldName: 'slug'
 
-Note: if you want to use the slug field, make sure it is not empty! You can use a scheduler task of camaliga to create values for the slug field.
+Note 1: if you want to use the slug field, make sure it is not empty! You can use a scheduler task of camaliga to create values for the slug field.
 
-Here some not so good examples::
+Note 2: if you have configured 2 fields for the slug-field, '_' or '-' is used as separator and not '/', because of this problem:
+https://forge.typo3.org/issues/87333
+
+Here some not so good / old examples::
 
 	routeEnhancers:
 	  CamaligaPlugin:

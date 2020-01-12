@@ -40,3 +40,5 @@ noch ein ".title" bei catMMchildVal hinzufügen::
 
 Grund: catMMchildVal von catMMval.childs ist jetzt ein Array (wie bei {content.categories}) und kein String mehr.
 Verfügbar sind dabei: uid, title und description.
+
+Deprecation: dieses Feature wird in Version 10.0 entfernt! Also das Skript noch mit Camaliga 9 ausführen!

@@ -205,7 +205,10 @@ Version     Änderungen
 9.1.0       Neue Konfigurationsmöglichkeit: actionForLinks (für ke_search).
             Bugfix: Thumbnail-Ansicht im Backend kann wieder sortiert werden.
             Bugfix: AddPublicResourcesViewHelper.
+            Deprecation: das Update-Skript wird in Version 10 entfernt.
 9.2.0       slug-Feld hinzugefügt. Bevor man es benutzt, sollte man den zugehörigen Scheduler-Task ausführen.
             Wechsel zum QueryBuilder bei den Tasks.
+            exclude=1 bei den Backend-Feldern.
             Bugfix: getLinkResolved.
+            Deprecation: der uploads-Ordner wird ab Version 10 nicht mehr unterstützt! Wechsele zu FAL (siehe Admin./Scheduler)!
 ==========  =====================================================================================================================

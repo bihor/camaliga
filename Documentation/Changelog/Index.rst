@@ -18,9 +18,9 @@ ChangeLog
 
 - Here you find all the changes through the versions.
 
-==========  ============================================================================================================================
+==========  ==============================================================================================================================
 Version     Changes
-==========  ============================================================================================================================
+==========  ==============================================================================================================================
 0.1.0       Initial upload to TER.
 0.1.2       Google PicasaWeb-Import and FancyBox-Template added. Documentation updated.
 1.0.0       More TypoScript- and FlexForms-Settings. Carousel-Example updated.
@@ -201,5 +201,7 @@ Version     Changes
             Update-script is now deprecated and will be removed in version 10.0.
 9.2.0       slug-field added. If you want to use, you should generate slugs via a scheduler task.
             Switch to the QueryBuilder at the tasks.
+            exclude=1 at the backend-fields.
             Bugfix: getLinkResolved.
-==========  ============================================================================================================================
+            Using the uploads-folder is now deprecated and will be removed in version 10.0. Switch to FAL (see Administration/Scheduler)!
+==========  ==============================================================================================================================

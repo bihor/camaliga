@@ -18,8 +18,9 @@
 Scheduler-Tasks
 ^^^^^^^^^^^^^^^
 
-- There are 4 Scheduler Tasks: import and export CSV files. You can configure many things in both tasks.
-  The third task can move images from the /uploads/tx_camaliga-folder to FAL.
+- There are 4 scheduler Tasks: import and export CSV files. You can configure many things in this both tasks.
+
+- The third scheduler task can move images from the /uploads/tx_camaliga-folder to FAL.
   Please make a backup of the camaliga-table and your uploads-images before you switch to FAL!
   After you have switched all your images to FAL, you need to tell Camaliga that it should use the FAL images.
   Go to the extension manager and configure camaliga there. Click at the checkbox "Use images from FAL instead of images from uploads/".

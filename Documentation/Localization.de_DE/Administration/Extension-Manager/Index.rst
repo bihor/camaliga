@@ -30,6 +30,7 @@ Bei der Konfiguration im Extension-Manager kann man verschiedene Sachen einstell
   Das ist sehr wichtig, damit TYPO3 die Bild-Konfiguration umstellt.
   Lies das Kapitel Administration → Scheduler-Tasks, bevor du was umstellst!
   Beachte weiterhin: die Standardeinstellung ist, den Ordner /uploads/tx_camaliga zu benutzen.
+  Deprecation: dieses Feature wird in Version 10.0 entfernt! Dann kann man den uploads-Ordner nicht mehr benutzen!
 
 - Man kann einstellen, wie die Links zu einem Camaliga-Eintrag bei ke_search gebildet werden sollen::
 
