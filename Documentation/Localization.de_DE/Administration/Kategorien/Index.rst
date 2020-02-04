@@ -19,6 +19,10 @@ Kategorien
 ^^^^^^^^^^
 
 - Diese Extension benutzt die normalen TYPO3-Kategorien. Es gibt verschiedene Arten diese zu benutzen.
-  Mit {content.categories} kann man die markierten Kategorien anzeigen.
+  In {categories} sind alle Kategorien und deren Kinder zu sehen. Man kann sich das Array so im Template ansehen::
+  
+  <f:debug>{categories}</f:debug>
+
+- Mit {content.categories} kann man die markierten Kategorien anzeigen.
   Mit {content.categoriesAndParents} kann man die markierten Kategorien und deren Mutter-Kategorie anzeigen.
   Beide Variablen sind Arrays. Sie enthalten diese Werte/Strings: uid, title und description.
