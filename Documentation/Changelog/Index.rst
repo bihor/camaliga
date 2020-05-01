@@ -204,4 +204,5 @@ Version     Changes
             exclude=1 at the backend-fields.
             Bugfix: getLinkResolved.
             Using the uploads-folder is now deprecated and will be removed in version 10.0. Switch to FAL (see Administration/Scheduler)!
+9.2.2       Bugfix: categoriesAndParents contains now again deeper parents in the child list.
 ==========  ==============================================================================================================================

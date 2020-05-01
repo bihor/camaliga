@@ -211,4 +211,5 @@ Version     Änderungen
             exclude=1 bei den Backend-Feldern.
             Bugfix: getLinkResolved.
             Deprecation: der uploads-Ordner wird ab Version 10 nicht mehr unterstützt! Wechsele zu FAL (siehe Admin./Scheduler)!
+9.2.2       Bugfix: categoriesAndParents enthält nun wieder auch tiefer gelegene "parents" bei den "childs".
 ==========  =====================================================================================================================

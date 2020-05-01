@@ -28,7 +28,7 @@ Since camaliga 5.0.0 there are now three ways to use these extended templates / 
   which functioned according to this principle, but which are no longer available for selection and will be completely
   removed in version 6.0.0. Therefore, you should now read further.
 
-- The (new) extended Google Maps template will never be cached at all, which is why it does not need the parameter no_cache = 1 .
+- The extended Google Maps template will never be cached at all, which is why it does not need the parameter no_cache = 1 .
   The template does not mean as before MapExtended.html but search.html. The search form is integrated there via a partial.
   Anyone who does not need a caching or everyone who is not like other solutions should use the Search template.
   One can certainly use it for anything.
@@ -70,15 +70,15 @@ And so looks a finished example of the variant 3, which can be installed in almo
   </f:if>
 
 After you have installed that in your template, you still need the Partial "Options". That one of the typo3conf folder
-can be used or you can also copy it in the fileadmin folder. The path to the Partial can be set like this:
+can be used or you can also copy it in the fileadmin folder. The path to the Partial can be set like this in TypoScript setup:
 
 ::
 
-  plugin.tx_camaliga.view.partialRootPath = fileadmin/templates/Partials/
+  plugin.tx_camaliga.view.partialRootPaths.1 = fileadmin/templates/Partials/
 
 Note: the RealUrl-documentation says, that there should no cHash for plugins that are not chacheable.
 You can add noCacheHash="true" to your f:form, but then the search will not work anymore. Bad advice.
-But you can fix this problem if you create an new search page and add the pageUid to your search form.
+But you can fix this problem if you create a new search page and add the pageUid to your search form.
 New example:
 
 ::

@@ -21,5 +21,3 @@ ToDo-Liste
 - Bekannte Probleme lösen.
 
 - Das Camaliga-jQuery-Plugin erweitern.
-
-- Die Thumbnail-Liste im Backend wieder sortierbar machen.

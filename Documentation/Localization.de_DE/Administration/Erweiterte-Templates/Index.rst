@@ -28,7 +28,7 @@ Seit camaliga 5.0.0 gibt es nun drei Möglichkeiten, diese erweiterten Templates
   Bis zur Version 4.0.0 gab es noch mehr Templates, die nach diesem Prinzip funktionierten, aber die werden nicht mehr
   zur Auswahl angeboten und werden in der Version 6.0.0 komplett entfernt. Deshalb sollte man jetzt noch weiter lesen.
 
-- Das (neue) erweiterte Google-Karten/Maps-Template wird überhaupt nie gecached, weshalb man dort den no_cache=1 Parameter nicht braucht.
+- Das erweiterte Google-Karten/Maps-Template wird überhaupt nie gecached, weshalb man dort den no_cache=1 Parameter nicht braucht.
   Das Template heisst nicht wie früher MapExtended.html, sondern Search.html. Das Suchformular wird dort über ein Partial eingebunden.
   Jeder, der kein Caching braucht oder jeder, dem die anderen Lösungen nicht gefallen, sollte das Search-Template benutzen.
   Man kann es freilich für alles benutzen.
@@ -71,11 +71,11 @@ Und so sieht ein fertiges Beispiel der Variante 3 aus, welches man in fast jedes
   </f:if>
 
 Nachdem man das in sein Template eingebaut hat, braucht man noch das Partial "Options", dass man aus dem typo3conf-Ordner
-benutzen kann oder auch in den fileadmin-Ordner kopieren kann. Den Pfad zum Partial gibt man so an:
+benutzen kann oder auch in den fileadmin-Ordner kopieren kann. Den Pfad zum Partial gibt man so an via TypoScript-Setup:
 
 ::
 
-  plugin.tx_camaliga.view.partialRootPath = fileadmin/templates/Partials/
+  plugin.tx_camaliga.view.partialRootPaths.1 = fileadmin/templates/Partials/
 
 Beachte: die RealUrl-Doku sagt, dass man die Generierung des cHash bei nicht cache-baren Plugins ausschalten sollte.
 Nun kann man noch zum f:form noCacheHash="true" hinzufügen, aber dann funktioniert die Suche nicht mehr.

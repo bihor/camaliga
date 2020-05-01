@@ -94,7 +94,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 					$uid = $row['uid'];
 					$parent = $row['parent'];
 					if ((count($used_cats)==0) || ($used_cats[$uid])) {
-						if (($i==1 && $parentUids[$uid]==1) || ($i==2 && !$parentUids[$uid])) {
+						if (($i==1 && $parentUids[$uid]==1) || ($i==2)) { // && !$parentUids[$uid])) {
 							// In Durchgang 1 die Parents aufnehmen und in Durchgang 2 die Childs
 							if ($i==1) {
 								// nur parents sind dran
@@ -103,12 +103,16 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 								$cats[$uid]['uid'] = $uid;
 								$cats[$uid]['title'] = $row['title'];
 								$cats[$uid]['description'] = $row['description'];
-							} else {
-								// nur childs sind dran
+								#echo " # parent ".$row['title'];
+							} elseif (($i==2) && is_array($cats[$parent]) && $cats[$parent]['title']) {
+								// nur childs und tiefer gelegene parents sind dran
 								$cats[$parent]['childs'][$uid] = [];
 								$cats[$parent]['childs'][$uid]['uid'] = $uid;
 								$cats[$parent]['childs'][$uid]['title'] = $row['title'];
 								$cats[$parent]['childs'][$uid]['description'] = $row['description'];
+								//echo " # child/deeper parent: ".$row['title'].'='.$parentUids[$uid].'/'.$cats[$parent]['title'];
+							} elseif ($i==2) {
+								//echo " # no child: ".$row['title'];
 							}
 						}
 					}
