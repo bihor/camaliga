@@ -38,7 +38,7 @@ EXT: Camaliga - carousel/map/list/gallery
 
 :Spachen:
       `english Version <https://docs.typo3.org/p/quizpalme/camaliga/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/>`_ 
-      Die deutsche Übersetzung ist nicht verfügbar, da die Admins von docs.typo3.org es nicht hinkriegen. Bis dahin gibt es die deutsche Doku nur bei GitHub:
+      Die Doku gibt es auch bei GitHub:
       https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE
       
 
