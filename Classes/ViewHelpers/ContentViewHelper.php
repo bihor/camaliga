@@ -23,8 +23,8 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
 	/**
 	 * contentRepository
 	 *
+	 * @TYPO3\CMS\Extbase\Annotation\Inject
 	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
-	 * @inject
 	 */
 	protected $contentRepository = NULL;
 	
