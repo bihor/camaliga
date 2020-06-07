@@ -1163,21 +1163,27 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
 	 * @return array fields
 	 */
 	public function getExtended() {
-		$extended = array();
-		$extendedFields = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
+		$extended = [];
+		$extendedFields = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
 		if ($extendedFields) {
 			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
 			$fieldsArray = explode(' ', trim($extendedFields));
-			$search = implode(',', $fieldsArray);
-			if ($search) {
-				$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-							$search,
-							'tx_camaliga_domain_model_content',
-							'uid=' . $orig_uid);
-				if ($GLOBALS['TYPO3_DB']->sql_num_rows($res4) > 0) {
-					$extended = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4);
+			//$search = implode(',', $fieldsArray);
+			if (count($fieldsArray) > 0) {
+				foreach ($fieldsArray as $field) {
+					$queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+					$statement = $queryBuilder
+					->select($field)
+					->from('tx_camaliga_domain_model_content')
+					->where(
+						$queryBuilder->expr()->eq('uid', $orig_uid)
+					)
+					->setMaxResults(1)
+					->execute();
+					while ($row = $statement->fetch()) {
+						$extended[$field] = $row[$field];
+					}
 				}
-				$GLOBALS['TYPO3_DB']->sql_free_result($res4);
 			}
 		}
 		return $extended;
