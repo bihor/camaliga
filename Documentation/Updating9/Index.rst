@@ -15,8 +15,10 @@
 .. role::   php(code)
 
 
-Updating to camaliga 9.0.0
---------------------------
+Updating to camaliga 8.0.0 or 9.0.0
+-----------------------------------
+
+You should use the update script when updating from a camaliga version below 8.0.0.
 
 In Camaliga 9.0.0 are many changes related to the categories.
 First the setting "categoryMode" in the extension-configuration was removed, because categories cames now from a core-method.
@@ -37,4 +39,7 @@ You need to add ".title" at catMMchildVal::
 
 Reason: catMMchildVal of catMMval.childs is now an array like in {content.categories}. You can use: uid, title and description.
 
-Deprecation: this feature will be removed in version 10.0. Please execute this script with camaliga version 9.
+
+.. important::
+
+   You need a camaliga version below 9.2.6 to use this update script. Furthermore you need the extension typo3db_legacy when using TYPO3 9.

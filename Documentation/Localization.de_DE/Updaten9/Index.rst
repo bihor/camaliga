@@ -15,8 +15,10 @@
 .. role::   php(code)
 
 
-Updaten auf Camaliga 9.0.0
---------------------------
+Updaten auf Camaliga 8.0.0 oder 9.0.0
+-------------------------------------
+
+Wenn man von einer Camaliga-Version unter 8.0.0 updatet, sollte man das Update-Skript ausführen.
 
 In Camaliga 9.0.0 gibt es einige Änderungen bezüglich der Kategorien.
 Zum einen wurde die Extension-Konfiguration categoryMode entfernt, da die Kategorien nicht mehr intern ermittelt werden, sondern
@@ -41,4 +43,7 @@ noch ein ".title" bei catMMchildVal hinzufügen::
 Grund: catMMchildVal von catMMval.childs ist jetzt ein Array (wie bei {content.categories}) und kein String mehr.
 Verfügbar sind dabei: uid, title und description.
 
-Deprecation: dieses Feature wird in Version 10.0 entfernt! Also das Skript noch mit Camaliga 9 ausführen!
+
+.. Wichtig::
+
+   Man braucht eine Camaliga-Version unter 9.2.6 um das Update-Skript benutzen zu können. Außerdem braucht man die Extension typo3db_legacy wenn man TYPO3 9 benutzt.

@@ -38,9 +38,3 @@ Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder a
 - Auch ein Planer-Task für den CSV-Import und -Export ist vorhanden.
 
 Die Extension ist nicht immer einfach zu benutzen, aber sie ist sehr flexibel und Admin werden das mögen.
-
-
-.. important::
-
-   Wenn man TYPO3 9 benutzt, wird z.Z. noch die Extension typo3db_legacy bei den Update-Skripten noch benutzt.
-   Für den Normalfall braucht man sie aber nicht mehr.

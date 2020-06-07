@@ -16,7 +16,7 @@ slugField2 =
 # cat=basic/enable; type=boolean; label=Use images from FAL instead of images from uploads/:
 enableFal = 0
 
-# cat=disable_fields/enable; type=boolean; label=Disable all further images (use only one image):
+# cat=disable_fields/enable; type=boolean; label=Disable all further images (use only one image/falimage):
 disableFurtherImages = 0
 
 # cat=disable_fields/enable; type=boolean; label=Disable all address fields:

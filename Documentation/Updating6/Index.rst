@@ -58,3 +58,8 @@ In all other cases you need to change the path to the templates manualy.
 
 Hint: you can use my extension backendtools to find all pages that uses the camaliga extension.
 You can use the extension additional_reports too.
+
+
+.. important::
+
+   You need a camaliga version below 9.2.6 to use this update script. Furthermore you need the extension typo3db_legacy when using TYPO3 9.

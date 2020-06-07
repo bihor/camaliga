@@ -211,5 +211,7 @@ Version     Änderungen
             exclude=1 bei den Backend-Feldern.
             Bugfix: getLinkResolved.
             Deprecation: der uploads-Ordner wird ab Version 10 nicht mehr unterstützt! Wechsele zu FAL (siehe Admin./Scheduler)!
-9.2.2       Bugfix: categoriesAndParents enthält nun wieder auch tiefer gelegene "parents" bei den "childs".
+9.2.6       Bugfix: categoriesAndParents enthält nun wieder auch tiefer gelegene "parents" bei den "childs".
+            Bugfix: erweiterte Felder funktionieren nun wieder.
+            Update-Skript gelöscht! Benutze eine ältere Camaliga-Version (unter 9.2.6), falls es noch benötigt wird. 
 ==========  =====================================================================================================================
