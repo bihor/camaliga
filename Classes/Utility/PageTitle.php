@@ -1,27 +1,31 @@
 <?php
 namespace Quizpalme\Camaliga\Utility;
 
-# oder so ähnlich: http://www.typo3forum.net/forum/news-tt_news-mininews-co/21636-tt_news-news-titel-seitentitel.html
+# Seitentitel setzen???
 class PageTitle {
 	public function getTitleTag($content, $conf) {
 		$id = 0;
 		//$trim = $GLOBALS['TSFE']->tmpl->setup['config.']['titleTagFunction.']['noTrimWrap'];
 		$params = $_POST['tx_camaliga_pi1'];
-		if (count($params) == 0)
+		if (count($params) == 0) {
 			$params = $_GET['tx_camaliga_pi1'];
-		if (count($params) > 0)
-			$id = $params['content'];
+		}
+		if (count($params) > 0) {
+			$id = intval($params['content']);
+		}
 		if ($id > 0) {
-			$res4 = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'title',
-					'tx_camaliga_domain_model_content',
-					'uid = ' . intval($id));
-			$rows = $GLOBALS['TYPO3_DB']->sql_num_rows($res4);
-			if ($rows > 0) {
-				$row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res4);
-				$pageTitle = $row['title'];
-			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($res4);
+            $queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+            $statement = $queryBuilder
+                ->select('title')
+                ->from('tx_camaliga_domain_model_content')
+                ->where(
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT))
+                )
+                ->setMaxResults(1)
+                ->execute();
+            while ($row = $statement->fetch()) {
+                $pageTitle = $row['title'];
+            }
 		}
 		return trim($pageTitle);
 	}
