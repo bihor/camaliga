@@ -500,6 +500,7 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 			fclose ($handle);
 			if ($simulate) {
 				$output = $this->build_table($insert);
+				// vielleicht so: https://readthedocs.org/projects/bartacus-bundle/downloads/pdf/stable/
 				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
 						$output,
 						'Simulation:', // the header is optional

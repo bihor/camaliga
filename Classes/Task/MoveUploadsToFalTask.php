@@ -85,14 +85,15 @@ class MoveUploadsToFalTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		} else {
 			return FALSE;
 		}
+		$path_site = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/';
 		
-		if (!is_file(PATH_site . 'uploads/tx_camaliga/' . $image)) {
+		if (!is_file($path_site . 'uploads/tx_camaliga/' . $image)) {
 			// wenn kein Bild vorhanden ist, ignorieren wir diesen Fall mal...
 			//return TRUE;
 		}
 		
 		$fileObject = $storage->addFile(
-			PATH_site . 'uploads/tx_camaliga/' . $image,
+			$path_site . 'uploads/tx_camaliga/' . $image,
 			$targetFolder,
 			$image
 		);
