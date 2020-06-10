@@ -245,7 +245,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$cUid = intval($this->request->getArgument('content'));
 			if ($cUid > 0) $search = true;
 		}
-
+		$languageAspect = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class)->getAspect('language');
+		$sys_language_uid = $languageAspect->getId();
+		
 		$distanceArray = [];
 		$categoryUids = [];
 		$start = ($this->request->hasArgument('start')) ? intval($this->request->getArgument('start')) : 1;
@@ -434,7 +436,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			
 		$this->view->assign('fal', $enableFal);
-		$this->view->assign('lang', $cobjData->data['sys_language_uid']);
+		$this->view->assign('lang', $sys_language_uid);
 		$this->view->assign('uid', $content_uid);
 		$this->view->assign('pid', $GLOBALS["TSFE"]->id);
 		$this->view->assign('contents', $contents);
