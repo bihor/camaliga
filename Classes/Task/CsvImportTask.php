@@ -6,9 +6,10 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
-class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
-
+class CsvImportTask extends AbstractTask
+{
 	/**
 	 * CSV file
 	 *
@@ -451,10 +452,11 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		
 		// Step 3: Import
 		$lines = array();
-		if ($newestFile)
+		if ($newestFile) {
 			$lines = file($newestFile);
+		}
 		if ( count($lines) > 1 ) {
-			$nr=0;
+			$nr = 0;
 			$fields_values = array();
 			$fields_values['pid'] = $pid;
 			$fields_values['tstamp'] = time();
@@ -467,7 +469,7 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				while ( ($fields_read = fgetcsv ($handle, 2000, $delimiter, $separator)) !== FALSE ) {
 					if ($nr==0) {
 						//$fields_names = $Felder;
-					} else if ($fields_read[0]) {
+					} else if ($fields_read[0] || $fields_read[1]) {
 						$sorting++;
 						$fields_values['sorting'] = $sorting;
 						$result = $this->insertLine($fields_names, $fields_values, $fields_read, $simulate, $convert, $catArray, $catParentArray);
@@ -476,6 +478,11 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 						} else if (!$result) {
 							$successfullyExecuted = FALSE;
 						}
+					} else {
+						throw new \InvalidArgumentException(
+							'No row in import-file found.',
+							'1495476972'
+						);
 					}
 					$nr++;
 				}
@@ -483,22 +490,27 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 				while ( ($fields_read = fgetcsv ($handle, 2000, $delimiter)) !== FALSE ) {
 					if ($nr==0) {
 						//$fields_names = $Felder;
-					} else if ($fields_read[0]) {
+					} else if ($fields_read[0] || $fields_read[1]) {
 						$sorting++;
 						$fields_values['sorting'] = $sorting;
-					$result = $this->insertLine($fields_names, $fields_values, $fields_read, $simulate, $convert, $catArray, $catParentArray);
+						$result = $this->insertLine($fields_names, $fields_values, $fields_read, $simulate, $convert, $catArray, $catParentArray);
 						if ($simulate) {
 							$insert[] = $result;
 						} else if (!$result) {
 							$successfullyExecuted = FALSE;
 						}
+					} else {
+						throw new \InvalidArgumentException(
+							'No row in import-file found.',
+							'1495476972'
+							);
 					}
 					$nr++;
 				}
 			}
 			
 			fclose ($handle);
-			if ($simulate) {
+			if ($simulate && count($insert)>0) {
 				$output = $this->build_table($insert);
 				// vielleicht so: https://readthedocs.org/projects/bartacus-bundle/downloads/pdf/stable/
 				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
@@ -663,26 +675,20 @@ class CsvImportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 	 * @return	string
 	 */
 	function build_table($array){
-		// start table
-		$html = '<style>table tr th, table tr td {padding:3px;border:1px solid #666;}</style><table class="dump">';
+		// HTML ist leider nicht mehr erlaubt :-(
+		$html = '';
 		// header row
-		$html .= '<tr>';
 		foreach($array[0] as $key=>$value){
-			$html .= '<th>' . $key . '</th>';
+			$html .= $key . '; ';
 		}
-		$html .= '</tr>';
-	
+		$html .= "###\n\r";
 		// data rows
 		foreach( $array as $key=>$value){
-			$html .= '<tr>';
 			foreach($value as $key2=>$value2){
-				$html .= '<td>' . strip_tags($value2) . '</td>';
+				$html .= strip_tags($value2) . '; ';
 			}
-			$html .= '</tr>';
+			$html .= "###\n\r";
 		}
-	
-		// finish table and return it
-		$html .= '</table>';
 		return $html;
 	}
 }

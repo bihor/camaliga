@@ -479,7 +479,7 @@
 				<source>Database fields to export (e.g. uid, title, shortdesc, "category:State") [at category: the name of the parent category]:</source>
 			</trans-unit>
 			<trans-unit id="itasks.validate.fields">
-				<source>Database fields for the import (e.g. uid, title, shortdesc, category, category:Brandenburg, category-parent:State) [there are 3 possibilities to import categories: category-name in every row; category in the header an then 0 or 1 in every row; parent-category in the header and child-categories in every row]:</source>
+				<source>Database fields for the import (the 1. row of the file will be ignored!) (e.g. uid, title, shortdesc, category, category:Brandenburg, category-parent:State) [there are 3 possibilities to import categories: category-name in every row; category in the header an then 0 or 1 in every row; parent-category in the header and child-categories in every row]:</source>
 			</trans-unit>
 			<trans-unit id="tasks.validate.separator">
 				<source>Separator:</source>

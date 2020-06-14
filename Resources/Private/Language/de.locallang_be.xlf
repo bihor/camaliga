@@ -473,7 +473,7 @@
 				<target>Datenbankfelder, die exportiert werden sollen (z.B. uid, title, shortdesc, "category:Bundesland") [bei category den Name einer Parent-Kategorie angeben]:</target>
 			</trans-unit>
 			<trans-unit id="itasks.validate.fields">
-				<target>Datenbankfelder, in die importiert werden soll (z.B. uid, title, shortdesc, category, category:Brandenburg, category-parent:Bundesland) [es gibt 3 Möglichkeiten, Kategorien zu importieren: Kategorie-Name in jeder Zeile angeben; Kategorie einmal in Header und dann 0 oder 1 in jeder Zeile; Parent-Kategorie im Header und Kind-Kategorien in jeder Zeile]:</target>
+				<target>Datenbankfelder, in die importiert werden soll (die 1. Zeile in der Datei wird ignoriert!) (z.B. uid, title, shortdesc, category, category:Brandenburg, category-parent:Bundesland) [es gibt 3 Möglichkeiten, Kategorien zu importieren: Kategorie-Name in jeder Zeile angeben; Kategorie einmal in Header und dann 0 oder 1 in jeder Zeile; Parent-Kategorie im Header und Kind-Kategorien in jeder Zeile]:</target>
 			</trans-unit>
 			<trans-unit id="tasks.validate.separator">
 				<target>Texttrenner:</target>
