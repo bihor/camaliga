@@ -204,7 +204,8 @@ Version     Changes
             exclude=1 at the backend-fields.
             Bugfix: getLinkResolved.
             Using the uploads-folder is now deprecated and will be removed in version 10.0. Switch to FAL (see Administration/Scheduler)!
-9.2.6       Bugfix: categoriesAndParents contains now again deeper parents in the child list.
+9.3.0       Bugfix: categoriesAndParents contains now again deeper parents in the child list.
             Bugfix: extended fields now working again.
             Update-script deleted. Use an older version of camaliga (below 9.2.6) to use it.
+            Slug-task: updates now only entries without a slug.
 ==========  ==============================================================================================================================

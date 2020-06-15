@@ -287,7 +287,6 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 	{
 		/** @var $task ValidatorTask */
 		$task->setCsvfile($submittedData['camaliga']['csvfile']);
-		//$task->setHeader($submittedData['camaliga']['header']);
 		$task->setFields($submittedData['camaliga']['fields']);
 		$task->setPage($submittedData['camaliga']['page']);
 		$task->setCatPage($submittedData['camaliga']['catpage']);

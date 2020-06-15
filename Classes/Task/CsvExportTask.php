@@ -5,8 +5,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Scheduler\Task\AbstractTask;
 
-class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
+class CsvExportTask extends AbstractTask
+{
 
 	/**
 	 * CSV file
@@ -288,7 +290,7 @@ class CsvExportTask extends \TYPO3\CMS\Scheduler\Task\AbstractTask {
 		$this->configurationManager->setConfiguration($configurationArray);
 		
 		// Step 1: select all categories of the current language
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
 		$all_cats = $categoryRepository->getAllCats('sorting', 'asc', []);
 		
