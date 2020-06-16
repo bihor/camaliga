@@ -1,8 +1,10 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Model;
+
 use TYPO3\CMS\Extbase\Annotation\Inject;
 
-class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category {
+class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
+{
 	/**
 	 * CategoryRepository, wie hier: https://gist.github.com/iamandrewluca/7b9a7a3d5463f6f27f668eb2fcdda1ad
 	 *

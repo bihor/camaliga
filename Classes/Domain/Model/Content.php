@@ -34,7 +34,8 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject {
+class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+{
 	
 	/**
 	 * Title

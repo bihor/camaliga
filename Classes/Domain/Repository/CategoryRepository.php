@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Repository;
-class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository {
+
+class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
+{
 	
 	/**
 	 * findAll ersetzen, wegen Sortierung und PIDs
@@ -42,7 +44,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 		// Step 0: init
 		$all_cats = [];
 		// Step 1: get all categories
-		$catRows = $this->findAll($sortBy, $sortOrder, $pids);		
+		$catRows = $this->findAll($sortBy, $sortOrder, $pids);
 		// Step 2: select categories, used by this extension AND used by this storagePids: needed for the category-restriction at the bottom
 		if ($catRows) {
 			$parentUids = [];

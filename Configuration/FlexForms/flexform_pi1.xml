@@ -13,6 +13,7 @@
           <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template</label>
           <config>
           <type>select</type>
+		  <renderType>selectSingle</renderType>
           <items>
             <numIndex index="0">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.carousel</numIndex>
@@ -187,6 +188,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:templateLayout</label>
 					<config>
 						<type>select</type>
+						<renderType>selectSingle</renderType>
 						<itemsProcFunc>Quizpalme\Camaliga\Hooks\ItemsProcFunc->user_templateLayout</itemsProcFunc>
 						<items>
 							<numIndex index="0" type="array">
@@ -202,6 +204,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortBy</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -256,6 +259,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:sortOrder</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -548,6 +552,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:pause</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -570,6 +575,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:wrap</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -592,6 +598,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:keyboard</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -625,6 +632,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:expanded</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -651,6 +659,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:parent</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -673,6 +682,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:toggle</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -706,6 +716,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:dialog</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -728,6 +739,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:animation</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -746,6 +758,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:escape</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -884,6 +897,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:setModulo</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -917,6 +931,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mautoplay</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -950,6 +965,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:minfinite</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -972,6 +988,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mvertical</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -994,6 +1011,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mreverse</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1016,6 +1034,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mcrop</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1038,6 +1057,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowPanel</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1060,6 +1080,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowArrows</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1082,6 +1103,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowDots</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1104,6 +1126,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowThumbnails</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1126,6 +1149,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowAllThumbs</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1148,6 +1172,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowArrowsThumbs</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1170,6 +1195,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowDotsThumbs</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1192,6 +1218,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mshowCaptions</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1214,6 +1241,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mpausePlay</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1236,6 +1264,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mpauseOnHover</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1291,6 +1320,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:mfade</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1324,6 +1354,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:addLightbox</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
@@ -1438,6 +1469,7 @@
 					<config>
 						<type>select</type>
 						<renderMode>tree</renderMode>
+						<renderType>selectTree</renderType>
 						<treeConfig>
 							<parentField>parent</parentField>
 							<appearance>
@@ -1460,6 +1492,7 @@
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode</label>
 					<config>
 					<type>select</type>
+					<renderType>selectSingle</renderType>
 					<items>
 					  <numIndex index="0">
 					      <numIndex index="0">TypoScript</numIndex>
