@@ -25,7 +25,14 @@ https://developers.google.com/maps/documentation/directions/intro?hl=de#Directio
   <div class="carousel-single-img">
    <f:if condition="{fal}"><f:then>
     <f:if condition="{content.falimage.uid}">
+	<f:if condition="{settings.img.width} && {settings.img.height}">
+    <f:then>
+	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.width}" maxHeight="{settings.img.height}" treatIdAsReference="1" />
+	</f:then>
+	<f:else>
 	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+	</f:else>
+    </f:if>
     </f:if>
    </f:then><f:else>
     <f:if condition="{content.image} != ''">

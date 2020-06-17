@@ -10,11 +10,11 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array (
+$EM_CONF[$_EXTKEY] = [
   'title' => 'Camaliga: CArousel/MAp/LIst/GAllery',
-  'description' => 'A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick or Isotope. Bootstrap support. Indexer for ke_search. Many features!',
+  'description' => 'A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick or Isotope. Bootstrap support. Indexer for ke_search.',
   'category' => 'plugin',
-  'version' => '9.2.11',
+  'version' => '9.2.12',
   'state' => 'stable',
   'uploadfolder' => true,
   'createDirs' => '',
@@ -22,13 +22,11 @@ $EM_CONF[$_EXTKEY] = array (
   'author' => 'Kurt Gusbeth',
   'author_email' => 'info@quizpalme.de',
   'author_company' => 'fixpunkt werbeagentur gmbh',
-  'constraints' => 
-  array (
-    'depends' => 
-    array (
-      'typo3' => '9.5.17-9.5.99',
-    ),
+  'constraints' =>[
+    'depends' => [
+      'typo3' => '9.5.17-10.4.99',
+    ],
     'conflicts' => [],
     'suggests' => [],
-  ),
-);
+  ],
+];

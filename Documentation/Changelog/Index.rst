@@ -200,12 +200,21 @@ Version     Changes
             Bugfix: AddPublicResourcesViewHelper.
             Update-script is now deprecated and will be removed in version 10.0.
 9.2.0       slug-field added. If you want to use, you should generate slugs via a scheduler task.
+
             Switch to the QueryBuilder at the tasks.
+            
             exclude=1 at the backend-fields.
+            
             Bugfix: getLinkResolved.
+            
             Using the uploads-folder is now deprecated and will be removed in version 10.0. Switch to FAL (see Administration/Scheduler)!
 9.3.0       Bugfix: categoriesAndParents contains now again deeper parents in the child list.
+
             Bugfix: extended fields now working again.
+            
             Update-script deleted. Use an older version of camaliga (below 9.2.6) to use it.
+            
             Slug-task: updates now only entries without a slug.
+            
+            Now compatible with TYPO3 10.
 ==========  ==============================================================================================================================
