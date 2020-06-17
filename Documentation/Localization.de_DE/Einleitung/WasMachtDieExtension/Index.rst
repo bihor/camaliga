@@ -37,4 +37,4 @@ Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder a
 
 - Auch ein Planer-Task für den CSV-Import und -Export ist vorhanden.
 
-Die Extension ist nicht immer einfach zu benutzen, aber sie ist sehr flexibel und Admin werden das mögen.
+Die Extension ist nicht immer einfach zu benutzen, aber sie ist sehr flexibel und Admins werden das mögen.

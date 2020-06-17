@@ -25,9 +25,6 @@ plugin.tx_camaliga {
 			}
 		}
 	}
-	features {
-		rewrittenPropertyMapper = 1
-	}
 	settings {
 		listId =
 		searchId =

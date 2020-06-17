@@ -34,4 +34,4 @@ Update-Skript durchführen, wenn du auf TYPO3 6.2 updatest.
 
 .. Wichtig::
 
-   Man braucht eine Camaliga-Version unter 9.2.6 um das Update-Skript benutzen zu können. Außerdem braucht man die Extension typo3db_legacy wenn man TYPO3 9 benutzt.
+   Man braucht eine Camaliga-Version unter 9.2.6 um das Update-Skript benutzen zu können. Außerdem braucht man die Extension typo3db_legacy wenn man TYPO3 9 oder 10 benutzt.
