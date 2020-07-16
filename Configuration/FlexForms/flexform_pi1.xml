@@ -152,6 +152,10 @@
                 <numIndex index="1">Content->parallax;Content->search;Content->show</numIndex>
             </numIndex>
             <numIndex index="54">
+                <numIndex index="0">prettyPhoto</numIndex>
+                <numIndex index="1">Content->prettyPhoto;Content->search;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="55">
                 <numIndex index="0">responsiveCarousel by Basilio Cáceres</numIndex>
                 <numIndex index="1">Content->responsiveCarousel;Content->search;Content->show</numIndex>
             </numIndex>

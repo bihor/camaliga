@@ -609,7 +609,20 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$this->listAction();
 		}
 	}
-
+	
+	/**
+	 * action prettyPhoto
+	 *
+	 * @return void
+	 */
+	public function prettyPhotoAction() {
+	    if ($this->settings['extended']['enable']) {
+	        $this->listExtendedAction();
+	    } else {
+	        $this->listAction();
+	    }
+	}
+	
 	/**
 	 * action roundabout
 	 *

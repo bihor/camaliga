@@ -151,6 +151,11 @@ Parallax.html              Template that uses "Simple Parallax Scrolling".
                            Infos: http://pixelcog.github.io/parallax.js/
 
                            Demo: http://www.quizpalme.de/
+PrettyPhoto.html           Template that uses the "prettyPhoto" plugin.
+                           Note 1: you must install prettyPhoto separately.
+                           Note 2: you need to set settings.img.thumbWidth and .thumbHeight.
+
+                           Infos: http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/documentation
 Random.html                Shows a random element. Not cached.
 Responsive.html            A simple responsive template.
 
