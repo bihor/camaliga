@@ -67,70 +67,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $link;
 
 	/**
-	 * Image
-	 *
-	 * @var string
-	 */
-	protected $image;
-
-	/**
-	 * Image 2
-	 *
-	 * @var string
-	 */
-	protected $image2;
-
-	/**
-	 * Caption 2
-	 *
-	 * @var string
-	 */
-	protected $caption2;
-	
-	/**
-	 * Image 3
-	 *
-	 * @var string
-	 */
-	protected $image3;
-
-	/**
-	 * Caption 3
-	 *
-	 * @var string
-	 */
-	protected $caption3;
-
-	/**
-	 * Image 4
-	 *
-	 * @var string
-	 */
-	protected $image4;
-
-	/**
-	 * Caption 4
-	 *
-	 * @var string
-	 */
-	protected $caption4;
-
-	/**
-	 * Image 5
-	 *
-	 * @var string
-	 */
-	protected $image5;
-
-	/**
-	 * Caption 5
-	 *
-	 * @var string
-	 */
-	protected $caption5;
-
-	/**
-	 * Image
+	 * Image 1
 	 *
 	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -138,7 +75,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $falimage = null;
 
 	/**
-	 * Image
+	 * Image 2
 	 *
 	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -146,7 +83,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $falimage2 = null;
 
 	/**
-	 * Image
+	 * Image 3
 	 *
 	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -154,7 +91,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $falimage3 = null;
 
 	/**
-	 * Image
+	 * Image 4
 	 * 
 	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -162,7 +99,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $falimage4 = null;
 
 	/**
-	 * Image
+	 * Image 5
 	 *
 	 * @Extbase\ORM\Cascade("remove")
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
@@ -470,177 +407,6 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 */
 	public function setLink($link) {
 		$this->link = $link;
-	}
-
-	/**
-	 * Returns the image
-	 *
-	 * @return string $image
-	 */
-	public function getImage() {
-		return $this->image;
-	}
-
-	/**
-	 * Sets the image
-	 *
-	 * @param string $image
-	 * @return void
-	 */
-	public function setImage($image) {
-		$this->image = $image;
-	}
-
-	/**
-	 * Returns the image2
-	 *
-	 * @return string $image2
-	 */
-	public function getImage2() {
-		return $this->image2;
-	}
-
-	/**
-	 * Sets the image2
-	 *
-	 * @param string $image2
-	 * @return void
-	 */
-	public function setImage2($image2) {
-		$this->image2 = $image2;
-	}
-
-	/**
-	 * Returns the caption 2
-	 *
-	 * @return string $caption2
-	 */
-	public function getCaption2() {
-		return $this->caption2;
-	}
-
-	/**
-	 * Sets the caption 2
-	 *
-	 * @param string $caption2
-	 * @return void
-	 */
-	public function setCaption2($caption2) {
-		$this->caption2 = $caption2;
-	}
-
-	/**
-	 * Returns the image3
-	 *
-	 * @return string $image3
-	 */
-	public function getImage3() {
-		return $this->image3;
-	}
-
-	/**
-	 * Sets the image 3
-	 *
-	 * @param string $image3
-	 * @return void
-	 */
-	public function setImage3($image3) {
-		$this->image3 = $image3;
-	}
-	
-	/**
-	 * Returns the caption 3
-	 *
-	 * @return string $caption3
-	 */
-	public function getCaption3() {
-		return $this->caption3;
-	}
-
-	/**
-	 * Sets the caption 3
-	 *
-	 * @param string $caption3
-	 * @return void
-	 */
-	public function setCaption3($caption3) {
-		$this->caption3 = $caption3;
-	}
-
-	/**
-	 * Returns the image4
-	 *
-	 * @return string $image4
-	 */
-	public function getImage4() {
-		return $this->image4;
-	}
-
-	/**
-	 * Sets the image 4
-	 *
-	 * @param string $image4
-	 * @return void
-	 */
-	public function setImage4($image4) {
-		$this->image4 = $image4;
-	}
-
-	/**
-	 * Returns the caption 4
-	 *
-	 * @return string $caption4
-	 */
-	public function getCaption4() {
-		return $this->caption4;
-	}
-
-	/**
-	 * Returns the image5
-	 *
-	 * @return string $image5
-	 */
-	public function getImage5() {
-		return $this->image5;
-	}
-
-	/**
-	 * Sets the caption 4
-	 *
-	 * @param string $caption4
-	 * @return void
-	 */
-	public function setCaption4($caption4) {
-		$this->caption4 = $caption4;
-	}
-
-	/**
-	 * Sets the image 5
-	 *
-	 * @param string $image5
-	 * @return void
-	 */
-	public function setImage5($image5) {
-		$this->image5 = $image5;
-	}
-	
-	/**
-	 * Returns the caption 5
-	 *
-	 * @return string $caption5
-	 */
-	public function getCaption5() {
-		return $this->caption5;
-	}
-
-	/**
-	 * Sets the caption 5
-	 *
-	 * @param string $caption5
-	 * @return void
-	 */
-	public function setCaption5($caption5) {
-		$this->caption5 = $caption5;
 	}
 
 	/**

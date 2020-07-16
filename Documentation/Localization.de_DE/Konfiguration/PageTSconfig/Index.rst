@@ -49,7 +49,7 @@ Hier ein Beispiel mit 2 Layouts:
 
 	<f:if condition="{settings.templateLayout} == 1">
 		<f:then>
-			<f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" />
+			<h3>{content.title}</h3>
 		</f:then>
 		<f:else>
 			<p>Telefon-Nr.: {content.phone}<br />

@@ -55,7 +55,8 @@ Coolcarousel.html          Template that uses the Coolcarousel plugin.
                            Note: you must install Coolcarousel separately.
 
                            Infos: http://coolcarousels.frebsite.nl/c/66/
-Ekko.html                  Template that uses the Bootstrap-Ekko-Lightbox. Not: you must install Ekko separately.
+Ekko.html                  Template that uses the Bootstrap-Ekko-Lightbox.
+                           Note: you must install Ekko separately.
                            Runs only, if you set settings.more.setModulo=1
 
                            Infos: http://www.jqueryscript.net/lightbox/Simple-Gallery-Lightbox-Plugin-with-jQuery-Bootstrap-Ekko-Lightbox.html
@@ -158,19 +159,10 @@ ResponsiveCarousel.html    Template that uses the responsiveCarousel plugin.
                            Note: you must install responsiveCarousel separately.
 
                            Infos: http://basilio.github.io/responsiveCarousel/
-Revolution.html            Deprecated: use the extension fp_fractionslider instead.
-                           Template that uses the famous Revolution Slider.
-                           Note: you must install the Revolution Slider separately.
-
-                           Infos: https://codecanyon.net/item/slider-revolution-responsive-jquery-plugin/2580848
 Roundabout.html            Template that uses the jQuery Roundabout plugin. Outdated!
                            Note: you must install Roundabout separately.
 
                            Infos: https://github.com/fredleblanc/roundabout
-Scrollable.html            Template that uses the old jQuery TOOLS Scrollable plugin. Outdated!
-                           Note: you must install jQuery TOOLS Scrollable separately.
-
-                           Infos: http://jquerytools.org/demos/scrollable/index.html
 Search.html                An advanced/extended template with all features! It contains a proximity search.
                            You need the opengeodb-tables for this template. Not cached.
                            The action of this template will be used for every search. You will need it,

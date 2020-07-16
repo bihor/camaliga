@@ -85,7 +85,6 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	public function thumbAction() {
 		$pid = intval($this->getCurrentPageId());
 		$saved = 0;
-		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 		
 		// save new order first
 		if ($this->request->hasArgument('camelements')) {
@@ -102,7 +101,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		// Elemente sortiert holen
 		$contents = $this->contentRepository->findAll('sorting', 'asc', FALSE, array($pid));
 		
-		$this->view->assign('fal', $enableFal);
+		$this->view->assign('fal', 1);
 		$this->view->assign('pid', $pid);
 		$this->view->assign('saved', $saved);
 		$this->view->assign('contents', $contents);

@@ -45,11 +45,9 @@ Put this JS-code in the last file:
 <ul id="lightSlider">
 	<f:for each="{contents}" as="content">
 		<li>
-			<f:if condition="{fal}"><f:then>
+			<f:if condition="{content.falimage.uid}"><f:then>
 			<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}m" treatIdAsReference="1" />
-			</f:then><f:else>
-			<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" />
-			</f:else></f:if>
+			</f:then></f:if>
 			<h3>{content.title}</h3>
 			<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
 			<f:if condition="{content.link} != ''">

@@ -32,17 +32,12 @@ Note 4: you must enable setModulo for this template!
 	 condition="{settings.item.items} == 4"><f:then>col-lg-3 col-md-4 col-sm-4 col-xs-6</f:then><f:else><f:if
 	 condition="{settings.item.items} == 3"><f:then>col-lg-4 col-md-4 col-sm-6</f:then><f:else>col-lg-6 col-md-6 col-sm-6 col-xs-12</f:else></f:if></f:else></f:if></f:else></f:if>">
 		<figure class="center-block center-block">
-			<f:if condition="{fal}"><f:then>
+			<f:if condition="{content.falimage.uid}"><f:then>
 		  		<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}" class="gallery gallery-responsive"
 			 data-toggle="lightbox" data-parent=".wrapper-parent" data-gallery="gallery-{uid}" data-title="{content.title}"
 			 data-footer="{content.shortdesc}"><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}"
 			 maxWidth="{settings.img.width}" class="img-fluid border" treatIdAsReference="1" /></a>
-		  	</f:then><f:else>
-				<a href="/uploads/tx_camaliga/{content.image}" class="gallery gallery-responsive"
-			 data-toggle="lightbox" data-parent=".wrapper-parent" data-gallery="gallery-{uid}" data-title="{content.title}"
-			 data-footer="{content.shortdesc}"><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}"
-			 maxWidth="{settings.img.width}" class="img-fluid border" /></a>
-			</f:else></f:if>
+		  	</f:then></f:if>
 		</figure>
 	</div>
   <f:if condition="{content.moduloEnd} > 0"></div></f:if>

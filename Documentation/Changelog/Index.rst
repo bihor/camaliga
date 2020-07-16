@@ -217,4 +217,7 @@ Version     Changes
             Slug-task: updates now only entries without a slug.
             
             Now compatible with TYPO3 10.
+10.0.0      Support for the uploads-folder removed! Default-mode changed! Switch to FAL before you update.
+
+            Revolution- and scrollable-template removed. (Use fp_fractionslider instead.)
 ==========  ==============================================================================================================================

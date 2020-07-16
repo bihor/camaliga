@@ -22,7 +22,7 @@ Copy this file in a subfolder named "Content" of this folder.
 <div id="gallery-container">
   <ul class="items--small">
   <f:for each="{contents}" as="content">
-    <li class="item"><a href="#"><f:if condition="{fal}"><f:then><f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="" treatIdAsReference="1" /></f:then><f:else><f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="" /></f:else></f:if></a></li>
+    <li class="item"><a href="#"><f:if condition="{content.falimage.uid}"><f:then><f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="" treatIdAsReference="1" /></f:then></f:if></a></li>
   </f:for>
   </ul>
   <ul class="items--big">
@@ -30,8 +30,7 @@ Copy this file in a subfolder named "Content" of this folder.
     <li class="item--big">
       <a href="#">
         <figure>
-          <f:if condition="{fal}"><f:then><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:then>
-          <f:else><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" /></f:else></f:if>
+          <f:if condition="{content.falimage.uid}"><f:then><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:then></f:if>
           <figcaption class="img-caption">{content.title}</figcaption>
         </figure>
       </a>

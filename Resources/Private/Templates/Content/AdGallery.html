@@ -56,15 +56,11 @@ Copy this file in the subfolder "Content" of this folder.
           <ul class="ad-thumb-list">
       <f:for each="{contents}" as="content" iteration="iteration">
             <li>
-            <f:if condition="{fal}"><f:then>
+            <f:if condition="{content.falimage.uid}"><f:then>
             	<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}">
 <f:image src="{content.falimage.uid}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" class="image{iteration.cycle}" treatIdAsReference="1" />
 		  		</a>
-		  	</f:then><f:else>
-				<a href="/uploads/tx_camaliga/{content.image}">
-<f:image src="/uploads/tx_camaliga/{content.image}" width="{settings.img.thumbWidth}m" alt="{content.title}" title="{content.title}" class="image{iteration.cycle}" />
-				</a>
-			</f:else></f:if>
+		  	</f:then></f:if>
             </li>
       </f:for>
           </ul>

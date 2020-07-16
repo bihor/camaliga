@@ -66,11 +66,9 @@ jQuery(document).ready(function() {
 <ul id="myGallery">
 <f:for each="{contents}" as="content">
 <li>
-  <f:if condition="{fal}"><f:then>
+  <f:if condition="{content.falimage.uid}"><f:then>
     <f:image src="{content.falimage.uid}" title="{content.title}" additionalAttributes="{data-description:content.shortdesc}" treatIdAsReference="1" />
-  </f:then><f:else>
-    <img src="/uploads/tx_camaliga/{content.image}" title="{content.title}" data-description="{content.shortdesc}" />
-  </f:else></f:if>
+  </f:then></f:if>
 </li>
 </f:for>
 </ul>

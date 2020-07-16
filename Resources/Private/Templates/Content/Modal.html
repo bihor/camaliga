@@ -31,15 +31,9 @@ Note 3: use the field "custom1" for the modal-button/link or change the template
         <button type="button" class="close" data-dismiss="modal" aria-label="{f:translate(key: 'close')}"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <f:if condition="{fal}"><f:then>
-	      <f:if condition="{content.falimage.uid}">
+	    <f:if condition="{content.falimage.uid}">
 		  <f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" additionalAttributes="{align: 'left'}" treatIdAsReference="1" />
-	      </f:if>
-	    </f:then><f:else>
-	      <f:if condition="{content.image} != ''">
-		  <f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" additionalAttributes="{align: 'left'}" />
-	      </f:if>
-	    </f:else></f:if>
+	    </f:if>
         <h4><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
         <f:format.html>{content.longdesc}</f:format.html>
 		<f:if condition="{content.link} != ''"><p>

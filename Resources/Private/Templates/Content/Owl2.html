@@ -36,15 +36,9 @@ Copy this file in a subfolder named "Content" of this folder.
     <div id="owl-example" class="owl-carousel">
       <f:for each="{contents}" as="content" iteration="iteration">
         <div class="item">
-			<f:if condition="{fal}"><f:then>
-		   	 <f:if condition="{content.falimage.uid}">
+		   	<f:if condition="{content.falimage.uid}">
 				<img src="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}" alt="{content.title}" title="{content.title}" />
-		     </f:if>
-		    </f:then><f:else>
-		     <f:if condition="{content.image} != ''">
-				<img src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
-		     </f:if>
-		    </f:else></f:if>
+		    </f:if>
 			<div style="text-align:center;padding:0 5px;">
 			<h4>{content.title}</h4>
 			<f:format.html>{content.shortdesc}</f:format.html>

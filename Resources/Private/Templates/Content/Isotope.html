@@ -62,11 +62,9 @@ Copy this file in a subfolder named "Content" of this folder.
 		    <a href="#" class="isoheader">{content.title}</a>
 	      </h4>
 	      <div class="grid-hidden">
-		      <f:if condition="{fal}"><f:then>
+		      <f:if condition="{content.falimage.uid}"><f:then>
     			<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" additionalAttributes="{align: 'left'}" treatIdAsReference="1" />
-  			  </f:then><f:else>
-		        <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" additionalAttributes="{align: 'left'}" />
-		      </f:else></f:if>
+  			  </f:then></f:if>
 		      <p>{content.shortdesc}
 		      <f:if condition="{content.link} != ''">
 				<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>

@@ -54,7 +54,8 @@ Coolcarousel.html          Template, welches das Coolcarousel-Plugin benutzt.
                            Achtung: man muss Coolcarousel separat installieren.
 
                            Infos: http://coolcarousels.frebsite.nl/c/66/
-Ekko.html                  Template, welches die Bootstrap-Ekko-Lightbox benutzt. Achtung: man muss Ekko separat installieren.
+Ekko.html                  Template, welches die Bootstrap-Ekko-Lightbox benutzt.
+                           Achtung: man muss Ekko separat installieren.
                            Funktioniert nur, wenn man settings.more.setModulo=1 setzt.
 
                            Infos: http://www.jqueryscript.net/lightbox/Simple-Gallery-Lightbox-Plugin-with-jQuery-Bootstrap-Ekko-Lightbox.html
@@ -157,19 +158,10 @@ ResponsiveCarousel.html    Template, welches das responsiveCarousel-Plugin benut
                            Achtung: man muss responsiveCarousel separat installieren.
 
                            Infos: http://basilio.github.io/responsiveCarousel/
-Revolution.html            Deprecated: benutze stattdessen die Extension fp_fractionslider.
-                           Template, welches den berühmten Revolution Slider benutzt.
-                           Achtung: man muss den Revolution Slider separat installieren.
-
-                           Infos: https://codecanyon.net/item/slider-revolution-responsive-jquery-plugin/2580848
 Roundabout.html            Template, welches das jQuery-Roundabout-Plugin benutzt. Veraltert!
                            Achtung: man muss Roundabout separat installieren.
 
                            Infos: https://github.com/fredleblanc/roundabout
-Scrollable.html            Template, welches das alte jQuery TOOLS Scrollable-Plugin benutzt. Veraltert!
-                           Achtung: man muss jQuery TOOLS Scrollable separat installieren.
-
-                           Infos: http://jquerytools.org/demos/scrollable/index.html
 Search.html                Ein erweitertes Template mit allen möglichen Features! Dazu gehört u.a
                            eine Umkreissuche, für die man opengeodb-Tabellen benötigt. Wird nicht gecached.
                            Man braucht dieses Template, wenn man die Suche einschaltet, denn es wird über diese

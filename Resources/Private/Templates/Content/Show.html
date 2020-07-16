@@ -14,7 +14,6 @@ This example shows one selected element.
  <div class="carousel-single">
   <h1>{content.title}</h1>
   <div class="carousel-single-img">
-   <f:if condition="{fal}"><f:then>
     <f:if condition="{content.falimage.uid}">
     <f:if condition="{settings.img.width} && {settings.img.height}">
     <f:then>
@@ -24,11 +23,7 @@ This example shows one selected element.
 	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
 	</f:else>
     </f:if>
-   </f:then><f:else>
-    <f:if condition="{content.image} != ''">
-	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
     </f:if>
-   </f:else></f:if>
   </div>
   <div class="carousel-single-text">
 	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
@@ -66,7 +61,6 @@ This example shows one selected element.
   </div>
   
   <div class="carousel-single-more">
-	<f:if condition="{fal}"><f:then>
      <f:if condition="{content.falimage2.uid}">
       <figure>
 	   <f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.originalFile.alternative}" title="{content.falimage2.originalResource.originalFile.title}" treatIdAsReference="1" />
@@ -91,71 +85,27 @@ This example shows one selected element.
 	   <figcaption>{content.falimage5.originalResource.originalFile.title}</figcaption>
 	  </figure>
      </f:if>
-    </f:then><f:else>
-     <f:if condition="{content.image2} != ''">
-     <figure>
-	  <f:image src="/uploads/tx_camaliga/{content.image2}" alt="" title="{content.caption2}" />
-	  <figcaption>{content.caption2}</figcaption>
-	 </figure>
-     </f:if>
-	 <f:if condition="{content.image3} != ''">
-	 <figure>
-	  <f:image src="/uploads/tx_camaliga/{content.image3}" alt="" title="{content.caption3}" />
-	  <figcaption>{content.caption3}</figcaption>
-	 </figure>
-     </f:if>
-	 <f:if condition="{content.image4} != ''">
-	 <figure>
-	  <f:image src="/uploads/tx_camaliga/{content.image4}" alt="" title="{content.caption4}" />
-	  <figcaption>{content.caption4}</figcaption>
-	 </figure>
-     </f:if>
-	 <f:if condition="{content.image5} != ''">
-	 <figure>
-	  <f:image src="/uploads/tx_camaliga/{content.image5}" alt="" title="{content.caption5}" />
-	  <figcaption>{content.caption5}</figcaption>
-	 </figure>
-     </f:if>
-	</f:else></f:if>
  
  	<f:if condition="{settings.extended.enable} == 1">
 		<f:if condition="{hasParent} == 1">
 		  <p>{f:translate(key: 'parent')}</p>
-	 	  <f:if condition="{fal}"><f:then>
 	 	   <f:if condition="{parent.falimage.uid}">
 	 	    <figure>
 		    <f:image src="{parent.falimage.uid}" alt="{parent.title}" title="{parent.title}" maxWidth="200" treatIdAsReference="1" />
 		    <figcaption>{parent.title}</figcaption>
 		    </figure>
 		   </f:if>
-		  </f:then><f:else>
-		   <f:if condition="{parent.image} != ''">
-		    <figure>
-		    <f:image src="/uploads/tx_camaliga/{parent.image}" alt="{parent.title}" title="{parent.title}" maxWidth="200" />
-		    <figcaption>{parent.title}</figcaption>
-		    </figure>
-		   </f:if>
-		  </f:else></f:if>
 		</f:if>
 		
 		<f:if condition="{childs -> f:count()} > 0">
 		 <p>{f:translate(key: 'other_childs')}</p>
 		 <f:for each="{childs}" as="child">
-		  <f:if condition="{fal}"><f:then>
 	 	   <f:if condition="{child.falimage.uid}">
 	 	    <figure>
 		    <f:image src="{child.falimage.uid}" alt="{child.title}" title="{child.title}" maxWidth="200" treatIdAsReference="1" />
 		    <figcaption>{child.title}</figcaption>
 		    </figure>
 		   </f:if>
-		  </f:then><f:else>
-		   <f:if condition="{child.image} != ''">
-		    <figure>
-		    <f:image src="/uploads/tx_camaliga/{child.image}" alt="{child.title}" title="{child.title}" maxWidth="200" />
-		    <figcaption>{child.title}</figcaption>
-		    </figure>
-		   </f:if>
-		  </f:else></f:if>
 		 </f:for>
 		</f:if>
 	</f:if>

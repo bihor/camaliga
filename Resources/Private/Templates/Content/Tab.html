@@ -33,15 +33,9 @@ Copy this file in a subfolder named "Content" of this folder.
   <div class="tab-content">
 	<f:for each="{contents}" as="content" iteration="itemIteration">
 		<div role="tabpanel" aria-labelledby="tab{content.uid}-tab" class="tab-pane fade{f:if(condition: itemIteration.isFirst, then: ' show active')}" id="tab{content.uid}">
-	        <f:if condition="{fal}"><f:then>
-			  <f:if condition="{content.falimage.uid}">
+			<f:if condition="{content.falimage.uid}">
 				<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" additionalAttributes="{align: 'left'}" treatIdAsReference="1" />
-			  </f:if>
-			</f:then><f:else>
-			  <f:if condition="{content.image} != ''">
-				<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" additionalAttributes="{align: 'left'}" />
-			  </f:if>
-			</f:else></f:if>
+			</f:if>
 			<h4><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
 			<f:format.html>{content.longdesc}</f:format.html>
 		</div>

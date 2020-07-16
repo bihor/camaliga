@@ -25,7 +25,7 @@ Template variables
 =========================  ============================================================================================
 Variable                   Description (examples in List.html and Show.html)
 =========================  ============================================================================================
-fal                        Use images from FAL (1) or from the folder uploads/camaliga (0)?
+fal                        Always 1. Old: use images from FAL (1) or from the folder uploads/camaliga (0)?
 lang                       UID of the language.
 uid                        UID of the plugin (content element ID).
 pid                        PID des Plugin (Seiten-ID).

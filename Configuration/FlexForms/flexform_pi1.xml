@@ -155,10 +155,6 @@
                 <numIndex index="0">responsiveCarousel by Basilio Cáceres</numIndex>
                 <numIndex index="1">Content->responsiveCarousel;Content->search;Content->show</numIndex>
             </numIndex>
-            <numIndex index="55">
-                <numIndex index="0">Revolution Slider</numIndex>
-                <numIndex index="1">Content->revolution;Content->search;Content->show</numIndex>
-            </numIndex>
             <numIndex index="56">
                 <numIndex index="0">Roundabout</numIndex>
                 <numIndex index="1">Content->roundabout;Content->search;Content->show</numIndex>
@@ -174,10 +170,6 @@
             <numIndex index="59">
                 <numIndex index="0">slick carousel</numIndex>
                 <numIndex index="1">Content->slick;Content->search;Content->show</numIndex>
-            </numIndex>
-            <numIndex index="60">
-                <numIndex index="0">jQuery TOOLS Scrollable</numIndex>
-                <numIndex index="1">Content->scrollable;Content->search;Content->show</numIndex>
             </numIndex>
             </items>
           </config>

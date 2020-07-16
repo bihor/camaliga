@@ -155,10 +155,8 @@ Example 2: present something like recipes
   TCEFORM.tx_camaliga_domain_model_content.mobile.disabled = 1
   TCEFORM.tx_camaliga_domain_model_content.email.disabled = 1
   TCEFORM.tx_camaliga_domain_model_content.mother.disabled = 1
-  TCEFORM.tx_camaliga_domain_model_content.image4.disabled = 1
-  TCEFORM.tx_camaliga_domain_model_content.image5.disabled = 1
-  TCEFORM.tx_camaliga_domain_model_content.caption4.disabled = 1
-  TCEFORM.tx_camaliga_domain_model_content.caption5.disabled = 1
+  TCEFORM.tx_camaliga_domain_model_content.falimage4.disabled = 1
+  TCEFORM.tx_camaliga_domain_model_content.falimage5.disabled = 1
   TCEFORM.tx_camaliga_domain_model_content.shortdesc.label = Ingredients
   TCEFORM.tx_camaliga_domain_model_content.longdesc.label = Preparation
   TCEFORM.tx_camaliga_domain_model_content.street.label = Remark
@@ -202,9 +200,9 @@ Example 2: present something like recipes
 	 <div class="carousel-single">
 	  <h2>{content.title}</h2>
 	  <div class="carousel-single-img">
-	   <f:if condition="{content.image} != ''">
-		<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
-	   </f:if>
+	   <f:if condition="{content.falimage.uid}">
+	    <f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+       </f:if>
 	  </div>
 	  <div class="carousel-single-text">
 		  <div class="row">
@@ -241,18 +239,19 @@ Example 2: present something like recipes
 	  </div>
 
 	  <div class="carousel-single-more">
-		<f:if condition="{content.image2} != ''">
-		 <figure>
-		  <f:image src="/uploads/tx_camaliga/{content.image2}" alt="" title="{content.caption2}" />
-		  <figcaption>{content.caption2}</figcaption>
-		 </figure>
-		</f:if>
-		<f:if condition="{content.image3} != ''">
-		 <figure>
-		  <f:image src="/uploads/tx_camaliga/{content.image3}" alt="" title="{content.caption3}" />
-		  <figcaption>{content.caption3}</figcaption>
-		 </figure>
-		</f:if>
+      <f:if condition="{content.falimage2.uid}">
+      <figure>
+	   <f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.originalFile.alternative}" title="{content.falimage2.originalResource.originalFile.title}" treatIdAsReference="1" />
+	   <figcaption>{content.falimage2.originalResource.originalFile.title}</figcaption>
+	  </figure>
+      </f:if>
+      <f:if condition="{content.falimage3.uid}">
+      <figure>
+	   <f:image src="{content.falimage3.uid}" alt="{content.falimage3.originalResource.originalFile.alternative}" title="{content.falimage3.originalResource.originalFile.title}" treatIdAsReference="1" />
+	   <figcaption>{content.falimage3.originalResource.originalFile.title}</figcaption>
+	  </figure>
+      </f:if>
+      </div>
 	 </div>
 
 	 <p class="carousel-single-back"><a href="javascript:history.back();">{f:translate(key: 'back', default: 'back')}</a></p>

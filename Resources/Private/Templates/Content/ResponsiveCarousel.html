@@ -67,11 +67,9 @@ var imax = {contents -> f:count()};
 	<div class="crsl-wrap">
 	<f:for each="{contents}" as="content" iteration="iter">
 		<figure class="crsl-item">
-			<f:if condition="{fal}"><f:then>
+			<f:if condition="{content.falimage.uid}"><f:then>
 			<f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" />
-		    </f:then><f:else>
-			<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" />
-		    </f:else></f:if>
+		    </f:then></f:if>
 			<figcaption>{content.title}</figcaption>
 		</figure>
 	</f:for>

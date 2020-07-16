@@ -98,11 +98,9 @@ jQuery(document).ready(function() {
   <ul class="slides">
 	<f:for each="{contents}" as="content">
 		<li>
-			<f:if condition="{fal}"><f:then>
+			<f:if condition="{content.falimage.uid}"><f:then>
 				<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
-			</f:then><f:else>
-				<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" />
-			</f:else></f:if>
+			</f:then></f:if>
 			<p class="flex-caption">{content.title}</p>
 		</li>
 	</f:for>
@@ -114,11 +112,9 @@ jQuery(document).ready(function() {
   <ul class="slides">
 	<f:for each="{contents}" as="content">
 		<li>
-			<f:if condition="{fal}"><f:then>
+			<f:if condition="{content.falimage.uid}"><f:then>
 				<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}" treatIdAsReference="1" />
-			</f:then><f:else>
-				<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" width="{settings.img.thumbWidth}" />
-			</f:else></f:if>
+			</f:then></f:if>
 		</li>
 	</f:for>
   </ul>

@@ -22,26 +22,14 @@
 			<trans-unit id="image2.description">
 				<target>Bild 2</target>
 			</trans-unit>
-			<trans-unit id="caption2.description">
-				<target>Beschreibung zu Bild 2</target>
-			</trans-unit>
 			<trans-unit id="image3.description">
 				<target>Bild 3</target>
-			</trans-unit>
-			<trans-unit id="caption3.description">
-				<target>Beschreibung zu Bild 3</target>
 			</trans-unit>
 			<trans-unit id="image4.description">
 				<target>Bild 4</target>
 			</trans-unit>
-			<trans-unit id="caption4.description">
-				<target>Beschreibung zu Bild 4</target>
-			</trans-unit>
 			<trans-unit id="image5.description">
 				<target>Bild 5</target>
-			</trans-unit>
-			<trans-unit id="caption5.description">
-				<target>Beschreibung zu Bild 5</target>
 			</trans-unit>
 			<trans-unit id="street.description">
 				<target>Straße</target>

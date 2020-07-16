@@ -27,11 +27,9 @@ Copy this file in a subfolder named "Content" of this folder.
   <f:for each="{contents}" as="content" iteration="iter">
     <li>
     	<h3>{content.title}</h3>
-    	<f:if condition="{fal}"><f:then>
+    	<f:if condition="{content.falimage.uid}"><f:then>
 		    <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.width}" treatIdAsReference="1" />
-		</f:then><f:else>
-			<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.width}" />
-		</f:else></f:if>
+		</f:then></f:if>
 		<br>
 		<p><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p>
 		<f:if condition="{content.link} != ''">

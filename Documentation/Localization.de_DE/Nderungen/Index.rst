@@ -224,4 +224,7 @@ Version     Änderungen
             Slug-Task: es werden nun nur Einträge ohne Slug aktualisiert.
             
             Jetzt TYPO3 10 kompatibel.
+10.0.0      Support für den uploads-Ordner gelöscht. Default-Verhalten geändert! Wechsele zu FAL vor dem Update.
+
+            Revolution- und Scrollable-Template gelöscht. Benutze evtl. die Extension fp_fractionslider stattdessen. 
 ==========  =====================================================================================================================

@@ -47,7 +47,7 @@ Here an example for a template (extract) with 2 layouts:
 
 	<f:if condition="{settings.templateLayout} == 1">
 		<f:then>
-			<f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" />
+			<h3>{content.title}</h3>
 		</f:then>
 		<f:else>
 			<p>Phone: {content.phone}<br />

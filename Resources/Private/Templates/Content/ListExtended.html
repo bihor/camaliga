@@ -18,15 +18,9 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
  <f:for each="{paginatedContents}" as="content" iteration="pageiterator">
   <tr>
    <td class="carousel-list-img">
-   <f:if condition="{fal}"><f:then>
     <f:if condition="{content.falimage.uid}">
 	<f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
     </f:if>
-   </f:then><f:else>
-    <f:if condition="{content.image} != ''">
-	<f:image src="/uploads/tx_camaliga/{content.image}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" />
-    </f:if>
-   </f:else></f:if>
    </td>
    <td class="carousel-list-text">
 	<div><b><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="showExtended" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>

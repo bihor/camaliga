@@ -30,11 +30,9 @@ Copy this file in a subfolder named "Content" of this folder.
 				</f:if>
 				</article>
             </div>
-			<f:if condition="{fal}"><f:then>
+			<f:if condition="{content.falimage.uid}"><f:then>
 			    <f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" />
-			</f:then><f:else>
-			    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" />
-			</f:else></f:if>
+			</f:then></f:if>
         </div>
 	</f:for>
     </div>

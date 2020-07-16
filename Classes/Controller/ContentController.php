@@ -202,9 +202,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 			
 			$cobjData = $this->configurationManager->getContentObject();
-			$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			
-			$this->view->assign('fal', $enableFal);
+			$this->view->assign('fal', 1);
 			$this->view->assign('uid', $cobjData->data['uid']);
 			$this->view->assign('pid', $GLOBALS["TSFE"]->id);
 			$this->view->assign('contents', $contents);
@@ -432,10 +431,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if ((($i % $mod) == 0) || ($i == $contents->count())) $content->setModuloEnd($j);
 			}
 		}
-				
-		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
 			
-		$this->view->assign('fal', $enableFal);
+		$this->view->assign('fal', 1);
 		$this->view->assign('lang', $sys_language_uid);
 		$this->view->assign('uid', $content_uid);
 		$this->view->assign('pid', $GLOBALS["TSFE"]->id);
@@ -502,10 +499,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * set SEO head?
 	 *
 	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-	 * @param integer $enableFal
 	 * @return void
 	 */
-	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content, $enableFal) {
+	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content) {
 		$title = $content->getTitle();
 		$desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
 		if ($this->settings['seo']['setTitle'] == 1) {
@@ -527,17 +523,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
 			$server .= $_SERVER['SERVER_NAME'];
 			$image = '';
-			if ($enableFal) {
-				if ($content->getFalimage() && $content->getFalimage()->getUid()) {
-					$typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
-					$fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
-					$fileObjectData = $fileObject->toArray();
-					$image = $server . '/' . $fileObjectData['url'];
-				}
-			} else {
-				if ($content->getImage()) {
-					$image = $server . '/uploads/tx_camaliga/' . $content->getImage();
-				}
+			if ($content->getFalimage() && $content->getFalimage()->getUid()) {
+				$typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
+				$fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
+				$fileObjectData = $fileObject->toArray();
+				$image = $server . '/' . $fileObjectData['url'];
 			}
 			if ($image) {
 				$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
@@ -558,10 +548,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			// $this->view->setTemplatePathAndFilename($this->templatePath . 'Content/ShowExtended.html');
 			$this->showExtendedAction($content);
 		} else {
-			$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
-			$this->setSeo($content, $enableFal);
+			$this->setSeo($content);
 				
-			$this->view->assign('fal', $enableFal);
+			$this->view->assign('fal', 1);
 			$this->view->assign('content', $content);
 			$this->view->assign('error', 0);
 		}
@@ -575,10 +564,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
-		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
-		$this->setSeo($content, $enableFal);
+		$this->setSeo($content);
 			
-		$this->view->assign('fal', $enableFal);
+		$this->view->assign('fal', 1);
 		$this->view->assign('content', $content);
 		$this->view->assign('error', 0);
 		if ($content->getMother()) {
@@ -615,19 +603,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @return void
 	 */
 	public function carouselSeparatedAction() {
-		if ($this->settings['extended']['enable']) {
-			$this->listExtendedAction();
-		} else {
-			$this->listAction();
-		}
-	}
-	
-	/**
-	 * action scrollable
-	 *
-	 * @return void
-	 */
-	public function scrollableAction() {
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -936,19 +911,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
-	 * action Revolution Slider
-	 *
-	 * @return void
-	 */
-	public function revolutionAction() {
-		if ($this->settings['extended']['enable']) {
-			$this->listExtendedAction();
-		} else {
-			$this->listAction();
-		}
-	}
-
-	/**
 	 * action FractionSlider
 	 *
 	 * @return void
@@ -1033,9 +995,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function randomAction() {
 		$contents = $this->contentRepository->findRandom();
-		$enableFal = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'enableFal');
-			
-		$this->view->assign('fal', $enableFal);
+		
+		$this->view->assign('fal', 1);
 		$this->view->assign('contents', $contents);
 	}
 

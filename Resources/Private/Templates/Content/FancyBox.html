@@ -33,11 +33,9 @@ jQuery(document).ready(function() {
 </script>
 <p class="camaliga_fancy">
 <f:for each="{contents}" as="content" iteration="iteration">
-	<f:if condition="{fal}"><f:then>
+	<f:if condition="{content.falimage.uid}"><f:then>
 		<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}" rel="fancybox{uid}" class="fancybox" title="{content.title}" id="bild{uid}{iteration.cycle}"><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" treatIdAsReference="1" /></a>
-  	</f:then><f:else>
-		<a href="/uploads/tx_camaliga/{content.image}" rel="fancybox{uid}" class="fancybox" title="{content.title}" id="bild{uid}{iteration.cycle}"><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" /></a>
-	</f:else></f:if>
+  	</f:then></f:if>
 </f:for>
 </p>
 </f:then>

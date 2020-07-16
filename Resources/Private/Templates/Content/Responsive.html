@@ -44,15 +44,9 @@ var jetzt = 1;
 <ul id="mycarousel">
 <f:for each="{contents}" as="content" iteration="iter">
 <li class="carousel-item <f:if condition="{iter.isFirst}"><f:then>ka-first</f:then><f:else><f:if condition="{iter.isLast}"><f:then>ka-last</f:then><f:else>ka-middle</f:else></f:if></f:else></f:if>" id="item-{iter.cycle}">
-  <f:if condition="{fal}"><f:then>
-    <f:if condition="{content.falimage.uid}">
+  <f:if condition="{content.falimage.uid}">
 	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" class="img-fluid" />
-    </f:if>
-  </f:then><f:else>
-    <f:if condition="{content.image} != ''">
-	<f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" class="img-fluid" />
-    </f:if>
-  </f:else></f:if>
+  </f:if>
   <div class="grau grau-<f:if condition="{iter.isFirst}"><f:then>ka-first</f:then><f:else><f:if condition="{iter.isLast}"><f:then>ka-last</f:then><f:else>ka-middle</f:else></f:if></f:else></f:if>" id="grau-{iter.cycle}">
 	<h3>{content.title}</h3><f:format.html>{content.shortdesc}</f:format.html>
 	<f:if condition="{content.link} != ''"><p>

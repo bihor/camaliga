@@ -30,24 +30,17 @@ Copy this file in a subfolder named "Content" of this folder.
 	<div class="fractionSlider"><!-- your slider container -->
 	 <f:for each="{contents}" as="content" iteration="iteration">
 	  <div class="slide">
-	    <f:if condition="{fal}"><f:then>
+	    <f:if condition="{content.falimage.uid}"><f:then>
 		  <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" additionalAttributes="{data-fixed: 'data-fixed'}" treatIdAsReference="1" />
-		</f:then><f:else>
-      	  <img src="/uploads/tx_camaliga/{content.image}" alt="Slider-Bild" title="{content.title}" data-fixed />
-		</f:else></f:if>
+		</f:then></f:if>
 		<h4 data-position="180,200" data-delay="500"  data-time="1250">{content.title}</h4>
 		<f:if condition="{content.shortdesc}"><p data-in="right" data-position="330,200" data-delay="800" data-time="1750" class="fraction-text"><f:format.nl2br>{content.shortdesc}</f:format.nl2br></p></f:if>
 		<f:if condition="{content.longdesc}"><div data-in="right" data-position="400,200" data-delay="1500" data-time="2750" class="fraction-text"><f:format.html>{content.longdesc}</f:format.html></div></f:if>
 		<f:if condition="{content.link} != ''"><p data-in="right" data-position="500,200" data-delay="500" data-time="3000">
 			<f:link.typolink parameter="{content.link}" class="btn btn-default">{f:translate(key: 'more')}</f:link.typolink>
 		</p></f:if>
-		<f:if condition="{fal}"><f:then>
-		  <f:if condition="{content.falimage2.uid}"><f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.originalFile.alternative}" title="{content.falimage2.originalResource.originalFile.title}" additionalAttributes="{data-in:'top',data-position:'330,800',data-delay:'500',data-time:'1900'}" treatIdAsReference="1" /></f:if>
-		  <f:if condition="{content.falimage3.uid}"><f:image src="{content.falimage3.uid}" alt="{content.falimage3.originalResource.originalFile.alternative}" title="{content.falimage3.originalResource.originalFile.title}" additionalAttributes="{data-in:'top',data-position:'330,1200',data-delay:'500',data-time:'2000'}" treatIdAsReference="1" /></f:if>
-		</f:then><f:else>
-		  <f:if condition="{content.image2}"><img src="/uploads/tx_camaliga/{content.image2}" alt="Bild 2" title="Bild 2" data-in="top" data-position="330,800" data-delay="500" data-time="1900" /></f:if>
-		  <f:if condition="{content.image3}"><img src="/uploads/tx_camaliga/{content.image3}" alt="Bild 3" title="Bild 3" data-in="top" data-position="330,1200" data-delay="500" data-time="2000" /></f:if>
-		</f:else></f:if>
+		<f:if condition="{content.falimage2.uid}"><f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.originalFile.alternative}" title="{content.falimage2.originalResource.originalFile.title}" additionalAttributes="{data-in:'top',data-position:'330,800',data-delay:'500',data-time:'1900'}" treatIdAsReference="1" /></f:if>
+	    <f:if condition="{content.falimage3.uid}"><f:image src="{content.falimage3.uid}" alt="{content.falimage3.originalResource.originalFile.alternative}" title="{content.falimage3.originalResource.originalFile.title}" additionalAttributes="{data-in:'top',data-position:'330,1200',data-delay:'500',data-time:'2000'}" treatIdAsReference="1" /></f:if>
 	  </div>
 	 </f:for>
 	  <div class="fs_loader"></div>

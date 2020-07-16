@@ -33,13 +33,8 @@ Note 3: An alternative parallax gallery: http://codepen.io/pederan/full/Hheuy
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
     <f:for each="{contents}" as="content" iteration="iteration">
-    	<f:if condition="{fal}"><f:then>
 		<div class="parallax-window" data-parallax="scroll" data-image-src="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}"
 			 data-natural-width="{settings.img.width}" data-natural-height="{settings.img.height}" data-speed="{settings.more.speed}"><!-- nix --></div>
-		</f:then><f:else>
-    	<div class="parallax-window" data-parallax="scroll" data-image-src="/uploads/tx_camaliga/{content.image}"
-    		 data-natural-width="{settings.img.width}" data-natural-height="{settings.img.height}" data-speed="{settings.more.speed}"><!-- nix --></div>
-        </f:else></f:if>
         <div class="container"><div class="row"><div class="col-md-12">
           <div class="item-parallax">
 			<h2>{content.title}: <f:format.raw>{content.shortdesc}</f:format.raw></h2>

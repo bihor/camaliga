@@ -101,14 +101,14 @@ jQuery(document).ready(function() {
 <f:if condition="{settings.more.showPanel}">
 <div class="slider-for">
 	<f:for each="{contents}" as="content">
-		<div class="slider-item"><f:if condition="{fal}"><f:then><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:then><f:else><f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" /></f:else></f:if><div class="slider-title">{content.title}</div></div>
+		<div class="slider-item"><f:if condition="{content.falimage.uid}"><f:then><f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:then></f:if><div class="slider-title">{content.title}</div></div>
 	</f:for>
 </div>
 </f:if>
 <f:if condition="{settings.more.showThumbnails}">
 <div class="slider-nav">
 	<f:for each="{contents}" as="content">
-		<div><f:if condition="{fal}"><f:then><f:image src="{content.falimage.uid}" maxWidth="{settings.img.thumbWidth}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:then><f:else><f:image src="/uploads/tx_camaliga/{content.image}" maxWidth="{settings.img.thumbWidth}" alt="{content.title}" title="{content.title}" /></f:else></f:if></div>
+		<div><f:if condition="{content.falimage.uid}"><f:then><f:image src="{content.falimage.uid}" maxWidth="{settings.img.thumbWidth}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" /></f:then></f:if></div>
 	</f:for>
 </div>
 </f:if>

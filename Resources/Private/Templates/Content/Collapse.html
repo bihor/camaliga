@@ -34,13 +34,9 @@ Copy this file in a subfolder named "Content" of this folder.
          class="collapse {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: 'show')} {f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: 'multi-collapse')}">
     </f:else></f:if>
       <div class="card-body"><div class="row">
-      	<f:if condition="{fal}"><f:then><f:if condition="{content.falimage.uid}"><div class="col col-3">
+      	<f:if condition="{content.falimage.uid}"><div class="col col-3">
 		    <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" treatIdAsReference="1" />
-		 </div></f:if></f:then><f:else>
-		 <f:if condition="{content.image} != ''">
-      	  <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" />
-      	 </f:if>
-		</f:else></f:if>
+		 </div></f:if>
 		<div class="col">
         <h4><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
         <f:format.html>{content.longdesc}</f:format.html>

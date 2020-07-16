@@ -21,11 +21,9 @@ Copy this file in a subfolder named "Content" of this folder.
 <ul id="innerfade">
 <f:for each="{contents}" as="content">
 <li>
-<f:if condition="{fal}"><f:then>
+<f:if condition="{content.falimage.uid}"><f:then>
 	<div style="background: url({f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}) no-repeat;" class="innerhinter">
-</f:then><f:else>
-	<div style="background: url(/uploads/tx_camaliga/{content.image}) no-repeat;" class="innerhinter">
-</f:else></f:if>
+</f:then></f:if>
 		<div class="innervorder">
 			<h2>{content.title}</h2>
 			<p>{content.shortdesc}

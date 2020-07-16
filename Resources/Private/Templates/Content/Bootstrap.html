@@ -40,13 +40,11 @@ $(document).ready(function() {
   <div class="carousel-inner" role="listbox">
 <f:for each="{contents}" as="content" iteration="iter">
  <div class="{f:if(condition: '{iter.isFirst}', then: 'active ')}carousel-item">
-  <f:if condition="{fal}"><f:then>
+  <f:if condition="{content.falimage.uid}"><f:then>
     <img src="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:settings.img.width,height:settings.img.height)}"  
          srcset="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:400)} 400w, {f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:800)} 800w, {f:uri.image(src:content.falimage.uid,treatIdAsReference:1,width:1920)} 1920w"
          sizes="100vw" alt="{content.title}" title="{content.title}" class="d-block w-100" />
-  </f:then><f:else>
-    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" title="{content.title}" class="d-block w-100" />
-  </f:else></f:if>
+  </f:then></f:if>
   <div class="carousel-caption d-none d-md-block">
     <h3>{content.title}</h3>
     <p><f:format.nl2br>{content.shortdesc}</f:format.nl2br>

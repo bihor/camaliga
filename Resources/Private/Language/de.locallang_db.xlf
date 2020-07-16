@@ -24,26 +24,14 @@
 			<trans-unit id="tx_camaliga_domain_model_content.image2">
 				<target>Thumbnail oder Bild 2</target>
 			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.caption2">
-				<target>Beschreibung zu Bild 2</target>
-			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.image3">
 				<target>Bild 3</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.caption3">
-				<target>Beschreibung zu Bild 3</target>
 			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.image4">
 				<target>Bild 4</target>
 			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.caption4">
-				<target>Beschreibung zu Bild 4</target>
-			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.image5">
 				<target>Bild 5</target>
-			</trans-unit>
-			<trans-unit id="tx_camaliga_domain_model_content.caption5">
-				<target>Beschreibung zu Bild 5</target>
 			</trans-unit>
 			<trans-unit id="tx_camaliga_domain_model_content.street">
 				<target>Adresse: Straße</target>

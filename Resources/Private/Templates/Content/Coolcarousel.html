@@ -132,11 +132,9 @@ $(function() {
 <div id="images">
 	<div class="carousel">
 	<f:for each="{contents}" as="content">
-		<f:if condition="{fal}"><f:then>
+		<f:if condition="{content.falimage.uid}"><f:then>
 		    <f:image src="{content.falimage.uid}" alt="{content.title}" treatIdAsReference="1" />
-		</f:then><f:else>
-		    <f:image src="/uploads/tx_camaliga/{content.image}" alt="{content.title}" />
-		</f:else></f:if>
+		</f:then></f:if>
 	</f:for>
 	</div>
 </div>

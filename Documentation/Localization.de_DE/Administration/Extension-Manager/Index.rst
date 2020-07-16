@@ -24,14 +24,6 @@ Bei der Konfiguration im Extension-Manager kann man verschiedene Sachen einstell
 
 - Man kann vorhandene Felder deaktivieren, wenn man sie nicht braucht.
 
-- Man kann entscheiden, ob man FAL-Bilder oder den Ordner /uploads/tx_camaliga benutzen will.
-  Dieser Punkt ist sehr entscheidend und kann später nur noch schwer geändert werden.
-  Außerdem muss man die Extension deinstallieren und neu installieren, nachdem man hier eine Änderung vorgenommen hat.
-  Das ist sehr wichtig, damit TYPO3 die Bild-Konfiguration umstellt.
-  Lies das Kapitel Administration → Scheduler-Tasks, bevor du was umstellst!
-  Beachte weiterhin: die Standardeinstellung ist, den Ordner /uploads/tx_camaliga zu benutzen.
-  Deprecation: dieses Feature wird in Version 10.0 entfernt! Dann kann man den uploads-Ordner nicht mehr benutzen!
-
 - Man kann einstellen, wie die Links zu einem Camaliga-Eintrag bei ke_search gebildet werden sollen::
 
   Do not switch controller and action at the ke_search hook?

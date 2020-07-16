@@ -9,7 +9,7 @@ call_user_func(
 			'Quizpalme.Camaliga',
 			'Pi1',
 			[
-				'Content' => 'list, listExtended, show, showExtended, random, search, carousel, carouselSeparated, elegant, responsiveCarousel, coolcarousel, ekko, lightslider, sgallery, skdslider, scrollable, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, revolution, fractionSlider, responsive, map, openstreetmap',
+				'Content' => 'list, listExtended, show, showExtended, random, search, carousel, carouselSeparated, elegant, responsiveCarousel, coolcarousel, ekko, lightslider, sgallery, skdslider, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, fractionSlider, responsive, map, openstreetmap',
 			],
 			[
 				'Content' => 'random, search',
@@ -75,14 +75,6 @@ if (TYPO3_MODE === 'BE') {
 			'title' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.title',
 			'description' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.description',
 			'additionalFields' => 'Quizpalme\\Camaliga\\Task\\CsvImportAdditionalFieldProvider'
-	);
-
-	// Add uploads/ to FAL task (sheduler)
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\MoveUploadsToFalTask'] = array(
-		'extension' => 'camaliga',
-			'title' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:faltasks.title',
-			'description' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:faltasks.description',
-			'additionalFields' => 'Quizpalme\\Camaliga\\Task\\MoveUploadsToFalFieldProvider'
 	);
 	
 	// Add Slug-builder task (sheduler)
