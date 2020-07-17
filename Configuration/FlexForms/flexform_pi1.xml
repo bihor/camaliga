@@ -143,6 +143,10 @@
                 <numIndex index="0">Lightslider</numIndex>
                 <numIndex index="1">Content->lightslider;Content->search;Content->show</numIndex>
             </numIndex>
+            <numIndex index="48">
+                <numIndex index="0">Magnific Popup</numIndex>
+                <numIndex index="1">Content->magnific;Content->search;Content->show</numIndex>
+            </numIndex>
             <numIndex index="52">
                 <numIndex index="0">OWL Carousel 2</numIndex>
                 <numIndex index="1">Content->owl2;Content->search;Content->show</numIndex>
@@ -150,10 +154,6 @@
             <numIndex index="53">
                 <numIndex index="0">Parallax (Simple Parallax Scrolling)</numIndex>
                 <numIndex index="1">Content->parallax;Content->search;Content->show</numIndex>
-            </numIndex>
-            <numIndex index="54">
-                <numIndex index="0">prettyPhoto</numIndex>
-                <numIndex index="1">Content->prettyPhoto;Content->search;Content->show</numIndex>
             </numIndex>
             <numIndex index="55">
                 <numIndex index="0">responsiveCarousel by Basilio Cáceres</numIndex>

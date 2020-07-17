@@ -126,6 +126,13 @@ List.html                  List view.
 ListExtended.html          List view with more fields.
 
                            Demo: http://www.quizpalme.de/astronomische-uhren/liste-astronomischer-uhren
+Magnific.html              Template that uses the "Magnific Popup" plugin.
+                           Note 1: you must install Magnific Popup separately.
+                           Note 2: you need to set settings.img.thumbWidth and .thumbHeight.
+
+                           Infos: https://dimsemenov.com/plugins/magnific-popup/
+
+                           Demo: http://www.quizpalme.de/astronomische-uhren/sonnenuhren
 Map.html                   A google map.
 Modal.html                 Template for Twitter Bootstrap 4 Modal. Use the field custom1 for the modal-button.
 
@@ -150,13 +157,7 @@ Parallax.html              Template that uses "Simple Parallax Scrolling".
 
                            Infos: http://pixelcog.github.io/parallax.js/
 
-                           Demo: http://www.quizpalme.de/
-PrettyPhoto.html           Template that uses the "prettyPhoto" plugin.
-                           Note 1: you must install prettyPhoto separately.
-                           Note 2: you need to set settings.img.thumbWidth and .thumbHeight.
-
-                           Infos: http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/documentation
-Random.html                Shows a random element. Not cached.
+                           Demo: http://www.quizpalme.de/Random.html                Shows a random element. Not cached.
 Responsive.html            A simple responsive template.
 
                            Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/responsive-beispiel

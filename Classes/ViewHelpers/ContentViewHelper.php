@@ -58,7 +58,7 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
             	$row['camaliga_title'] = $entry->getTitle();
                 $row['camaliga_shortdesc'] = $entry->getShortdesc();
                 $row['camaliga_link'] = $entry->getLink();
-                $row['camaliga_image'] = $entry->getImage();
+                $row['camaliga_image'] = $entry->getFalimage();
                 $row['camaliga_street'] = $entry->getStreet();
                 $row['camaliga_zip'] = $entry->getZip();
                 $row['camaliga_city'] = $entry->getCity();

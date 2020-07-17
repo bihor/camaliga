@@ -175,7 +175,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 					$zc_id = $row['zc_id'];		// Die erst beste ID nehmen. Nicht immer die beste Wahl!
 				}
 			}
-			
+
 			// Elemente in der Umgebung des Suchortes finden
 			if ($zc_id) {
 				$new_uids = [];
@@ -204,27 +204,37 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 							if ($uids[$uid] > 0) {
 								$new_uids[$uid] = $uid;
 								$this->distanceArray[$uid] = $row['distance'];
-							}
+                               // echo "\nÜbrig 1: " . $uid . ': ' . $row['zip'] . ' ' . $row['city'];
+							} else {
+							    //echo "\Fällt weg: " . $uid . ': ' . $row['zip'] . ' ' . $row['city'];
+                            }
 						} else {
 							// Keine Kategoriensuche
 							$uids[$uid] = $uid;
 							$this->distanceArray[$uid] = $row['distance'];
+                            //echo "\nÜbrig 2: " . $uid . ': ' . $row['zip'] . ' ' . $row['city'];
 						}
 					}
 				}
-				// nur die UIDs übernehmen, wo Kategorie-Suche und PLZ/Ort-Suche das selbe gefunden hat!
-				if ($catSearch)	$uids = $new_uids;
+				if ($catSearch)	{
+                    // nur die UIDs übernehmen, wo Kategorie-Suche und PLZ/Ort-Suche das selbe gefunden hat!
+				    $uids = $new_uids;
+                }
 			} else {
 				// nix gefunden
-				$uids = array();
+				$uids = [];
 			}
-			if (count($uids) == 0) $noMatch = TRUE;	// keine Treffer bei der Umkreissuche!
+			if (count($uids) == 0) {
+                // keine Treffer bei der Umkreissuche!
+			    $noMatch = TRUE;
+            }
 		} else if ($place) {
 			// Suche nach Ort, aber keine Umkreissuche
 			$place = $place . '%';
 		}
 		
 		if (!$noMatch) {
+		    //var_dump($uids);
 			$constraints = array();
 			$query = $this->createQuery();
 			if (count($pids)>0) {
@@ -267,6 +277,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 				);
 			}
 			if (count($constraints) > 0) {
+			    //var_dump($constraints);
 				$query->matching($query->logicalAnd($constraints));
 			}
 			if ($limit > 0) {

@@ -226,7 +226,7 @@ Version     Änderungen
             Jetzt TYPO3 10 kompatibel.
 10.0.0      Support für den uploads-Ordner gelöscht. Default-Verhalten geändert! Wechsele zu FAL vor dem Update.
             
-            PrettyPhoto-Template hinzugefügt.
+            Magnific Popup-Template hinzugefügt.
             
             Revolution- und Scrollable-Template gelöscht. Benutze evtl. die Extension fp_fractionslider stattdessen. 
 ==========  =====================================================================================================================

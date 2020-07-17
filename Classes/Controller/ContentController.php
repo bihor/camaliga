@@ -611,11 +611,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 	
 	/**
-	 * action prettyPhoto
+	 * action magnific popup
 	 *
 	 * @return void
 	 */
-	public function prettyPhotoAction() {
+	public function magnificAction() {
 	    if ($this->settings['extended']['enable']) {
 	        $this->listExtendedAction();
 	    } else {
