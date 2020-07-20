@@ -222,4 +222,5 @@ Version     Changes
             Magnific Popup-template added.
             
             Revolution- and scrollable-template removed. (Use fp_fractionslider instead.)
+10.0.1      TCA-Bugfix for TYPO3 10.
 ==========  ==============================================================================================================================
