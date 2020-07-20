@@ -278,7 +278,7 @@ $tcaArray = array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc, link, '.$pre.'image',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc;;;richtext:rte_transform[mode=ts_links], link, '.$pre.'image;;2'),
+		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc, link, '.$pre.'image'),
 	),
 	'columns' => array(
 		'sys_language_uid' => [
@@ -417,14 +417,6 @@ $tcaArray = array(
 			'config' => [
 				'type' => 'text',
 				'enableRichtext' => true,
-				'richtextConfiguration' => 'default',
-				'fieldControl' => [
-					'fullScreenRichtext' => [
-						'disabled' => false,
-					],
-				],
-				'cols' => 40,
-				'rows' => 15,
 				'eval' => 'trim',
 			],
 		],
@@ -466,7 +458,7 @@ if (!$disableFurtherImages) {
 		'config' => $imgConfig5
 	);
 	$tcaArray['interface']['showRecordFieldList'] .= ', falimage2, falimage3, falimage4, falimage5';
-	$tcaArray['palettes']['2']['showitem'] = 'falimage2,--linebreak--, falimage3,--linebreak--, falimage4,--linebreak--, falimage5';
+	$tcaArray['types']['1']['showitem'] .=  ',falimage2,--linebreak--, falimage3,--linebreak--, falimage4,--linebreak--, falimage5';
 }
 
 if (!$disableAddress) {
@@ -529,8 +521,7 @@ if (!$disableAddress) {
         ),
 	);
 	$tcaArray['interface']['showRecordFieldList'] .= ', street, zip, city, country, latitude, longitude';
-	$tcaArray['types']['1']['showitem'] .= ',street;;3';
-	$tcaArray['palettes']['3'] = array('showitem' => 'zip, city,--linebreak--, country,--linebreak--, latitude, longitude');
+	$tcaArray['types']['1']['showitem'] .= ',street,--linebreak--,zip, city,--linebreak--, country,--linebreak--, latitude, longitude';
 }
 
 if (!$disableContact) {
@@ -571,8 +562,7 @@ if (!$disableContact) {
 			),
 	);
 	$tcaArray['interface']['showRecordFieldList'] .= ', person, phone, mobile, email';
-	$tcaArray['types']['1']['showitem'] .= ', person;;4';
-	$tcaArray['palettes']['4'] = array('showitem' => 'phone, mobile,--linebreak--, email');
+	$tcaArray['types']['1']['showitem'] .= ', person,--linebreak--,phone, mobile,--linebreak--, email';
 }
 
 if (!$disableCustom) {
@@ -604,8 +594,7 @@ if (!$disableCustom) {
 		),
 	);
 	$tcaArray['interface']['showRecordFieldList'] .= ', custom1, custom2, custom3';
-	$tcaArray['types']['1']['showitem'] .= ',custom1;;5';
-	$tcaArray['palettes']['5'] = array('showitem' => 'custom2, custom3');
+	$tcaArray['types']['1']['showitem'] .= ',custom1, custom2, custom3';
 }
 
 if (!$disableMother) {
