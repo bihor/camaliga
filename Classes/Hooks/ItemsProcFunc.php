@@ -25,6 +25,7 @@
  * modified 2014 by Kurt Gusbeth
 */
 namespace Quizpalme\Camaliga\Hooks;
+
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 
 /**

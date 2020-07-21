@@ -503,10 +503,9 @@ if (!$disableAddress) {
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.latitude',
 		'config' => array(
                 'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 30,
-                'default' => '0.00000000000000'
+                'size' => 15,
+                'eval' => 'trim,Quizpalme\\Camaliga\\Evaluation\\Double9Evaluation',
+                'default' => '0.000000000'
         ),
 	);
 	$tcaArray['columns']['longitude'] = array(
@@ -514,10 +513,9 @@ if (!$disableAddress) {
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.longitude',
 		'config' => array(
                 'type' => 'input',
-                'size' => 20,
-                'eval' => 'trim',
-                'max' => 30,
-                'default' => '0.00000000000000'
+                'size' => 15,
+                'eval' => 'trim,Quizpalme\\Camaliga\\Evaluation\\Double9Evaluation',
+                'default' => '0.000000000'
         ),
 	);
 	$tcaArray['interface']['showRecordFieldList'] .= ', street, zip, city, country, latitude, longitude';
