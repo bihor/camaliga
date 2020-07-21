@@ -176,19 +176,24 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					$categoryUids[$selected] = $selected;
 				}
 			}
+			$debug = '';
 			
 			if (count($categoryUids) > 0) {
 				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? FALSE : TRUE;
-				if ($this->settings['debug'])
-					GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+				if ($this->settings['debug']) {
+					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ")\n";
+				}
 				$contents = $this->contentRepository->findByCategories($categoryUids, '', '', 0, $this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $normalCatMode, $this->settings['limit']);
 			} else {
-				if ($this->settings['debug'])
-					GeneralUtility::devLog('findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+				if ($this->settings['debug']) {
+					$debug .= 'findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ")\n";
+				}
 				$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
 			if ($this->settings['random']) $contents = $this->sortObjects($contents);
-			if ($this->settings['getLatLon']) $this->getLatLon($contents);
+			if ($this->settings['getLatLon']) {
+				$debug .= $this->getLatLon($contents);
+			}
 			
 			if ($this->settings['more']['setModulo']) {
 				$i = 0;
@@ -224,6 +229,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$this->view->assign('totalItemHeight', $total_item_height);
 			$this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
 			$this->view->assign('onlySearchForm', 0);
+			$this->view->assign('debug', $debug);
 		}
 	}
 	
@@ -254,6 +260,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$storagePidsComma = implode(',', $storagePidsArray);
 		$storagePidsData = [];
 		$storagePidsOnly = [];
+		$debug = '';
 		
 		if (count($storagePidsArray)>1) {
 			// bei mehr als einer PID eine Auswahl anbieten
@@ -393,31 +400,37 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		} else {
 			if ($cUid > 0) {
 				// nur ein bestimmtes Element anzeigen
-				if ($this->settings['debug'])
-					GeneralUtility::devLog('findByUids(array(' . $cUid . '))', 'camaliga', 0);
+				if ($this->settings['debug']) {
+					$debug .= 'findByUids(array(' . $cUid . "))\n";
+				}
 				$contents = $this->contentRepository->findByUids(array($cUid));
 			} else if (count($categoryUids) > 0) {
 				// Umfangreiche Suche betreiben
 				// official solution (not enough): http://wiki.typo3.org/TYPO3_6.0#Category
 				// Sort categories (doesnt work): http://www.php-kurs.com/arrays-mehrdimensional.htm 
 				// find entries by category-uids
-				if ($this->settings['debug'])
-					GeneralUtility::devLog('findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+				if ($this->settings['debug']) {
+					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ")\n";
+				}
 				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, TRUE,  $this->settings['limit']);
 			} else if ($sword || $place) {
 				// Komplexe Suche, aber ohne Kategorien
-				if ($this->settings['debug'])
-					GeneralUtility::devLog('findComplex( ,' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+				if ($this->settings['debug']) {
+					$debug .= 'findComplex( ,' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ")\n";
+				}
 				$contents = $this->contentRepository->findComplex(array(), $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			} else {
 				// Simple Suche
-				if ($this->settings['debug'])
-					GeneralUtility::devLog('findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ')', 'camaliga', 0);
+				if ($this->settings['debug']) {
+					$debug .= 'findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ")\n";
+				}
 				$contents = $this->contentRepository->findAll($sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
 			if ($place)	$distanceArray = $this->contentRepository->getDistanceArray();	// Distanz-Array vorhanden?
 			if ($this->settings['random']) $contents = $this->sortObjects($contents);	// zufällig umsortieren?
-			if ($this->settings['getLatLon']) $this->getLatLon($contents);	// Position suchen? Bringt nach einer Umkreissuche freilich nichts!
+			if ($this->settings['getLatLon']) {
+				$debug .= $this->getLatLon($contents);	// Position suchen? Bringt nach einer Umkreissuche freilich nichts!
+			}
 			$this->view->assign('onlySearchForm', 0);
 		}
 
@@ -480,6 +493,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		} else {
 			$this->view->assign('rsearch', 0);
 		}
+		$this->view->assign('debug', $debug);
 	}
 
 	/**
@@ -1057,6 +1071,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		/**
 		 * prüfen, welche Objekte eine Adresse (mind. einen Ort), aber keine Position haben
 		 */
+		$debug = '';
 	    if (is_object($objects) || is_array($objects)) {
 		  foreach($objects as $object) {
 			if ($object->getLatitude() == 0 && $object->getLongitude() == 0 && $object->getCity()) {
@@ -1074,8 +1089,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				$response = curl_exec($ch);
 				curl_close($ch);
-				if ($this->settings['debug'])
-				    GeneralUtility::devLog('geocode response to address "' . $address . '": ' . $response, 'camaliga', 0);
+				if ($this->settings['debug']) {
+				    $debug .= 'geocode response to address "' . $address . '": ' . $response. "\n";
+				}
 				$response_a = json_decode($response);
 				$lat = $response_a->results[0]->geometry->location->lat;
 				$long = $response_a->results[0]->geometry->location->lng;
@@ -1089,6 +1105,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 		  }
 	   }
+	   return $debug;
 	}
 }
 ?>

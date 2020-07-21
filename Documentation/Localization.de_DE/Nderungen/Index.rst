@@ -229,7 +229,9 @@ Version     Änderungen
             Magnific Popup-Template hinzugefügt.
             
             Revolution- und Scrollable-Template gelöscht. Benutze evtl. die Extension fp_fractionslider stattdessen.
-10.0.2      Eval für Koordinaten erneut hinzugefügt.
+10.1.0      Eval für Koordinaten erneut hinzugefügt.
+            
+            Debug-Ausgabe jetzt im Template. DevLog-Aufruf entfernt.
             
             TCA-Bugfix für TYPO3 10.
 ==========  =====================================================================================================================

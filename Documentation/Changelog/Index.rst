@@ -222,7 +222,9 @@ Version     Changes
             Magnific Popup-template added.
             
             Revolution- and scrollable-template removed. (Use fp_fractionslider instead.)
-10.0.2      Evaluation for coordinates added again.
+10.1.0      Evaluation for coordinates added again.
+            
+            Debug-output now in the template. Deprecated DevLog removed.
             
             TCA-Bugfix for TYPO3 10.
 ==========  ==============================================================================================================================

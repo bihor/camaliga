@@ -63,6 +63,7 @@ totalWidth                 n \* totalItemWidth.
 paddingItemHeight          Element-Höhe + 2\*padding.
 totalItemHeight            Element-Höhe + 2\*padding + 2\*margin.
 itemHeight                 Hängt von "addPadding" ab: Element-Höhe ODER paddingItemHight.
+debug                      Debug-Ausgabe, wenn settings.debug=1.
 =========================  ===============================================================================================
 
 
