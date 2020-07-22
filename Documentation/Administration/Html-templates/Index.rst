@@ -157,7 +157,8 @@ Parallax.html              Template that uses "Simple Parallax Scrolling".
 
                            Infos: http://pixelcog.github.io/parallax.js/
 
-                           Demo: http://www.quizpalme.de/Random.html                Shows a random element. Not cached.
+                           Demo: http://www.quizpalme.de/
+Random.html                Shows a random element. Not cached.
 Responsive.html            A simple responsive template.
 
                            Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/responsive-beispiel
