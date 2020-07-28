@@ -206,6 +206,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 			}
 			
+			// @extensionScannerIgnoreLine
 			$cobjData = $this->configurationManager->getContentObject();
 			
 			$this->view->assign('fal', 1);
@@ -330,6 +331,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		// es wurde gesucht
 		if ($this->request->hasArgument('search')) $search = TRUE;
 		
+		// @extensionScannerIgnoreLine
 		$cobjData = $this->configurationManager->getContentObject();
 		$content_uid = $cobjData->data['uid'];
 		

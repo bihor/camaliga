@@ -12,4 +12,4 @@ https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/
 bzw.
 https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE
 
-Last feature: exclude-field.
+Last feature: exclude-field and extensionScannerIgnoreLine.
