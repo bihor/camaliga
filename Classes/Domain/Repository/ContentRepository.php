@@ -424,7 +424,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function findRandom() {
         $rows = $this->createQuery()->execute()->count();
-        $row_number = mt_rand(0, max(0, ($rows - 1)));
+        $row_number = random_int(0, max(0, ($rows - 1)));
         return $this->createQuery()->setOffset($row_number)->setLimit(1)->execute();
     }
 
