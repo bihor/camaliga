@@ -1,0 +1,6 @@
+<div>
+<f:for each="{content.categories}" as="category" iteration="iter">
+	<f:if condition="{iter.isFirst}"><div>{f:translate(key: 'tx_camaliga_domain_model_content.category')}:</f:if>
+	{category.title}<f:if condition="{iter.isLast}"><f:then>.</div></f:then><f:else>, </f:else></f:if>
+</f:for>
+</div>

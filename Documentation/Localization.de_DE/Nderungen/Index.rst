@@ -233,6 +233,8 @@ Version     Änderungen
             
             Geocode benutzt nun file_get_contents anstatt curl.
             
+            Templates geändert: neue Partials eingebaut.
+            
             Debug-Ausgabe jetzt im Template. DevLog-Aufruf entfernt.
             
             TCA-Bugfix für TYPO3 10.

@@ -1,0 +1,13 @@
+<f:if condition="{content.city} != ''">{f:translate(key: 'address')}: {content.street}, {content.zip} {content.city}, {content.country}<br></f:if>
+<f:if condition="{content.person} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.person')}: {content.person}<br></f:if>
+<f:if condition="{content.phone} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.phone')}: {content.phone}<br></f:if>
+<f:if condition="{content.mobile} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.mobile')}: {content.mobile}<br></f:if>
+<f:if condition="{content.email} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.email')}: {content.email}<br></f:if>
+<div>
+	<f:if condition="{content.custom1} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom1')}: {content.custom1}.</f:if>
+	<f:if condition="{content.custom2} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom2')}: {content.custom2}.</f:if>
+	<f:if condition="{content.custom3} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom3')}: {content.custom3}.</f:if>
+</div>
+<f:if condition="{content.distance} > 0">
+	<div>{f:translate(key: 'distance', default: 'distance')}: <f:format.number decimals="2" decimalSeparator="," thousandsSeparator=".">{content.distance}</f:format.number> km</div>
+</f:if>

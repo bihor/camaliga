@@ -228,5 +228,7 @@ Version     Changes
             
             Debug-output now in the template. Deprecated DevLog removed.
             
+            Templates changed: new partials.
+            
             TCA-Bugfix for TYPO3 10.
 ==========  ==============================================================================================================================

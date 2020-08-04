@@ -1,0 +1,7 @@
+<div>
+<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
+	{catMMval.title}:
+	<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration">{catMMchildVal.title}<f:if condition="{iteration.isLast}"><f:then>.</f:then>
+		<f:else>, </f:else></f:if></f:for>
+</f:for>
+</div>

@@ -25,39 +25,20 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 	<div><strong><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
 		<f:else><f:link.action action="show" arguments="{content : content}">{content.title}</f:link.action></f:else></f:if></strong></div>
 	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
-	<f:if condition="{content.city} != ''">{f:translate(key: 'address')}: {content.street}, {content.zip} {content.city}, {content.country}<br></f:if>
-	<f:if condition="{content.person} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.person')}: {content.person}<br></f:if>
-	<f:if condition="{content.phone} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.phone')}: {content.phone}<br></f:if>
-	<f:if condition="{content.mobile} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.mobile')}: {content.mobile}<br></f:if>
-	<f:if condition="{content.email} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.email')}: {content.email}<br></f:if>
-	<div>
-		<f:if condition="{content.custom1} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom1')}: {content.custom1}.</f:if>
-		<f:if condition="{content.custom2} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom2')}: {content.custom2}.</f:if>
-		<f:if condition="{content.custom3} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.custom3')}: {content.custom3}.</f:if>
-	</div>
-	<f:if condition="{content.distance} > 0">
-		<div>{f:translate(key: 'distance', default: 'distance')}: <f:format.number decimals="2" decimalSeparator="," thousandsSeparator=".">{content.distance}</f:format.number> km</div>
+	<f:render partial="Optional" arguments="{content:content}" />
+	
+	<f:if condition="{settings.extended.enable} == 1">
+	<f:then>
+	   	<f:render partial="CategoriesAndParents" arguments="{content:content}" />
+	</f:then>
+	<f:else>
+		<f:render partial="Categories" arguments="{content:content}" />
+	</f:else>
 	</f:if>
+	
 	<f:if condition="{content.link} != ''"><p>
 		<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
 	</p></f:if>
-	<div>
-	<f:if condition="{settings.extended.enable} == 1">
-	<f:then>
-	   	<f:for each="{content.categoriesAndParents}" as="catMMval" key="catMMkey">
-			{catMMval.title}:
-			<f:for each="{catMMval.childs}" as="catMMchildVal" iteration="iteration"><f:if condition="{iteration.isLast}">
-				<f:then>{catMMchildVal.title}.</f:then><f:else>{catMMchildVal.title}, </f:else></f:if></f:for>
-		</f:for>
-	</f:then>
-	<f:else>
-		<f:for each="{content.categories}" as="category" iteration="iter">
-			<f:if condition="{iter.isFirst}"><div>{f:translate(key: 'tx_camaliga_domain_model_content.category')}:</f:if>
-			{category.title}<f:if condition="{iter.isLast}"><f:then>.</div></f:then><f:else>, </f:else></f:if>
-		</f:for>
-	</f:else>
-	</f:if>
-	</div>
    </td>
   </tr>
  </f:for>
@@ -80,9 +61,6 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
   </f:form>
 </f:if>
 <f:if condition="{settings.debug} && {debug}">
-<pre>
-DEBUG:
-{debug}
-</pre>
+  <f:render partial="Debug" arguments="{debug:debug}" />
 </f:if>
 </f:section>
