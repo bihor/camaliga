@@ -231,6 +231,8 @@ Version     Änderungen
             Revolution- und Scrollable-Template gelöscht. Benutze evtl. die Extension fp_fractionslider stattdessen.
 10.1.0      Eval für Koordinaten erneut hinzugefügt.
             
+            Geocode benutzt nun file_get_contents anstatt curl.
+            
             Debug-Ausgabe jetzt im Template. DevLog-Aufruf entfernt.
             
             TCA-Bugfix für TYPO3 10.

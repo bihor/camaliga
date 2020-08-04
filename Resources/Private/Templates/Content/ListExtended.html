@@ -13,7 +13,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
- <table class="carousel-list">
+ <table class="carousel-list" summary="list entries">
  <f:widget.paginate objects="{contents}" as="paginatedContents" configuration="{settings.pagebrowser}">
  <f:for each="{paginatedContents}" as="content" iteration="pageiterator">
   <tr>
@@ -23,8 +23,8 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
     </f:if>
    </td>
    <td class="carousel-list-text">
-	<div><b><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="showExtended" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
-		<f:else><f:link.action action="showExtended" arguments="{content : content}">{content.title}</f:link.action></f:else></f:if></b></div>
+	<div><strong><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="showExtended" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
+		<f:else><f:link.action action="showExtended" arguments="{content : content}">{content.title}</f:link.action></f:else></f:if></strong></div>
 	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
 	<f:if condition="{content.city} != ''">{f:translate(key: 'address')}: {content.street}, {content.zip} {content.city}, {content.country}<br></f:if>
 	<f:if condition="{content.person} != ''">{f:translate(key: 'tx_camaliga_domain_model_content.person')}: {content.person}<br></f:if>

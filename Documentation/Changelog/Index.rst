@@ -224,6 +224,8 @@ Version     Changes
             Revolution- and scrollable-template removed. (Use fp_fractionslider instead.)
 10.1.0      Evaluation for coordinates added again.
             
+            Get geocode now with file_get_contents instead of curl.
+            
             Debug-output now in the template. Deprecated DevLog removed.
             
             TCA-Bugfix for TYPO3 10.

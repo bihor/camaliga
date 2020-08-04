@@ -4,8 +4,9 @@
 <style>
   #sortable { list-style-type: none; margin: 0; padding: 0; }
   #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; min-height: 75px; }
-  #sortable li span { position: absolute; margin-left: -1.3em; }
-  #sortable li h3 { margin-top: 2px; }
+  #sortable li h3 { margin-top: 5px; }
+  #sortable .flexme { display: flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row; }
+  #sortable .flexme div {padding: 0 8px;}
 </style>
   
 <div id="typo3-docheader">
@@ -18,19 +19,22 @@
 		  
     <br><br><br>
 	<f:if condition="{saved} == 1">
-		<p><b><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.saved" /></b></p>
+		<p><strong><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.saved" /></strong></p>
 	</f:if>
 	<f:form action="thumb" id="thumbform">
 	<ul id="sortable">
 	<f:for each="{contents}" as="content">
 	  <li class="ui-state-default" id="cami{content.uid}">
-	  	<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
-	  	<table><tr><td rowspan="2" width="150">
+	   <div class="flexme">
+	  	<div class="ui-icon ui-icon-arrowthick-2-n-s"></div>
+	  	<div>
 	  	  <f:if condition="{content.falimage.uid} > 0">
 	  		<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="120m" height="75m" treatIdAsReference="1" />
 	  	  </f:if>
-	  	</td><td><h3>{content.title}</h3></td></tr><tr><td>{content.shortdesc}</td></tr></table>
-	  	<f:form.hidden name="camelements[{content.uid}]" id="ecami{content.uid}" value="0" />
+	  	</div>
+	  	<div><h3>{content.title}</h3><p>{content.shortdesc}</p></div>
+	   </div>
+	   <f:form.hidden name="camelements[{content.uid}]" id="ecami{content.uid}" value="0" />
 	  </li>
 	</f:for>
 	</ul>
