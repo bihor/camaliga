@@ -1069,40 +1069,42 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * Lösung von hier: http://stackoverflow.com/questions/8633574/get-latitude-and-longitude-automatically-using-php-api
 	 */
 	private function getLatLon(&$objects) {
-		//$persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
 		/**
 		 * prüfen, welche Objekte eine Adresse (mind. einen Ort), aber keine Position haben
 		 */
-		$debug = '';
+	    //$persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
+	    $debug = '';
 	    if (is_object($objects) || is_array($objects)) {
 		  foreach($objects as $object) {
-			if ($object->getLatitude() == 0 && $object->getLongitude() == 0 && $object->getCity()) {
+			if (($object->getLatitude() == 0) && ($object->getLongitude() == 0) && $object->getCity()) {
 				$address = $object->getStreet();
 				if ($object->getZip()) $address .= ($address) ? ', ' . $object->getZip() : $object->getZip();
 				if ($object->getCity()) $address .= ($address) ? ', ' . $object->getCity() : $object->getCity();
 				if ($object->getCountry()) $address .= ($address) ? ', ' . $object->getCountry() : $object->getCountry();
 				$address = urlencode($address);
-				$url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=" . $this->settings['maps']['key'];
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $url);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_PROXYPORT, 3128);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-				$response = curl_exec($ch);
-				curl_close($ch);
-				if ($this->settings['debug']) {
-				    $debug .= 'geocode response to address "' . $address . '": ' . $response. "\n";
-				}
-				$response_a = json_decode($response);
-				$lat = $response_a->results[0]->geometry->location->lat;
-				$long = $response_a->results[0]->geometry->location->lng;
-				if ($lat || $long) {
-					$object->setLatitude($lat);
-					$object->setLongitude($long);
-					$this->contentRepository->update($object);
-					//$persistenceManager->persistAll();
-					//echo "position berechnet: $lat, $long";
+				$url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address . '&key=' . $this->settings['maps']['key'];
+				// get the json response
+				$resp_json = file_get_contents($url);
+				// decode the json
+				$resp = json_decode($resp_json, true);
+				// response status will be 'OK', if able to geocode given address
+				if ($resp['status']=='OK'){
+				    // get the important data
+				    $lati = isset($resp['results'][0]['geometry']['location']['lat']) ? $resp['results'][0]['geometry']['location']['lat'] : "";
+				    $longi = isset($resp['results'][0]['geometry']['location']['lng']) ? $resp['results'][0]['geometry']['location']['lng'] : "";
+				    //$formatted_address = isset($resp['results'][0]['formatted_address']) ? $resp['results'][0]['formatted_address'] : "";
+				    if ($lati || $longi) {    // && $formatted_address){
+				        $object->setLatitude($lati);
+				        $object->setLongitude($longi);
+				        $this->contentRepository->update($object);
+				        //$persistenceManager->persistAll();
+				        //echo "position berechnet: $lat, $long";
+				    }
+				    if ($this->settings['debug']) {
+				        $debug .= 'geocode answer to address "' . $address . '": ' . $lati .' / ' . $longi . "\n"; //  . ' (' . $formatted_address.
+				    }
+				} elseif ($this->settings['debug']) {
+				    $debug .= 'geocode response to address "' . $address . '": ' . $resp['status'] . "\n";
 				}
 			}
 		  }
