@@ -33,8 +33,6 @@ color:#000;
 }
 
 #carousel_ul li img {
-.margin-bottom:-4px; /* IE is making a 4px gap bellow an image inside of an anchor (<a href...>) so this is to fix that */
-/* styling */
 cursor:pointer;
 cursor: hand;
 border:0px;

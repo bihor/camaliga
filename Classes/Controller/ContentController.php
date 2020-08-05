@@ -69,12 +69,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
 		//parent::injectConfigurationManager($configurationManager);
 		$this->configurationManager = $configurationManager;
-
-		/* $tsSettings = $this->configurationManager->getConfiguration(
-			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK,
-			'Camaliga',
-			'Pi1'
-		); */
 		$tsSettings = $this->configurationManager->getConfiguration(
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
@@ -84,56 +78,70 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				break;
 			}
 		}
-		/*if ($this->templatePath == 'EXT:camaliga/Resources/Private/Templates/')	// wird so nicht verdaut ;-(
-		 $this->templatePath = 'typo3conf/ext/camaliga/Resources/Private/Templates/';*/
 		$tsSettings = $tsSettings['plugin.']['tx_camaliga.']['settings.'];
 		$originalSettings = $this->configurationManager->getConfiguration(
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
 		);
-		/* \TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($tsSettings); */ 
 		
 		// start override
 		if (isset($tsSettings['overrideFlexformSettingsIfEmpty']) && $tsSettings['overrideFlexformSettingsIfEmpty']==1) {
 			// if flexform setting is empty and value is available in TS
 			foreach ($tsSettings as $key=>$value) {
-				if ($key == 'img.' || $key == 'item.' || $key == 'extended.' || $key == 'bootstrap.') continue;
-				if (!$originalSettings[$key] && isset($value))
+				if ($key == 'img.' || $key == 'item.' || $key == 'extended.' || $key == 'bootstrap.') {
+					continue;
+				}
+				if (!$originalSettings[$key] && isset($value)) {
 					$originalSettings[$key] = $value;
+				}
 			}
-			if (is_array($tsSettings['img.']))
-			foreach ($tsSettings['img.'] as $key=>$value) {
-				if ((!$originalSettings['img'][$key] && $originalSettings['img'][$key]!=='0') && isset($value))
-					$originalSettings['img'][$key] = $value;
+			if (is_array($tsSettings['img.'])) {
+				foreach ($tsSettings['img.'] as $key=>$value) {
+					if ((!$originalSettings['img'][$key] && $originalSettings['img'][$key]!=='0') && isset($value)) {
+						$originalSettings['img'][$key] = $value;
+					}
+				}
 			}
-			if (is_array($tsSettings['item.']))
-			foreach ($tsSettings['item.'] as $key=>$value) {
-				if ((!$originalSettings['item'][$key] && $originalSettings['item'][$key]!=='0') && isset($value))
-					$originalSettings['item'][$key] = $value;
+			if (is_array($tsSettings['item.'])) {
+				foreach ($tsSettings['item.'] as $key=>$value) {
+					if ((!$originalSettings['item'][$key] && $originalSettings['item'][$key]!=='0') && isset($value)) {
+						$originalSettings['item'][$key] = $value;
+					}
+				}
 			}
-			if (is_array($tsSettings['more.']))
-			foreach ($tsSettings['more.'] as $key=>$value) {
-				if ((!$originalSettings['more'][$key] && $originalSettings['more'][$key]!=='0') && isset($value))
-					$originalSettings['more'][$key] = $value;
+			if (is_array($tsSettings['more.'])) {
+				foreach ($tsSettings['more.'] as $key=>$value) {
+					if ((!$originalSettings['more'][$key] && $originalSettings['more'][$key]!=='0') && isset($value)) {
+						$originalSettings['more'][$key] = $value;
+					}
+				}
 			}
-			if (is_array($tsSettings['extended.']))
-			foreach ($tsSettings['extended.'] as $key=>$value) {
-				if ((!$originalSettings['extended'][$key] && $originalSettings['extended'][$key]!=='0') && isset($value))
-					$originalSettings['extended'][$key] = $value;
+			if (is_array($tsSettings['extended.'])) {
+				foreach ($tsSettings['extended.'] as $key=>$value) {
+					if ((!$originalSettings['extended'][$key] && $originalSettings['extended'][$key]!=='0') && isset($value)) {
+						$originalSettings['extended'][$key] = $value;
+					}
+				}
 			}
-			if (is_array($tsSettings['bootstrap.']))
-			foreach ($tsSettings['bootstrap.'] as $key=>$value) {
-				if ((!$originalSettings['bootstrap'][$key] && $originalSettings['bootstrap'][$key]!=='0') && isset($value))
-					$originalSettings['bootstrap'][$key] = $value;
+			if (is_array($tsSettings['bootstrap.'])) {
+				foreach ($tsSettings['bootstrap.'] as $key=>$value) {
+					if ((!$originalSettings['bootstrap'][$key] && $originalSettings['bootstrap'][$key]!=='0') && isset($value)) {
+						$originalSettings['bootstrap'][$key] = $value;
+					}
+				}
 			}
-			if (is_array($tsSettings['seo.']))
-			foreach ($tsSettings['seo.'] as $key=>$value) {
-				if ((!$originalSettings['seo'][$key] && $originalSettings['seo'][$key]!=='0') && isset($value))
-					$originalSettings['seo'][$key] = $value;
+			if (is_array($tsSettings['seo.'])) {
+				foreach ($tsSettings['seo.'] as $key=>$value) {
+					if ((!$originalSettings['seo'][$key] && $originalSettings['seo'][$key]!=='0') && isset($value)) {
+						$originalSettings['seo'][$key] = $value;
+					}
+				}
 			}
-			if (is_array($tsSettings['maps.']))
-			foreach ($tsSettings['maps.'] as $key=>$value) {
-				if ((!$originalSettings['maps'][$key] && $originalSettings['maps'][$key]!=='0') && isset($value))
-					$originalSettings['maps'][$key] = $value;
+			if (is_array($tsSettings['maps.'])) {
+				foreach ($tsSettings['maps.'] as $key=>$value) {
+					if ((!$originalSettings['maps'][$key] && $originalSettings['maps'][$key]!=='0') && isset($value)) {
+						$originalSettings['maps'][$key] = $value;
+					}
+				}
 			}
 		}
 		$this->settings = $originalSettings;
@@ -202,7 +210,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				foreach ($contents as $content) {
 					if (($i % $mod) == 0) { $j++; $content->setModuloBegin($j); }
 					$i++;
-					if ((($i % $mod) == 0) || ($i == $contents->count())) $content->setModuloEnd($j);
+					if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
 				}
 			}
 			
@@ -249,7 +257,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$radius = ($this->request->hasArgument('radius')) ? intval($this->request->getArgument('radius')) : 0;
 		if ($this->request->hasArgument('content')) {
 			$cUid = intval($this->request->getArgument('content'));
-			if ($cUid > 0) $search = true;
+			if ($cUid > 0) {
+				$search = true;
+			}
 		}
 		$languageAspect = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class)->getAspect('language');
 		$sys_language_uid = $languageAspect->getId();
@@ -329,7 +339,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		}
 		
 		// es wurde gesucht
-		if ($this->request->hasArgument('search')) $search = TRUE;
+		if ($this->request->hasArgument('search')) {
+			$search = TRUE;
+		}
 		
 		// @extensionScannerIgnoreLine
 		$cobjData = $this->configurationManager->getContentObject();
@@ -428,8 +440,12 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 				$contents = $this->contentRepository->findAll($sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
-			if ($place)	$distanceArray = $this->contentRepository->getDistanceArray();	// Distanz-Array vorhanden?
-			if ($this->settings['random']) $contents = $this->sortObjects($contents);	// zufällig umsortieren?
+			if ($place)	{
+				$distanceArray = $this->contentRepository->getDistanceArray();	// Distanz-Array vorhanden?
+			}
+			if ($this->settings['random']) {
+				$contents = $this->sortObjects($contents);	// zufällig umsortieren?
+			}
 			if ($this->settings['getLatLon']) {
 				$debug .= $this->getLatLon($contents);	// Position suchen? Bringt nach einer Umkreissuche freilich nichts!
 			}
@@ -443,7 +459,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			foreach ($contents as $content) {
 				if (($i % $mod) == 0) { $j++; $content->setModuloBegin($j); }
 				$i++;
-				if ((($i % $mod) == 0) || ($i == $contents->count())) $content->setModuloEnd($j);
+				if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
 			}
 		}
 			
@@ -505,8 +521,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function searchAction() {
 		$template = ($this->request->hasArgument('template')) ? $this->request->getArgument('template') : '';
-		if ($template)
+		if ($template) {
 			$this->view->setTemplatePathAndFilename($this->templatePath . 'Content/' . $template . '.html');
+		}
 		$this->listExtendedAction();
 	}
 	
