@@ -163,13 +163,13 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function listAction() {
 		if ($this->settings['extended']['enable'] == 1) {
-			// extended-Version laden
-			// $this->template = 'ListExtended';
+			// extended-Version laden - this->template = 'ListExtended'; ?
 			$this->listExtendedAction();
 		} else {
 			$storagePidsArray = $this->contentRepository->getStoragePids();
 			$storagePidsComma = implode(',', $storagePidsArray);
-			if (!$storagePidsComma) {		// nix ausgewählt => aktuelle PID nehmen
+			if (!$storagePidsComma) {
+				// nix ausgewählt => aktuelle PID nehmen
 				$storagePidsComma = intval($GLOBALS["TSFE"]->id);
 				$storagePidsArray = array($storagePidsComma);
 				$storagePidsOnly  = array($storagePidsComma);
@@ -186,7 +186,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 			$debug = '';
 			
-			if (count($categoryUids) > 0) {
+			if (!empty($categoryUids)) {
 				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? FALSE : TRUE;
 				if ($this->settings['debug']) {
 					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ")\n";
@@ -198,7 +198,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 				$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
-			if ($this->settings['random']) $contents = $this->sortObjects($contents);
+			if ($this->settings['random']) {
+				$contents = $this->sortObjects($contents);
+			}
 			if ($this->settings['getLatLon']) {
 				$debug .= $this->getLatLon($contents);
 			}
@@ -299,7 +301,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					}
 				}
 			}
-		} else if (!$storagePidsComma) {		// nix ausgewählt => aktuelle PID nehmen
+		} else if (!$storagePidsComma) {
+			// nix ausgewählt => aktuelle PID nehmen
 			$storagePidsComma = intval($GLOBALS["TSFE"]->id);
 			$storagePidsArray = array($storagePidsComma);
 			$storagePidsOnly  = array($storagePidsComma);
@@ -418,7 +421,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					$debug .= 'findByUids(array(' . $cUid . "))\n";
 				}
 				$contents = $this->contentRepository->findByUids(array($cUid));
-			} else if (count($categoryUids) > 0) {
+			} else if (!empty($categoryUids)) {
 				// Umfangreiche Suche betreiben
 				// official solution (not enough): http://wiki.typo3.org/TYPO3_6.0#Category
 				// Sort categories (doesnt work): http://www.php-kurs.com/arrays-mehrdimensional.htm 

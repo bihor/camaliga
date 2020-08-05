@@ -62,7 +62,7 @@ margin:{settings.item.margin}px;
 // width of an item with width, padding and margin left + right
 var item_width = {totalItemWidth};
 
-jQuery(document).ready(function() {
+document.addEventListener('DOMContentLoaded', function(){ 
   $('#carousel_ul').camaliga({
 	auto_slide: 0,	// auto slide (0, 1)?
     hover_pause: 0,	// pause on hover (0, 1)?
@@ -73,7 +73,7 @@ jQuery(document).ready(function() {
 	left_scroll: '#left_scroll',	// only needed, if you want to change the arrow at the first element when infinite=0 (class camaliga_first will be added)
 	right_scroll: '#right_scroll'	// only needed, if you want to change the arrow at the last element when infinite=0 (class camaliga_last will be added)
   });
-});
+}, false);
 </script>
 </f:then>
 <f:else>

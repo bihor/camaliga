@@ -2,10 +2,10 @@
 
 <f:if condition="{rows.above}">
     <f:then>
-        <table class="table table-condensed table-hover camaliga-table">
+        <table class="table table-condensed table-hover camaliga-table" summary="page layout view">
             <thead>
             <tr>
-                <th colspan="2">{header -> f:format.raw()}</th>
+                <th colspan="2" scope="col">{header -> f:format.raw()}</th>
             </tr>
             </thead>
             <f:if condition="{rows.below}">
@@ -24,7 +24,7 @@
             <tbody>
             <f:for each="{rows.above}" as="item">
                 <tr>
-                    <th>{item.0 -> f:format.raw()}</th>
+                    <td><strong>{item.0 -> f:format.raw()}</strong></td>
                     <td>{item.1 -> f:format.raw()}</td>
                 </tr>
             </f:for>
@@ -33,7 +33,7 @@
                 <tbody class="hidden-settings hidden" id="camaligacollapse-{id}">
                 <f:for each="{rows.below}" as="item">
                     <tr>
-                        <th>{item.0 -> f:format.raw()}</th>
+                        <td><strong>{item.0 -> f:format.raw()}</strong></td>
                         <td>{item.1 -> f:format.raw()}</td>
                     </tr>
                 </f:for>

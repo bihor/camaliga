@@ -91,6 +91,7 @@
 			var gehenr = false;
 			var gehezu = 0;
 			var anzahl = 1;
+			var curcam2 = 0;
 			
 			if (where != 'left' && where != 'right') {
 				gehenr = true;
