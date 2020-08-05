@@ -20,16 +20,15 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 		$constraints = [];
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		if (count($pids)>0) {
+		if (!empty($pids)) {
 			$constraints[] = $query->in('pid', $pids);
 		}
-		if (count($constraints) > 0) {
+		if (!empty($constraints)) {
 			$query->matching($query->logicalAnd($constraints));
 		}
-		$result = $query
+		return $query
 			->setOrderings(	array($sortBy => $order) )
 			->execute();
-		return $result;
 	}
 	
 	/**
@@ -51,7 +50,9 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 			foreach ($catRows as $row) {
 				// Die Parents sind für die Options sehr wichtig
 				$parent = $row->getParent();
-				if (!$parent) continue;
+				if (!$parent) {
+					continue;
+				}
 				$parentUids[$parent->getUid()] = 1;
 			}
 			for ($i=1; $i<=2; $i++) {
@@ -60,7 +61,9 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 					if (($i==1 && $parentUids[$uid]==1) || ($i==2 && !$parentUids[$uid])) {
 						// In Durchgang 1 die Parents aufnehmen und in Durchgang 2 die Childs
 						$parent = $row->getParent();
-						if (!$parent) continue;		// wer keinen Parent hat, interessiert uns nicht
+						if (!$parent) {
+							continue;		// wer keinen Parent hat, interessiert uns nicht
+						}
 						$all_cats[$uid] = [];
 						$all_cats[$uid]['uid'] = $uid;
 						$all_cats[$uid]['parent'] = $parent->getUid();
@@ -83,12 +86,14 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 	 */
 	public function getCategoriesAndParents($all_cats = [], $used_cats = []) {
 		$cats = [];
-		if (count($all_cats) > 0) {
+		if (!empty($all_cats)) {
 			$parentUids = [];
 			foreach ($all_cats as $row) {
 				// Die Parents sind für die Options sehr wichtig
 				$parent = $row['parent'];
-				if (!$parent) continue;
+				if (!$parent) {
+					continue;
+				}
 				$parentUids[$parent] = 1;
 			}
 			for ($i=1; $i<=2; $i++) {

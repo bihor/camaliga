@@ -52,8 +52,12 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	
 	// String Escape for DB
 	function ms_escape_string($data) {
-		if ( !isset($data) or empty($data) ) return '';
-		if ( is_numeric($data) ) return $data;
+		if ( !isset($data) or empty($data) ) {
+			return '';
+		}
+		if ( is_numeric($data) ) {
+			return $data;
+		}
 	
 		$non_displayables = array(
 				'/%0[0-8bcef]/',            // url encoded 00-08, 11, 12, 14, 15
@@ -83,22 +87,25 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='crdate' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 		 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
-		 	//OK
-		} else $sortBy = 'sorting';
+		 	// OK
+		 } else {
+		 	$sortBy = 'sorting';
+		 }
 		
 		$constraints = array();
 		$query = $this->createQuery();
-		if (count($pids)>0) {
+		if (!empty($pids)) {
 			$query->getQuerySettings()->setRespectStoragePage(FALSE);
 			$constraints[] = $query->in('pid', $pids);
 		}
 		// keine gute Idee: Mutter muss 0 sein, aber nur wenn die Mutter vorhanden ist (die könnte auch in einem anderen Ordner liegen)
-		//if ($onlyDistinct)
-		//	$constraints[] = $query->equals('mother', 0);
-		if (count($constraints) > 0)
+		//if ($onlyDistinct) $constraints[] = $query->equals('mother', 0);
+		if (!empty($constraints)) {
 			$query->matching($query->logicalAnd($constraints));
-		if ($limit > 0)
+		}
+		if ($limit > 0) {
 			$query->setLimit(intval($limit));
+		}
 		//	->setOffset($page * $limit)
 		$result = $query
 			->setOrderings(	array($sortBy => $order) )
@@ -144,14 +151,18 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 										  \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 			 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
-			 	//OK
-		} else $sortBy = 'sorting';
-		if ($sword) $sword = '%' . $sword . '%';
-		if (count($uids) > 0) {
+		 	// OK
+		} else {
+		 	$sortBy = 'sorting';
+		}
+		if ($sword) {
+		 	$sword = '%' . $sword . '%';
+		}
+		if (!empty($uids)) {
 			$catSearch = TRUE;
 		} else {
 			$catSearch = FALSE;
-			$uids = array();
+			$uids = [];
 		}
 		$noMatch = FALSE;
 		$this->distanceArray = array();
@@ -237,14 +248,14 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		    //var_dump($uids);
 			$constraints = array();
 			$query = $this->createQuery();
-			if (count($pids)>0) {
+			if (!empty($pids)) {
 				$query->getQuerySettings()->setRespectStoragePage(FALSE);
 				$constraints[] = $query->in('pid', $pids);
 			}
 			if ($onlyDistinct) {
 				$constraints[] = $query->equals('mother', 0);
 			}
-			if (count($uids) > 0) {
+			if (!empty($uids)) {
 				$constraints[] = $query->in('uid', $uids);
 			}
 			if ($place && !$radius) {
@@ -276,7 +287,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 					)
 				);
 			}
-			if (count($constraints) > 0) {
+			if (!empty($constraints)) {
 			    //var_dump($constraints);
 				$query->matching($query->logicalAnd($constraints));
 			}
@@ -300,11 +311,12 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 		 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
-		 	//OK
-		} else $sortBy = 'sorting';
+		 	// OK
+		} else {
+		 	$sortBy = 'sorting';
+		}
 		$query = $this->createQuery();
-		// nicht nötig:
-		// if ($onlyDistinct) $query->matching($query->logicalAnd($query->equals('mother', 0), $query->in('uid', $uids))); else 
+		// nicht nötig: if ($onlyDistinct) $query->matching($query->logicalAnd($query->equals('mother', 0), $query->in('uid', $uids))); else 
 		$query->matching($query->in('uid', $uids));
 		return $query
 			->setOrderings(	array($sortBy => $order) )
@@ -325,7 +337,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	integer	$limit		Limit
 	 */
 	public function findByCategories($cat_uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $checkMax = TRUE, $limit = 0) {
-		if (count($cat_uids) > 0) {
+		if (!empty($cat_uids)) {
 			$max = 0;
 			$parents = [];	// Übergeordnete Elemente
 			$childs = [];	// Kind-Elemente, die angezeigt werden sollen
@@ -356,7 +368,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 						$queryBuilder->expr()->eq('categoryMM.fieldname', $queryBuilder->createNamedParameter('categories')),
 						$queryBuilder->expr()->in('categoryMM.uid_local', explode(',', $uidsChilds))
 					);
-				if (count($pids)>0) {
+				if (!empty($pids)) {
 					$queryBuilder->andWhere( $queryBuilder->expr()->in('tx_camaliga_domain_model_content.pid', $pids) );
 				}
 				$queryBuilder->groupBy('tx_camaliga_domain_model_content.uid');
@@ -375,7 +387,9 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			
 			// take only elements where all matches were true
 			foreach ($elements as $uid => $count) {
-				if (($count == $max) || !$checkMax) $results[$uid] = $uid; // statt $results[] =
+				if (($count == $max) || !$checkMax) {
+					$results[$uid] = $uid; // statt $results[] =
+				}
 			}
 			
 			// wenn nur einmalige Elemente angezeigt werden sollen, dann weiter ausdünnen
@@ -398,7 +412,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 						}
 					}
 				}
-				if (count($twice) > 0) {
+				if (!empty($twice)) {
 					// Dieses nicht eindeutigen Elemente entfernen
 					foreach ($twice as $key => $uid) {
 						unset($results[$key]);
@@ -408,10 +422,11 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			
 			if (sizeof($results) > 0) {
 				// search all content elements of specified uids
-				if ($sword || $place)
+				if ($sword || $place) {
 					return $this->findComplex($results, $sword, $place, $radius, $sortBy, $sortOrder, $onlyDistinct, $pids, $limit = 0);
-				else 
+				} else {
 					return $this->findByUids($results, $sortBy, $sortOrder);
+				}
 			}
 		} else {
 			// sollte eigentlich nie eintreten
@@ -457,10 +472,9 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	public function findOneByUid2($uid) {
 	    $query = $this->createQuery();
 	    $query->getQuerySettings()->setRespectStoragePage(FALSE);
-	    $result = $query->matching(
+	    return $query->matching(
 	        $query->equals('uid', $uid)
 	    )->execute()->getFirst();
-	    return $result;
 	}
 	
 	/**

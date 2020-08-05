@@ -291,8 +291,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $shortdesc
 	 */
 	public function getShortdescNl2br() {
-		$shortdesc = str_replace(array("'"), "\'", $this->shortdesc);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $shortdesc);
+		$tmp = str_replace(array("'"), "\'", $this->shortdesc);
+		return str_replace(array("\r\n", "\r", "\n"), "<br />", $tmp);
 	}
 
 	/**
@@ -320,8 +320,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $longdesc
 	 */
 	public function getLongdescNl2br() {
-		$longdesc = str_replace(array("'"), "\'", $this->longdesc);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $longdesc);
+		$tmp = str_replace(array("'"), "\'", $this->longdesc);
+		return str_replace(array("\r\n", "\r", "\n"), "<br />", $tmp);
 	}
 
 	/**
@@ -352,8 +352,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
 		$contentRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
 		$output = '';
-		$link = $this->link;
-		$linkArray = explode('?', $link);
+		$linkArray = explode('?', $this->link);
 		if ($linkArray[0] == 't3://file') {
 			$linkArray2 = explode('=', $linkArray[1]);
 			$output = $contentRepository->getFileLink(intval($linkArray2[1]));	// content element uid
@@ -395,7 +394,6 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $link
 	 */
 	public function getLink() {
-		// TODO: Link anders speichern!
 		return $this->link;
 	}
 
@@ -529,8 +527,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $street
 	 */
 	public function getStreetNl2br() {
-		$street = str_replace(array("'"), "\'", $this->street);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $street);
+		$tmp = str_replace(array("'"), "\'", $this->street);
+		return str_replace(array("\r\n", "\r", "\n"), "<br />", $tmp);
 	}
 	
 	/**
@@ -936,7 +934,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
 			$fieldsArray = explode(' ', trim($extendedFields));
 			//$search = implode(',', $fieldsArray);
-			if (count($fieldsArray) > 0) {
+			if (!empty($fieldsArray)) {
 				foreach ($fieldsArray as $field) {
 					$queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
 					$statement = $queryBuilder

@@ -1098,9 +1098,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		  foreach($objects as $object) {
 			if (($object->getLatitude() == 0) && ($object->getLongitude() == 0) && $object->getCity()) {
 				$address = $object->getStreet();
-				if ($object->getZip()) $address .= ($address) ? ', ' . $object->getZip() : $object->getZip();
-				if ($object->getCity()) $address .= ($address) ? ', ' . $object->getCity() : $object->getCity();
-				if ($object->getCountry()) $address .= ($address) ? ', ' . $object->getCountry() : $object->getCountry();
+				if ($object->getZip()) {
+					$address .= ($address) ? ', ' . $object->getZip() : $object->getZip();
+				}
+				if ($object->getCity()) {
+					$address .= ($address) ? ', ' . $object->getCity() : $object->getCity();
+				}
+				if ($object->getCountry()) {
+					$address .= ($address) ? ', ' . $object->getCountry() : $object->getCountry();
+				}
 				$address = urlencode($address);
 				$url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address . '&key=' . $this->settings['maps']['key'];
 				// get the json response
