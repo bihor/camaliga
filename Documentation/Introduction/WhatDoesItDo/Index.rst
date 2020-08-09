@@ -30,10 +30,14 @@ This flexible extension can display elements as e.g. carousel, gallery, list or 
 
 - you can use different jQuery-plugins – even your own one – for displaying the elements.
 
-- It supports some Bootstrap components: Carousel, Tab, Collapse and Modal.
+- It supports some Bootstrap 4 components: Carousel, Tab, Collapse and Modal.
 
 - Supports ke_search.
 
 - Scheduler task for CSV import and export.
+
+- Viewhelpers and utilities implemented.
+
+- Backend module.
 
 The extension is not allways easy to use, but it is very flexible and admins will like that.
