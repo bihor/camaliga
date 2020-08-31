@@ -423,7 +423,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage
 	 * @return void
 	 */
-	public function setFalmage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage)
+	public function setFalimage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage)
 	{
 		$this->falimage = $falimage;
 	}
@@ -465,7 +465,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage3
 	 * @return void
 	 */
-	public function setFalimage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage3)
+	public function setFalimage3(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage3)
 	{
 		$this->falimage3 = $falimage3;
 	}
@@ -941,7 +941,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 					->select($field)
 					->from('tx_camaliga_domain_model_content')
 					->where(
-						$queryBuilder->expr()->eq('uid', $orig_uid)
+						$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($orig_uid, \PDO::PARAM_INT))
 					)
 					->setMaxResults(1)
 					->execute();
@@ -952,6 +952,24 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 			}
 		}
 		return $extended;
+	}
+	
+	/**
+	 * Repairs a not correct set FAL-reference
+	 *
+	 * @param integer $uid UID
+	 */
+	public function repairFALreference($uid) {
+		$queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('sys_file_reference');
+		$queryBuilder
+			->update('sys_file_reference')
+			->where(
+				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+			)
+			->set('tablenames', 'tx_camaliga_domain_model_content')
+			->set('sorting_foreign', 1)
+			->set('table_local', 'sys_file')
+			->execute();
 	}
 }
 ?>

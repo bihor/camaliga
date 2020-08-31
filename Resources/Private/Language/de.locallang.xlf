@@ -134,6 +134,15 @@
 			<trans-unit id="close">
 				<target>Schließen</target>
 			</trans-unit>
+			<trans-unit id="required">
+				<target>Erforderliche Angabe.</target>
+			</trans-unit>
+			<trans-unit id="create_new">
+				<target>Neuen Eintrag anlegen</target>
+			</trans-unit>
+			<trans-unit id="error_create">
+				<target>Eintrag nicht erfolgreich angelegt. Titel fehlt?</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

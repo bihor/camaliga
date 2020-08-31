@@ -115,6 +115,7 @@ settings.img.width                        int            Width of the images. Ca
 settings.img.height                       int            Height of the images. Can be used in the template.                                 500
 settings.img.thumbWidth                   int            Thumbnail width of the images. Can be used in the template.                        195
 settings.img.thumbHeight                  int            Thumbnail height of the images. Can be used in the template.                       139
+settings.img.folderForNewEntries          string         Folder in the default storage for uploaded images in the FE                        camaliga
 settings.item.width                       int            Width of an (carousel-)item.                                                       195
 settings.item.height                      int            Height of an (carousel-)item.                                                      290
 settings.item.padding                     int            Padding of an (carousel-)item.                                                     0

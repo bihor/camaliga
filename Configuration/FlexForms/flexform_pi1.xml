@@ -63,6 +63,10 @@
                 <numIndex index="0">Elegant Responsive Pure CSS3 Slider</numIndex>
                 <numIndex index="1">Content->elegant</numIndex>
             </numIndex>
+            <numIndex index="14">
+                <numIndex index="0">new/create</numIndex>
+                <numIndex index="1">Content->new;Content->create</numIndex>
+            </numIndex>
             <numIndex index="15">
                 <numIndex index="0">Test</numIndex>
                 <numIndex index="1">Content->test;Content->show</numIndex>

@@ -55,6 +55,7 @@ Coolcarousel.html          Template that uses the Coolcarousel plugin.
                            Note: you must install Coolcarousel separately.
 
                            Infos: http://coolcarousels.frebsite.nl/c/66/
+Create.html                Template after the new-action. 
 Ekko.html                  Template that uses the Bootstrap-Ekko-Lightbox.
                            Note: you must install Ekko separately.
                            Runs only, if you set settings.more.setModulo=1
@@ -139,6 +140,7 @@ Modal.html                 Template for Twitter Bootstrap 4 Modal. Use the field
                            Infos: https://getbootstrap.com/docs/4.2/components/modal/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen
+New.html                   Here you can create new elements in the FE.
 Openstreetmap.html         Template that uses the Openstreetmap and Leaflet with markercluster.
                            Note: you must install Leaflet and Leaflet.markercluster separately.
 

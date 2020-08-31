@@ -1048,7 +1048,139 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('fal', 1);
 		$this->view->assign('contents', $contents);
 	}
-
+	
+	/**
+	 * action new
+	 *
+	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+	 * @param int $error	Error-Code
+	 * @return void
+	 */
+	public function newAction(\Quizpalme\Camaliga\Domain\Model\Content $content = NULL, $error = 0)
+	{
+		if (!$content) {
+			$content = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Model\\Content');
+		}
+		$this->view->assign('error', $error);
+		$this->view->assign('content', $content);
+	}
+	
+	/**
+	 * action create
+	 *
+	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+	 * @return void
+	 */
+	public function createAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
+	{
+	    $error = 0;
+	    $debug = '';
+	    $mediaFolder = $this->settings['img']['folderForNewEntries'];
+	    if (!$content->getTitle()) {
+	        $error = 1;
+	    }
+	    
+	    if ($error >= 1) {
+	        $this->redirect('new', NULL, NULL, ['content' => $content, 'error' => $error]);
+	    } else {
+	        $persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
+	        //$content->setHidden(1);
+	        if ($content->getUid() > 0) {
+	            $this->contentRepository->update($content);
+	        } else {
+	            $this->contentRepository->add($content);
+	            $persistenceManager->persistAll();
+	        }
+	        
+	        if ($this->request->hasArgument('image')) {
+	        	// Alte Lösungen für einen Bild-Upload:
+	        	// https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Fal/UsingFal/ExamplesFileFolder.html
+	        	// https://www.typo3tiger.de/blog/post/extbase-fal-filereference-im-controller-erzeugen.html
+	        	// https://various.at/news/image-upload-mit-typo3
+	        	// https://stackoverflow.com/questions/57828620/how-to-access-uploaded-files-in-frontend-in-the-controller-in-typo3
+	        	// https://www.ophidia.net/typo3-8-filereference-aus-bild-erzeugen/
+	            $uploadedFileData = $this->request->getArgument('image'); //$_FILES['image'];
+	            if (substr($uploadedFileData['type'], 0, 5) == 'image') {
+	    	        $storage = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getDefaultStorage();
+	    	        $delete1 = '';
+	    	        $delete2 = '';
+	    	        
+	    	        # check if target folder exist or create it
+	    	        if ($storage->hasFolder($mediaFolder)) {
+	    	            $targetFolder = $storage->getFolder($mediaFolder);
+	    	        } else {
+	    	            $targetFolder = $storage->createFolder($mediaFolder);
+	    	        }
+	    	        
+	    	        # add uploaded file
+	    	        $imageFile = $targetFolder->addUploadedFile($uploadedFileData, \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME);
+	    	        $infos = $imageFile->getProperties();
+	    	        if (($infos['width'] > $this->settings['img']['width']) || ($infos['height'] > $this->settings['img']['height'])) {
+		    	        # resize uploaded image       //$image = $imageService->getImage($imgPath);
+		    	        $imageService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\ImageService');
+		    	        $processingInstructions = array(
+		    	        	'maxWidth' => $this->settings['img']['width'],
+		    	        	'maxHeight' => $this->settings['img']['height'],
+		    	        );
+		    	        $imageFileResized = $imageService->applyProcessingInstructions($imageFile, $processingInstructions);
+		    	        $persistenceManager->persistAll();
+	    	        	// aufräumen, geht hier aber noch nicht: $imageFile->delete(); und $imageFileResized->delete();
+	    	        	$imageFileToUse = $imageFileResized->copyTo($targetFolder);
+	    	        	$delete1 = $imageService->getImageUri($imageFile);
+	    	        	$delete2 = $imageService->getImageUri($imageFileResized);
+	    	        } else {
+	    	        	$imageFileToUse = $imageFile;
+	    	        }
+	    	        
+	    	        # create reference
+	    	        $resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
+	    	        $falFileReference = $resourceFactory->createFileReferenceObject(
+	    	        	[
+	    	        		'uid_local' => $imageFileToUse->getUid(),
+	    	        		'uid_foreign' => $content->getUid(),
+	    	        		'uid' => uniqid('NEW_'),
+	    	        		'tablenames' => 'tx_camaliga_domain_model_content',
+	    	        		'fieldname' => 'falimage',
+	    	        		'table_local' => 'sys_file',
+	    	        		'crop' => null,
+	    	        	]
+	    	        );
+	    	        $imageFileReference = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
+	    	        $imageFileReference->setOriginalResource($falFileReference);
+	    	        
+	    	        # set reference in Camaliga
+	    	        $content->setFalimage($imageFileReference);
+	    	        $this->contentRepository->update($content);
+	    	        $persistenceManager->persistAll();
+	    	        if ($content->getFalimage()) {
+	    	        	// the FAL image is not set correct in sys_file_reference. We correct that...
+	    	        	$falID = $content->getFalimage()->getUid();
+	    	        	$content->repairFALreference($falID);
+	    	        	if ($this->settings['debug']) {
+	    	        		$debug .= 'Uploaded image: ' . $infos['identifier'] . "\n";
+	    	        	}
+	    	        }
+	    	        if ($delete1) {
+	    	        	$imageFile->delete();
+	    	        	if ($this->settings['debug']) {
+	    	        		$debug .= 'Deleting this image (1): ' . $delete1 . "\n";
+	    	        	}
+	    	        }
+	    	        if ($delete2) {
+	    	        	$imageFileResized->delete();
+	    	        	if ($this->settings['debug']) {
+	    	        		$debug .= 'Deleting this image (2): ' . $delete2 . "\n";
+	    	        	}
+	    	        }
+	            }
+	        }
+	        // Anzeige
+	        $this->view->assign('content', $content);
+	        $this->view->assign('debug', $debug);
+	        //$this->view->assign('data', $infos);
+	    }
+	}
+	
 	/**
 	* Zufälliges sortieren der Ergebnisse
 	* 

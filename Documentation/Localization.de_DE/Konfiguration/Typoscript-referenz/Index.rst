@@ -120,6 +120,7 @@ settings.img.width                        int            Breite eines Bildes. Ka
 settings.img.height                       int            Höhe eines Bildes.                                                                 500
 settings.img.thumbWidth                   int            Thumbnail-Breite eines Bildes.                                                     195
 settings.img.thumbHeight                  int            Thumbnail-Höhe eines Bildes.                                                       139
+settings.img.folderForNewEntries          string         Ordner im "default storage" für hochgeladene Bilder im FE                          camaliga
 settings.item.width                       int            Breite eines (carousel-)Elementes.                                                 195
 settings.item.height                      int            Höhe eines (carousel-)Elementes.                                                   290
 settings.item.padding                     int            Padding eines (carousel-)Elementes.                                                0

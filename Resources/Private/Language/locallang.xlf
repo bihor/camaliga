@@ -134,6 +134,15 @@
 			<trans-unit id="close">
 				<source>Close</source>
 			</trans-unit>
+			<trans-unit id="required">
+				<source>required field.</source>
+			</trans-unit>
+			<trans-unit id="create_new">
+				<source>Create new entry</source>
+			</trans-unit>
+			<trans-unit id="error_create">
+				<source>Create was not successfull. Title missing?</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1,0 +1,54 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{error} == 1">
+<f:then>
+  <p><f:translate key="error_create" default="Create not successful." /></p>
+</f:then>
+<f:else>
+	<f:form action="create" name="content" object="{content}" enctype="multipart/form-data">
+	  <div class="form-group">
+	    <label for="camaliga-title"><f:translate key="tx_camaliga_domain_model_content.title" /> <span class="required">*</span></label>
+	    <f:form.textfield property="title" id="camaliga-title" class="form-control" additionalAttributes="{required : 'required'}" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-shortdesc"><f:translate key="tx_camaliga_domain_model_content.shortdesc" /></label>
+	    <f:form.textarea property="shortdesc" id="camaliga-shortdesc" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-longdesc"><f:translate key="tx_camaliga_domain_model_content.longdesc" /></label>
+	    <f:form.textarea property="longdesc" id="camaliga-longdesc" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-person"><f:translate key="tx_camaliga_domain_model_content.person" /></label>
+	    <f:form.textfield property="person" id="camaliga-person" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-street"><f:translate key="tx_camaliga_domain_model_content.street" /></label>
+	    <f:form.textfield property="street" id="camaliga-street" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-zip"><f:translate key="tx_camaliga_domain_model_content.zip" /></label>
+	    <f:form.textfield property="zip" id="camaliga-zip" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-city"><f:translate key="tx_camaliga_domain_model_content.city" /></label>
+	    <f:form.textfield property="city" id="camaliga-city" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" /></label>
+	    <f:form.textfield property="country" id="camaliga-country" class="form-control" />
+	  </div>
+	  <div class="form-group">
+	    <label for="camaliga-falimage"><f:translate key="tx_camaliga_domain_model_content.image" /></label>
+	    <f:form.upload name="image" class="form-control imageupload"  />
+	  </div>
+	  <f:form.submit value="{f:translate(key: 'submit', default: 'submit')}" class="btn btn-primary" />
+	</f:form>
+	<br />
+	<p>*) <f:translate key="required" /></p>
+</f:else>
+</f:if>
+</f:section>

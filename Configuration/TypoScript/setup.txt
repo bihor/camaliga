@@ -41,6 +41,7 @@ plugin.tx_camaliga {
 		  height = 500
 		  thumbWidth = 195
 		  thumbHeight = 139
+		  folderForNewEntries = camaliga
 		}
 		item {
 		  width = 195

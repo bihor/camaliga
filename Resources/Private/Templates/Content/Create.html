@@ -1,0 +1,49 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+<f:flashMessages />
+
+  <div class="form-group">
+    <label for="camaliga-title"><f:translate key="tx_camaliga_domain_model_content.title" />:</label><br />
+    {content.title}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-shortdesc"><f:translate key="tx_camaliga_domain_model_content.shortdesc" />:</label><br />
+    {content.shortdesc}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-longdesc"><f:translate key="tx_camaliga_domain_model_content.longdesc" />:</label><br />
+    {content.longdesc}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-person"><f:translate key="tx_camaliga_domain_model_content.person" />:</label><br />
+    {content.person}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-street"><f:translate key="tx_camaliga_domain_model_content.street" />:</label><br />
+    {content.street}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-zip"><f:translate key="tx_camaliga_domain_model_content.zip" />:</label><br />
+    {content.zip}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-city"><f:translate key="tx_camaliga_domain_model_content.city" />:</label><br />
+    {content.city}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" />:</label><br />
+    {content.country}
+  </div>
+<f:if condition="{content.falimage.uid}">
+  <div class="form-group">
+    <label for="camaliga-image"><f:translate key="tx_camaliga_domain_model_content.image" />:</label><br />
+    <f:image src="{content.falimage.uid}" treatIdAsReference="1" />
+  </div>
+</f:if>
+<br />
+<p><f:link.page><f:translate key="create_new" /></f:link.page>
+<f:if condition="{settings.debug} && {debug}">
+  <f:render partial="Debug" arguments="{debug:debug}" />
+</f:if>
+</f:section>
