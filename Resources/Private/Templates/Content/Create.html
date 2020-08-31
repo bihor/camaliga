@@ -35,6 +35,16 @@
     <label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" />:</label><br />
     {content.country}
   </div>
+<f:if condition="{content.latitude}">
+  <div class="form-group">
+    <label for="camaliga-latitude"><f:translate key="tx_camaliga_domain_model_content.latitude" />:</label><br />
+    {content.latitude}
+  </div>
+  <div class="form-group">
+    <label for="camaliga-longitude"><f:translate key="tx_camaliga_domain_model_content.longitude" />:</label><br />
+    {content.longitude}
+  </div>
+</f:if>
 <f:if condition="{content.falimage.uid}">
   <div class="form-group">
     <label for="camaliga-image"><f:translate key="tx_camaliga_domain_model_content.image" />:</label><br />

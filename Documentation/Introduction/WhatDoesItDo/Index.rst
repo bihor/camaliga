@@ -38,6 +38,8 @@ This flexible extension can display elements as e.g. carousel, gallery, list or 
 
 - Viewhelpers and utilities implemented.
 
+- You can create new entries via frontend or backend.
+
 - Backend module.
 
 The extension is not allways easy to use, but it is very flexible and admins will like that.

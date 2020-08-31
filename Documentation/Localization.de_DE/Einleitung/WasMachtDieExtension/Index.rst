@@ -23,7 +23,7 @@ Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder a
 - Viele Templates für die Ausgabe vorhanden.
 
 - Man kann die Kategorien von TYPO3 benutzen, um die Elemente zu klassifizieren und die Ergebnisse im
-  Front-End einzuschränken (Suche nach Kategorien).
+  Frontend einzuschränken (Suche nach Kategorien).
 
 - Auch eine Volltextsuche ist vorhanden.
 
@@ -38,6 +38,8 @@ Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder a
 - Auch ein Planer-Task für den CSV-Import und -Export ist vorhanden.
 
 - Viewhelper fürs einbinden von CSS- und JS-Dateien.
+
+- Neue Einträge können sowohl im Frontend als auch im Backend angelegt werden.
 
 - Backend-Modul vorhanden.
 

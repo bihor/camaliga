@@ -1132,7 +1132,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        	$imageFileToUse = $imageFile;
 	    	        }
 	    	        
-	    	        # create reference
+	    	        # create reference; but not all Options are used :-(
 	    	        $resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
 	    	        $falFileReference = $resourceFactory->createFileReferenceObject(
 	    	        	[
@@ -1174,6 +1174,14 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        }
 	            }
 	        }
+	        
+	        // Position bestimmen?
+	        if ($this->settings['getLatLon'] && $this->settings['maps']['key']) {
+	        	$contents = [];
+	        	$contents[] = $content;
+	        	$debug .= $this->getLatLon($contents);
+	        }
+	        
 	        // Anzeige
 	        $this->view->assign('content', $content);
 	        $this->view->assign('debug', $debug);

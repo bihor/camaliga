@@ -57,6 +57,9 @@
 			<trans-unit id="template.search">
 				<target>Google map 2: automatisch erweitere Version (ungecachtes search-Template)</target>
 			</trans-unit>
+			<trans-unit id="template.new">
+				<target>Formular für neue Einträge im FE</target>
+			</trans-unit>
 			<trans-unit id="templateLayout">
 				<target>Template-Layout (siehe Doku):</target>
 			</trans-unit>

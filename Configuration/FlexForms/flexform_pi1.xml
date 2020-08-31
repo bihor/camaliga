@@ -64,7 +64,7 @@
                 <numIndex index="1">Content->elegant</numIndex>
             </numIndex>
             <numIndex index="14">
-                <numIndex index="0">new/create</numIndex>
+                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
                 <numIndex index="1">Content->new;Content->create</numIndex>
             </numIndex>
             <numIndex index="15">

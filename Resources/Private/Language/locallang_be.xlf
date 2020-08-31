@@ -60,6 +60,9 @@
 			<trans-unit id="template.search">
 				<source>Google maps 2: (uncached search template)</source>
 			</trans-unit>
+			<trans-unit id="template.new">
+				<source>Create new entries in the frontend</source>
+			</trans-unit>
 			<trans-unit id="templateLayout">
 				<source>Template layout (see manual):</source>
 			</trans-unit>
