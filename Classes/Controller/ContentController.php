@@ -1091,6 +1091,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	            $this->contentRepository->add($content);
 	            $persistenceManager->persistAll();
 	        }
+			$position = [];
 	        
 	        if ($this->request->hasArgument('image')) {
 	        	// Alte Lösungen für einen Bild-Upload:
@@ -1104,6 +1105,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        $storage = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getDefaultStorage();
 	    	        $delete1 = '';
 	    	        $delete2 = '';
+					$position = $this->getLatLonOfImage($uploadedFileData['tmp_name']);
 	    	        
 	    	        # check if target folder exist or create it
 	    	        if ($storage->hasFolder($mediaFolder)) {
@@ -1115,6 +1117,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        # add uploaded file
 	    	        $imageFile = $targetFolder->addUploadedFile($uploadedFileData, \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME);
 	    	        $infos = $imageFile->getProperties();
+					
 	    	        if (($infos['width'] > $this->settings['img']['width']) || ($infos['height'] > $this->settings['img']['height'])) {
 		    	        # resize uploaded image       //$image = $imageService->getImage($imgPath);
 		    	        $imageService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\ImageService');
@@ -1148,8 +1151,12 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        $imageFileReference = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
 	    	        $imageFileReference->setOriginalResource($falFileReference);
 	    	        
-	    	        # set reference in Camaliga
+	    	        # set reference and position in Camaliga
 	    	        $content->setFalimage($imageFileReference);
+					if ($position['latitude']) {
+						$content->setLatitude($position['latitude']);
+						$content->setLongitude($position['longitude']);
+					}
 	    	        $this->contentRepository->update($content);
 	    	        $persistenceManager->persistAll();
 	    	        if ($content->getFalimage()) {
@@ -1174,9 +1181,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        }
 	            }
 	        }
+			# TODO: Slug bilden!
 	        
-	        // Position bestimmen?
-	        if ($this->settings['getLatLon'] && $this->settings['maps']['key']) {
+	        // Position mittels Ort bestimmen?
+	        if ($this->settings['getLatLon'] && $this->settings['maps']['key'] && !$position['latitude']) {
 	        	$contents = [];
 	        	$contents[] = $content;
 	        	$debug .= $this->getLatLon($contents);
@@ -1276,6 +1284,50 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		  }
 	   }
 	   return $debug;
+	}
+	
+	/**
+	 * Latitude und Longitude von einem Bild ermitteln
+	 * Lösung von hier: https://stackoverflow.com/questions/5449282/reading-geotag-data-from-image-in-php
+	 */
+	private function getLatLonOfImage($fileName)
+	{
+		//get the EXIF all metadata from Images
+		$result = [];
+		$exif = exif_read_data($fileName);
+		if(isset($exif["GPSLatitudeRef"])) {
+			$LatM = 1;
+			$LongM = 1;
+			if($exif["GPSLatitudeRef"] == 'S') {
+				$LatM = -1;
+			}
+			if($exif["GPSLongitudeRef"] == 'W') {
+				$LongM = -1;
+			}
+
+			//get the GPS data
+			$gps['LatDegree']=$exif["GPSLatitude"][0];
+			$gps['LatMinute']=$exif["GPSLatitude"][1];
+			$gps['LatgSeconds']=$exif["GPSLatitude"][2];
+			$gps['LongDegree']=$exif["GPSLongitude"][0];
+			$gps['LongMinute']=$exif["GPSLongitude"][1];
+			$gps['LongSeconds']=$exif["GPSLongitude"][2];
+
+			//convert strings to numbers
+			foreach($gps as $key => $value){
+				$pos = strpos($value, '/');
+				if($pos !== false){
+					$temp = explode('/',$value);
+					$gps[$key] = $temp[0] / $temp[1];
+				}
+			}
+
+			//calculate the decimal degree
+			$result['latitude']  = $LatM * ($gps['LatDegree'] + ($gps['LatMinute'] / 60) + ($gps['LatgSeconds'] / 3600));
+			$result['longitude'] = $LongM * ($gps['LongDegree'] + ($gps['LongMinute'] / 60) + ($gps['LongSeconds'] / 3600));
+			$result['datetime']  = $exif["DateTime"];
+		}
+		return $result;
 	}
 }
 ?>
