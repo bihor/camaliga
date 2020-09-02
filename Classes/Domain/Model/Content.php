@@ -65,7 +65,14 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @var string
 	 */
 	protected $link;
-
+	
+	/**
+	 * Slug
+	 *
+	 * @var string
+	 */
+	protected $slug;
+	
 	/**
 	 * Image 1
 	 *
@@ -218,7 +225,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
 	 */
 	protected $categories;
-
+	
 	/**
 	 * Modulo begin
 	 *
@@ -406,7 +413,26 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	public function setLink($link) {
 		$this->link = $link;
 	}
-
+	
+	/**
+	 * Returns the slug
+	 *
+	 * @return string $slug
+	 */
+	public function getSlug() {
+		return $this->slug;
+	}
+	
+	/**
+	 * Sets the slug
+	 *
+	 * @param string $slug
+	 * @return void
+	 */
+	public function setSlug($slug) {
+		$this->slug = $slug;
+	}
+	
 	/**
 	 * Returns the image
 	 *

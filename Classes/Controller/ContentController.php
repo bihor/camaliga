@@ -1092,7 +1092,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	            $persistenceManager->persistAll();
 	        }
 			$position = [];
-	        
+			$uid = $content->getUid();
+			
 	        if ($this->request->hasArgument('image')) {
 	        	// Alte Lösungen für einen Bild-Upload:
 	        	// https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Fal/UsingFal/ExamplesFileFolder.html
@@ -1142,7 +1143,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        $falFileReference = $resourceFactory->createFileReferenceObject(
 	    	        	[
 	    	        		'uid_local' => $imageFileToUse->getUid(),
-	    	        		'uid_foreign' => $content->getUid(),
+	    	        		'uid_foreign' => $uid,
 	    	        		'uid' => uniqid('NEW_'),
 	    	        		'tablenames' => 'tx_camaliga_domain_model_content',
 	    	        		'fieldname' => 'falimage',
@@ -1183,8 +1184,22 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        }
 	            }
 	        }
-			# TODO: Slug bilden!
 	        
+			# Slug bilden!
+	        $fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
+	        $slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
+	        $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
+	        $queryBuilder = $connection->createQueryBuilder();
+	        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+	        $statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
+	        	$queryBuilder->expr()->eq('uid', $uid)
+        	)->execute();
+        	$record = $statement->fetch();
+        	// Klappt nicht: $record = get_object_vars($content);
+       		$slug = $slugHelper->generate($record, $content->getPid());
+       		$content->setSlug($slug);
+       		$this->contentRepository->update($content);
+       		
 	        // Position mittels Ort bestimmen?
 	        if ($this->settings['getLatLon'] && $this->settings['maps']['key'] && !$position['latitude']) {
 	        	$contents = [];
