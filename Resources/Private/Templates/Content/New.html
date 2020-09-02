@@ -12,46 +12,75 @@ Note: you can add more fields here.
 </f:then>
 <f:else>
 	<f:form action="create" name="content" object="{content}" enctype="multipart/form-data">
-	  <div class="form-group">
-	    <label for="camaliga-title"><f:translate key="tx_camaliga_domain_model_content.title" /> <span class="required">*</span></label>
-	    <f:form.textfield property="title" id="camaliga-title" class="form-control" additionalAttributes="{required : 'required'}" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-title"><f:translate key="tx_camaliga_domain_model_content.title" /> <span class="required">*</span></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="title" id="camaliga-title" class="form-control" additionalAttributes="{required : 'required'}" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-shortdesc"><f:translate key="tx_camaliga_domain_model_content.shortdesc" /></label>
-	    <f:form.textarea property="shortdesc" id="camaliga-shortdesc" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-shortdesc"><f:translate key="tx_camaliga_domain_model_content.shortdesc" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textarea property="shortdesc" id="camaliga-shortdesc" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-longdesc"><f:translate key="tx_camaliga_domain_model_content.longdesc" /></label>
-	    <f:form.textarea property="longdesc" id="camaliga-longdesc" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-longdesc"><f:translate key="tx_camaliga_domain_model_content.longdesc" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textarea property="longdesc" id="camaliga-longdesc" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-person"><f:translate key="tx_camaliga_domain_model_content.person" /></label>
-	    <f:form.textfield property="person" id="camaliga-person" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-person"><f:translate key="tx_camaliga_domain_model_content.person" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="person" id="camaliga-person" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-street"><f:translate key="tx_camaliga_domain_model_content.street" /></label>
-	    <f:form.textfield property="street" id="camaliga-street" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-street"><f:translate key="tx_camaliga_domain_model_content.street" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="street" id="camaliga-street" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-zip"><f:translate key="tx_camaliga_domain_model_content.zip" /></label>
-	    <f:form.textfield property="zip" id="camaliga-zip" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-zip"><f:translate key="tx_camaliga_domain_model_content.zip" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="zip" id="camaliga-zip" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-city"><f:translate key="tx_camaliga_domain_model_content.city" /></label>
-	    <f:form.textfield property="city" id="camaliga-city" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-city"><f:translate key="tx_camaliga_domain_model_content.city" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="city" id="camaliga-city" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" /></label>
-	    <f:form.textfield property="country" id="camaliga-country" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="country" id="camaliga-country" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.custom1" /></label>
-	    <f:form.textfield property="custom1" id="camaliga-country" class="form-control" />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.custom1" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="custom1" id="camaliga-country" class="form-control" /></div>
 	  </div>
-	  <div class="form-group">
-	    <label for="camaliga-falimage"><f:translate key="tx_camaliga_domain_model_content.image" /></label>
-	    <f:form.upload name="image" class="form-control imageupload"  />
+	  <div class="row form-group">
+	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-falimage"><f:translate key="tx_camaliga_domain_model_content.image" /></label></div>
+	    <div class="col col-sm-9 col-xs-12"><f:form.upload name="image" class="form-control imageupload"  /></div>
 	  </div>
+	  
+	  <f:for each="{categories}" as="catitemVal" key="catitemKey">
+		<hr />
+		<div class="row">
+		  <div class="col col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
+		  <div class="col col-sm-9 col-xs-12">
+		    <f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
+		      <label for="cat{catitemKey}_0" class="radio-inline">
+		        <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
+		        - &nbsp;
+		      </label>
+		    </f:if>
+		    <f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
+		      <f:if condition="{catitemVal.description} == 'checkbox'">
+		        <f:then>
+		          <label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox-inline">
+		          <f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
+		        </f:then>
+		        <f:else>
+		          <label for="cat{catitemKey}_{catitemKeyChild}" class="radio-inline">
+		          <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
+		        </f:else>
+		      </f:if>
+		      {catitemValChild.title} &nbsp;</label>
+		    </f:for>
+		  </div>
+		</div>
+	  </f:for>
+
 	  <f:form.submit value="{f:translate(key: 'submit', default: 'submit')}" class="btn btn-primary" />
 	</f:form>
 	<br />

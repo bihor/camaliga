@@ -275,7 +275,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$storagePidsOnly = [];
 		$debug = '';
 		
-		if (count($storagePidsArray)>1) {
+		if (!empty($storagePidsArray)) {
 			// bei mehr als einer PID eine Auswahl anbieten
 			$storagePidsData_tmp = $this->contentRepository->getStoragePidsData();
 			foreach ($storagePidsArray as $value) {
@@ -1061,8 +1061,12 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		if (!$content) {
 			$content = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Model\\Content');
 		}
+		// gets all categories, which we want
+		$cats = $this->getCategoriesAndParents();
+		
 		$this->view->assign('error', $error);
 		$this->view->assign('content', $content);
+		$this->view->assign('categories', $cats);
 	}
 	
 	/**
@@ -1091,7 +1095,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	            $this->contentRepository->add($content);
 	            $persistenceManager->persistAll();
 	        }
-			$position = [];
+			$position = [];					// GPS-Koordinaten
+			$categoryUids = [];				// was ausgewählt wurde
 			$uid = $content->getUid();
 			
 	        if ($this->request->hasArgument('image')) {
@@ -1185,6 +1190,13 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	            }
 	        }
 	        
+	        // Position mittels Ort bestimmen?
+	        if ($this->settings['getLatLon'] && $this->settings['maps']['key'] && !$position['latitude']) {
+	        	$contents = [];
+	        	$contents[] = $content;
+	        	$debug .= $this->getLatLon($contents);
+	        }
+	        
 			# Slug bilden!
 	        $fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
 	        $slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
@@ -1198,18 +1210,38 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         	// Klappt nicht: $record = get_object_vars($content);
        		$slug = $slugHelper->generate($record, $content->getPid());
        		$content->setSlug($slug);
-       		$this->contentRepository->update($content);
-       		
-	        // Position mittels Ort bestimmen?
-	        if ($this->settings['getLatLon'] && $this->settings['maps']['key'] && !$position['latitude']) {
-	        	$contents = [];
-	        	$contents[] = $content;
-	        	$debug .= $this->getLatLon($contents);
+	        
+	        // Kategorien: gets all categories, which we want
+	        $cats = $this->getCategoriesAndParents();
+	        // checke ausgewählte Kategorien
+	        foreach ($cats as $uid => $row) {
+	        	$selected = ($this->request->hasArgument('cat'.$uid)) ?	intval($this->request->getArgument('cat'.$uid)) : 0;
+	        	$cats[$uid]['selected'] = $selected;
+	        	if ($selected > 0) {
+	        		$categoryUids[$selected] = 1;
+	        	}
+	        	if (count($row['childs'])>0) {
+	        		foreach ($row['childs'] as $child_uid => $child) {
+	        			$selected = ($this->request->hasArgument('cat'.$uid.'_'.$child_uid)) ?	intval($this->request->getArgument('cat'.$uid.'_'.$child_uid)) : 0;
+	        			$cats[$uid]['childs'][$child_uid]['selected'] = $selected;
+	        			if ($selected > 0) {
+	        				$categoryUids[$selected] = 1;
+	        			}
+	        		}
+	        	}
 	        }
+	        $categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+	        foreach ($categoryUids as $key => $value) {
+	        	$category = $categoryRepository->findOneByUid($key);
+	        	$content->addCategory($category);
+	        }
+	        
+	        $this->contentRepository->update($content);
 	        
 	        // Anzeige
 	        $this->view->assign('content', $content);
 	        $this->view->assign('debug', $debug);
+	        $this->view->assign('categories', $cats);
 	        //$this->view->assign('data', $infos);
 	    }
 	}
@@ -1306,11 +1338,14 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	/**
 	 * Latitude und Longitude von einem Bild ermitteln
 	 * Lösung von hier: https://stackoverflow.com/questions/5449282/reading-geotag-data-from-image-in-php
+	 * 
+	 * @return array 
 	 */
 	private function getLatLonOfImage($fileName)
 	{
 		//get the EXIF all metadata from Images
 		$result = [];
+		$gps = [];
 		$exif = exif_read_data($fileName);
 		if(isset($exif["GPSLatitudeRef"])) {
 			$LatM = 1;
@@ -1345,6 +1380,32 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$result['datetime']  = $exif["DateTime"];
 		}
 		return $result;
+	}
+	
+	/**
+	 * Kategorien und deren Kinder holen
+	 * 
+	 * @return array 
+	 */
+	private function getCategoriesAndParents()
+	{
+		$categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		if ($this->settings['category']['storagePids']) {
+			if ($this->settings['category']['storagePids'] == -1) {
+				$catStoragePids = [];		// alle kategorien
+			} else {
+				$catStoragePids = explode(',', $this->settings['category']['storagePids']);		// category-folder
+			}
+		} else {
+			$storagePidsArray = $this->contentRepository->getStoragePids();
+			if (empty($storagePidsArray)) {
+				// nix ausgewählt => aktuelle PID nehmen
+				$storagePidsArray = array(intval($GLOBALS["TSFE"]->id));
+			}
+			$catStoragePids = $storagePidsArray;	// camaliga-folder(s)
+		}
+		$all_cats = $categoryRepository->getAllCats($this->settings['category']['sortBy'], $this->settings['category']['orderBy'], $catStoragePids);
+		return $categoryRepository->getCategoriesAndParents($all_cats);
 	}
 }
 ?>
