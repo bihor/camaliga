@@ -86,11 +86,12 @@ settings.random                           boolean        Shuffle elements (rando
 
                                                          1: yes, shuffle the elements every time the cache is cleared.
 settings.getLatLon                        boolean        Try to get the latitude and longitude from a google server                         0
-                                                         for every entry with an address but no latitude?
+                                                         for every entry with an address but no latitude? Checks the GPS-coordinates of
+                                                         images in the create-action too. 
 
                                                          0: no.
 
-                                                         1: yes, search the position in the carousel, list or map template.
+                                                         1: yes, search the position in the carousel, list, map or create-action.
 settings.onlyDistinct                     boolean        Show only distinct entries?                                                        0
 
                                                          0: no.
@@ -111,8 +112,8 @@ overrideFlexformSettingsIfEmpty           boolean        Override FlexForm setti
 settings.category.storagePids             string         Folder with categories. -1: all categories; empty: use normal folder.
 settings.category.sortBy                  string         Sort categories by: sorting (default), tstamp, crdate, title or uid.
 settings.category.orderBy                 string         Order categories by: asc (default) or desc.
-settings.img.width                        int            Width of the images. Can be used in the template.                                  700
-settings.img.height                       int            Height of the images. Can be used in the template.                                 500
+settings.img.width                        int            Width of the images. Can be used in the template. Is used in the create-action.    700
+settings.img.height                       int            Height of the images. Can be used in the template. Is used in the create-action.   500
 settings.img.thumbWidth                   int            Thumbnail width of the images. Can be used in the template.                        195
 settings.img.thumbHeight                  int            Thumbnail height of the images. Can be used in the template.                       139
 settings.img.folderForNewEntries          string         Folder in the default storage for uploaded images in the FE                        camaliga

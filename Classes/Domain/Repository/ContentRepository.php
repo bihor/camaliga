@@ -591,7 +591,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
     
     /**
-     * Get the link to a file
+     * Get the link to a file. Works only with files in the fileadmin-folder!?
      *
      * @param	int	$uid	UID of a file
      * @return string

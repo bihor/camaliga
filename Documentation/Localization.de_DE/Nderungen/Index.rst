@@ -238,5 +238,7 @@ Version     Änderungen
             Debug-Ausgabe jetzt im Template. DevLog-Aufruf entfernt.
             
             TCA-Bugfix für TYPO3 10.
-10.1.1      New und create action hinzugefügt.
+10.2.0      New und create action hinzugefügt.
+
+            Die Test-Klasse nutzt nun PHPUnit.
 ==========  =====================================================================================================================

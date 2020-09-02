@@ -1105,7 +1105,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        $storage = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getDefaultStorage();
 	    	        $delete1 = '';
 	    	        $delete2 = '';
-					$position = $this->getLatLonOfImage($uploadedFileData['tmp_name']);
+	    	        if ($this->settings['getLatLon']) {
+						$position = $this->getLatLonOfImage($uploadedFileData['tmp_name']);
+	    	        }
 	    	        
 	    	        # check if target folder exist or create it
 	    	        if ($storage->hasFolder($mediaFolder)) {

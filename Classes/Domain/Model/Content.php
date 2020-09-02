@@ -167,14 +167,14 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 *
 	 * @var float
 	 */
-	protected $latitude;
+	protected $latitude = 0.0;
 
 	/**
 	 * Longitude
 	 *
 	 * @var float
 	 */
-	protected $longitude;
+	protected $longitude = 0.0;
 
 	/**
 	 * Distance bei Umkreissuche

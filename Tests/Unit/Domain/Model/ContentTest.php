@@ -1,6 +1,10 @@
 <?php
 
-namespace quizpalme\Camaliga\Tests;
+namespace Quizpalme\Camaliga\Tests;
+
+use Quizpalme\Camaliga\Domain\Model\Content;
+use PHPUnit\Framework\TestCase;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -37,14 +41,17 @@ namespace quizpalme\Camaliga\Tests;
  *
  * @author Kurt Gusbeth <info@quizpalme.de>
  */
-class ContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
+class ContentTest extends TestCase
+{
 	/**
-	 * @var \quizpalme\Camaliga\Domain\Model\Content
+	 * @var Content
 	 */
 	protected $fixture;
 
 	public function setUp() {
-		$this->fixture = new \quizpalme\Camaliga\Domain\Model\Content();
+		$this->fixture = new Content();
+		
+		static::assertInstanceOf(Content::class, $this->fixture);
 	}
 
 	public function tearDown() {
@@ -71,6 +78,18 @@ class ContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function setTitleForStringSetsTitleWithNl() {
+		$this->fixture->setTitle("Conceived at\nT3CON10");
+		
+		$this->assertSame(
+			'Conceived at<br />T3CON10',
+			$this->fixture->getTitleNl2br()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getShortdescReturnsInitialValueForString() { }
 
 	/**
@@ -82,6 +101,18 @@ class ContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 		$this->assertSame(
 			'Conceived at T3CON10',
 			$this->fixture->getShortdesc()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
+	public function setShortdescForStringSetsShortdescWithNl() {
+		$this->fixture->setShortdesc("Conceived at\r\nT3CON10");
+		
+		$this->assertSame(
+			'Conceived at<br />T3CON10',
+			$this->fixture->getShortdescNl2br()
 		);
 	}
 	
@@ -105,6 +136,18 @@ class ContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function setLongdescForStringSetsLongdescWithNl() {
+		$this->fixture->setLongdesc("Conceived at\rT3CON10");
+		
+		$this->assertSame(
+			'Conceived at<br />T3CON10',
+			$this->fixture->getLongdescNl2br()
+		);
+	}
+	
+	/**
+	 * @test
+	 */
 	public function getLinkReturnsInitialValueForString() { }
 
 	/**
@@ -120,31 +163,14 @@ class ContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	}
 	
 	/**
-	 * @test
+	 * test schlägt fehl, da kein default-value vorhanden ist?
 	 */
-	public function getImageReturnsInitialValueForString() { }
-
-	/**
-	 * @test
-	 */
-	public function setImageForStringSetsImage() { 
-		$this->fixture->setImage('Conceived at T3CON10');
-
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getImage()
-		);
-	}
-	
-	/**
-	 * test schlägt fehl, da kein default-value vorhanden ist
-	 *
 	public function getLatitudeReturnsInitialValueForFloat() { 
 		$this->assertSame(
 			0.0,
 			$this->fixture->getLatitude()
 		);
-	} */
+	}
 
 	/**
 	 * @test
@@ -159,14 +185,14 @@ class ContentTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	}
 	
 	/**
-	 * test schlägt fehl, da kein default-value vorhanden ist
-	 *
+	 * test schlägt fehl, da kein default-value vorhanden ist?
+	 */
 	public function getLongitudeReturnsInitialValueForFloat() { 
 		$this->assertSame(
 			0.0,
 			$this->fixture->getLongitude()
 		);
-	} */
+	}
 
 	/**
 	 * @test

@@ -89,11 +89,12 @@ settings.random                           boolean        Die Elemente zufällig 
                                                          1: ja, jedes mal wenn der Cache geleert wird.
 settings.getLatLon                        boolean        Versuche die Latitude und Longitude automatisch zu finden?                         0
                                                          Die Position einer vorhanden Adresse ohne Latitude wird über einen
-                                                         Google-Server erfragt.
+                                                         Google-Server erfragt. Beim Create wird auch die GPS-Position eines Bildes
+                                                         geprüft.
 
                                                          0: nein.
 
-                                                         1: ja, suche die Position in einem Karussell-, List- oder Map- Template.
+                                                         1: ja, suche die Position in der Karussell-, List-, Map- oder Create-Action.
 settings.onlyDistinct                     boolean        Zeige nur eindeutige Elemente an?                                                  0
 
                                                          0: nein.
@@ -116,8 +117,8 @@ settings.overrideFlexformSettingsIfEmpty  boolean        Überschreibe die FlexF
 settings.category.storagePids             string         Ordner mit den Kategorien. -1: alle Kategorien; Leer: normalen Ordner verwenden.
 settings.category.sortBy                  string         Kategorien sortieren nach: sorting (default), tstamp, crdate, title oder uid.
 settings.category.orderBy                 string         Kategorien ordnen nach: asc (default) oder desc.
-settings.img.width                        int            Breite eines Bildes. Kann im Template benutzt werden...                            700
-settings.img.height                       int            Höhe eines Bildes.                                                                 500
+settings.img.width                        int            Breite eines Bildes. Kann im Template benutzt werden. Die create-action nutzt es.  700
+settings.img.height                       int            Höhe eines Bildes. Die create-action nutzt es.                                     500
 settings.img.thumbWidth                   int            Thumbnail-Breite eines Bildes.                                                     195
 settings.img.thumbHeight                  int            Thumbnail-Höhe eines Bildes.                                                       139
 settings.img.folderForNewEntries          string         Ordner im "default storage" für hochgeladene Bilder im FE                          camaliga
