@@ -1,8 +1,4 @@
 <f:layout name="Default" />
-<f:comment>
-Note: you can add more fields here.
-</f:comment>
-
 <f:section name="main">
 <f:flashMessages />
 
@@ -13,51 +9,75 @@ Note: you can add more fields here.
 <f:else>
 	<f:form action="create" name="content" object="{content}" enctype="multipart/form-data">
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-title"><f:translate key="tx_camaliga_domain_model_content.title" /> <span class="required">*</span></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="title" id="camaliga-title" class="form-control" additionalAttributes="{required : 'required'}" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-title"><f:translate key="tx_camaliga_domain_model_content.title" /> <span class="required">*</span></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="title" id="camaliga-title" class="form-control" additionalAttributes="{required : 'required'}" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-shortdesc"><f:translate key="tx_camaliga_domain_model_content.shortdesc" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textarea property="shortdesc" id="camaliga-shortdesc" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-shortdesc"><f:translate key="tx_camaliga_domain_model_content.shortdesc" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textarea property="shortdesc" id="camaliga-shortdesc" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-longdesc"><f:translate key="tx_camaliga_domain_model_content.longdesc" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textarea property="longdesc" id="camaliga-longdesc" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-longdesc"><f:translate key="tx_camaliga_domain_model_content.longdesc" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textarea property="longdesc" id="camaliga-longdesc" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-person"><f:translate key="tx_camaliga_domain_model_content.person" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="person" id="camaliga-person" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-person"><f:translate key="tx_camaliga_domain_model_content.person" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="person" id="camaliga-person" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-street"><f:translate key="tx_camaliga_domain_model_content.street" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="street" id="camaliga-street" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-street"><f:translate key="tx_camaliga_domain_model_content.street" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="street" id="camaliga-street" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-zip"><f:translate key="tx_camaliga_domain_model_content.zip" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="zip" id="camaliga-zip" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-zip"><f:translate key="tx_camaliga_domain_model_content.zip" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="zip" id="camaliga-zip" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-city"><f:translate key="tx_camaliga_domain_model_content.city" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="city" id="camaliga-city" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-city"><f:translate key="tx_camaliga_domain_model_content.city" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="city" id="camaliga-city" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="country" id="camaliga-country" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.country" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="country" id="camaliga-country" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-country"><f:translate key="tx_camaliga_domain_model_content.custom1" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.textfield property="custom1" id="camaliga-country" class="form-control" /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-phone"><f:translate key="tx_camaliga_domain_model_content.phone" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="phone" id="camaliga-phone" class="form-control" /></div>
 	  </div>
 	  <div class="row form-group">
-	    <div class="col col-sm-3 col-xs-12"><label for="camaliga-falimage"><f:translate key="tx_camaliga_domain_model_content.image" /></label></div>
-	    <div class="col col-sm-9 col-xs-12"><f:form.upload name="image" class="form-control imageupload"  /></div>
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-mobile"><f:translate key="tx_camaliga_domain_model_content.mobile" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="mobile" id="camaliga-mobile" class="form-control" /></div>
+	  </div>
+	  <div class="row form-group">
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-email"><f:translate key="tx_camaliga_domain_model_content.email" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="email" id="camaliga-email" class="form-control" /></div>
+	  </div>
+	  <div class="row form-group">
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-link"><f:translate key="tx_camaliga_domain_model_content.link" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="link" id="camaliga-link" class="form-control" /></div>
+	  </div>
+	  <div class="row form-group">
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-custom1"><f:translate key="tx_camaliga_domain_model_content.custom1" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="custom1" id="camaliga-custom1" class="form-control" /></div>
+	  </div>
+	  <div class="row form-group">
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-custom2"><f:translate key="tx_camaliga_domain_model_content.custom2" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="custom2" id="camaliga-custom2" class="form-control" /></div>
+	  </div>
+	  <div class="row form-group">
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-custom3"><f:translate key="tx_camaliga_domain_model_content.custom3" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.textfield property="custom3" id="camaliga-custom3" class="form-control" /></div>
+	  </div>
+	  <div class="row form-group">
+	    <div class="col-sm-3 col-xs-12"><label for="camaliga-falimage"><f:translate key="tx_camaliga_domain_model_content.image" /></label></div>
+	    <div class="col-sm-9 col-xs-12"><f:form.upload name="image" class="form-control imageupload"  /></div>
 	  </div>
 	  
 	  <f:for each="{categories}" as="catitemVal" key="catitemKey">
 		<hr />
 		<div class="row">
-		  <div class="col col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
-		  <div class="col col-sm-9 col-xs-12">
+		  <div class="col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
+		  <div class="col-sm-9 col-xs-12">
 		    <f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
 		      <label for="cat{catitemKey}_0" class="radio-inline">
 		        <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />

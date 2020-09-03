@@ -4,61 +4,93 @@
 <f:flashMessages />
 
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.title" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.title}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.title" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.title}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12">Slug:</div>
-    <div class="col col-sm-9 col-xs-12">{content.slug}</div>
+    <div class="col-sm-3 col-xs-12">Slug:</div>
+    <div class="col-sm-9 col-xs-12">{content.slug}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.shortdesc" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.shortdesc}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.shortdesc" />:</div>
+    <div class="col-sm-9 col-xs-12"><f:format.nl2br>{content.shortdesc}</f:format.nl2br></div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.longdesc" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.longdesc}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.longdesc" />:</div>
+    <div class="col-sm-9 col-xs-12"><f:format.nl2br>{content.longdesc}</f:format.nl2br></div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.person" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.person}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.person" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.person}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.street" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.street}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.street" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.street}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.zip" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.zip}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.zip" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.zip}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.city" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.city}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.city" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.city}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.country" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.country}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.country" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.country}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.phone" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.phone}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.mobile" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.mobile}</div>
+  </div>
+ <f:if condition="{content.email}">
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.email" />:</div>
+    <div class="col-sm-9 col-xs-12"><a href="mailto:{content.email}">{content.email}</a></div>
+  </div>
+ </f:if>
+ <f:if condition="{content.link}">
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.link" />:</div>
+    <div class="col-sm-9 col-xs-12"><f:link.typolink parameter="{content.link}">{content.link}</f:link.typolink></div>
+  </div>
+ </f:if>
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.custom1" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.custom1}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.custom2" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.custom2}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.custom3" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.custom3}</div>
   </div>
 <f:if condition="{content.latitude}">
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.latitude" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.latitude}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.latitude" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.latitude}</div>
   </div>
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.longitude" />:</div>
-    <div class="col col-sm-9 col-xs-12">{content.longitude}</div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.longitude" />:</div>
+    <div class="col-sm-9 col-xs-12">{content.longitude}</div>
   </div>
 </f:if>
 <f:if condition="{content.falimage.uid}">
   <div class="row">
-    <div class="col col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.image" />:</div>
-    <div class="col col-sm-9 col-xs-12"><f:image src="{content.falimage.uid}" treatIdAsReference="1" /></div>
+    <div class="col-sm-3 col-xs-12"><f:translate key="tx_camaliga_domain_model_content.image" />:</div>
+    <div class="col-sm-9 col-xs-12"><f:image src="{content.falimage.uid}" treatIdAsReference="1" /></div>
   </div>
 </f:if>
 <f:for each="{categories}" as="catitemVal" key="catitemKey">
 	<div class="row">
-	  <div class="col col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
-	  <div class="col col-sm-9 col-xs-12">
+	  <div class="col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
+	  <div class="col-sm-9 col-xs-12">
 	    <f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild" iteration="iterCat">
 	      <f:if condition="{catitemVal.description} == 'checkbox'">
 	        <f:then>
