@@ -257,7 +257,6 @@ $tcaArray = array(
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'dividers2tabs' => TRUE,
 		'sortby' => 'sorting',
 		'versioningWS' => 2,
 		'versioning_followPages' => TRUE,
@@ -369,6 +368,21 @@ $tcaArray = array(
 				]
 			],
 		],
+	    'tstamp' => [
+	        'config' => [
+	            'type' => 'passthrough',
+	        ],
+	    ],
+	    'crdate' => [
+	        'config' => [
+	            'type' => 'passthrough',
+	        ],
+	    ],
+	    'sorting' => [
+	        'config' => [
+	            'type' => 'passthrough',
+	        ],
+	    ],
 		'title' => [
 			'exclude' => true,
 			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.title',

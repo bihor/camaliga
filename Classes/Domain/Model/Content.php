@@ -36,7 +36,23 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  */
 class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 {
-	
+    /**
+     * @var \DateTime
+     */
+    protected $tstamp = null;
+    
+    /**
+     * @var \DateTime
+     */
+    protected $crdate = null;
+    
+    /**
+     * Sorting
+     *
+     * @var integer
+     */
+    protected $sorting = 0;
+    
 	/**
 	 * Title
 	 * 
@@ -263,7 +279,47 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	{
 	
 	}
-
+	
+	/**
+	 * Returns the creation date
+	 *
+	 * @return \DateTime $crdate
+	 */
+	public function getCrdate()
+	{
+	    return $this->crdate;
+	}
+	
+	/**
+	 * Returns the last modified date
+	 *
+	 * @return \DateTime $tstamp
+	 */
+	public function getTstamp()
+	{
+	    return $this->tstamp;
+	}
+	
+	/**
+	 * Returns the sorting
+	 *
+	 * @return int $sorting
+	 */
+	public function getSorting()
+	{
+	    return $this->sorting;
+	}
+	
+	/**
+	 * Sets the sorting
+	 *
+	 * @param string $sorting
+	 * @return void
+	 */
+	public function setSorting($sorting) {
+	    $this->sorting = $sorting;
+	}
+	
 	/**
 	 * Gets the title nl2br
 	 *

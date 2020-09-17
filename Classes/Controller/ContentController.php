@@ -1211,7 +1211,14 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
        		$slug = $slugHelper->generate($record, $content->getPid());
        		$content->setSlug($slug);
 	        
-	        // Kategorien: gets all categories, which we want
+       		# sorting setzen
+       		$statement = $queryBuilder->select('sorting')->from('tx_camaliga_domain_model_content')->where(
+       		    $queryBuilder->expr()->eq('pid', intval($content->getPid()))
+       		)->orderBy('sorting', 'DESC')->setMaxResults(1)->execute();
+       		$record = $statement->fetch();
+       		$content->setSorting($record['sorting'] + 64);
+       		
+	        // Kategorien: get all categories, which we want
 	        $cats = $this->getCategoriesAndParents();
 	        // checke ausgewählte Kategorien
 	        foreach ($cats as $uid => $row) {
