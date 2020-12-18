@@ -166,11 +166,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			// extended-Version laden - this->template = 'ListExtended'; ?
 			$this->listExtendedAction();
 		} else {
+		    // @extensionScannerIgnoreLine
+		    $cobjData = $this->configurationManager->getContentObject();
+		    $content_uid = $cobjData->data['uid'];
+		    $content_pid = $cobjData->data['pid'];    // statt $GLOBALS["TSFE"]->id;
+		    
 			$storagePidsArray = $this->contentRepository->getStoragePids();
 			$storagePidsComma = implode(',', $storagePidsArray);
 			if (!$storagePidsComma) {
 				// nix ausgewählt => aktuelle PID nehmen
-				$storagePidsComma = intval($GLOBALS["TSFE"]->id);
+			    $storagePidsComma = intval($content_pid);
 				$storagePidsArray = array($storagePidsComma);
 				$storagePidsOnly  = array($storagePidsComma);
 			} else {
@@ -220,8 +225,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$cobjData = $this->configurationManager->getContentObject();
 			
 			$this->view->assign('fal', 1);
-			$this->view->assign('uid', $cobjData->data['uid']);
-			$this->view->assign('pid', $GLOBALS["TSFE"]->id);
+			$this->view->assign('uid', $content_uid);
+			$this->view->assign('pid', $content_pid);
 			$this->view->assign('contents', $contents);
 			$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array
 			$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
@@ -266,6 +271,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$languageAspect = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class)->getAspect('language');
 		$sys_language_uid = $languageAspect->getId();
 		
+		// @extensionScannerIgnoreLine
+		$cobjData = $this->configurationManager->getContentObject();
+		$content_uid = $cobjData->data['uid'];
+		$content_pid = $cobjData->data['pid'];    // statt $GLOBALS["TSFE"]->id;
+		
 		$distanceArray = [];
 		$categoryUids = [];
 		$start = ($this->request->hasArgument('start')) ? intval($this->request->getArgument('start')) : 1;
@@ -303,7 +313,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 		} else if (!$storagePidsComma) {
 			// nix ausgewählt => aktuelle PID nehmen
-			$storagePidsComma = intval($GLOBALS["TSFE"]->id);
+		    $storagePidsComma = intval($content_pid);
 			$storagePidsArray = array($storagePidsComma);
 			$storagePidsOnly  = array($storagePidsComma);
 		}
@@ -345,10 +355,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		if ($this->request->hasArgument('search')) {
 			$search = TRUE;
 		}
-		
-		// @extensionScannerIgnoreLine
-		$cobjData = $this->configurationManager->getContentObject();
-		$content_uid = $cobjData->data['uid'];
 		
 		if ($search && $this->settings['extended']['saveSearch'] == 1) {
 			// Suchparameter in Cookie speichern
@@ -465,11 +471,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
 			}
 		}
-			
+		
 		$this->view->assign('fal', 1);
 		$this->view->assign('lang', $sys_language_uid);
 		$this->view->assign('uid', $content_uid);
-		$this->view->assign('pid', $GLOBALS["TSFE"]->id);
+		$this->view->assign('pid', $content_pid);
 		$this->view->assign('contents', $contents);
 		$this->view->assign('sortBy_selected', $sortBy);
 		$this->view->assign('sortOrder_selected', $sortOrder);
