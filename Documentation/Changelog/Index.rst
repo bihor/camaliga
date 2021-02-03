@@ -235,6 +235,8 @@ Version     Changes
 
             The test-class uses now PHPUnit.
 10.3.0      Layout of list templates changed. Using now div instead of table.
-
+            
+            Teaser template added.
+            
             The fields crdate, tstamp and sorting can be used now in the FE-templates too.
 ==========  ==============================================================================================================================

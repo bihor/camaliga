@@ -195,5 +195,6 @@ Slick.html                 Template that uses the slick carousel plugin.
 Tab.html                   Template that uses the Bootstrap 4 Tabs.
 
                            Demo: http://www.quizpalme.de/autor/meine-reiseziele
+Teaser.html                Template that shows only some selected camaliga elements.
 Test.html                  Only for tests...
 =========================  ==================================================================================================================

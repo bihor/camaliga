@@ -1,523 +1,522 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="camaliga">
+	<file source-language="en" datatype="plaintext" original="EXT:camaliga/Resources/Private/Language/locallang_be.xlf" date="2021-02-03T14:30:29Z" product-name="camaliga">
 		<header/>
 		<body>
-			<trans-unit id="title">
+			<trans-unit id="title" resname="title">
 				<source>Layout</source>
 			</trans-unit>
-			<trans-unit id="images">
+			<trans-unit id="images" resname="images">
 				<source>Images</source>
 			</trans-unit>
-			<trans-unit id="item">
+			<trans-unit id="item" resname="item">
 				<source>Items</source>
 			</trans-unit>
-			<trans-unit id="categories">
+			<trans-unit id="categories" resname="categories">
 				<source>Categories</source>
 			</trans-unit>
-			<trans-unit id="startingpoint">
+			<trans-unit id="startingpoint" resname="startingpoint">
 				<source>Startingpoint:</source>
 			</trans-unit>
-			<trans-unit id="recursive">
+			<trans-unit id="recursive" resname="recursive">
 				<source>Recursive:</source>
 			</trans-unit>
-			<trans-unit id="title">
-				<source>Layout</source>
-			</trans-unit>
-			<trans-unit id="template">
+			<trans-unit id="template" resname="template">
 				<source>HTML-Template:</source>
 			</trans-unit>
-			<trans-unit id="template.not_configured">
+			<trans-unit id="template.not_configured" resname="template.not_configured">
 				<source>no template layout selected!</source>
 			</trans-unit>
-			<trans-unit id="template.carousel">
+			<trans-unit id="template.carousel" resname="template.carousel">
 				<source>Carousel: elements are side by side</source>
 			</trans-unit>
-			<trans-unit id="template.separated">
+			<trans-unit id="template.separated" resname="template.separated">
 				<source>Carousel: text and images separated</source>
 			</trans-unit>
-			<trans-unit id="template.list">
+			<trans-unit id="template.list" resname="template.list">
 				<source>List view: elements are among themselves</source>
 			</trans-unit>
-			<trans-unit id="template.listextended">
+			<trans-unit id="template.listextended" resname="template.listextended">
 				<source>List view 2: automatic extended version</source>
 			</trans-unit>
-			<trans-unit id="template.show">
+			<trans-unit id="template.show" resname="template.show">
 				<source>Single view: one element</source>
 			</trans-unit>
-			<trans-unit id="template.showextended">
+			<trans-unit id="template.showextended" resname="template.showextended">
 				<source>Single view 2: automatic extended version</source>
 			</trans-unit>
-			<trans-unit id="template.map">
+			<trans-unit id="template.map" resname="template.map">
 				<source>map view (google maps)</source>
 			</trans-unit>
-			<trans-unit id="template.random">
+			<trans-unit id="template.random" resname="template.random">
 				<source>Only one random element (uncached)</source>
 			</trans-unit>
-			<trans-unit id="template.responsive">
+			<trans-unit id="template.responsive" resname="template.responsive">
 				<source>A simple responsive carousel</source>
 			</trans-unit>
-			<trans-unit id="template.search">
+			<trans-unit id="template.search" resname="template.search">
 				<source>Google maps 2: (uncached search template)</source>
 			</trans-unit>
-			<trans-unit id="template.new">
+			<trans-unit id="template.new" resname="template.new">
 				<source>Create new entries in the frontend</source>
 			</trans-unit>
-			<trans-unit id="templateLayout">
+			<trans-unit id="templateLayout" resname="templateLayout">
 				<source>Template layout (see manual):</source>
 			</trans-unit>
-			<trans-unit id="sortBy">
+			<trans-unit id="sortBy" resname="sortBy">
 				<source>Default sort by:</source>
 			</trans-unit>
-			<trans-unit id="sortBy.tstamp">
+			<trans-unit id="sortBy.tstamp" resname="sortBy.tstamp">
 				<source>Modified date</source>
 			</trans-unit>
-			<trans-unit id="sortBy.crdate">
+			<trans-unit id="sortBy.crdate" resname="sortBy.crdate">
 				<source>Creation date</source>
 			</trans-unit>
-			<trans-unit id="sortBy.title">
+			<trans-unit id="sortBy.title" resname="sortBy.title">
 				<source>Title</source>
 			</trans-unit>
-			<trans-unit id="sortBy.zip">
+			<trans-unit id="sortBy.zip" resname="sortBy.zip">
 				<source>Zip</source>
 			</trans-unit>
-			<trans-unit id="sortBy.city">
+			<trans-unit id="sortBy.city" resname="sortBy.city">
 				<source>City</source>
 			</trans-unit>
-			<trans-unit id="sortBy.country">
+			<trans-unit id="sortBy.country" resname="sortBy.country">
 				<source>Country</source>
 			</trans-unit>
-			<trans-unit id="sortOrder">
+			<trans-unit id="sortOrder" resname="sortOrder">
 				<source>Default sort order:</source>
 			</trans-unit>
-			<trans-unit id="sortOrder.asc">
+			<trans-unit id="sortOrder.asc" resname="sortOrder.asc">
 				<source>ascending</source>
 			</trans-unit>
-			<trans-unit id="sortOrder.desc">
+			<trans-unit id="sortOrder.desc" resname="sortOrder.desc">
 				<source>descending</source>
 			</trans-unit>
-			<trans-unit id="random">
+			<trans-unit id="random" resname="random">
 				<source>Shuffle elements (random order, cached)?</source>
 			</trans-unit>
-			<trans-unit id="getLatLon">
+			<trans-unit id="getLatLon" resname="getLatLon">
 				<source>Try to get the position of an address automatically?</source>
 			</trans-unit>
-			<trans-unit id="onlyDistinct">
+			<trans-unit id="onlyDistinct" resname="onlyDistinct">
 				<source>Show only distinct entries (parent or one child)?</source>
 			</trans-unit>
-			<trans-unit id="seo.setTitle">
+			<trans-unit id="seo.setTitle" resname="seo.setTitle">
 				<source>Replace the site-title with the title-field?</source>
 			</trans-unit>
-			<trans-unit id="seo.setDescription">
-				<source>Set the metatag "description" with the shortdesc-field?</source>
+			<trans-unit id="seo.setDescription" resname="seo.setDescription">
+				<source>Set the metatag &quot;description&quot; with the shortdesc-field?</source>
 			</trans-unit>
-			<trans-unit id="seo.setIndexedDocTitle">
+			<trans-unit id="seo.setIndexedDocTitle" resname="seo.setIndexedDocTitle">
 				<source>Replace the site-title in the sitemap with the title-field?</source>
 			</trans-unit>
-			<trans-unit id="seo.setOgTitle">
+			<trans-unit id="seo.setOgTitle" resname="seo.setOgTitle">
 				<source>Set the metatag og:title with the title-field?</source>
 			</trans-unit>
-			<trans-unit id="seo.setOgDescription">
+			<trans-unit id="seo.setOgDescription" resname="seo.setOgDescription">
 				<source>Set the metatag og:description with the shortdesc-field?</source>
 			</trans-unit>
-			<trans-unit id="seo.setOgImage">
+			<trans-unit id="seo.setOgImage" resname="seo.setOgImage">
 				<source>Set the metatag og:image with the 1. image?</source>
 			</trans-unit>
-			<trans-unit id="addPadding">
+			<trans-unit id="addPadding" resname="addPadding">
 				<source>Add padding to width and height specification?</source>
 			</trans-unit>
-			<trans-unit id="listId">
+			<trans-unit id="listId" resname="listId">
 				<source>Where is the list-page (you must add the setting {settings.listId} to the template)?</source>
 			</trans-unit>
-			<trans-unit id="showId">
+			<trans-unit id="showId" resname="showId">
 				<source>Where is the single-page (you must add the setting {settings.showId} to the template)?</source>
 			</trans-unit>
-			<trans-unit id="layout.listId">
+			<trans-unit id="layout.listId" resname="layout.listId">
 				<source>List-page:</source>
 			</trans-unit>
-			<trans-unit id="layout.showId">
+			<trans-unit id="layout.showId" resname="layout.showId">
 				<source>Single-page:</source>
 			</trans-unit>
-			<trans-unit id="imgwidth">
+			<trans-unit id="layout.teaserIDs" resname="layout.teaserIDs">
+				<source>Teaser elements:</source>
+			</trans-unit>
+			<trans-unit id="imgwidth" resname="imgwidth">
 				<source>Width of images in px ({settings.img.width}):</source>
 			</trans-unit>
-			<trans-unit id="imgheight">
+			<trans-unit id="imgheight" resname="imgheight">
 				<source>Height of images in px ({settings.img.height}):</source>
 			</trans-unit>
-			<trans-unit id="thumbWidth">
+			<trans-unit id="thumbWidth" resname="thumbWidth">
 				<source>Width of thumbnail images in px ({settings.img.thumbWidth}):</source>
 			</trans-unit>
-			<trans-unit id="thumbHeight">
+			<trans-unit id="thumbHeight" resname="thumbHeight">
 				<source>Height of thumbnail images in px ({settings.img.thumbHeight}):</source>
 			</trans-unit>
-			<trans-unit id="width">
+			<trans-unit id="width" resname="width">
 				<source>Width in px ({settings.item.width}):</source>
 			</trans-unit>
-			<trans-unit id="height">
+			<trans-unit id="height" resname="height">
 				<source>Height in px ({settings.item.height}):</source>
 			</trans-unit>
-			<trans-unit id="padding">
+			<trans-unit id="padding" resname="padding">
 				<source>Padding in px ({settings.item.padding}):</source>
 			</trans-unit>
-			<trans-unit id="margin">
+			<trans-unit id="margin" resname="margin">
 				<source>Margin in px ({settings.item.margin}):</source>
 			</trans-unit>
-			<trans-unit id="items">
+			<trans-unit id="items" resname="items">
 				<source>Number of visible items [per row] (e.g. JavaScript-parameter for carousels) ({settings.item.items}):</source>
 			</trans-unit>
-			<trans-unit id="limit">
+			<trans-unit id="limit" resname="limit">
 				<source>Number of visible elements (SQL-select-parameter):</source>
 			</trans-unit>
-			<trans-unit id="default_categories">
+			<trans-unit id="default_categories" resname="default_categories">
 				<source>Selected default categories (for extended templates: AND for radio-buttons and OR for checkboxes):</source>
 			</trans-unit>
-			<trans-unit id="normalCategoryMode">
+			<trans-unit id="normalCategoryMode" resname="normalCategoryMode">
 				<source>Category mode (for normal templates):</source>
 			</trans-unit>
-			<trans-unit id="normalCategoryMode.and">
+			<trans-unit id="normalCategoryMode.and" resname="normalCategoryMode.and">
 				<source>AND combination of the selected categories</source>
 			</trans-unit>
-			<trans-unit id="normalCategoryMode.or">
+			<trans-unit id="normalCategoryMode.or" resname="normalCategoryMode.or">
 				<source>OR combination of the selected categories</source>
 			</trans-unit>
-			<trans-unit id="normalCategoryMode">
-				<source>Category mode (for normal templates):</source>
-			</trans-unit>
-			<trans-unit id="showIndicators">
+			<trans-unit id="showIndicators" resname="showIndicators">
 				<source>Show indicators:</source>
 			</trans-unit>
-			<trans-unit id="showControls">
+			<trans-unit id="showControls" resname="showControls">
 				<source>Show controls:</source>
 			</trans-unit>
-			<trans-unit id="interval">
+			<trans-unit id="interval" resname="interval">
 				<source>The amount of time to delay between automatically cycling an item (ms):</source>
 			</trans-unit>
-			<trans-unit id="pause">
+			<trans-unit id="pause" resname="pause">
 				<source>Pauses the cycling of the carousel on mouseenter?</source>
 			</trans-unit>
-			<trans-unit id="wrap">
+			<trans-unit id="wrap" resname="wrap">
 				<source>The carousel should cycle continuously?</source>
 			</trans-unit>
-			<trans-unit id="keyboard">
+			<trans-unit id="keyboard" resname="keyboard">
 				<source>The carousel should react to keyboard events?</source>
 			</trans-unit>
-			<trans-unit id="dialog">
+			<trans-unit id="dialog" resname="dialog">
 				<source>Size og the dialog window (normal, small or large):</source>
 			</trans-unit>
-			<trans-unit id="small">
+			<trans-unit id="small" resname="small">
 				<source>small</source>
 			</trans-unit>
-			<trans-unit id="large">
+			<trans-unit id="large" resname="large">
 				<source>large</source>
 			</trans-unit>
-			<trans-unit id="animation">
+			<trans-unit id="animation" resname="animation">
 				<source>Animation type (can be removed only via TypoScript):</source>
 			</trans-unit>
-			<trans-unit id="fade">
+			<trans-unit id="fade" resname="fade">
 				<source>fading</source>
 			</trans-unit>
-			<trans-unit id="escape">
+			<trans-unit id="escape" resname="escape">
 				<source>Close the modal when escape key is pressed?</source>
 			</trans-unit>
-			<trans-unit id="expanded">
+			<trans-unit id="expanded" resname="expanded">
 				<source>First collapsible element is opened by default?</source>
 			</trans-unit>
-			<trans-unit id="expandall">
+			<trans-unit id="expandall" resname="expandall">
 				<source>open all collapsible elements</source>
 			</trans-unit>
-			<trans-unit id="parent">
+			<trans-unit id="parent" resname="parent">
 				<source>Open allways max. one collapsible element (you need to change the template now)?</source>
 			</trans-unit>
-			<trans-unit id="toggle">
+			<trans-unit id="toggle" resname="toggle">
 				<source>Toggles the collapsible element on invocation (not in use anymore)?</source>
 			</trans-unit>
-			<trans-unit id="extendedOptions">
+			<trans-unit id="extendedOptions" resname="extendedOptions">
 				<source>Extended options</source>
 			</trans-unit>
-			<trans-unit id="extendedVersion">
+			<trans-unit id="extendedVersion" resname="extendedVersion">
 				<source>Activate extended template with category search (see manual; {settings.extended.enable})?</source>
 			</trans-unit>
-			<trans-unit id="onlySearchForm">
+			<trans-unit id="onlySearchForm" resname="onlySearchForm">
 				<source>Show only the search form without results ({settings.extended.onlySearchForm})?</source>
 			</trans-unit>
-			<trans-unit id="restrictSearch">
+			<trans-unit id="restrictSearch" resname="restrictSearch">
 				<source>Restrict the search options ({settings.extended.restrictSearch})?</source>
 			</trans-unit>
-			<trans-unit id="radiusValues">
+			<trans-unit id="radiusValues" resname="radiusValues">
 				<source>Proximity values in km. E.g. 10,20,50 ({settings.extended.radiusValues}):</source>
 			</trans-unit>
-			<trans-unit id="saveSearch">
+			<trans-unit id="saveSearch" resname="saveSearch">
 				<source>Save the search parameters in a cookie and load them later?</source>
 			</trans-unit>
-			<trans-unit id="more">
+			<trans-unit id="more" resname="more">
 				<source>More</source>
 			</trans-unit>
-			<trans-unit id="setModulo">
+			<trans-unit id="setModulo" resname="setModulo">
 				<source>Enable modulo-calculation (needed for e.g. the Ekko-template; {settings.more.setModulo}):</source>
 			</trans-unit>
-			<trans-unit id="mspeed">
+			<trans-unit id="mspeed" resname="mspeed">
 				<source>Speed in sec. (for Flexslider2, Galleryview, Parallax, Slick {settings.more.speed}):</source>
 			</trans-unit>
-			<trans-unit id="mautoplay">
+			<trans-unit id="mautoplay" resname="mautoplay">
 				<source>Enable autoplay? (for Flexslider2, Galleryview, Slick {settings.more.autoplay}):</source>
 			</trans-unit>
-			<trans-unit id="mautoplaySpeed">
+			<trans-unit id="mautoplaySpeed" resname="mautoplaySpeed">
 				<source>Autoplay speed in sec. (for Flexslider2, Galleryview, Parallax, Slick; {settings.more.autoplaySpeed}):</source>
 			</trans-unit>
-			<trans-unit id="minfinite">
+			<trans-unit id="minfinite" resname="minfinite">
 				<source>Infinite loop? (for Flexslider2, Slick; {settings.more.infinite}):</source>
 			</trans-unit>
-			<trans-unit id="mvertical">
+			<trans-unit id="mvertical" resname="mvertical">
 				<source>Vertical direction? (for Flexslider2, Slick; {settings.more.vertical}):</source>
 			</trans-unit>
-			<trans-unit id="mreverse">
+			<trans-unit id="mreverse" resname="mreverse">
 				<source>Right to left? (for Flexslider2, Slick; {settings.more.reverse}):</source>
 			</trans-unit>
-			<trans-unit id="mcrop">
+			<trans-unit id="mcrop" resname="mcrop">
 				<source>Crop images if they do not fit? (for Galleryview; {settings.more.crop}):</source>
 			</trans-unit>
-			<trans-unit id="mshowPanel">
+			<trans-unit id="mshowPanel" resname="mshowPanel">
 				<source>Show the panel? (for Flexslider2, Slick; {settings.more.showPanel}):</source>
 			</trans-unit>
-			<trans-unit id="mshowArrows">
+			<trans-unit id="mshowArrows" resname="mshowArrows">
 				<source>Show arrow navigation? (for Flexslider2, Galleryview, Slick; {settings.more.showArrows}):</source>
 			</trans-unit>
-			<trans-unit id="mshowDots">
+			<trans-unit id="mshowDots" resname="mshowDots">
 				<source>Show dots navigation? (for Flexslider2, Slick; {settings.more.showDots}):</source>
 			</trans-unit>
-			<trans-unit id="mshowThumbnails">
+			<trans-unit id="mshowThumbnails" resname="mshowThumbnails">
 				<source>Show thumbnails/image navigation? (for Flexslider2, Galleryview; {settings.more.showThumbnails}):</source>
 			</trans-unit>
-			<trans-unit id="mshowAllThumbs">
+			<trans-unit id="mshowAllThumbs" resname="mshowAllThumbs">
 				<source>Show all thumbnails? (für Galleryview; {settings.more.showAllThumbs}):</source>
 			</trans-unit>
-			<trans-unit id="mshowArrowsThumbs">
+			<trans-unit id="mshowArrowsThumbs" resname="mshowArrowsThumbs">
 				<source>Arrow navigation for the thumbnails? (for Flexslider2, Galleryview, Slick; {settings.more.showArrowsThumbs}):</source>
 			</trans-unit>
-			<trans-unit id="mshowDotsThumbs">
+			<trans-unit id="mshowDotsThumbs" resname="mshowDotsThumbs">
 				<source>Dot navigation for the thumbnails? (for Flexslider2, Slick; {settings.more.showDotsThumbs}):</source>
 			</trans-unit>
-			<trans-unit id="mshowCaptions">
+			<trans-unit id="mshowCaptions" resname="mshowCaptions">
 				<source>Show captions? (for Galleryview; {settings.more.showCaptions}):</source>
 			</trans-unit>
-			<trans-unit id="mpausePlay">
+			<trans-unit id="mpausePlay" resname="mpausePlay">
 				<source>Show Play/Pause? (for Flexslider2, Galleryview; {settings.more.pausePlay}):</source>
 			</trans-unit>
-			<trans-unit id="mpauseOnHover">
+			<trans-unit id="mpauseOnHover" resname="mpauseOnHover">
 				<source>Pause on mouseover? (for Flexslider2, Slick; {settings.more.pauseOnHover}):</source>
 			</trans-unit>
-			<trans-unit id="mopacity">
+			<trans-unit id="mopacity" resname="mopacity">
 				<source>Opacity (for Galleryview; {settings.more.opacity}):</source>
 			</trans-unit>
-			<trans-unit id="mslidesToShow">
+			<trans-unit id="mslidesToShow" resname="mslidesToShow">
 				<source>Slides to show (for Slick; {settings.more.slidesToShow}):</source>
 			</trans-unit>
-			<trans-unit id="mslidesToScroll">
+			<trans-unit id="mslidesToScroll" resname="mslidesToScroll">
 				<source>Slides to scroll (for Slick; {settings.more.slidesToScroll}):</source>
 			</trans-unit>
-			<trans-unit id="mfade">
+			<trans-unit id="mfade" resname="mfade">
 				<source>Fade effect (otherwise slide; for Flexslider2, Slick; {settings.more.fade}):</source>
 			</trans-unit>
-			<trans-unit id="measing">
+			<trans-unit id="measing" resname="measing">
 				<source>Easing effect (e.g. linear or swing; for Flexslider2, Galleryview, Slick; {settings.more.easing}):</source>
 			</trans-unit>
-			<trans-unit id="addLightbox">
+			<trans-unit id="addLightbox" resname="addLightbox">
 				<source>Show an additional Lightbox? (for Galleryview; {settings.more.addLightbox}):</source>
 			</trans-unit>
-			<trans-unit id="maps">
+			<trans-unit id="maps" resname="maps">
 				<source>Maps</source>
 			</trans-unit>
-			<trans-unit id="maps.key">
+			<trans-unit id="maps.key" resname="maps.key">
 				<source>API key</source>
 			</trans-unit>
-			<trans-unit id="maps.language">
+			<trans-unit id="maps.language" resname="maps.language">
 				<source>API language key</source>
 			</trans-unit>
-			<trans-unit id="maps.dontIncludeAPI">
+			<trans-unit id="maps.dontIncludeAPI" resname="maps.dontIncludeAPI">
 				<source>Don´t include the API script?</source>
 			</trans-unit>
-			<trans-unit id="maps.includeRoute">
+			<trans-unit id="maps.includeRoute" resname="maps.includeRoute">
 				<source>Include an route planer?</source>
 			</trans-unit>
-			<trans-unit id="maps.clustering">
+			<trans-unit id="maps.clustering" resname="maps.clustering">
 				<source>Enable clustering of markers?</source>
 			</trans-unit>
-			<trans-unit id="maps.zoom">
+			<trans-unit id="maps.zoom" resname="maps.zoom">
 				<source>Start zoom:</source>
 			</trans-unit>
-			<trans-unit id="maps.maxZoom">
+			<trans-unit id="maps.maxZoom" resname="maps.maxZoom">
 				<source>Maximum zoom:</source>
 			</trans-unit>
-			<trans-unit id="maps.startLatitude">
+			<trans-unit id="maps.startLatitude" resname="maps.startLatitude">
 				<source>Start latitude:</source>
 			</trans-unit>
-			<trans-unit id="maps.startLongitude">
+			<trans-unit id="maps.startLongitude" resname="maps.startLongitude">
 				<source>Start longitude:</source>
 			</trans-unit>
-			<trans-unit id="maps.tileLayer">
+			<trans-unit id="maps.tileLayer" resname="maps.tileLayer">
 				<source>Path to a tile-layer-distributor (OpenStreetMap):</source>
 			</trans-unit>
-			<trans-unit id="maps.attribution">
+			<trans-unit id="maps.attribution" resname="maps.attribution">
 				<source>Attribution for the tile layers (OpenStreetMap):</source>
 			</trans-unit>
-			<trans-unit id="yes">
+			<trans-unit id="teaser" resname="teaser">
+				<source>Teaser</source>
+			</trans-unit>
+			<trans-unit id="teaserIDs" resname="teaserIDs">
+				<source>Elements for the teaser</source>
+			</trans-unit>
+			<trans-unit id="yes" resname="yes">
 				<source>yes</source>
 			</trans-unit>
-			<trans-unit id="no">
+			<trans-unit id="no" resname="no">
 				<source>no</source>
 			</trans-unit>
-			
-			<trans-unit id="mlang_tabs_tab">
+			<trans-unit id="mlang_tabs_tab" resname="mlang_tabs_tab">
 				<source>Camaliga</source>
 			</trans-unit>
-			<trans-unit id="mlang_labels_tabdescr">
-				<source>Overview and import for "carousel/map/list/gallery"</source>
+			<trans-unit id="mlang_labels_tabdescr" resname="mlang_labels_tabdescr">
+				<source>Overview and import for &quot;carousel/map/list/gallery&quot;</source>
 			</trans-unit>
-			<trans-unit id="mlang_labels_tablabel">
+			<trans-unit id="mlang_labels_tablabel" resname="mlang_labels_tablabel">
 				<source>Camaliga overview and import</source>
 			</trans-unit>
-			
-			<trans-unit id="index.title">
+			<trans-unit id="index.title" resname="index.title">
 				<source>Alphabetical overview</source>
 			</trans-unit>
-			<trans-unit id="index.elements">
+			<trans-unit id="index.elements" resname="index.elements">
 				<source>Camaliga-elements in this folder/document:</source>
 			</trans-unit>
-			<trans-unit id="import.title">
+			<trans-unit id="import.title" resname="import.title">
 				<source>Karussell-Import</source>
 			</trans-unit>
-			<trans-unit id="import.import">
+			<trans-unit id="import.import" resname="import.import">
 				<source>Import this entries</source>
 			</trans-unit>
-			<trans-unit id="import.found">
+			<trans-unit id="import.found" resname="import.found">
 				<source>entries found.</source>
 			</trans-unit>
-			<trans-unit id="import.importDel">
+			<trans-unit id="import.importDel" resname="import.importDel">
 				<source>Import this entries and delete the old entries</source>
 			</trans-unit>
-			<trans-unit id="import.ok">
+			<trans-unit id="import.ok" resname="import.ok">
 				<source>OK. Elements imported!</source>
 			</trans-unit>
-			<trans-unit id="import.del">
+			<trans-unit id="import.del" resname="import.del">
 				<source>OK. Old elements deleted!</source>
 			</trans-unit>
-			<trans-unit id="import.error">
+			<trans-unit id="import.error" resname="import.error">
 				<source>Error: no entries found!</source>
 			</trans-unit>
-			<trans-unit id="importNews.title">
+			<trans-unit id="importNews.title" resname="importNews.title">
 				<source>tt_news-Import</source>
 			</trans-unit>
-			<trans-unit id="importCooking.title">
+			<trans-unit id="importCooking.title" resname="importCooking.title">
 				<source>mv_cooking-Import</source>
 			</trans-unit>
-			<trans-unit id="thumb.title">
+			<trans-unit id="thumb.title" resname="thumb.title">
 				<source>Sorted thumbnail overview</source>
 			</trans-unit>
-			<trans-unit id="thumb.text">
+			<trans-unit id="thumb.text" resname="thumb.text">
 				<source>In this sorted view of all visible elements you can change the order of the elements:</source>
 			</trans-unit>
-			<trans-unit id="thumb.save">
+			<trans-unit id="thumb.save" resname="thumb.save">
 				<source>Save the new order</source>
 			</trans-unit>
-			<trans-unit id="thumb.saved">
+			<trans-unit id="thumb.saved" resname="thumb.saved">
 				<source>The order of the visible elements has been changed / saved!</source>
 			</trans-unit>
-			
-			<trans-unit id="pagelayoutview">
+			<trans-unit id="pagelayoutview" resname="pagelayoutview">
 				<source>CaMaLiGa plugin settings:</source>
 			</trans-unit>
-			<trans-unit id="pagemodule.switchToPage">
+			<trans-unit id="pagemodule.switchToPage" resname="pagemodule.switchToPage">
 				<source>switch to page</source>
 			</trans-unit>
-			<trans-unit id="pagemodule.pageNotAvailable">
+			<trans-unit id="pagemodule.pageNotAvailable" resname="pagemodule.pageNotAvailable">
 				<source>page not available!</source>
 			</trans-unit>
-			
-			<trans-unit id="tasks.title">
+			<trans-unit id="tasks.title" resname="tasks.title">
 				<source>CSV export</source>
 			</trans-unit>
-			<trans-unit id="itasks.title">
+			<trans-unit id="itasks.title" resname="itasks.title">
 				<source>CSV import</source>
 			</trans-unit>
-			<trans-unit id="faltasks.title">
+			<trans-unit id="faltasks.title" resname="faltasks.title">
 				<source>Switch to FAL</source>
 			</trans-unit>
-			<trans-unit id="slugtasks.title">
+			<trans-unit id="slugtasks.title" resname="slugtasks.title">
 				<source>Set the slug-field</source>
 			</trans-unit>
-			<trans-unit id="tasks.description">
+			<trans-unit id="tasks.description" resname="tasks.description">
 				<source>Writes a CSV-file from the DB to the fileadmin folder.</source>
 			</trans-unit>
-			<trans-unit id="itasks.description">
+			<trans-unit id="itasks.description" resname="itasks.description">
 				<source>Reads a CSV-file from the fileadmin folder to the DB.</source>
 			</trans-unit>
-			<trans-unit id="faltasks.description">
+			<trans-unit id="faltasks.description" resname="faltasks.description">
 				<source>Move /uploads-images to FAL and change the image-relation in the camaliga-elements.</source>
 			</trans-unit>
-			<trans-unit id="slugtasks.description">
+			<trans-unit id="slugtasks.description" resname="slugtasks.description">
 				<source>Set the slug-field of all active camaliga-elements.</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.page">
+			<trans-unit id="tasks.validate.page" resname="tasks.validate.page">
 				<source>Page with camaliga-elements (pages UID):</source>
 			</trans-unit>
-			<trans-unit id="itasks.validate.catpage">
+			<trans-unit id="itasks.validate.catpage" resname="itasks.validate.catpage">
 				<source>Search categories only in the given folder?</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.language">
+			<trans-unit id="tasks.validate.language" resname="tasks.validate.language">
 				<source>Language (sys_language UID):</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.cats">
+			<trans-unit id="tasks.validate.cats" resname="tasks.validate.cats">
 				<source>Only elements with one of this category-uids (e.g. 5,7) (no space!):</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.csvfile">
-				<source>Path and name of the csv file (must begin with "fileadmin/"):</source>
+			<trans-unit id="tasks.validate.csvfile" resname="tasks.validate.csvfile">
+				<source>Path and name of the csv file (must begin with &quot;fileadmin/&quot;):</source>
 			</trans-unit>
-			<trans-unit id="itasks.validate.csvfile">
-				<source>Path and name of the csv file (must begin with "fileadmin/") [you can use * in the name to select always the last file (ordered by name)]:</source>
+			<trans-unit id="itasks.validate.csvfile" resname="itasks.validate.csvfile">
+				<source>Path and name of the csv file (must begin with &quot;fileadmin/&quot;) [you can use * in the name to select always the last file (ordered by name)]:</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.header">
-				<source>Header line of the csv file (e.g. "UID";"Name";"Description";"Category 1"):</source>
+			<trans-unit id="tasks.validate.header" resname="tasks.validate.header">
+				<source>Header line of the csv file (e.g. &quot;UID&quot;;&quot;Name&quot;;&quot;Description&quot;;&quot;Category 1&quot;):</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.fields">
-				<source>Database fields to export (e.g. uid, title, shortdesc, "category:State") [at category: the name of the parent category]:</source>
+			<trans-unit id="tasks.validate.fields" resname="tasks.validate.fields">
+				<source>Database fields to export (e.g. uid, title, shortdesc, &quot;category:State&quot;) [at category: the name of the parent category]:</source>
 			</trans-unit>
-			<trans-unit id="itasks.validate.fields">
+			<trans-unit id="itasks.validate.fields" resname="itasks.validate.fields">
 				<source>Database fields for the import (the 1. row of the file will be ignored!) (e.g. uid, title, shortdesc, category, category:Brandenburg, category-parent:State) [there are 3 possibilities to import categories: category-name in every row; category in the header an then 0 or 1 in every row; parent-category in the header and child-categories in every row]:</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.separator">
+			<trans-unit id="tasks.validate.separator" resname="tasks.validate.separator">
 				<source>Separator:</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.delimiter">
+			<trans-unit id="tasks.validate.delimiter" resname="tasks.validate.delimiter">
 				<source>Delimiter:</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.catdelimiter">
+			<trans-unit id="tasks.validate.catdelimiter" resname="tasks.validate.catdelimiter">
 				<source>Category delimiter:</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.convert">
+			<trans-unit id="tasks.validate.convert" resname="tasks.validate.convert">
 				<source>Convert text from UTF-8 to ISO?</source>
 			</trans-unit>
-			<trans-unit id="itasks.validate.convert">
+			<trans-unit id="itasks.validate.convert" resname="itasks.validate.convert">
 				<source>Convert text from ISO to UTF-8?</source>
 			</trans-unit>
-			<trans-unit id="itasks.validate.delete">
+			<trans-unit id="itasks.validate.delete" resname="itasks.validate.delete">
 				<source>Delete old entries of this folder first?</source>
 			</trans-unit>
-			<trans-unit id="itasks.validate.simulate">
+			<trans-unit id="itasks.validate.simulate" resname="itasks.validate.simulate">
 				<source>Simulation only (echo, no import)?</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.imgpath">
+			<trans-unit id="tasks.validate.imgpath" resname="tasks.validate.imgpath">
 				<source>New place for the images (folder in your default-storage [must exist!], usually fileadmin/) (e.g. images/slider/):</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.invalidPage">
+			<trans-unit id="tasks.validate.invalidPage" resname="tasks.validate.invalidPage">
 				<source>Invalid pages uid, please enter a valid pages uid!</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.invalidLanguage">
+			<trans-unit id="tasks.validate.invalidLanguage" resname="tasks.validate.invalidLanguage">
 				<source>Invalid sys_language uid, please enter a valid sys_language uid!</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.invalidCsvfile">
+			<trans-unit id="tasks.validate.invalidCsvfile" resname="tasks.validate.invalidCsvfile">
 				<source>Invalid csv file, please enter a valid path to the csv file in the fileadmin folder!</source>
 			</trans-unit>
-			<trans-unit id="tasks.validate.invalidImgPath">
+			<trans-unit id="tasks.validate.invalidImgPath" resname="tasks.validate.invalidImgPath">
 				<source>Invalid image-folder-path, please enter a valid and existend path for the images in your default-storage-folder (usually fileadmin/)! Example: images/slider/</source>
 			</trans-unit>
 		</body>

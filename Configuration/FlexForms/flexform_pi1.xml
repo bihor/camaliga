@@ -60,6 +60,10 @@
                 <numIndex index="1">Content->responsive</numIndex>
             </numIndex>
             <numIndex index="11">
+                <numIndex index="0">Teaser</numIndex>
+                <numIndex index="1">Content->teaser;Content->show</numIndex>
+            </numIndex>
+            <numIndex index="12">
                 <numIndex index="0">Elegant Responsive Pure CSS3 Slider</numIndex>
                 <numIndex index="1">Content->elegant</numIndex>
             </numIndex>
@@ -498,6 +502,30 @@
         </el>
       </ROOT>
     </sITEM>
+    <sTEASER>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:teaser</sheetTitle>
+		  <displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Content->teaser;Content->show]]></displayCond>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.teaserIDs>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:teaserIDs</label>
+                    <config>
+                        <type>select</type>
+                        <renderType>selectMultipleSideBySide</renderType>
+                        <autoSizeMax>20</autoSizeMax>
+                        <foreign_table>tx_camaliga_domain_model_content</foreign_table>
+                        <maxitems>99</maxitems>
+                        <size>10</size>
+                    </config>
+				</TCEforms>
+			</settings.teaserIDs>
+        </el>
+      </ROOT>
+    </sTEASER>
     <sBOOT>
       <ROOT>
     	<TCEforms>

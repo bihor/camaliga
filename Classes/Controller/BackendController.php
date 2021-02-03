@@ -36,7 +36,8 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
 
 	/**
 	 * contentRepository
@@ -59,7 +60,8 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return integer
 	 */
-	protected function getCurrentPageId() {
+	protected function getCurrentPageId()
+	{
 		$pageId = (integer) GeneralUtility::_GP('id');
 		if ($pageId > 0) {
 		  return $pageId;
@@ -73,7 +75,8 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function indexAction() {
+	public function indexAction()
+	{
 		$this->view->assign('pid', intval($this->getCurrentPageId()));
 	}
 
@@ -82,7 +85,8 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function thumbAction() {
+	public function thumbAction()
+	{
 		$pid = intval($this->getCurrentPageId());
 		$saved = 0;
 		
@@ -99,7 +103,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 		}
 		// Elemente sortiert holen
-		$contents = $this->contentRepository->findAll('sorting', 'asc', FALSE, array($pid));
+		$contents = $this->contentRepository->findAll('sorting', 'asc', false, array($pid));
 		
 		$this->view->assign('fal', 1);
 		$this->view->assign('pid', $pid);

@@ -9,7 +9,7 @@ call_user_func(
 			'Quizpalme.Camaliga',
 			'Pi1',
 			[
-				'Content' => 'list, listExtended, show, showExtended, random, search, carousel, carouselSeparated, elegant, responsiveCarousel, coolcarousel, ekko, lightslider, magnific, sgallery, skdslider, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, fractionSlider, responsive, map, openstreetmap, new, create',
+				'Content' => 'list, listExtended, show, showExtended, random, search, teaser, carousel, carouselSeparated, elegant, responsiveCarousel, responsive, map, openstreetmap, coolcarousel, ekko, lightslider, magnific, sgallery, skdslider, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, fractionSlider, new, create',
 			],
 			[
 				'Content' => 'random, search, new, create',

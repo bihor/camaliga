@@ -194,5 +194,6 @@ Slick.html                 Template, welches das slick-Plugin benutzt.
 Tab.html                   Template, welches Bootstrap 4 Tabs benutzt.
 
                            Demo: http://www.quizpalme.de/autor/meine-reiseziele
+Teaser.html                Template, welches eine Auswahl an Camaliga-Elementen anzeigt.
 Test.html                  Nur für Tests...
 =========================  =========================================================================================================================

@@ -46,12 +46,14 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	protected $distanceArray = array();
 	
 	// Entferungsarray zurück geben
-	function getDistanceArray() {
+	function getDistanceArray()
+	{
 		return $this->distanceArray;
 	}
 	
 	// String Escape for DB
-	function ms_escape_string($data) {
+	function ms_escape_string($data)
+	{
 		if ( !isset($data) or empty($data) ) {
 			return '';
 		}
@@ -82,7 +84,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	array	$pids		Storage PIDs
 	 * @param	integer	$limit		Limit
 	 */
-	public function findAll($sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $limit = 0) {
+	public function findAll($sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $limit = 0)
+	{
 		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
 										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='crdate' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
@@ -146,7 +149,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	array	$pids		Storage PIDs
 	 * @param	integer	$limit		Limit
 	 */
-	public function findComplex($uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $limit = 0) {
+	public function findComplex($uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $limit = 0)
+	{
 		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
 										  \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
@@ -306,7 +310,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	string	$sortBy		Sort by
 	 * @param	string	$sortOrder	Sort order
 	 */
-	public function findByUids($uids, $sortBy = 'sorting', $sortOrder = 'asc') {
+	public function findByUids($uids, $sortBy = 'sorting', $sortOrder = 'asc')
+	{
 		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
 										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
@@ -316,6 +321,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		 	$sortBy = 'sorting';
 		}
 		$query = $this->createQuery();
+		$query->getQuerySettings()->setRespectStoragePage(false);
 		// nicht nötig: if ($onlyDistinct) $query->matching($query->logicalAnd($query->equals('mother', 0), $query->in('uid', $uids))); else 
 		$query->matching($query->in('uid', $uids));
 		return $query
@@ -336,7 +342,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	boolean	$checkMax	true: OR/AND mode; false: only OR mode
 	 * @param	integer	$limit		Limit
 	 */
-	public function findByCategories($cat_uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $checkMax = TRUE, $limit = 0) {
+	public function findByCategories($cat_uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $checkMax = TRUE, $limit = 0)
+	{
 		if (!empty($cat_uids)) {
 			$max = 0;
 			$parents = [];	// Übergeordnete Elemente
@@ -437,7 +444,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	/**
      * Get a random object
      */
-    public function findRandom() {
+    public function findRandom()
+    {
         $rows = $this->createQuery()->execute()->count();
         $row_number = random_int(0, max(0, ($rows - 1)));
         return $this->createQuery()->setOffset($row_number)->setLimit(1)->execute();
@@ -448,7 +456,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	integer	$mother	Mutter-UID
 	 * @param	integer	$child	Aktuelle Kind-UID
 	 */
-	public function findByMother2($mother, $child) {
+	public function findByMother2($mother, $child)
+	{
 		$mother = intval($mother);
 		$child = intval($child);
 		$query = $this->createQuery();
@@ -469,7 +478,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * findOneByUid2 ohne Ordner-Berücksichtigung
 	 * @param	integer	$uid	UID
 	 */
-	public function findOneByUid2($uid) {
+	public function findOneByUid2($uid)
+	{
 	    $query = $this->createQuery();
 	    $query->getQuerySettings()->setRespectStoragePage(FALSE);
 	    return $query->matching(
@@ -482,7 +492,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	integer	$uid		UID
 	 * @param	integer	$sorting	Sorting order
 	 */
-	public function setNewSorting($uid, $sorting) {
+	public function setNewSorting($uid, $sorting)
+	{
 		$table = 'tx_camaliga_domain_model_content';
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
 		$queryBuilder
@@ -501,7 +512,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	array	$pids	Category PIDs
 	 * @return	array
 	 */
-	public function getRelevantCategories($pids = []) {
+	public function getRelevantCategories($pids = [])
+	{
 		if (!$pids) {
 			$pids = $this->getStoragePids();
 		}
@@ -537,7 +549,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 *
 	 * @return array
 	 */
-	public function getStoragePidsData() {
+	public function getStoragePidsData()
+	{
 		$storagePidsData_tmp = array();
 		$pids = $this->getStoragePids();
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
@@ -563,7 +576,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * 
 	 * @return array
      */
-    public function getStoragePids() {
+    public function getStoragePids()
+    {
         $query = $this->createQuery();
 		return $query->getQuerySettings()->getStoragePageIds();
     }
@@ -573,7 +587,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @return integer
      */
-    public function getSiteRoot() {
+    public function getSiteRoot()
+    {
     	$uid = 1;
     	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
     	$statement = $queryBuilder
@@ -596,7 +611,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param	int	$uid	UID of a file
      * @return string
      */
-    public function getFileLink($uid) {
+    public function getFileLink($uid)
+    {
     	$output = '';
     	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file');
     	$statement = $queryBuilder

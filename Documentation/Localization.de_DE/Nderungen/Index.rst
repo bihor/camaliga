@@ -242,6 +242,8 @@ Version     Änderungen
 
             Die Test-Klasse nutzt nun PHPUnit.
 10.3.0      Layout der List-Templates geändert. Jetzt mit div statt table.
-
+            
+            Teaser-Template hinzugefügt.
+            
             Die Felder crdate, tstamp und sorting können nun in FE-Templates benutzt werden.
 ==========  =====================================================================================================================

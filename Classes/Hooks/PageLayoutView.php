@@ -81,7 +81,8 @@ class PageLayoutView
 	 * @param	object		$pObj	A reference to calling object
      * @return string Information about pi1 plugin
      */
-    public function getExtensionSummary($params, &$pObj) {
+    public function getExtensionSummary($params, &$pObj)
+    {
         $actionTranslationKey = $result = '';
 
         $header = '<strong>' . $this->getLanguageService()->sL(self::LLPATH . 'pagelayoutview') . '</strong>';
@@ -130,6 +131,18 @@ class PageLayoutView
                			$this->getLanguageService()->sL(self::LLPATH . 'layout.showId'),
                			$content
                	];
+               }
+               $teaserIDs = $this->getFieldFromFlexform('settings.teaserIDs', 'sTEASER');
+               if ($teaserIDs) {
+                   $content = '';
+                   $ids = explode(',', $teaserIDs);
+                   foreach ($ids as $teaserID) {
+                       $content .= $this->getRecordData(intval($teaserID), 'tx_camaliga_domain_model_content') . '<br>';
+                   }
+                   $this->tableData[] = [
+                       $this->getLanguageService()->sL(self::LLPATH . 'layout.teaserIDs'),
+                       $content
+                   ];
                }
                if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['camaliga']['Quizpalme\\Camaliga\\Hooks\\PageLayoutView']['extensionSummary'])) {
                     $params = [

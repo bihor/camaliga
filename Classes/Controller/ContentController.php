@@ -36,7 +36,8 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
 
 	/**
 	 * contentRepository
@@ -66,7 +67,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
 	 * @return void
 	 */
-	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
+	public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager)
+	{
 		//parent::injectConfigurationManager($configurationManager);
 		$this->configurationManager = $configurationManager;
 		$tsSettings = $this->configurationManager->getConfiguration(
@@ -152,7 +154,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * 
 	 * @param \Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository
 	 */ 
-	public function injectContentRepository(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository) { 
+	public function injectContentRepository(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+	{ 
 		$this->contentRepository = $contentRepository; 
 	}
 	
@@ -161,7 +164,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function listAction() {
+	public function listAction()
+	{
 		if ($this->settings['extended']['enable'] == 1) {
 			// extended-Version laden - this->template = 'ListExtended'; ?
 			$this->listExtendedAction();
@@ -192,7 +196,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$debug = '';
 			
 			if (!empty($categoryUids)) {
-				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? FALSE : TRUE;
+				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? false : true;
 				if ($this->settings['debug']) {
 					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ")\n";
 				}
@@ -220,9 +224,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
 				}
 			}
-			
-			// @extensionScannerIgnoreLine
-			$cobjData = $this->configurationManager->getContentObject();
 			
 			$this->view->assign('fal', 1);
 			$this->view->assign('uid', $content_uid);
@@ -254,7 +255,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function listExtendedAction() {
+	public function listExtendedAction()
+	{
 		$this->settings['extended']['enable'] = 1;
 		$search = false;	// search by user selection?
 		$sortBy = ($this->request->hasArgument('sortBy')) ? $this->request->getArgument('sortBy') : $this->settings['sortBy'];
@@ -337,7 +339,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			$cats[$uid]['selected'] = $selected;
 			if ($selected > 0) {
 				$categoryUids[$selected] = $selected;
-				$search = TRUE;
+				$search = true;
 			}
 			if (count($row['childs'])>0) {
 				foreach ($row['childs'] as $child_uid => $child) {
@@ -345,7 +347,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					$cats[$uid]['childs'][$child_uid]['selected'] = $selected;
 					if ($selected > 0) {
 						$categoryUids[$uid] = ($categoryUids[$uid]) ? $categoryUids[$uid].",$selected" : $selected;
-						$search = TRUE;
+						$search = true;
 					}
 				}
 			}
@@ -353,12 +355,12 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		
 		// es wurde gesucht
 		if ($this->request->hasArgument('search')) {
-			$search = TRUE;
+			$search = true;
 		}
 		
 		if ($search && $this->settings['extended']['saveSearch'] == 1) {
 			// Suchparameter in Cookie speichern
-			$searchCookie = array();
+			$searchCookie = [];
 			$searchCookie['sortBy'] = $sortBy;
 			$searchCookie['sortOrder'] = $sortOrder;
 			$searchCookie['sword'] = $sword;
@@ -435,7 +437,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if ($this->settings['debug']) {
 					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ")\n";
 				}
-				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, TRUE,  $this->settings['limit']);
+				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, true,  $this->settings['limit']);
 			} else if ($sword || $place) {
 				// Komplexe Suche, aber ohne Kategorien
 				if ($this->settings['debug']) {
@@ -522,13 +524,53 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		}
 		$this->view->assign('debug', $debug);
 	}
-
+	
+	/**
+	 * action teaser
+	 *
+	 * @return void
+	 */
+	public function teaserAction()
+	{
+        // @extensionScannerIgnoreLine
+        $cobjData = $this->configurationManager->getContentObject();
+        $content_uid = $cobjData->data['uid'];
+        $content_pid = $cobjData->data['pid'];
+        
+        $debug = '';
+        $ids = explode(',', $this->settings['teaserIDs']);
+        if ($this->settings['debug']) {
+            $debug .= 'findByUids(array(' . $this->settings['teaserIDs'] . '),' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ")\n";
+        }
+        $contents = $this->contentRepository->findByUids($ids, $this->settings['sortBy'], $this->settings['sortOrder']);
+        
+        $this->view->assign('uid', $content_uid);
+        $this->view->assign('pid', $content_pid);
+        $this->view->assign('contents', $contents);
+        $item_width = intval($this->settings['item']['width']);
+        $padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
+        $total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
+        $total_width = intval($this->settings['item']['items']) * $total_item_width;
+        $this->view->assign('paddingItemWidth', $padding_item_width);
+        $this->view->assign('totalItemWidth', $total_item_width);
+        $this->view->assign('itemWidth', (($this->settings['addPadding']) ? $padding_item_width : $item_width));
+        $this->view->assign('totalWidth', $total_width);
+        $item_height = intval($this->settings['item']['height']);
+        $padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
+        $total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
+        $this->view->assign('paddingItemHeight', $padding_item_height);
+        $this->view->assign('totalItemHeight', $total_item_height);
+        $this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
+        $this->view->assign('debug', $debug);
+	}
+	
 	/**
 	 * action search
 	 *
 	 * @return void
 	 */
-	public function searchAction() {
+	public function searchAction()
+	{
 		$template = ($this->request->hasArgument('template')) ? $this->request->getArgument('template') : '';
 		if ($template) {
 			$this->view->setTemplatePathAndFilename($this->templatePath . 'Content/' . $template . '.html');
@@ -543,7 +585,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
 	 * @return void
 	 */
-	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content) {
+	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content)
+	{
 		$title = $content->getTitle();
 		$desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
 		if ($this->settings['seo']['setTitle'] == 1) {
@@ -584,7 +627,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @Extbase\IgnoreValidation("content")
 	 * @return void
 	 */
-	public function showAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
+	public function showAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
+	{
 		if ($this->settings['extended']['enable'] == 1) {
 			// extended-Version laden
 			// $this->view->setTemplatePathAndFilename($this->templatePath . 'Content/ShowExtended.html');
@@ -605,7 +649,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * @Extbase\IgnoreValidation("content")
 	 * @return void
 	 */
-	public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content) {
+	public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
+	{
 		$this->setSeo($content);
 			
 		$this->view->assign('fal', 1);
@@ -631,7 +676,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function carouselAction() {
+	public function carouselAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -644,7 +690,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function carouselSeparatedAction() {
+	public function carouselSeparatedAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -657,7 +704,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function magnificAction() {
+	public function magnificAction()
+	{
 	    if ($this->settings['extended']['enable']) {
 	        $this->listExtendedAction();
 	    } else {
@@ -670,7 +718,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function roundaboutAction() {
+	public function roundaboutAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -683,7 +732,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function flipsterAction() {
+	public function flipsterAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -696,7 +746,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function bootstrapAction() {
+	public function bootstrapAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -709,7 +760,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function collapseAction() {
+	public function collapseAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -722,7 +774,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function modalAction() {
+	public function modalAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -735,7 +788,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function tabAction() {
+	public function tabAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -748,7 +802,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function sgalleryAction() {
+	public function sgalleryAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -761,7 +816,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function adGalleryAction() {
+	public function adGalleryAction()
+	{
 		if ($this->settings['extended']['enable']) {
 		//	$this->template = 'AdGalleryExtended';
 			$this->listExtendedAction();
@@ -775,7 +831,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function coolcarouselAction() {
+	public function coolcarouselAction()
+	{
 	    if ($this->settings['extended']['enable']) {
 	        $this->listExtendedAction();
 	    } else {
@@ -788,7 +845,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function ekkoAction() {
+	public function ekkoAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -801,7 +859,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function elastislideAction() {
+	public function elastislideAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -814,7 +873,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function elegantAction() {
+	public function elegantAction()
+	{
 	    if ($this->settings['extended']['enable']) {
 	        $this->listExtendedAction();
 	    } else {
@@ -827,7 +887,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function fancyBoxAction() {
+	public function fancyBoxAction()
+	{
 	    if ($this->settings['extended']['enable']) {
 	        $this->listExtendedAction();
 	    } else {
@@ -840,7 +901,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function galleryviewAction() {
+	public function galleryviewAction()
+	{
 	    if ($this->settings['extended']['enable']) {
 	        $this->listExtendedAction();
 	    } else {
@@ -853,7 +915,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function innerfadeAction() {
+	public function innerfadeAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -866,7 +929,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function flexslider2Action() {
+	public function flexslider2Action()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -879,7 +943,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function lightsliderAction() {
+	public function lightsliderAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -892,7 +957,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function fullwidthAction() {
+	public function fullwidthAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -905,7 +971,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * 
 	 * @return void
 	 */
-	public function responsiveAction() {
+	public function responsiveAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -918,7 +985,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function responsiveCarouselAction() {
+	public function responsiveCarouselAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -931,7 +999,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function owl2Action() {
+	public function owl2Action()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -944,7 +1013,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function isotopeAction() {
+	public function isotopeAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -957,7 +1027,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function parallaxAction() {
+	public function parallaxAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -970,7 +1041,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function fractionSliderAction() {
+	public function fractionSliderAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -983,7 +1055,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function skdsliderAction() {
+	public function skdsliderAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -996,7 +1069,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function slickAction() {
+	public function slickAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -1009,7 +1083,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function testAction() {
+	public function testAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -1022,7 +1097,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function mapAction() {
+	public function mapAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -1035,7 +1111,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function openstreetmapAction() {
+	public function openstreetmapAction()
+	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();
 		} else {
@@ -1048,7 +1125,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 *
 	 * @return void
 	 */
-	public function randomAction() {
+	public function randomAction()
+	{
 		$contents = $this->contentRepository->findRandom();
 		
 		$this->view->assign('fal', 1);
@@ -1264,7 +1342,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	* 
 	* @return array 
 	*/ 
-	private function sortObjects($objects) {
+	private function sortObjects($objects)
+	{
 	   /** 
 	   * zuerst holen wir uns alle gewünschten Objekte, welche später in Fuid in zufälliger Reihenfolge ausgegeben werden sollen 
 	   * und erstellen ein zusätzelichen Array, in welches mittels array_push() die UIDs der Objekte   geschrieben werden 
@@ -1298,7 +1377,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 * Latitude und Longitude zu einer Adresse ermitteln
 	 * Lösung von hier: http://stackoverflow.com/questions/8633574/get-latitude-and-longitude-automatically-using-php-api
 	 */
-	private function getLatLon(&$objects) {
+	private function getLatLon(&$objects)
+	{
 		/**
 		 * prüfen, welche Objekte eine Adresse (mind. einen Ort), aber keine Position haben
 		 */
