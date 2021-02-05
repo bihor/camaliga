@@ -246,4 +246,5 @@ Version     Änderungen
             Teaser-Template hinzugefügt.
             
             Die Felder crdate, tstamp und sorting können nun in FE-Templates benutzt werden.
+10.4.0      Settings extended.template hinzugefügt.
 ==========  =====================================================================================================================

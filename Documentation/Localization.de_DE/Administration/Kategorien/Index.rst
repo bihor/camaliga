@@ -26,3 +26,9 @@ Kategorien
 - Mit {content.categories} kann man die markierten Kategorien anzeigen.
   Mit {content.categoriesAndParents} kann man die markierten Kategorien und deren Mutter-Kategorie anzeigen.
   Beide Variablen sind Arrays. Sie enthalten diese Werte/Strings: uid, title und description.
+
+
+.. important::
+
+   Jede Kategorie muss einen "parent" haben! Man braucht also mind. 2 Levels, denn die Root-Kategorie kann nicht genutzt werden...
+  

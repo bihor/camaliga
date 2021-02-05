@@ -53,6 +53,35 @@ Achtung 1: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug
 Achtung 2: wenn man 2 Felder für das slug-Feld konfiguriert hat, wird '_' oder '-' statt '/' als Separator benutzt, wegen diesem Problem:
 https://forge.typo3.org/issues/87333
 
+
+Man kann auch Kategorien in den routeEnhancers verwenden. Allerdings geht das nur mit Kategorien eines "parents". 
+Wenn der parent die ID 10 hat, kann man so einen routeEnhancer für die Suche nach Camaliga-Elementen, die eine Kategorie haben, deren parent 10 ist::
+
+    routeEnhancers:
+      CatCamaliga:
+        type: Extbase
+        extension: Camaliga
+        plugin: Pi1
+        limitToPages:
+          - 45
+        routes:
+          -
+            routePath: '/{category-name}'
+            _controller: 'Content::search'
+            _arguments:
+              category-name: cat10
+        defaultController: 'Content::search'
+        aspects:
+          category-name:
+            type: PersistedAliasMapper
+            tableName: sys_category
+            routeFieldName: slug
+
+Zusätzlich muss man das Template per TypoScript setzen, dass bei der Suche verwendet werden soll::
+
+	plugin.tx_camaliga.settings.extended.template = Openstreetmap
+
+
 Hier noch 2 nicht so schöne / alte Beispiele::
 
 	routeEnhancers:

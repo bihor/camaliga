@@ -172,6 +172,7 @@ settings.extended.radiusValues            string         Comma separated values 
                                                             plugin.tx_camaliga.settings.extended.radiusValues = 10,25,50,100
 
 settings.extended.saveSearch              boolean        Save the search parameters in a cookie and load them later?                        0
+settings.extended.template                string         Default template to display when using the action "search"
 settings.more.setModulo                   boolean        Add some modulo infos to each camaliga element?                                    0
                                                          {content.moduloBegin} and {content.moduloEnd} will be set. This values depends
                                                          on settings.item.items. See template Ekko.html for usage.

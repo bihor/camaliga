@@ -179,6 +179,7 @@ settings.extended.radiusValues            string         Kommaseparierte Werte f
 
                                                             plugin.tx_camaliga.settings.extended.radiusValues = 10,25,50,100
 settings.extended.saveSearch              boolean        Suchoptionen in einem Cookie speichern und das später benutzen?                    0
+settings.extended.template                string         Default-Template, wenn man die Action "search" benutzt.
 settings.more.setModulo                   boolean        Füge Modulo-Werte zu jedem Camaliga-Element hinzu?                                 0
                                                          {content.moduloBegin} und {content.moduloEnd} werden gesetzt. Diese hängen ab
                                                          von settings.item.items. Siehe Template Ekko.html für ein Beispiel.

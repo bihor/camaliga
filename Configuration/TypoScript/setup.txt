@@ -103,6 +103,7 @@ plugin.tx_camaliga {
 			restrictSearch = 0
 			radiusValues =
 			saveSearch = 0
+			template =
 		}
 		bootstrap {
 			showIndicators = 0

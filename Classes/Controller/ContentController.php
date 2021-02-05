@@ -571,7 +571,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	 */
 	public function searchAction()
 	{
-		$template = ($this->request->hasArgument('template')) ? $this->request->getArgument('template') : '';
+	    $template = ($this->request->hasArgument('template')) ? $this->request->getArgument('template') : '';
+	    if (!$template) {
+	        $template = $this->settings['extended']['template'];
+	    }
 		if ($template) {
 			$this->view->setTemplatePathAndFilename($this->templatePath . 'Content/' . $template . '.html');
 		}
