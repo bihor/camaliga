@@ -29,11 +29,11 @@ Copy this file in a subfolder named "Content" of this folder.
 <div id="map" style="width:100%; height:{settings.item.height}px;"></div>
 
 <script type='text/javascript'>
-var ts_tileLayer = '{settings.maps.tileLayer -> f:format.raw()}';
-var ts_maxZoom = {settings.maps.maxZoom};
-var ts_attribution = '{settings.maps.attribution -> f:format.raw()}';
-var mymap = L.map('map').setView([51.3, 10.3], 6);
-var OpenStreetMap = L.tileLayer(ts_tileLayer, { maxZoom: ts_maxZoom, attribution: ts_attribution });
+let ts_tileLayer = '{settings.maps.tileLayer -> f:format.raw()}';
+let ts_maxZoom = {settings.maps.maxZoom};
+let ts_attribution = '{settings.maps.attribution -> f:format.raw()}';
+let mymap = L.map('map').setView([51.3, 10.3], 6);
+let OpenStreetMap = L.tileLayer(ts_tileLayer, { maxZoom: ts_maxZoom, attribution: ts_attribution });
 OpenStreetMap.addTo(mymap);
 
 var text_more = "{f:translate(key: 'more')}";
@@ -55,11 +55,11 @@ var map_icon = L.icon({
 });
 
 
-for (var i = 0; i < addressPoints.length; i++) {
-  var a = addressPoints[i];
-  var map_title = a[2];
-  var map_tmp = '';
-  var map_popup = '<h4>' + a[3] + '</h4>';
+for (let i = 0; i < addressPoints.length; i++) {
+  let a = addressPoints[i];
+  let map_title = a[2];
+  let map_tmp = '';
+  let map_popup = '<h4>' + a[3] + '</h4>';
   if (a[5]) {
 	  map_popup += '<div class="row"><div class="col-md-6">' + a[5] + '</div><div class="col-md-6">';
   } else {
@@ -92,16 +92,25 @@ for (var i = 0; i < addressPoints.length; i++) {
 }
 
 <f:if condition="{settings.maps.clustering} == 1"><f:then>
-$( document ).ready(function() {
-  if ((addressPoints.length > 0)) {
-    mymap.addLayer(markers);
-    if ((addressPoints.length == 1)) {
-	  mymap.fitBounds(markers.getBounds().pad(0.9));
-    } else {
-	  mymap.fitBounds(markers.getBounds().pad(0.03));
-    }
-  }
-});
+	var callbackmap = function(){
+		if ((addressPoints.length > 0)) {
+			mymap.addLayer(markers);
+			if ((addressPoints.length == 1)) {
+				mymap.fitBounds(markers.getBounds().pad(0.9));
+			} else {
+				mymap.fitBounds(markers.getBounds().pad(0.03));
+			}
+		}
+	};
+
+	if (
+	document.readyState === "complete" ||
+	(document.readyState !== "loading" && !document.documentElement.doScroll)
+	) {
+		callbackmap();
+	} else {
+		document.addEventListener("DOMContentLoaded", callbackmap);
+	}
 </f:then></f:if>
 </script>
 

@@ -35,8 +35,8 @@ Infos: https://developers.google.com/maps/documentation/javascript/marker-cluste
   var markers = [];
   
   function initializeGM() {
-    var latlng = new google.maps.LatLng(startLat,startLon);
-    var myOptions = {
+    let latlng = new google.maps.LatLng(startLat,startLon);
+    let myOptions = {
       zoom: zoomLevel,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -46,8 +46,8 @@ Infos: https://developers.google.com/maps/documentation/javascript/marker-cluste
   }
   
   function addToGM(koord1,koord2,title,titlelinked,content,bildtag,address,place,distance,nr_all) {
-	var myLatlng = new google.maps.LatLng(koord1,koord2);
-	var contentString = '<div style="float:left;width:{settings.img.thumbWidth}px;">'+bildtag+'</div><div style="float:left;width:250px;padding-left:16px;"><div><b>'+titlelinked+'</b></div><p>'+content+'</p><p>'+address+'<br>'+place+'</p>';
+	let myLatlng = new google.maps.LatLng(koord1,koord2);
+	let contentString = '<div style="float:left;width:{settings.img.thumbWidth}px;">'+bildtag+'</div><div style="float:left;width:250px;padding-left:16px;"><div><b>'+titlelinked+'</b></div><p>'+content+'</p><p>'+address+'<br>'+place+'</p>';
 	if (distance != '')
 		contentString = contentString + "<p>{f:translate(key: 'distance', default: 'distance')}: "+distance+' km</p>';
 	contentString = contentString + '</div>';
