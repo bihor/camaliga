@@ -240,4 +240,6 @@ Version     Changes
             
             The fields crdate, tstamp and sorting can be used now in the FE-templates too.
 10.4.0      Settings extended.template added.
+
+            ke-search hook updated.
 ==========  ==============================================================================================================================

@@ -2,16 +2,20 @@
 // set you own vendor name adjust the extension name part of the namespace to your extension key
 namespace Quizpalme\Camaliga\Hooks;
 
+use TeaminmediasPluswerk\KeSearch\Indexer\IndexerBase;
+use TeaminmediasPluswerk\KeSearch\Indexer\IndexerRunner;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
 // set you own class name
-class KeSearchIndexer
+class KeSearchIndexer extends IndexerBase
 {
     // Set a key for your indexer configuration.
     // Add this in Configuration/TCA/Overrides/tx_kesearch_indexerconfig.php, too!
-    protected $indexerConfigurationKey = 'camaliga';
+    const KEY = 'camaliga';
 
     /**
      * Adds the custom indexer to the TCA of indexer configurations, so that
@@ -26,7 +30,7 @@ class KeSearchIndexer
         // Set a name and an icon for your indexer.
         $customIndexer = array(
             'Camaliga elements (ext:camaliga)',
-            $this->indexerConfigurationKey,
+            KeSearchIndexer::KEY,
         	'EXT:camaliga/ext_icon.gif'
         );
         $params['items'][] = $customIndexer;
@@ -41,36 +45,38 @@ class KeSearchIndexer
      * @return  string Message containing indexed elements
      * @author  Christian Buelter <christian.buelter@pluswerk.ag>
      */
-    public function customIndexer(&$indexerConfig, &$indexerObject)
+    public function customIndexer(array &$indexerConfig, IndexerRunner &$indexerObject): string
     {
-        if ($indexerConfig['type'] == $this->indexerConfigurationKey) {
-            $content = '';
+        if ($indexerConfig['type'] == KeSearchIndexer::KEY) {
             $counter = 0;
+            $table = 'tx_camaliga_domain_model_content';
             $dontSwitchContAct = (bool)GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'dontSwitchContAct');
             $actionForLinks = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'actionForLinks');
             if (!$actionForLinks) {
             	$actionForLinks = 'show';
             }
 
-            // get all the entries to index
-            // don't index hidden or deleted elements, but
-            // get the elements with frontend user group access restrictions
-            // or time (start / stop) restrictions, in order to copy those restrictions to the index.
-            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
-            $queryBuilder->getRestrictions()->removeAll();
+            // Doctrine DBAL using Connection Pool.
+            /** @var Connection $connection */
+            $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($table);
+            $queryBuilder = $connection->createQueryBuilder();
+
+            // Handle restrictions.
+            // Don't fetch hidden or deleted elements, but the elements
+            // with frontend user group access restrictions or time (start / stop)
+            // restrictions in order to copy those restrictions to the index.
+            $queryBuilder
+                ->getRestrictions()
+                ->removeAll()
+                ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
+                ->add(GeneralUtility::makeInstance(HiddenRestriction::class));
+
+            $folders = GeneralUtility::trimExplode(',', htmlentities($indexerConfig['sysfolder']));
             $statement = $queryBuilder
-            	->select('*')
-            	->from('tx_camaliga_domain_model_content')
-            	->where(
-            		$queryBuilder->expr()->in('pid', explode(',', $indexerConfig['sysfolder']))
-            	)
-            	->andWhere(
-            		$queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
-            	)
-            	->andWhere(
-            		$queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT))
-            	)
-            	->execute();
+                ->select('*')
+                ->from($table)
+                ->where($queryBuilder->expr()->in( 'pid', $folders))
+                ->execute();
 
             // Loop through the records and write them to the index.
             while ($record = $statement->fetch()) {
@@ -104,7 +110,7 @@ class KeSearchIndexer
                     $indexerObject->storeInIndex(
                         $indexerConfig['storagepid'],   // storage PID
                         $title,                         // record title
-                        $this->indexerConfigurationKey, // content type
+                        KeSearchIndexer::KEY,           // content type
                         $indexerConfig['targetpid'],    // target PID: where is the single view?
                         $fullContent,                   // indexed content, includes the title (linebreak after title)
                         $tags,                          // tags for faceted search
@@ -127,5 +133,6 @@ class KeSearchIndexer
 
             return $content;
         }
+        return '';
     }
 }

@@ -45,9 +45,8 @@ if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('ke_search')) {
 	// register custom indexer hook
 	// adjust this to your namespace and class name
 	// adjust the autoloading information in composer.json, too!
-	$customIndexerClassName = 'Quizpalme\Camaliga\Hooks\KeSearchIndexer';
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['registerIndexerConfiguration'][] = $customIndexerClassName;
-	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['customIndexer'][] = $customIndexerClassName;
+	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['registerIndexerConfiguration'][] = \Quizpalme\Camaliga\Hooks\KeSearchIndexer::class;
+	$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['customIndexer'][] = \Quizpalme\Camaliga\Hooks\KeSearchIndexer::class;
 }
 
 // Page module hook
