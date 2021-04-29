@@ -39,7 +39,7 @@ class AddPublicResourcesViewHelper extends AbstractViewHelper
         $this->registerArgument('compress', 'bool', 'Define if file should be compressed', false, false);
         $this->registerArgument('footer', 'bool', 'Only JS files: Whether the file should be included in the footer', false, false);
         $this->registerArgument('library', 'string', 'Whether the file should be included as a library', false, '');
-        $this->registerArgument('addSlash', 'bool', 'Define if to add a slash at the beginning', false, false);
+        $this->registerArgument('addSlash', 'bool', 'Define if to add a slash at the beginning', false, true);
     }
     
     /**
@@ -59,7 +59,7 @@ class AddPublicResourcesViewHelper extends AbstractViewHelper
             $compress = (bool)$arguments['compress'];
             $footer = (bool)$arguments['footer'];
             $library = $arguments['library'];
-           // $addSlash = (bool)$arguments['addSlash'];
+            $addSlash = (bool)$arguments['addSlash'];
             $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
             $js = (strtolower(substr($path1, -3)) === '.js') ? 1 : 0;
             $css = (strtolower(substr($path1, -4)) === '.css') ? 1 : 0;
@@ -70,18 +70,15 @@ class AddPublicResourcesViewHelper extends AbstractViewHelper
             if (TYPO3_MODE === 'FE') {
             	$sani = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Resource\FilePathSanitizer::class);
             	$path = $sani->sanitize($path1);
-            	// KGB: am Anfang wird immer ein / benötigt!
-            	if (substr($path,0,1) != '/') {
-            		$path = '/' . $path;
-            	}
-            	if ($path === '' || !file_exists($basis . $path)) {
-            		//echo " not found: $basis$path ";
-            		return;
+                // am Anfang wird (meistens) ein / benötigt
+                if ($addSlash && substr($path,0,1) != '/') {
+                    $path = '/' . $path;
                 }
-                // KGB: am Anfang wird manchmal noch ein / benötigt!
-                //if ($addSlash && substr($path,0,1) != '/') {
-                //    $path = '/' . $path;
-                //}
+                $slash = (substr($path, 0, 1) != '/') ? '/' : '';
+                if ($path === '' || !file_exists($basis . $slash . $path)) {
+                    //echo " not found: $basis$path ";
+                    return;
+                }
                 if ($js) {
                     if ($footer) {
                         if ($library != '') {
@@ -106,4 +103,3 @@ class AddPublicResourcesViewHelper extends AbstractViewHelper
             }
     }
 }
-?>
