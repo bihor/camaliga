@@ -242,4 +242,8 @@ Version     Changes
 10.4.0      Settings extended.template added.
 
             ke-search hook updated.
+
+            AddPublicResourcesViewHelper: addSlash-argument activated again.
+
+            TCA-Bugfix for TYPO3 10.
 ==========  ==============================================================================================================================
