@@ -52,7 +52,6 @@ EXT: Camaliga - carousel/map/list/gallery
    Administration/Index
    Konfiguration/Index
    Tutorial/Index
-   Updaten/Index
    Updaten5/Index
    Updaten6/Index
    Updaten7/Index

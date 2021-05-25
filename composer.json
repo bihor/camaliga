@@ -33,5 +33,10 @@
 		"carousel",
 		"maps",
 		"gallery"
-	]
+	],
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "camaliga"
+		}
+	}
 }

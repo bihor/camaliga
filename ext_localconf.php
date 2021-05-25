@@ -86,4 +86,3 @@ if (TYPO3_MODE === 'BE') {
 	// TCA-Validator
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['Quizpalme\\Camaliga\\Evaluation\\Double9Evaluation'] = '';
 }
-?>
