@@ -173,7 +173,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		    // @extensionScannerIgnoreLine
 		    $cobjData = $this->configurationManager->getContentObject();
 		    $content_uid = $cobjData->data['uid'];
-		    $content_pid = $cobjData->data['pid'];    // statt $GLOBALS["TSFE"]->id;
+		    $content_pid = $cobjData->data['pid'];
 		    
 			$storagePidsArray = $this->contentRepository->getStoragePids();
 			$storagePidsComma = implode(',', $storagePidsArray);
@@ -183,9 +183,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				$storagePidsArray = array($storagePidsComma);
 				$storagePidsOnly  = array($storagePidsComma);
 			} else {
-				$storagePidsOnly = array();
+				$storagePidsOnly = [];
 			}
-			$categoryUids = array();
+			$categoryUids = [];
 			if ($this->settings['defaultCatIDs']) {
 				$defaultCats = explode(',', $this->settings['defaultCatIDs']);
 				foreach ($defaultCats as $defCat) {
@@ -197,13 +197,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			
 			if (!empty($categoryUids)) {
 				$normalCatMode = ($this->settings['normalCategoryMode'] == 'or') ? false : true;
+				if (count($storagePidsOnly)==0 && count($storagePidsArray)>0) {
+                    $storagePidsOnly = $storagePidsArray;
+                }
 				if ($this->settings['debug']) {
-					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ")\n";
+					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",,,0,' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',[' . implode(',', $storagePidsOnly) . '],' . $this->settings['normalCategoryMode'] . ',' . $this->settings['limit'] . ")\n";
 				}
 				$contents = $this->contentRepository->findByCategories($categoryUids, '', '', 0, $this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $normalCatMode, $this->settings['limit']);
 			} else {
 				if ($this->settings['debug']) {
-					$debug .= 'findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ")\n";
+					$debug .= 'findAll(' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ',' . $this->settings['onlyDistinct'] . ',[' . implode(',', $storagePidsOnly) . '],' . $this->settings['limit'] . ")\n";
 				}
 				$contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}
@@ -276,7 +279,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		// @extensionScannerIgnoreLine
 		$cobjData = $this->configurationManager->getContentObject();
 		$content_uid = $cobjData->data['uid'];
-		$content_pid = $cobjData->data['pid'];    // statt $GLOBALS["TSFE"]->id;
+		$content_pid = $cobjData->data['pid'];
 		
 		$distanceArray = [];
 		$categoryUids = [];
@@ -430,12 +433,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				}
 				$contents = $this->contentRepository->findByUids(array($cUid));
 			} else if (!empty($categoryUids)) {
+                if (count($storagePidsOnly)==0 && count($storagePidsArray)>0) {
+                    $storagePidsOnly = $storagePidsArray;
+                }
 				// Umfangreiche Suche betreiben
 				// official solution (not enough): http://wiki.typo3.org/TYPO3_6.0#Category
 				// Sort categories (doesnt work): http://www.php-kurs.com/arrays-mehrdimensional.htm 
 				// find entries by category-uids
 				if ($this->settings['debug']) {
-					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ', TRUE' . ',' . $this->settings['limit'] . ")\n";
+					$debug .= 'findByCategories("' . implode(",", $categoryUids) . '",' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',[' . implode(',', $storagePidsOnly) . '], TRUE' . ',' . $this->settings['limit'] . ")\n";
 				}
 				$contents = $this->contentRepository->findByCategories($categoryUids, $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, true,  $this->settings['limit']);
 			} else if ($sword || $place) {
@@ -447,7 +453,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			} else {
 				// Simple Suche
 				if ($this->settings['debug']) {
-					$debug .= 'findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ")\n";
+					$debug .= 'findAll(' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',[' . implode(',', $storagePidsOnly) . '],' . $this->settings['limit'] . ")\n";
 				}
 				$contents = $this->contentRepository->findAll($sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
 			}

@@ -253,4 +253,5 @@ Version     Änderungen
             AddPublicResourcesViewHelper: addSlash-argument erneut aktiviert.
 
             TCA-Bugfix für TYPO3 10.
+10.4.1      Bugfix: ignoriere nicht die ausgewählten Ordner bei einer Kategorie-Suche.
 ==========  =====================================================================================================================

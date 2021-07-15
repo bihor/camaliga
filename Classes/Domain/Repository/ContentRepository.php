@@ -207,9 +207,9 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			 		ORDER BY dest.uid';		// . 'ORDER BY distance'); Außerdem fehlt a.x=b.y !
 				//echo $statement;
 				$query = $this->createQuery();
-				$query->getQuerySettings()->setRespectStoragePage(FALSE);
+				$query->getQuerySettings()->setRespectStoragePage(false);
 				$query->statement($statement);
-				$resultArray = $query->execute(TRUE);
+				$resultArray = $query->execute(true);
 				if (count($resultArray) >= 1) {
 					foreach ($resultArray as $row) {
 						$uid = intval($row['uid']);
@@ -253,7 +253,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			$constraints = array();
 			$query = $this->createQuery();
 			if (!empty($pids)) {
-				$query->getQuerySettings()->setRespectStoragePage(FALSE);
+				$query->getQuerySettings()->setRespectStoragePage(false);
 				$constraints[] = $query->in('pid', $pids);
 			}
 			if ($onlyDistinct) {
@@ -342,7 +342,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	boolean	$checkMax	true: OR/AND mode; false: only OR mode
 	 * @param	integer	$limit		Limit
 	 */
-	public function findByCategories($cat_uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $checkMax = TRUE, $limit = 0)
+	public function findByCategories($cat_uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = false, $pids = [], $checkMax = true, $limit = 0)
 	{
 		if (!empty($cat_uids)) {
 			$max = 0;
@@ -381,7 +381,6 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 				$queryBuilder->groupBy('tx_camaliga_domain_model_content.uid');
 				//debug($queryBuilder->getSQL());
 				$result = $queryBuilder->execute()->fetchAll();
-				//debug($result);
 				foreach ($result as $row) {
 					$cam_uid = $row['uid'];
 					$elements[$cam_uid]++;
