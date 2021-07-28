@@ -311,14 +311,22 @@
 				<TCEforms>
 					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:getLatLon</label>
 					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
+                        <type>select</type>
+                        <renderType>selectSingle</renderType>
+                        <items>
+                            <numIndex index="0">
+                                <numIndex index="0">TypoScript</numIndex>
+                                <numIndex index="1">0</numIndex>
+                            </numIndex>
+                            <numIndex index="1">
+                                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yesGoogle</numIndex>
+                                <numIndex index="1">1</numIndex>
+                            </numIndex>
+                            <numIndex index="2">
+                                <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yesOpenstreetmap</numIndex>
+                                <numIndex index="1">2</numIndex>
+                            </numIndex>
+					    </items>
 					</config>
 				</TCEforms>
 			</settings.getLatLon>

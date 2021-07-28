@@ -85,13 +85,17 @@ settings.random                           boolean        Shuffle elements (rando
                                                          0: no.
 
                                                          1: yes, shuffle the elements every time the cache is cleared.
-settings.getLatLon                        boolean        Try to get the latitude and longitude from a google server                         0
+settings.getLatLon                        boolean        Try to get the latitude and longitude from an API                                  0
                                                          for every entry with an address but no latitude? Checks the GPS-coordinates of
                                                          images in the create-action too. 
 
                                                          0: no.
 
                                                          1: yes, search the position in the carousel, list, map or create-action.
+                                                         Use the API of Google. settings.maps.key must be set!
+
+                                                         2: yes, search the position in the carousel, list, map or create-action.
+                                                         Use the API of Openstreetmap.
 settings.onlyDistinct                     boolean        Show only distinct entries?                                                        0
 
                                                          0: no.

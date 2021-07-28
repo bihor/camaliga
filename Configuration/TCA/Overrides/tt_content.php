@@ -10,4 +10,3 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
 		'Camaliga: carousel/map/list/gallery',
 		'EXT:camaliga/ext_icon.gif'
 );
-?>

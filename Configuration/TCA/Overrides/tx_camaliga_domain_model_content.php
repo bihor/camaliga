@@ -6,4 +6,3 @@
 		'tx_camaliga_domain_model_content',
 		'categories'
 );
-?>

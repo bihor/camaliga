@@ -1283,8 +1283,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	            }
 	        }
 	        
-	        // Position mittels Ort bestimmen?
-	        if ($this->settings['getLatLon'] && $this->settings['maps']['key'] && !$position['latitude']) {
+	        // Position mittels Adresse bestimmen?
+	        if ($this->settings['getLatLon'] && !$position['latitude']) {
 	        	$contents = [];
 	        	$contents[] = $content;
 	        	$debug .= $this->getLatLon($contents);
@@ -1385,7 +1385,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	/**
 	 * Latitude und Longitude zu einer Adresse ermitteln
 	 * Lösung von hier: http://stackoverflow.com/questions/8633574/get-latitude-and-longitude-automatically-using-php-api
-	 */
+     *
+     * @return string
+     */
 	private function getLatLon(&$objects)
 	{
 		/**
@@ -1393,6 +1395,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		 */
 	    //$persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
 	    $debug = '';
+        $lati = 0;
+        $longi = 0;
+        if (($this->settings['getLatLon'] == 1) && !$this->settings['maps']['key']) {
+            return 'no google api key found!';
+        }
 	    if (is_object($objects) || is_array($objects)) {
 		  foreach($objects as $object) {
 			if (($object->getLatitude() == 0) && ($object->getLongitude() == 0) && $object->getCity()) {
@@ -1407,30 +1414,47 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					$address .= ($address) ? ', ' . $object->getCountry() : $object->getCountry();
 				}
 				$address = urlencode($address);
-				$url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address . '&key=' . $this->settings['maps']['key'];
+                $httpOptions = [
+                    "http" => [
+                        "method" => "GET",
+                        "header" => "User-Agent: TYPO3"
+                    ]
+                ];
+                $streamContext = stream_context_create($httpOptions);
+                if ($this->settings['getLatLon'] == 2) {
+                    $url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' . $address;
+                } else {
+                    $url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address . '&key=' . $this->settings['maps']['key'];
+                }
 				// get the json response
-				$resp_json = file_get_contents($url);
+				$resp_json = file_get_contents($url, false, $streamContext);
 				// decode the json
 				$resp = json_decode($resp_json, true);
 				// response status will be 'OK', if able to geocode given address
-				if ($resp['status']=='OK'){
-				    // get the important data
-				    $lati = isset($resp['results'][0]['geometry']['location']['lat']) ? $resp['results'][0]['geometry']['location']['lat'] : "";
-				    $longi = isset($resp['results'][0]['geometry']['location']['lng']) ? $resp['results'][0]['geometry']['location']['lng'] : "";
-				    //$formatted_address = isset($resp['results'][0]['formatted_address']) ? $resp['results'][0]['formatted_address'] : "";
-				    if ($lati || $longi) {    // && $formatted_address){
-				        $object->setLatitude($lati);
-				        $object->setLongitude($longi);
-				        $this->contentRepository->update($object);
-				        //$persistenceManager->persistAll();
-				        //echo "position berechnet: $lat, $long";
-				    }
-				    if ($this->settings['debug']) {
-				        $debug .= 'geocode answer to address "' . $address . '": ' . $lati .' / ' . $longi . "\n"; //  . ' (' . $formatted_address.
-				    }
-				} elseif ($this->settings['debug']) {
-				    $debug .= 'geocode response to address "' . $address . '": ' . $resp['status'] . "\n";
-				}
+                if ($this->settings['getLatLon'] == 2) {
+                    if ($resp[0]['lat'] || $resp[0]['lon']) {
+                        $lati = $resp[0]['lat'];
+                        $longi = $resp[0]['lon'];
+                    }
+                } else {
+                    if ($resp['status']=='OK'){
+                        // get the important data
+                        $lati = isset($resp['results'][0]['geometry']['location']['lat']) ? $resp['results'][0]['geometry']['location']['lat'] : "";
+                        $longi = isset($resp['results'][0]['geometry']['location']['lng']) ? $resp['results'][0]['geometry']['location']['lng'] : "";
+                        //$formatted_address = isset($resp['results'][0]['formatted_address']) ? $resp['results'][0]['formatted_address'] : "";
+                    } elseif ($this->settings['debug']) {
+                        $debug .= 'google geocode response to address "' . $address . '": ' . $resp['status'] . "\n";
+                    }
+                }
+                if ($lati || $longi) {    // && $formatted_address){
+                    $object->setLatitude($lati);
+                    $object->setLongitude($longi);
+                    $this->contentRepository->update($object);
+                    //$persistenceManager->persistAll();
+                }
+                if ($this->settings['debug']) {
+                    $debug .= 'geocode answer to address "' . $address . '": ' . $lati .' / ' . $longi . "\n";
+                }
 			}
 		  }
 	   }
@@ -1510,4 +1534,3 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		return $categoryRepository->getCategoriesAndParents($all_cats);
 	}
 }
-?>

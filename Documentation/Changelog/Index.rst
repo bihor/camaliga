@@ -246,5 +246,7 @@ Version     Changes
             AddPublicResourcesViewHelper: addSlash-argument activated again.
 
             TCA-Bugfix for TYPO3 10.
-10.4.1      Bugfix: don´t ignore selected pages on category-search.
+10.4.2      Use the Openstreetmap-API for finding a position is now possible too.
+
+            Bugfix: don´t ignore selected pages on category-search.
 ==========  ==============================================================================================================================

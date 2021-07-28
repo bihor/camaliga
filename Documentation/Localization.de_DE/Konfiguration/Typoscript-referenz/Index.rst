@@ -88,13 +88,17 @@ settings.random                           boolean        Die Elemente zufällig 
 
                                                          1: ja, jedes mal wenn der Cache geleert wird.
 settings.getLatLon                        boolean        Versuche die Latitude und Longitude automatisch zu finden?                         0
-                                                         Die Position einer vorhanden Adresse ohne Latitude wird über einen
-                                                         Google-Server erfragt. Beim Create wird auch die GPS-Position eines Bildes
+                                                         Die Position einer vorhanden Adresse ohne Latitude wird über eine
+                                                         API erfragt. Beim Create wird auch die GPS-Position eines Bildes
                                                          geprüft.
 
                                                          0: nein.
 
                                                          1: ja, suche die Position in der Karussell-, List-, Map- oder Create-Action.
+                                                         Benutze dabei die Google-API. settings.maps.key muss angegeben sein!
+
+                                                         2: ja, suche die Position in der Karussell-, List-, Map- oder Create-Action.
+                                                         Benutze dabei die Openstreetmap-API.
 settings.onlyDistinct                     boolean        Zeige nur eindeutige Elemente an?                                                  0
 
                                                          0: nein.
