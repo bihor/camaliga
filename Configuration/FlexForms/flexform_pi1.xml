@@ -127,10 +127,6 @@
                 <numIndex index="0">jQuery.Flipster</numIndex>
                 <numIndex index="1">Content->flipster;Content->search;Content->show</numIndex>
             </numIndex>
-            <numIndex index="36">
-                <numIndex index="0">FractionSlider</numIndex>
-                <numIndex index="1">Content->fractionSlider;Content->search;Content->show</numIndex>
-            </numIndex>
             <numIndex index="37">
                 <numIndex index="0">jQuery Full Width Image Slider</numIndex>
                 <numIndex index="1">Content->fullwidth;Content->search;Content->show</numIndex>
@@ -155,6 +151,10 @@
                 <numIndex index="0">Magnific Popup</numIndex>
                 <numIndex index="1">Content->magnific;Content->search;Content->show</numIndex>
             </numIndex>
+              <numIndex index="49">
+                  <numIndex index="0">nanogallery2</numIndex>
+                  <numIndex index="1">Content->nanogallery2;Content->search;Content->show</numIndex>
+              </numIndex>
             <numIndex index="52">
                 <numIndex index="0">OWL Carousel 2</numIndex>
                 <numIndex index="1">Content->owl2;Content->search;Content->show</numIndex>

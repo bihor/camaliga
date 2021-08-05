@@ -1046,11 +1046,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	}
 
 	/**
-	 * action FractionSlider
+	 * action nanogallery2
 	 *
 	 * @return void
 	 */
-	public function fractionSliderAction()
+	public function nanogallery2Action()
 	{
 		if ($this->settings['extended']['enable']) {
 			$this->listExtendedAction();

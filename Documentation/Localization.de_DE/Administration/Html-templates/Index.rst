@@ -89,11 +89,6 @@ Flipster.html              Template, welches das jQuery.Flipster-Plugin benutzt.
                            Infos: https://github.com/drien/jquery-flipster
 
                            Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/jqueryflipster-beispiel
-FractionSlider.html        Deprecated: benutze stattdessen die Extension fp_fractionslider.
-                           Template, welches das FractionSlider-Plugin benutzt.
-                           Achtung: man muss den FractionSlider separat installieren.
-
-                           Infos: http://jacksbox.de/fractionslider-demos/background-animation/
 Fullwidth.html             Template, welches das "jQuery Full Width Image Slider"-Plugin benutzt.
                            Achtung: man muss "jQuery Full Width Image Slider" separat installieren.
 
@@ -139,6 +134,10 @@ Modal.html                 Template für Twitter Bootstrap 4 Modal. Benutze das 
                            Infos: https://getbootstrap.com/docs/4.2/components/modal/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen
+Nanogallery2.html          Template, welches das Nanogallery2-Plugin benutzt.
+                           Achtung: man muss Nanogallery2 separat installieren.
+
+                           Infos: https://nanogallery2.nanostudio.org/
 New.html                   Hier kann man neue Elemente im FE anlegen.
 Openstreetmap.html         Template, welches die Openstreetmap und Leaflet mit markercluster benutzt.
                            Achtung: man muss Leaflet und Leaflet.markercluster separat installieren.
