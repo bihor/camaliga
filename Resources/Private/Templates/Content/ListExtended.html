@@ -13,12 +13,14 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
- <f:widget.paginate objects="{contents}" as="paginatedContents" configuration="{settings.pagebrowser}">
- <f:for each="{paginatedContents}" as="content" iteration="pageiterator">
+    <f:if condition="{settings.pagebrowser.insertAbove} && ({paginator.numberOfPages} > 1)">
+        <f:render partial="Paginator" arguments="{_all}" />
+    </f:if>
+ <f:for as="content" each="{paginator.paginatedItems}" iteration="pageiterator">
   <div class="row carousel-list-entry">
    <f:if condition="{content.falimage.uid}">
     <div class="col">
-	 <f:image src="{content.falimage.uid}" maxHeight="{settings.img.thumbHeight}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
+	 <f:image src="{content.falimage.uid}" width="{settings.img.thumbWidth}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" class="img-fluid" />
     </div>
    </f:if>
    <div class="col">
@@ -35,8 +37,11 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
    </div>
   </div>
  </f:for>
- </f:widget.paginate>
- <p>{contents -> f:count()} {f:translate(key: 'entries_found')}</p>
+    <f:if condition="{settings.pagebrowser.insertBelow} && ({paginator.numberOfPages} > 1)">
+        <f:render partial="Paginator" arguments="{_all}" />
+        <p>{f:translate(key: 'entry')} {pagination.startRecordNumber} - {pagination.endRecordNumber}.</p>
+    </f:if>
+    <p>{contents -> f:count()} {f:translate(key: 'entries_found')}</p>
 </f:then>
 <f:else>
   <f:if condition="{onlySearchForm} == 0"><p><f:translate key="nothing" default="Nothing found." /></p></f:if>

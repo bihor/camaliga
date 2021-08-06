@@ -92,6 +92,9 @@
 			<trans-unit id="entries_found">
 				<target>Elemente gefunden.</target>
 			</trans-unit>
+			<trans-unit id="entry">
+				<target>Element</target>
+			</trans-unit>
 			<trans-unit id="options">
 				<target>Optionen</target>
 			</trans-unit>

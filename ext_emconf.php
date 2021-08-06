@@ -14,7 +14,7 @@ $EM_CONF[$_EXTKEY] = [
   'title' => 'Camaliga: CArousel/MAp/LIst/GAllery',
   'description' => 'A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick. Bootstrap support. Indexer for ke_search.',
   'category' => 'plugin',
-  'version' => '10.4.3',
+  'version' => '10.5.0',
   'state' => 'stable',
   'uploadfolder' => false,
   'createDirs' => '',
@@ -24,7 +24,7 @@ $EM_CONF[$_EXTKEY] = [
   'author_company' => 'fixpunkt werbeagentur gmbh',
   'constraints' =>[
     'depends' => [
-      'typo3' => '9.5.20-10.4.99',
+      'typo3' => '10.4.6-11.3.99',
     ],
     'conflicts' => [],
     'suggests' => [],

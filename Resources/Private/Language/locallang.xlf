@@ -92,6 +92,9 @@
 			<trans-unit id="entries_found">
 				<source>entries found.</source>
 			</trans-unit>
+			<trans-unit id="entry">
+				<source>Entry</source>
+			</trans-unit>
 			<trans-unit id="options">
 				<source>Options</source>
 			</trans-unit>

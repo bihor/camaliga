@@ -1,0 +1,43 @@
+<ul class="pagination pagination-block">
+    <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+        <f:then>
+            <li class="waves-effect">
+                <a href="{f:uri.action(action:'listExtended', arguments:{currentPage: 1})}" title="{f:translate(key:'pagination.first')}">
+                    <i class="fas fa-fast-backward"></i>
+                </a>
+            </li>
+            <li class="waves-effect">
+                <a href="{f:uri.action(action:'listExtended', arguments:{currentPage: pagination.previousPageNumber})}" title="{f:translate(key:'pagination.previous')}">
+                    <i class="fas fa-step-backward"></i>
+                </a>
+            </li>
+        </f:then>
+        <f:else>
+            <li class="disabled"><a href="#"><i class="fas fa-fast-backward"></i></a></li>
+            <li class="disabled"><a href="#"><i class="fas fa-step-backward"></i></a></li>
+        </f:else>
+    </f:if>
+    <f:for each="{pages}" as="page">
+        <li class="{f:if(condition: '{page} == {paginator.currentPageNumber}', then:'active', else:'waves-effect')}">
+            <a href="{f:uri.action(action:'listExtended', arguments:{currentPage: page})}">{page}</a>
+        </li>
+    </f:for>
+    <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+        <f:then>
+            <li class="waves-effect">
+                <a href="{f:uri.action(action:'listExtended', arguments:{currentPage: pagination.nextPageNumber})}" title="{f:translate(key:'pagination.next')}">
+                    <i class="fas fa-step-forward"></i>
+                </a>
+            </li>
+            <li class="waves-effect">
+                <a href="{f:uri.action(action:'listExtended', arguments:{currentPage: pagination.lastPageNumber})}" title="{f:translate(key:'pagination.last')}">
+                    <i class="fas fa-fast-forward"></i>
+                </a>
+            </li>
+        </f:then>
+        <f:else>
+            <li class="disabled"><a href="#"><i class="fas fa-step-forward"></i></a></li>
+            <li class="disabled"><a href="#"><i class="fas fa-fast-forward"></i></a></li>
+        </f:else>
+    </f:if>
+</ul>

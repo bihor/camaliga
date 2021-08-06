@@ -1,5 +1,4 @@
 <?php
-//$configurationUtility = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['camaliga']);
 $configurationUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('camaliga');
 $disableFurtherImages = (bool)$configurationUtility['disableFurtherImages'];
 $disableAddress = (bool)$configurationUtility['disableAddress'];
@@ -293,8 +292,7 @@ $tcaArray = array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'sortby' => 'sorting',
-		'versioningWS' => 2,
-		'versioning_followPages' => TRUE,
+		'versioningWS' => true,
 		'origUid' => 't3_origuid',
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l10n_parent',
@@ -307,9 +305,6 @@ $tcaArray = array(
 		),
 		'searchFields' => 'title,shortdesc,longdesc,street,zip,city,country,person,custom1',
 		'iconfile' => 'EXT:camaliga/Resources/Public/Icons/tx_camaliga_domain_model_content.gif'
-	),
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc, link, '.$pre.'image',
 	),
 	'types' => array(
 		'1' => array('showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, slug, shortdesc, longdesc, link, '.$pre.'image'),
@@ -505,7 +500,6 @@ if (!$disableFurtherImages) {
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image5',
 		'config' => $imgConfig5
 	);
-	$tcaArray['interface']['showRecordFieldList'] .= ', falimage2, falimage3, falimage4, falimage5';
 	$tcaArray['types']['1']['showitem'] .=  ',falimage2,--linebreak--, falimage3,--linebreak--, falimage4,--linebreak--, falimage5';
 }
 
@@ -566,7 +560,6 @@ if (!$disableAddress) {
                 'default' => '0.000000000'
         ),
 	);
-	$tcaArray['interface']['showRecordFieldList'] .= ', street, zip, city, country, latitude, longitude';
 	$tcaArray['types']['1']['showitem'] .= ',street,--linebreak--,zip, city,--linebreak--, country,--linebreak--, latitude, longitude';
 }
 
@@ -607,7 +600,6 @@ if (!$disableContact) {
 					'eval' => 'trim'
 			),
 	);
-	$tcaArray['interface']['showRecordFieldList'] .= ', person, phone, mobile, email';
 	$tcaArray['types']['1']['showitem'] .= ', person,--linebreak--,phone, mobile,--linebreak--, email';
 }
 
@@ -639,7 +631,6 @@ if (!$disableCustom) {
 				'eval' => 'trim'
 		),
 	);
-	$tcaArray['interface']['showRecordFieldList'] .= ', custom1, custom2, custom3';
 	$tcaArray['types']['1']['showitem'] .= ',custom1, custom2, custom3';
 }
 
@@ -648,19 +639,18 @@ if (!$disableMother) {
 		'exclude' => true,
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.mother',
 		'config' => array(
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'tx_camaliga_domain_model_content',
-				'size' => '1',
-				'maxitems' => '1',
-				'minitems' => '0'
+			'type' => 'group',
+			'internal_type' => 'db',
+			'allowed' => 'tx_camaliga_domain_model_content',
+			'size' => '1',
+			'maxitems' => '1',
+			'minitems' => '0',
+            'default' => 0
 		),
 	);
-	$tcaArray['interface']['showRecordFieldList'] .= ',mother';
 	$tcaArray['types']['1']['showitem'] .= ',mother';
 }
 
 $tcaArray['types']['1']['showitem'] .= ',--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime';
 
 return $tcaArray;
-?>

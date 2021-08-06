@@ -1,5 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
+if (!defined('TYPO3')) {
 	die ('Access denied.');
 }
 
@@ -13,7 +13,7 @@ if (TYPO3_MODE === 'BE') {
 		'imports',	// Submodule key
 		'',			// Position
 		array(
-			'Backend' => 'index, thumb',
+            \Quizpalme\Camaliga\Controller\BackendController::class => 'index, thumb',
 		),
 		array(
 			'access' => 'user,group',
@@ -25,4 +25,3 @@ if (TYPO3_MODE === 'BE') {
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_camaliga_domain_model_content', 'EXT:camaliga/Resources/Private/Language/locallang_csh_tx_camaliga_domain_model_content.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_camaliga_domain_model_content');
-?>

@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') || die('Access denied.');
 
 call_user_func(
 	function()
@@ -9,10 +9,10 @@ call_user_func(
 			'Quizpalme.Camaliga',
 			'Pi1',
 			[
-				'Content' => 'list, listExtended, show, showExtended, random, search, teaser, carousel, carouselSeparated, elegant, responsiveCarousel, responsive, map, openstreetmap, coolcarousel, ekko, lightslider, magnific, sgallery, skdslider, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, nanogallery2, new, create',
+                \Quizpalme\Camaliga\Controller\ContentController::class => 'list, listExtended, show, showExtended, random, search, teaser, carousel, carouselSeparated, elegant, responsiveCarousel, responsive, map, openstreetmap, coolcarousel, ekko, lightslider, magnific, sgallery, skdslider, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, nanogallery2, new, create',
 			],
 			[
-				'Content' => 'random, search, new, create',
+                \Quizpalme\Camaliga\Controller\ContentController::class => 'random, search, new, create',
 			]
 		);
 		
@@ -54,12 +54,6 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php'][
 \Quizpalme\Camaliga\Hooks\PageLayoutView::class . '->getExtensionSummary';
 
 if (TYPO3_MODE === 'BE') {
-	// Page module hook - show flexform settings in page module: geht so aber nicht!
-	//$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
-	//$pluginSignature = strtolower($extensionName) . '_pi';
-	//$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info'][$pluginSignature][$_EXTKEY] =
-	//	\Quizpalme\Camaliga\Hooks\PageLayoutView::class . '->getExtensionSummary';
-	
 	// Add CSV-export task (sheduler)
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\CsvExportTask'] = array(
 			'extension' => 'camaliga',

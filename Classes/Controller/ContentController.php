@@ -4,6 +4,8 @@ namespace Quizpalme\Camaliga\Controller;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Core\Pagination\ArrayPaginator;
+use TYPO3\CMS\Core\Pagination\SimplePagination;
 
 /***************************************************************
  *  Copyright notice
@@ -227,27 +229,21 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 					if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
 				}
 			}
-			
+            $widthHeights = $this->calculateWidthAndHeight();
+
 			$this->view->assign('fal', 1);
 			$this->view->assign('uid', $content_uid);
 			$this->view->assign('pid', $content_pid);
 			$this->view->assign('contents', $contents);
 			$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array
 			$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
-			$item_width = intval($this->settings['item']['width']);
-			$padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
-			$total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
-			$total_width = intval($this->settings['item']['items']) * $total_item_width;
-			$this->view->assign('paddingItemWidth', $padding_item_width);
-			$this->view->assign('totalItemWidth', $total_item_width);
-			$this->view->assign('itemWidth', (($this->settings['addPadding']) ? $padding_item_width : $item_width));
-			$this->view->assign('totalWidth', $total_width);
-			$item_height = intval($this->settings['item']['height']);
-			$padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
-			$total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
-			$this->view->assign('paddingItemHeight', $padding_item_height);
-			$this->view->assign('totalItemHeight', $total_item_height);
-			$this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
+            $this->view->assign('paddingItemWidth', $widthHeights['paddingItemWidth']);
+            $this->view->assign('totalItemWidth', $widthHeights['totalItemWidth']);
+            $this->view->assign('itemWidth', $widthHeights['itemWidth']);
+            $this->view->assign('totalWidth', $widthHeights['totalWidth']);
+            $this->view->assign('paddingItemHeight', $widthHeights['paddingItemHeight']);
+            $this->view->assign('totalItemHeight', $widthHeights['totalItemHeight']);
+            $this->view->assign('itemHeight', $widthHeights['itemHeight']);
 			$this->view->assign('onlySearchForm', 0);
 			$this->view->assign('debug', $debug);
 		}
@@ -256,9 +252,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	/**
 	 * action listExtended
 	 *
+     * @param int $currentPage
 	 * @return void
 	 */
-	public function listExtendedAction()
+	public function listExtendedAction(int $currentPage = 1)
 	{
 		$this->settings['extended']['enable'] = 1;
 		$search = false;	// search by user selection?
@@ -479,56 +476,60 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 				if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
 			}
 		}
-		
-		$this->view->assign('fal', 1);
-		$this->view->assign('lang', $sys_language_uid);
-		$this->view->assign('uid', $content_uid);
-		$this->view->assign('pid', $content_pid);
-		$this->view->assign('contents', $contents);
-		$this->view->assign('sortBy_selected', $sortBy);
-		$this->view->assign('sortOrder_selected', $sortOrder);
-		$this->view->assign('all_categories', $all_cats);
-		$this->view->assign('categories', $cats);
-		$this->view->assign('defaultCatIDs', $this->settings['defaultCatIDs']);
-		$this->view->assign('storagePIDsArray', $storagePidsArray);	// alle PIDs als Array
-		$this->view->assign('storagePIDsComma', $storagePidsComma);	// alle PIDs kommasepariert
-		$this->view->assign('storagePIDsData', $storagePidsData);	// alle Daten zu den PIDS
-		$this->view->assign('start', $start);
-		$item_width = intval($this->settings['item']['width']);
-		$padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
-		$total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
-		$total_width = intval($this->settings['item']['items']) * $total_item_width;
-		$this->view->assign('paddingItemWidth', $padding_item_width);
-		$this->view->assign('totalItemWidth', $total_item_width);
-		$this->view->assign('itemWidth', (($this->settings['addPadding']) ? $padding_item_width : $item_width));
-		$this->view->assign('totalWidth', $total_width);
-		$item_height = intval($this->settings['item']['height']);
-		$padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
-		$total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
-		$this->view->assign('paddingItemHeight', $padding_item_height);
-		$this->view->assign('totalItemHeight', $total_item_height);
-		$this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
-		$this->view->assign('sword', $sword);
-		$this->view->assign('place', $place);
-		$this->view->assign('radius', $radius);
-		if ($this->settings['extended']['radiusValues']) {
-			$radiusArray = array();
-			$radiusTemp = explode(',', $this->settings['extended']['radiusValues']);
-			foreach ($radiusTemp as $aRadius) {
-				$radiusArray[$aRadius] = $aRadius . ' km';
-			}
-			$this->view->assign('radiusArray', $radiusArray);
-			if (count($distanceArray) > 0) {
-				// Entferungen bei den Elementen setzen
-				foreach ($contents as $element) {
-					$element->setDistance($distanceArray[$element->getUid()]);
-				}
-			}
-			$this->view->assign('rsearch', 1);
-		} else {
-			$this->view->assign('rsearch', 0);
-		}
-		$this->view->assign('debug', $debug);
+
+        if ($this->settings['extended']['radiusValues']) {
+            $radiusArray = [];
+            $radiusTemp = explode(',', $this->settings['extended']['radiusValues']);
+            foreach ($radiusTemp as $aRadius) {
+                $radiusArray[$aRadius] = $aRadius . ' km';
+            }
+            $this->view->assign('radiusArray', $radiusArray);
+            if (count($distanceArray) > 0) {
+                // Entferungen bei den Elementen setzen
+                foreach ($contents as $element) {
+                    $element->setDistance($distanceArray[$element->getUid()]);
+                }
+            }
+            $this->view->assign('rsearch', 1);
+        } else {
+            $this->view->assign('rsearch', 0);
+        }
+
+        $arrayPaginator = new ArrayPaginator($contents->toArray(), $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
+        $pagination = new SimplePagination($arrayPaginator);
+        $widthHeights = $this->calculateWidthAndHeight();
+
+        $this->view->assignMultiple(
+            [
+               'lang' => $sys_language_uid,
+                'uid' => $content_uid,
+		        'pid' => $content_pid,
+		        'contents' => $contents,
+                'paginator' => $arrayPaginator,
+                'pagination' => $pagination,
+                'pages' => range(1, $pagination->getLastPageNumber()),
+                'sortBy_selected' => $sortBy,
+		        'sortOrder_selected' => $sortOrder,
+		        'all_categories' => $all_cats,
+		        'categories' => $cats,
+		        'defaultCatIDs' => $this->settings['defaultCatIDs'],
+		        'storagePIDsArray' => $storagePidsArray,	// alle PIDs als Array
+		        'storagePIDsComma' => $storagePidsComma,	// alle PIDs kommasepariert
+		        'storagePIDsData' => $storagePidsData,	// alle Daten zu den PIDS
+		        'start' => $start,
+		        'paddingItemWidth' => $widthHeights['paddingItemWidth'],
+		        'totalItemWidth' => $widthHeights['totalItemWidth'],
+		        'itemWidth' => $widthHeights['itemWidth'],
+		        'totalWidth' => $widthHeights['totalWidth'],
+		        'paddingItemHeight' => $widthHeights['paddingItemHeight'],
+		        'totalItemHeight' => $widthHeights['totalItemHeight'],
+		        'itemHeight' => $widthHeights['itemHeight'],
+		        'sword' => $sword,
+		        'place' => $place,
+		        'radius' => $radius,
+		        'debug' => $debug
+            ]
+        );
 	}
 	
 	/**
@@ -549,24 +550,18 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $debug .= 'findByUids(array(' . $this->settings['teaserIDs'] . '),' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ")\n";
         }
         $contents = $this->contentRepository->findByUids($ids, $this->settings['sortBy'], $this->settings['sortOrder']);
-        
+        $widthHeights = $this->calculateWidthAndHeight();
+
         $this->view->assign('uid', $content_uid);
         $this->view->assign('pid', $content_pid);
         $this->view->assign('contents', $contents);
-        $item_width = intval($this->settings['item']['width']);
-        $padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
-        $total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
-        $total_width = intval($this->settings['item']['items']) * $total_item_width;
-        $this->view->assign('paddingItemWidth', $padding_item_width);
-        $this->view->assign('totalItemWidth', $total_item_width);
-        $this->view->assign('itemWidth', (($this->settings['addPadding']) ? $padding_item_width : $item_width));
-        $this->view->assign('totalWidth', $total_width);
-        $item_height = intval($this->settings['item']['height']);
-        $padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
-        $total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
-        $this->view->assign('paddingItemHeight', $padding_item_height);
-        $this->view->assign('totalItemHeight', $total_item_height);
-        $this->view->assign('itemHeight', (($this->settings['addPadding']) ? $padding_item_height : $item_height));
+        $this->view->assign('paddingItemWidth', $widthHeights['paddingItemWidth']);
+        $this->view->assign('totalItemWidth', $widthHeights['totalItemWidth']);
+        $this->view->assign('itemWidth', $widthHeights['itemWidth']);
+        $this->view->assign('totalWidth', $widthHeights['totalWidth']);
+        $this->view->assign('paddingItemHeight', $widthHeights['paddingItemHeight']);
+        $this->view->assign('totalItemHeight', $widthHeights['totalItemHeight']);
+        $this->view->assign('itemHeight', $widthHeights['itemHeight']);
         $this->view->assign('debug', $debug);
 	}
 	
@@ -586,49 +581,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		}
 		$this->listExtendedAction();
 	}
-	
 
-	/**
-	 * set SEO head?
-	 *
-	 * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-	 * @return void
-	 */
-	protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content)
-	{
-		$title = $content->getTitle();
-		$desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
-		if ($this->settings['seo']['setTitle'] == 1) {
-			$GLOBALS['TSFE']->page['title'] = $title;
-		}
-		if (($this->settings['seo']['setDescription'] == 1) && $desc) {
-			$GLOBALS['TSFE']->page['description'] = $desc;
-		}
-		if ($this->settings['seo']['setIndexedDocTitle'] == 1) {
-			$GLOBALS['TSFE']->indexedDocTitle = $title;
-		}
-		if ($this->settings['seo']['setOgTitle'] == 1) {
-			$this->response->addAdditionalHeaderData('<meta property="og:title" content="' . $title .'">');
-		}
-		if (($this->settings['seo']['setOgDescription'] == 1) && $desc) {
-			$this->response->addAdditionalHeaderData('<meta property="og:description" content="' . $desc . '">');
-		}
-		if ($this->settings['seo']['setOgImage'] == 1) {
-			$server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
-			$server .= $_SERVER['SERVER_NAME'];
-			$image = '';
-			if ($content->getFalimage() && $content->getFalimage()->getUid()) {
-				$typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
-				$fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
-				$fileObjectData = $fileObject->toArray();
-				$image = $server . '/' . $fileObjectData['url'];
-			}
-			if ($image) {
-				$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
-			}
-		}
-	}
-	
 	/**
 	 * action show one element. ignorevalidation added because of validation erros
 	 *
@@ -1345,8 +1298,76 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	        //$this->view->assign('data', $infos);
 	    }
 	}
-	
-	/**
+
+    /* ************************************* Helper *************************** */
+
+    /**
+     * Calculate widths and heights
+     *
+     * @return array
+     */
+    protected function calculateWidthAndHeight()
+    {
+        $values = [];
+        $item_width = intval($this->settings['item']['width']);
+        $padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
+        $total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
+        $total_width = intval($this->settings['item']['items']) * $total_item_width;
+        $values['paddingItemWidth'] = $padding_item_width;
+        $values['totalItemWidth'] = $total_item_width;
+        $values['itemWidth'] = (($this->settings['addPadding']) ? $padding_item_width : $item_width);
+        $values['totalWidth'] = $total_width;
+        $item_height = intval($this->settings['item']['height']);
+        $padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
+        $total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
+        $values['paddingItemHeight'] = $padding_item_height;
+        $values['totalItemHeight'] = $total_item_height;
+        $values['itemHeight'] = (($this->settings['addPadding']) ? $padding_item_height : $item_height);
+        return $values;
+    }
+
+    /**
+     * set SEO head?
+     *
+     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+     * @return void
+     */
+    protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content)
+    {
+        $title = $content->getTitle();
+        $desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
+        if ($this->settings['seo']['setTitle'] == 1) {
+            $GLOBALS['TSFE']->page['title'] = $title;
+        }
+        if (($this->settings['seo']['setDescription'] == 1) && $desc) {
+            $GLOBALS['TSFE']->page['description'] = $desc;
+        }
+        if ($this->settings['seo']['setIndexedDocTitle'] == 1) {
+            $GLOBALS['TSFE']->indexedDocTitle = $title;
+        }
+        if ($this->settings['seo']['setOgTitle'] == 1) {
+            $this->response->addAdditionalHeaderData('<meta property="og:title" content="' . $title .'">');
+        }
+        if (($this->settings['seo']['setOgDescription'] == 1) && $desc) {
+            $this->response->addAdditionalHeaderData('<meta property="og:description" content="' . $desc . '">');
+        }
+        if ($this->settings['seo']['setOgImage'] == 1) {
+            $server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
+            $server .= $_SERVER['SERVER_NAME'];
+            $image = '';
+            if ($content->getFalimage() && $content->getFalimage()->getUid()) {
+                $typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
+                $fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
+                $fileObjectData = $fileObject->toArray();
+                $image = $server . '/' . $fileObjectData['url'];
+            }
+            if ($image) {
+                $this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
+            }
+        }
+    }
+
+    /**
 	* Zufälliges sortieren der Ergebnisse
 	* 
 	* @return array 

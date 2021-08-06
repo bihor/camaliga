@@ -3,12 +3,11 @@ namespace Quizpalme\Camaliga\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /***************************************************************
  *  Copyright notice
  *
- *  (c) 2013 Kurt Gusbeth <info@quizpalme.de>
+ *  (c) 2021 Kurt Gusbeth <info@quizpalme.de>
  *  
  *  All rights reserved
  *
@@ -42,20 +41,21 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	/**
 	 * contentRepository
 	 *
-	 * @Extbase\Inject
 	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
 	 */
 	protected $contentRepository;
-	
-	/**
-	 * Zähler
-	 *
-	 * @var integer
-	 */
-	protected $nr = 0;
-	
 
-	/**
+    /**
+     * Injects the content-Repository
+     *
+     * @param \Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository
+     */
+    public function injectContentRepository(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+    {
+        $this->contentRepository = $contentRepository;
+    }
+
+    /**
 	 * Ordner-ID
 	 *
 	 * @return integer
@@ -111,4 +111,3 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('contents', $contents);
 	}
 }
-?>
