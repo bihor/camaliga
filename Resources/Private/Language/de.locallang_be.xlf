@@ -595,10 +595,6 @@
 				<source>Switch to FAL</source>
 				<target>Wechsele die Bilder zu FAL</target>
 			</trans-unit>
-			<trans-unit id="slugtasks.title" resname="slugtasks.title">
-				<source>Set the slug-field</source>
-				<target>Slug-Feld setzen</target>
-			</trans-unit>
 			<trans-unit id="tasks.description" resname="tasks.description">
 				<source>Writes a CSV-file from the DB to the fileadmin folder.</source>
 				<target>Exportiert eine CSV-Datei aus der DB ins fileadmin-Verzeichnis.</target>
@@ -610,10 +606,6 @@
 			<trans-unit id="faltasks.description" resname="faltasks.description">
 				<source>Move /uploads-images to FAL and change the image-relation in the camaliga-elements.</source>
 				<target>Verschiebe die Bilder aus /uploads nach FAL und ändere die Bilder-Relationen in den Camaliga-Elementen.</target>
-			</trans-unit>
-			<trans-unit id="slugtasks.description" resname="slugtasks.description">
-				<source>Set the slug-field of all active camaliga-elements.</source>
-				<target>Slug-Feld bei alle aktiven Camaliga-Elementen befüllen.</target>
 			</trans-unit>
 			<trans-unit id="tasks.validate.page" resname="tasks.validate.page">
 				<source>Page with camaliga-elements (pages UID):</source>

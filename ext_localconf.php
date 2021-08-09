@@ -67,13 +67,6 @@ if (TYPO3_MODE === 'BE') {
 			'additionalFields' => 'Quizpalme\\Camaliga\\Task\\CsvImportAdditionalFieldProvider'
 	);
 	
-	// Add Slug-builder task (sheduler)
-	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\BuildSlugTask'] = array(
-		'extension' => 'camaliga',
-		'title' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:slugtasks.title',
-		'description' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:slugtasks.description'
-	);
-	
 	// TCA-Validator
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['Quizpalme\\Camaliga\\Evaluation\\Double9Evaluation'] = '';
 }

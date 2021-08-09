@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Quizpalme\Camaliga\:
+    resource: "../Classes/*"
+
+  Quizpalme\Camaliga\Command\BuildSlugScheduler:
+    tags:
+      - name: "console.command"
+        command: "camaliga:buildslug"
+        description: "Set slug for camaliga-elements without a slug"

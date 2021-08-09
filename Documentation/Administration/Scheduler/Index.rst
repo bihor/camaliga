@@ -18,7 +18,7 @@
 Scheduler-Tasks
 ^^^^^^^^^^^^^^^
 
-- There are 4 scheduler Tasks: import and export CSV files. You can configure many things in this both tasks.
+- There are 3/4 scheduler tasks/commands: import and export CSV files. You can configure many things in this both tasks.
 
 - The third scheduler task can move images from the /uploads/tx_camaliga-folder to FAL.
   Please make a backup of the camaliga-table and your uploads-images before you switch to FAL!
@@ -41,5 +41,9 @@ Scheduler-Tasks
 
 Note: deleted elements will be ignored!
 
+Note: this task was removed in version 10!
+
 - The fourth scheduler task can fill the slug-field after an update. The field didn´t existed before camaliga 9.1.1 and that´s why you should use this task
   to fill the slug-field with values.
+
+Note: this task was replaced in version 11 with a scheduler command (scheduler - Execute console commands)!

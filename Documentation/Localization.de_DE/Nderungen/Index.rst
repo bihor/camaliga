@@ -253,11 +253,13 @@ Version     Änderungen
             AddPublicResourcesViewHelper: addSlash-argument erneut aktiviert.
 
             TCA-Bugfix für TYPO3 10.
-10.5.0      1. Version für TYPO3 11. Kein Support mehr für TYPO3 9.
+11.0.0      1. Version für TYPO3 11. Kein Support mehr für TYPO3 9.
 
             Positionsbestimmung mittels Openstreetmap-API ist nun auch möglich.
 
             Breaking: Template Fractionslider entfernt! Dafür das Template nanogallery2 hinzugefügt.
+
+            Breaking: den Slug-Task durch einen Slug-Command ersetzt.
 
             Bugfix: ignoriere nicht die ausgewählten Ordner bei einer Kategorie-Suche.
 ==========  =====================================================================================================================
