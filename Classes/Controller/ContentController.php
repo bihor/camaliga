@@ -494,7 +494,12 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('rsearch', 0);
         }
 
-        $arrayPaginator = new ArrayPaginator($contents->toArray(), $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
+        if ($contents) {
+            $contentsArray = $contents->toArray();
+        } else {
+            $contentsArray = [];        
+        }
+        $arrayPaginator = new ArrayPaginator($contentsArray, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
         $pagination = new SimplePagination($arrayPaginator);
         $widthHeights = $this->calculateWidthAndHeight();
 
