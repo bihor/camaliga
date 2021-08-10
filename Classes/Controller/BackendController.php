@@ -105,7 +105,6 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		// Elemente sortiert holen
 		$contents = $this->contentRepository->findAll('sorting', 'asc', false, array($pid));
 		
-		$this->view->assign('fal', 1);
 		$this->view->assign('pid', $pid);
 		$this->view->assign('saved', $saved);
 		$this->view->assign('contents', $contents);

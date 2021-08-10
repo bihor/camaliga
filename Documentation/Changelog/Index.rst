@@ -248,11 +248,14 @@ Version     Changes
             TCA-Bugfix for TYPO3 10.
 11.0.0      Now for TYPO3 11.3 too. Support for TYPO3 9 dropped.
 
-            Use the Openstreetmap-API for finding a position is now possible too.
+            Using the Openstreetmap-API for finding a position is now possible too.
 
-            Breaking: Template Fractionslider removed! Template nanogallery2 added.
+            Breaking: Template Fractionslider removed (use fp_fractionslider instead)! Template nanogallery2 added.
 
-            Breaking: Slug-task replaced with a Slug-command.
+            Breaking: Slug-task replaced with a Slug-command. You should delete the task before updating.
+            Otherwise you need to execute "Rebuild PHP Autoload Information" after the update.
+
+            Breaking: the old variable {fal} removed.
 
             Bugfix: don´t ignore selected pages on category-search.
 ==========  ==============================================================================================================================

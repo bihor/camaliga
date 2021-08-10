@@ -231,7 +231,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
             $widthHeights = $this->calculateWidthAndHeight();
 
-			$this->view->assign('fal', 1);
 			$this->view->assign('uid', $content_uid);
 			$this->view->assign('pid', $content_pid);
 			$this->view->assign('contents', $contents);
@@ -598,7 +597,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		} else {
 			$this->setSeo($content);
 				
-			$this->view->assign('fal', 1);
 			$this->view->assign('content', $content);
 			$this->view->assign('error', 0);
 		}
@@ -615,7 +613,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	{
 		$this->setSeo($content);
 			
-		$this->view->assign('fal', 1);
 		$this->view->assign('content', $content);
 		$this->view->assign('error', 0);
 		if ($content->getMother()) {
@@ -1091,7 +1088,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	{
 		$contents = $this->contentRepository->findRandom();
 		
-		$this->view->assign('fal', 1);
 		$this->view->assign('contents', $contents);
 	}
 	
