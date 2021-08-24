@@ -495,11 +495,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         if ($contents) {
-            $arrayContents = $contents->toArray();
+            $contentsArray = $contents->toArray();
         } else {
-            $arrayContents = [];
+            $contentsArray = [];        
         }
-        $arrayPaginator = new ArrayPaginator($arrayContents, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
+        $arrayPaginator = new ArrayPaginator($contentsArray, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
         $pagination = new SimplePagination($arrayPaginator);
         $widthHeights = $this->calculateWidthAndHeight();
 
