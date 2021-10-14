@@ -23,10 +23,9 @@ They also offer a search option (by category and a full text search). More can b
 Since camaliga 5.0.0 there are now three ways to use these extended templates / functions:
 
 - For the list view you can select an extended template. Since the advanced list action is cached,
-  the search form will be sent to itself with the parameter no_cache = 1.
+  the search form can be sent to itself with the parameter no_cache = 1.
   Admittedly, this is not an elegant solution, but a practical solution. Up to version 4.0.0, there were even more templates,
-  which functioned according to this principle, but which are no longer available for selection and will be completely
-  removed in version 6.0.0. Therefore, you should now read further.
+  which functioned according to this principle, but which are no longer available. Therefore, you should now read further.
 
 - The extended Google Maps template will never be cached at all, which is why it does not need the parameter no_cache = 1 .
   The template does not mean as before MapExtended.html but search.html. The search form is integrated there via a partial.
@@ -84,3 +83,7 @@ New example:
 ::
 
   <f:form action="search" name="camaliga" noCacheHash="true" pageUid="{settings.searchId}">
+
+Note furthermore: when you use the search action and set the template variable, you should know, that that template
+will be searched only in the folder with the highest number. E.g. it will be used the folder provided under:
+view.templateRootPaths.1 but this one will be ignored: view.templateRootPaths.0.

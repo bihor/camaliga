@@ -22,12 +22,9 @@ ChangeLog
 Version     Changes
 ==========  ==============================================================================================================================
 0.1.0       Initial upload to TER.
-0.1.2       Google PicasaWeb-Import and FancyBox-Template added. Documentation updated.
 1.0.0       More TypoScript- and FlexForms-Settings. Carousel-Example updated.
 1.1.0       More examples added. Karussell-Import improoved.
 1.2.0       Major bug fixed: wrong path to the templates. More examples added.
-1.2.1       Test of the new ReST documentation.
-1.2.3       Documentation updated. sxw-documentation removed. Category list sorted.
 1.3.0       S Gallery and jQuery.Flipster template added.
             Template Carousel.html improved.
             More size variables added.
@@ -246,7 +243,7 @@ Version     Changes
             AddPublicResourcesViewHelper: addSlash-argument activated again.
 
             TCA-Bugfix for TYPO3 10.
-11.0.0      Now for TYPO3 11.3 too. Support for TYPO3 9 dropped.
+11.0.1      Now for TYPO3 11.3 too. Support for TYPO3 9 dropped.
 
             Using the Openstreetmap-API for finding a position is now possible too.
 
@@ -258,4 +255,9 @@ Version     Changes
             Breaking: the old variable {fal} removed.
 
             Bugfix: don´t ignore selected pages on category-search.
+11.0.3      Bugfix for TYPO3 11.5.0.
+
+            Folder css renamed to Css!
+
+            ListExtended-Template: the search uses now the search-action too.
 ==========  ==============================================================================================================================

@@ -37,7 +37,7 @@ ViewHelpers
 - The second ViewHelper can be used similar. First set the namespace at the top of the template.
   Then use the ViewHelper to include JS- oder CSS-files like this::
 
-    <cam:addPublicResources path="{f:uri.resource(path:'css/Carousel.css')}"></cam:addPublicResources>
+    <cam:addPublicResources path="{f:uri.resource(path:'Css/Carousel.css')}"></cam:addPublicResources>
     <cam:addPublicResources path="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" compress="FALSE" footer="TRUE"></cam:addPublicResources>
 
   This is an example of the template Carousel.html. Use see, which parameters can be set.

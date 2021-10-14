@@ -23,13 +23,13 @@ Außerdem bieten sie eine Suchmöglichkeit (nach Kategorien und eine Volltextsuc
 Seit camaliga 5.0.0 gibt es nun drei Möglichkeiten, diese erweiterten Templates/Funktionen zu benutzen:
 
 - Für die Listen-Ansicht kann man gleich ein erweitertes Template auswählen.
-  Da die erweiterte List-Action gecached wird, wird dann das Suchformular mit dem Parameter no_cache=1 an sich selbst abgesendet.
+  Da die erweiterte List-Action gecached wird, kann man das Suchformular mit dem Parameter no_cache=1 an sich selbst senden.
   Das ist freilich keine elegante Lösung, aber dennoch eine praktische Lösung.
   Bis zur Version 4.0.0 gab es noch mehr Templates, die nach diesem Prinzip funktionierten, aber die werden nicht mehr
-  zur Auswahl angeboten und werden in der Version 6.0.0 komplett entfernt. Deshalb sollte man jetzt noch weiter lesen.
+  angeboten. Deshalb sollte man jetzt noch weiter lesen.
 
 - Das erweiterte Google-Karten/Maps-Template wird überhaupt nie gecached, weshalb man dort den no_cache=1 Parameter nicht braucht.
-  Das Template heisst nicht wie früher MapExtended.html, sondern Search.html. Das Suchformular wird dort über ein Partial eingebunden.
+  Das Template heißt nicht wie früher MapExtended.html, sondern Search.html. Das Suchformular wird dort über ein Partial eingebunden.
   Jeder, der kein Caching braucht oder jeder, dem die anderen Lösungen nicht gefallen, sollte das Search-Template benutzen.
   Man kann es freilich für alles benutzen.
 
@@ -86,3 +86,7 @@ Neues Beispiel:
 ::
 
   <f:form action="search" name="camaliga" noCacheHash="true" pageUid="{settings.searchId}">
+
+Beachte weiterhin: bei der Suche nach dem angegebenen Template wird nur der Ordner benutzt, der unter der höchsten
+Nummer zu finden ist. Also z.B. nur der hier angegebene Ordner: view.templateRootPaths.1 und nicht auch der hier:
+view.templateRootPaths.0.

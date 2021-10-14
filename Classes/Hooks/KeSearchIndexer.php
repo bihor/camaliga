@@ -31,7 +31,7 @@ class KeSearchIndexer extends IndexerBase
         $customIndexer = array(
             'Camaliga elements (ext:camaliga)',
             KeSearchIndexer::KEY,
-        	'EXT:camaliga/ext_icon.gif'
+        	'EXT:camaliga/Resources/Public/Icons/Extension.gif'
         );
         $params['items'][] = $customIndexer;
     }

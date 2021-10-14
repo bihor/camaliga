@@ -26,7 +26,7 @@ defined('TYPO3_MODE') || die();
     $iconRegistry->registerIcon(
         'ext-camaliga-wizard-icon',
         \TYPO3\CMS\Core\Imaging\IconProvider\BitmapIconProvider::class,
-        ['source' => 'EXT:camaliga/Resources/Public/Icons/ce_wiz.gif']
+        ['source' => 'EXT:camaliga/Resources/Public/Icons/Extension.gif']
     );
     $iconRegistry->registerIcon(
         'ext-camaliga-folder-icon',

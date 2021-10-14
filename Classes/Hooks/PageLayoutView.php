@@ -256,7 +256,7 @@ class PageLayoutView
     {
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $pageRenderer->loadRequireJsModule('TYPO3/CMS/Camaliga/PageLayout');
-        $pageRenderer->addCssFile('EXT:camaliga/Resources/Public/css/PageLayoutView.css');
+        $pageRenderer->addCssFile('EXT:camaliga/Resources/Public/Css/PageLayoutView.css');
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:camaliga/Resources/Private/Templates/Backend/PageLayoutView.html'));

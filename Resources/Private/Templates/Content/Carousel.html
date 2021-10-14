@@ -6,7 +6,7 @@ It is an example from enavu:
 http://web.enavu.com/tutorials/making-a-jquery-infinite-carousel-with-nice-features/
 Note 1: you need at least n+2 elements for this carousel! n: visible elements at one time.
   If you doesn´t have n+2 elements, set infinite to 0.
-Note 2: you can copy and customise the camaliga/Resources/Public/css/Carousel.css
+Note 2: you can copy and customise the camaliga/Resources/Public/Css/Carousel.css
   and the camaliga/Resources/Public/JavaScript/jquery.camaliga.js to your fileadmin-folder.
   Remove that 2 things from this template if you do that...
 Note 3: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this with TypoScript:
@@ -31,7 +31,7 @@ padding:{settings.item.padding}px;
 margin:{settings.item.margin}px;
 }
 </style>
-<cam:addPublicResources path="{f:uri.resource(path:'css/Carousel.css')}"></cam:addPublicResources>
+<cam:addPublicResources path="{f:uri.resource(path:'Css/Carousel.css')}"></cam:addPublicResources>
 <cam:addPublicResources path="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" compress="FALSE" footer="TRUE"></cam:addPublicResources>
 
 <f:if condition="{contents -> f:count()} > 0">

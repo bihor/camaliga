@@ -8,5 +8,5 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
 		'camaliga',
 		'Pi1',
 		'Camaliga: carousel/map/list/gallery',
-		'EXT:camaliga/ext_icon.gif'
+		'EXT:camaliga/Resources/Public/Icons/Extension.gif'
 );

@@ -25,7 +25,7 @@ Administration
 ::
 
   typo3conf/ext/camaliga/Resources/Private/Templates/Content
-  typo3conf/ext/camaliga/Resources/Public/css
+  typo3conf/ext/camaliga/Resources/Public/Css
 
 - If you select e.g. the folder fileadmin/ext/camaliga, then set the
   path to that folder with TypoScript-Constants:

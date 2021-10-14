@@ -217,7 +217,7 @@ Beispiel 2: etwas wie Rezepte präsentieren.
 	<f:layout name="Default" />
 	<f:section name="main">
 	<f:flashMessages />
-	<link href="{f:uri.resource(path:'css/Single.css')}" rel="stylesheet" />
+	<link href="{f:uri.resource(path:'Css/Single.css')}" rel="stylesheet" />
 
 	<f:if condition="{error} == 1">
 	<f:then>

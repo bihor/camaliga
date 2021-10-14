@@ -39,7 +39,7 @@ ViewHelpers
 - Den anderen ViewHelper kann man auf ähnliche Weise benutzen. Zuerst setzt man den Namespace und weiter unten nutzt man ihn dann so
   zum einbinden von JS- oder CSS-Dateien::
 
-    <cam:addPublicResources path="{f:uri.resource(path:'css/Carousel.css')}"></cam:addPublicResources>
+    <cam:addPublicResources path="{f:uri.resource(path:'Css/Carousel.css')}"></cam:addPublicResources>
     <cam:addPublicResources path="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" compress="FALSE" footer="TRUE"></cam:addPublicResources>
 
   Das Beispiel stammt aus dem Carousel.html Template. Da kann man also schon mal sehen, welche Parameter man angeben kann.

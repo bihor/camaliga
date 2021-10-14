@@ -14,7 +14,7 @@ defined('TYPO3_MODE') or die();
     ),
     array(
         'access' => 'user,group',
-        'icon'   => 'EXT:camaliga/ext_icon.gif',
+        'icon'   => 'EXT:camaliga/Resources/Public/Icons/Extension.gif',
         'labels' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf',
     )
 );
