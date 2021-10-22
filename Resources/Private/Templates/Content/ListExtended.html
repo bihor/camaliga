@@ -9,7 +9,7 @@ Note 3: you can use pageUid="{settings.showId}" in link.action if you have a sep
 
 <f:section name="main">
     <f:flashMessages/>
-    <link href="{f:uri.resource(path:'Css/List.css')}" rel="stylesheet"/>
+    <f:asset.css identifier="camaliga-list" href="EXT:camaliga/Resources/Public/Css/List.css" />
 
     <f:if condition="{contents -> f:count()} > 0">
         <f:then>

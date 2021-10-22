@@ -1,4 +1,3 @@
-{namespace cam=Quizpalme\Camaliga\ViewHelpers}
 <f:layout name="Default" />
 
 This template is a double carousel that requires only jQuery. It shows the images and text beside each other.
@@ -16,9 +15,9 @@ Note 4: if you want to change the width of the elements, you need to change it i
 Note 5: if you include jQuery only in the footer, you will need to move $('#carousel_ul1').camaliga(...) to the footer too!
   
 <f:section name="main">
+    <f:asset.css identifier="camaliga-carousel" href="EXT:camaliga/Resources/Public/Css/CarouselSeparated.css" />
+    <f:asset.script identifier="camaliga-carousel" src="EXT:camaliga/Resources/Public/JavaScript/jquery.camaliga.js" />
 <f:flashMessages />
-<cam:addPublicResources path="{f:uri.resource(path:'Css/CarouselSeparated.css')}"></cam:addPublicResources>
-<cam:addPublicResources path="{f:uri.resource(path:'JavaScript/jquery.camaliga.js')}" compress="FALSE" footer="TRUE"></cam:addPublicResources>
 
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
@@ -56,7 +55,7 @@ Note 5: if you include jQuery only in the footer, you will need to move $('#caro
 </div>
 <div style="clear:both;"><!-- --></div>
 <script>
-$(window).load(function() {
+document.addEventListener('DOMContentLoaded', function(){
   $('#carousel_ul1').camaliga({
 	auto_slide: 0,	// auto slide?
     hover_pause: 0,	// pause on hover?
@@ -81,7 +80,7 @@ $(window).load(function() {
 	left_scroll: '#left_scroll12',	// only important if you want to change the arrow at the first element when infinite=0 (class camaliga_first will be added)
 	right_scroll: '#right_scroll12'	// only important if you want to change the arrow at the last element when infinite=0 (class camaliga_last will be added)
   });
-});
+}, false);
 </script>
 </f:then>
 <f:else>

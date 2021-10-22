@@ -1,6 +1,6 @@
 <f:layout name="Default" />
 
-Old Roundabout-Example. First download Roundabout for jQuery from here:
+Old Roundabout-Example. Outdated!!! First download Roundabout for jQuery from here:
 https://github.com/fredleblanc/roundabout
 Copy the file to your fileadmin-folder. Check the path to the file.
 Test it with this TS:
@@ -14,8 +14,8 @@ Note: if you want to copy this HTML-file to your fileadmin-folder, you can speci
 Copy this file in a subfolder named "Content" of this folder.
  
 <f:section name="main">
-<f:flashMessages />
-<link href="{f:uri.resource(path:'Css/Roundabout.css')}" rel="stylesheet" />
+    <f:flashMessages />
+    <f:asset.css identifier="camaliga-responsive" href="EXT:camaliga/Resources/Public/Css/Roundabout.css" />
 
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>

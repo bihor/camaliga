@@ -25,7 +25,6 @@ Template variables
 =========================  ============================================================================================
 Variable                   Description (examples in List.html and Show.html)
 =========================  ============================================================================================
-fal                        Always 1. Old: use images from FAL (1) or from the folder uploads/camaliga (0)?
 lang                       UID of the language.
 uid                        UID of the plugin (content element ID).
 pid                        PID des Plugin (Seiten-ID).
@@ -96,7 +95,7 @@ contents.moduloEnd               >0 after every settings.item.items element. 0 o
 ===============================  ==========================================================================================
 
 
-Here an example, if you don´t want to use f:link.typolink:
+Here an example, if you don´t want to use f:link.typolink, but you should not use it anymore (deprecated):
 
 ::
 

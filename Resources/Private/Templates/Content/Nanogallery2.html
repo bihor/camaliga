@@ -1,24 +1,23 @@
-{namespace cam=Quizpalme\Camaliga\ViewHelpers}
-<f:layout name="Default" />
+<f:layout name="Default"/>
 <f:comment>
-jQuery nanogallery2 example. You need the nanogallery2 plugin from here for this example:
-https://nanogallery2.nanostudio.org/
-Extract the zip file and copy it to your fileadmin-folder.
-Include the CSS- and JS-file with TypoScript (or here) from your fileadmin-folder.
-Note: if you want to copy this HTML-file to your fileadmin-folder, you can specify the folder like this:
-  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
-Copy this file in a subfolder named "Content" of this folder.
+    jQuery nanogallery2 example. You need the nanogallery2 plugin from here for this example:
+    https://nanogallery2.nanostudio.org/
+    Extract the zip file and copy it to your fileadmin-folder.
+    Include the CSS- and JS-file with TypoScript (or here) from your fileadmin-folder.
+    Note: if you want to copy this HTML-file to your fileadmin-folder, you can specify the folder like this:
+    plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
+    Copy this file in a subfolder named "Content" of this folder.
 </f:comment>
 <f:section name="main">
-<f:flashMessages />
+    <f:flashMessages/>
 
-<!-- Remove this lines if you use TypoScript -->
-<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/nanogallery2-master/dist/css/nanogallery2.min.css"></cam:addPublicResources>
-<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/nanogallery2-master/dist/jquery.nanogallery2.min.js" compress="FALSE" footer="TRUE"></cam:addPublicResources>
+    <!-- Remove this lines if you use TypoScript -->
+	<f:asset.css identifier="camaliga-nanogallery2" href="fileadmin/Resources/Public/Scripts/nanogallery2-master/dist/css/nanogallery2.min.css" />
+	<f:asset.script identifier="camaliga-nanogallery2" src="fileadmin/Resources/Public/Scripts/nanogallery2-master/dist/jquery.nanogallery2.min.js" />
 
-<f:if condition="{contents -> f:count()} > 0">
-<f:then>
-	<div data-nanogallery2 = '{
+    <f:if condition="{contents -> f:count()} > 0">
+        <f:then>
+            <div data-nanogallery2='{
     "thumbnailHeight":  200,
     "thumbnailWidth":   "auto",
     "viewerToolbar":   {
@@ -27,13 +26,20 @@ Copy this file in a subfolder named "Content" of this folder.
         "minimized":  "minimizeButton, label, fullscreenButton, downloadButton, infoButton"
       }
   }'>
-		<f:for each="{contents}" as="content" iteration="pageiterator"><f:if condition="{content.falimage.uid}"><f:then>
-		<a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}" data-ngthumb="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1,maxHeight:200)}">{content.title}</a>
-		</f:then></f:if></f:for>
-	</div>
-</f:then>
-<f:else>
-  <p><f:translate key="nothing" default="Nothing found." /></p>
-</f:else>
-</f:if>
+                <f:for each="{contents}" as="content" iteration="pageiterator">
+                    <f:if condition="{content.falimage.uid}">
+                        <f:then>
+                            <a href="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1)}"
+                               data-ngthumb="{f:uri.image(src:content.falimage.uid,treatIdAsReference:1,maxHeight:200)}">{content.title}</a>
+                        </f:then>
+                    </f:if>
+                </f:for>
+            </div>
+        </f:then>
+        <f:else>
+            <p>
+                <f:translate key="nothing" default="Nothing found."/>
+            </p>
+        </f:else>
+    </f:if>
 </f:section>

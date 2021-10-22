@@ -34,7 +34,14 @@ ViewHelpers
   camaliga_title, camaliga_shortdesc, camaliga_link, camaliga_image, camaliga_street, camaliga_zip, camaliga_city, camaliga_country,
   camaliga_phone, camaliga_mobile, camaliga_email, camaliga_latitude, camaliga_longitude, camaliga_custom1, camaliga_custom_2, camaliga_custom3.
 
-- The second ViewHelper can be used similar. First set the namespace at the top of the template.
+- The second ViewHelper can be used similar. But: don´t use it anymore! Since TYPO3 10 you can use Viewhelpers from the
+  TYPO3 core instead:
+  https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Asset/Script.html
+  and
+  https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Asset/Css.html
+
+  In TYPO3 9 you can use this one.
+  First set the namespace at the top of the template like above.
   Then use the ViewHelper to include JS- oder CSS-files like this::
 
     <cam:addPublicResources path="{f:uri.resource(path:'Css/Carousel.css')}"></cam:addPublicResources>

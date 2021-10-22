@@ -1,12 +1,12 @@
 <f:layout name="Default" />
 
-This example shows one selected element, their neighboring elements and a google map.
+This example shows one selected element, their neighboring elements and a google map if the latitude is set.
 https://developers.google.com/maps/documentation/directions/intro?hl=de#DirectionsRequests
 
-
 <f:section name="main">
-<f:flashMessages />
-<link href="{f:uri.resource(path:'Css/Single.css')}" rel="stylesheet" />
+	<f:flashMessages />
+	<f:asset.css identifier="camaliga-list" href="EXT:camaliga/Resources/Public/Css/Single.css" />
+
 <f:if condition="{settings.maps.dontIncludeAPI} == 0">
 	<f:if condition="{settings.maps.key}"><f:then>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3&key={settings.maps.key}&language={settings.maps.language}"></script>

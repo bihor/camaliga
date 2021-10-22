@@ -1,5 +1,4 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-{namespace cam=Quizpalme\Camaliga\ViewHelpers}
 <f:layout name="Default" />
 <f:comment>
 This template is an OpenStreetMap-template which uses Leaflet and Leaflet-Markercluster from here:
@@ -16,14 +15,14 @@ copy this HTML-file to your fileadmin-folder; you can specifty the folder like t
 Copy this file in a subfolder named "Content" of this folder.
 </f:comment>
 <f:section name="main">
-<f:flashMessages />
-<cam:addPublicResources path="fileadmin/Resources/Public/Styles/leaflet.css"></cam:addPublicResources>
-<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/leaflet.js" compress="FALSE" footer="FALSE"></cam:addPublicResources>
-<f:if condition="{settings.maps.clustering} == 1">
-<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.css"></cam:addPublicResources>
-<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.Default.css"></cam:addPublicResources>
-<cam:addPublicResources path="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/leaflet.markercluster.js" compress="FALSE" footer="FALSE"></cam:addPublicResources>
-</f:if>
+	<f:flashMessages />
+	<f:asset.css identifier="camaliga-leaflet" href="fileadmin/Resources/Public/Styles/leaflet.css" />
+	<f:asset.script identifier="leaflet-camlaiga" src="fileadmin/Resources/Public/Scripts/Leaflet/leaflet.js" priority="true" />
+	<f:if condition="{settings.maps.clustering} == 1">
+		<f:asset.css identifier="camaliga-cluster" href="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.css" />
+		<f:asset.css identifier="camaliga-default" href="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+		<f:asset.script identifier="markercluster-camaliga" src="fileadmin/Resources/Public/Scripts/Leaflet/Leaflet.markercluster/dist/leaflet.markercluster.js" priority="true" />
+	</f:if>
 
 <f:if condition="{onlySearchForm} == 0">
 <div id="map" style="width:100%; height:{settings.item.height}px;"></div>

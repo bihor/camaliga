@@ -3,8 +3,8 @@
 This example shows one selected element.
 
 <f:section name="main">
-<f:flashMessages />
-<link href="{f:uri.resource(path:'Css/Single.css')}" rel="stylesheet" />
+	<f:flashMessages />
+	<f:asset.css identifier="camaliga-list" href="EXT:camaliga/Resources/Public/Css/Single.css" />
 
 <f:if condition="{error} == 1">
 <f:then>

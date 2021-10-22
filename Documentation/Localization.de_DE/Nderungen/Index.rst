@@ -267,4 +267,5 @@ Version     Änderungen
             Ordner css nach Css umbenannt!
 
             ListExtended-Template: die Suche nutzt jetzt auch die search-Action.
+11.1.0      Den Viewhelper cam:addPublicResources ersetzt (da "deprecated"). Benutze f:asset.css oder f:asset.script stattdessen.
 ==========  =====================================================================================================================

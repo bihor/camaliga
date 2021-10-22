@@ -9,8 +9,9 @@ Copy this file in a subfolder named "Content" of this folder.
 
 
 <f:section name="main">
-<f:flashMessages />
-<link href="{f:uri.resource(path:'Css/Responsive.css')}" rel="stylesheet" />
+    <f:flashMessages />
+    <f:asset.css identifier="camaliga-responsive" href="EXT:camaliga/Resources/Public/Css/Responsive.css" />
+
 <f:if condition="{contents -> f:count()} > 0">
 <f:then>
 <script type="text/javascript">
