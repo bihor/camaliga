@@ -3,7 +3,7 @@ defined('TYPO3_MODE') || die();
 
 (function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Quizpalme.Camaliga',
+        'Camaliga',
         'Pi1',
         [
             \Quizpalme\Camaliga\Controller\ContentController::class => 'list, listExtended, show, showExtended, random, search, teaser, carousel, carouselSeparated, elegant, responsiveCarousel, responsive, map, openstreetmap, coolcarousel, ekko, lightslider, magnific, sgallery, skdslider, roundabout, flipster, flexslider2, fullwidth, galleryview, fancyBox, elastislide, innerfade, bootstrap, collapse, modal, tab, adGallery, owl2, isotope, slick, parallax, nanogallery2, new, create',

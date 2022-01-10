@@ -5,7 +5,7 @@ defined('TYPO3_MODE') or die();
  * Registers a Backend Module
  */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
-    'Quizpalme.Camaliga',
+    'Camaliga',
     'web',	 // Make module a submodule of 'web'
     'imports',	// Submodule key
     '',			// Position
