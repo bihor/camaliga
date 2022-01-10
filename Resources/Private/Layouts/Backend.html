@@ -1,22 +1,26 @@
-<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:be.container>
-<f:comment>
-be.container with
-    includeRequireJsModules="{0: 'TYPO3/CMS/Core/Contrib/jquery-ui/core', 1: 'TYPO3/CMS/Core/Contrib/jquery-ui/widget', 2: 'TYPO3/CMS/Core/Contrib/jquery-ui/mouse', 3: 'TYPO3/CMS/Core/Contrib/jquery-ui/sortable'}"
-    loadJQuery="true"
-no longer possible
-</f:comment>
-<div style="padding:7px;">
- <div style="float:right">
-  <f:be.menus.actionMenu>
-   <f:be.menus.actionMenuItem controller="Backend"  action="index"
-    label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:index.title')}" />
-   <f:be.menus.actionMenuItem controller="Backend"  action="thumb"
-    label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title')}" />
-  </f:be.menus.actionMenu>
- </div>
- <div> <f:be.pageInfo /> - <f:be.pagePath /> </div>
- <f:render section="main" />
-</div>
-</f:be.container>
+<html
+        xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+        xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+        data-namespace-typo3-fluid="true">
+
+<be:moduleLayout>
+    <f:be.pageRenderer
+            includeRequireJsModules="{
+            0:'TYPO3/CMS/Backend/ContextMenu'
+        }"
+    />
+
+    <be:moduleLayout.menu identifier="CamaligaModuleMenu">
+        <be:moduleLayout.menuItem label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:index.title')}" uri="{f:uri.action(controller: 'Backend', action: 'index')}"/>
+        <be:moduleLayout.menuItem label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title')}" uri="{f:uri.action(controller: 'Backend', action: 'thumb')}"/>
+    </be:moduleLayout.menu>
+
+    <be:moduleLayout.button.shortcutButton displayName="Create a shortcut" />
+
+    <div id="camaliga-main-content">
+        <f:flashMessages />
+        <f:render section="main" />
+    </div>
+</be:moduleLayout>
+
 </html>

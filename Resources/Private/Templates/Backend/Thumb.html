@@ -1,64 +1,56 @@
 <f:layout name="Backend" />
 <f:section name="main">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<style>
-  #sortable { list-style-type: none; margin: 0; padding: 0; }
-  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; min-height: 75px; }
-  #sortable li h3 { margin-top: 5px; }
-  #sortable .flexme { display: flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row; }
-  #sortable .flexme div {padding: 0 8px;}
-</style>
-  
-<div id="typo3-docheader">
-	<div class="typo3-docheader-functions"><h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title" /></h1></div>
-	<div class="typo3-docheader-buttons"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" /></div>
-</div>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<style>
+	  #sortable { list-style-type: none; margin: 0; padding: 0; }
+	  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; min-height: 75px; }
+	  #sortable li h3 { margin-top: 5px; }
+	  #sortable .flexme { display: flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row; }
+	  #sortable .flexme div {padding: 0 8px;}
+	</style>
 
-<div id="typo3-docbody">
-	<div id="typo3-mod-help-about-index-php-outer">
-		  
-    <br><br><br>
+	<h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title" /></h1>
+	<f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" />
+
+    <br><br>
 	<f:if condition="{saved} == 1">
 		<p><strong><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.saved" /></strong></p>
 	</f:if>
 	<f:form action="thumb" id="thumbform">
-	<ul id="sortable">
-	<f:for each="{contents}" as="content">
-	  <li class="ui-state-default" id="cami{content.uid}">
-	   <div class="flexme">
-	  	<div class="ui-icon ui-icon-arrowthick-2-n-s"></div>
-	  	<div>
-	  	  <f:if condition="{content.falimage.uid} > 0">
-	  		<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="120m" height="75m" treatIdAsReference="1" />
-	  	  </f:if>
-	  	</div>
-	  	<div><h3>{content.title}</h3><p>{content.shortdesc}</p></div>
-	   </div>
-	   <f:form.hidden name="camelements[{content.uid}]" id="ecami{content.uid}" value="0" />
-	  </li>
-	</f:for>
-	</ul>
-	<br>
-	<f:form.button type="button" onclick="saveorder();" class="btn btn-primary"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button>
+		<ul id="sortable">
+		<f:for each="{contents}" as="content">
+		  <li class="ui-state-default" id="cami{content.uid}">
+		   <div class="flexme">
+			<div class="ui-icon ui-icon-arrowthick-2-n-s"></div>
+			<div>
+			  <f:if condition="{content.falimage.uid} > 0">
+				<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" width="120m" height="75m" treatIdAsReference="1" />
+			  </f:if>
+			</div>
+			<div><h3>{content.title}</h3><p>{content.shortdesc}</p></div>
+		   </div>
+		   <f:form.hidden name="camelements[{content.uid}]" id="ecami{content.uid}" value="0" />
+		  </li>
+		</f:for>
+		</ul>
+		<br>
+		<f:form.button type="button" onclick="saveorder();" class="btn btn-primary"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button>
 	</f:form>
-			
-	</div>
-</div>
 
-<script>
-  require(["jquery","jquery-ui/sortable"], function($) {
-	  $(document).ready(function(){
-		  $( "#sortable" ).sortable();
-		  $( "#sortable" ).disableSelection();
+	<script>
+	  require(["jquery","jquery-ui/sortable"], function($) {
+		  $(document).ready(function(){
+			  $( "#sortable" ).sortable();
+			  $( "#sortable" ).disableSelection();
+		  });
 	  });
-  });
-  function saveorder() {
-	  let sorting = 0;
-	  $('ul#sortable li').each(function( index ) {
-		  sorting = (index+1)*10;
-		  $('#e' + $( this ).attr('id')).val(sorting);
-	  });
-	  $('#thumbform').submit();
-  }
-</script>
+	  function saveorder() {
+		  let sorting = 0;
+		  $('ul#sortable li').each(function( index ) {
+			  sorting = (index+1)*10;
+			  $('#e' + $( this ).attr('id')).val(sorting);
+		  });
+		  $('#thumbform').submit();
+	  }
+	</script>
 </f:section>

@@ -268,4 +268,6 @@ Version     Änderungen
 
             ListExtended-Template: die Suche nutzt jetzt auch die search-Action.
 11.1.0      Den Viewhelper cam:addPublicResources ersetzt (da "deprecated"). Benutze f:asset.css oder f:asset.script stattdessen.
+
+            Das Backend-Layout an TYPO3 11 angepasst.
 ==========  =====================================================================================================================
