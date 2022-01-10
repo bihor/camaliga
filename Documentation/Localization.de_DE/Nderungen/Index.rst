@@ -54,7 +54,7 @@ Version     Änderungen
 
             Fast alle Templates wurden verbessert (z.B. optimiert für Bootstrap 3).
 
-            Erfolgreich getestet mit Typo3 7.0 und der Extension compatibility6. Min. Vorraussetzung auf Typo3 6.2.2
+            Erfolgreich getestet mit Typo3 7.0 und der Extension compatibility6. Min. Voraussetzung auf Typo3 6.2.2
             geändert.
 3.1.0       Template Tab.html (für Bootstrap) und Lightslider.html hinzugefügt.
 
