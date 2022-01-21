@@ -144,3 +144,8 @@ plugin.tx_camaliga {
 plugin.tx_kesearch_pi2.additionalPathForTypeIcons = typo3conf/ext/camaliga/
 
 module.tx_camaliga < plugin.tx_camaliga
+
+config.pageTitleProviders.camaliga {
+	provider = Quizpalme\Camaliga\PageTitle\PageTitleProvider
+	before = altPageTitle,record,seo
+}

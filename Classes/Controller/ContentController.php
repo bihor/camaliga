@@ -1338,7 +1338,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $title = $content->getTitle();
         $desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
         if ($this->settings['seo']['setTitle'] == 1) {
-            $GLOBALS['TSFE']->page['title'] = $title;
+            //$GLOBALS['TSFE']->page['title'] = $title;
+            $titleProvider = GeneralUtility::makeInstance(\Quizpalme\Camaliga\PageTitle\PageTitleProvider::class);
+            $titleProvider->setTitle($title);
         }
         if (($this->settings['seo']['setDescription'] == 1) && $desc) {
             $GLOBALS['TSFE']->page['description'] = $desc;
