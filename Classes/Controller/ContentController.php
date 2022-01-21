@@ -1337,22 +1337,29 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $title = $content->getTitle();
         $desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
+        $MetaTagManagerRegistry = GeneralUtility::makeInstance(\TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry::class);
         if ($this->settings['seo']['setTitle'] == 1) {
             //$GLOBALS['TSFE']->page['title'] = $title;
             $titleProvider = GeneralUtility::makeInstance(\Quizpalme\Camaliga\PageTitle\PageTitleProvider::class);
             $titleProvider->setTitle($title);
         }
         if (($this->settings['seo']['setDescription'] == 1) && $desc) {
-            $GLOBALS['TSFE']->page['description'] = $desc;
+            //$GLOBALS['TSFE']->page['description'] = $desc;
+            $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('description');
+            $metaTagManager->addProperty('description', $desc);
         }
         if ($this->settings['seo']['setIndexedDocTitle'] == 1) {
             $GLOBALS['TSFE']->indexedDocTitle = $title;
         }
         if ($this->settings['seo']['setOgTitle'] == 1) {
-            $this->response->addAdditionalHeaderData('<meta property="og:title" content="' . $title .'">');
+            //$this->response->addAdditionalHeaderData('<meta property="og:title" content="' . $title .'">');
+            $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:title');
+            $metaTagManager->addProperty('og:title', $title);
         }
         if (($this->settings['seo']['setOgDescription'] == 1) && $desc) {
-            $this->response->addAdditionalHeaderData('<meta property="og:description" content="' . $desc . '">');
+            //$this->response->addAdditionalHeaderData('<meta property="og:description" content="' . $desc . '">');
+            $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:description');
+            $metaTagManager->addProperty('og:description', $desc);
         }
         if ($this->settings['seo']['setOgImage'] == 1) {
             $server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
@@ -1365,7 +1372,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 $image = $server . '/' . $fileObjectData['url'];
             }
             if ($image) {
-                $this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
+                //$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
+                $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:image');
+                $metaTagManager->addProperty('og:image', $image);
             }
         }
     }

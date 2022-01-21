@@ -269,7 +269,7 @@ Version     Änderungen
             ListExtended-Template: die Suche nutzt jetzt auch die search-Action.
 11.1.0      Den Viewhelper cam:addPublicResources ersetzt (da "deprecated"). Benutze f:asset.css oder f:asset.script stattdessen.
 
-            Neue Methode zum ändern des Seitentitels. Utility PageTitle entfernt.
+            Neue Methode zum ändern des Seitentitels und der Metatags. Utility PageTitle entfernt.
 
             Das Backend-Layout an TYPO3 11 angepasst.
 ==========  =====================================================================================================================

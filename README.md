@@ -23,4 +23,4 @@ New in version 11.0:
 New in version 11.1:
 - Replacement of the Viewhelper cam:addPublicResources. It is now deprecated. Use f:asset.css or f:asset.script instead.
 - Backend-Layout adapted for TYPO3 11.
-- New method for changing the page title. Utility PageTitle removed.
+- New method for changing the page title and the metatags. Utility PageTitle removed.
