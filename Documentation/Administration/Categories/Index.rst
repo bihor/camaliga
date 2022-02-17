@@ -31,3 +31,4 @@ Categories
 .. important::
 
    Every category need to have a parent! So you need at least 2 levels. The root-category can not be used.
+   In the extended mode you will need at least 3 levels.

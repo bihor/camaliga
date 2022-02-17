@@ -495,7 +495,11 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
 
         if ($contents) {
-            $contentsArray = $contents->toArray();
+            if (is_array($contents)) {
+                $contentsArray = $contents;
+            } else {
+                $contentsArray = $contents->toArray();
+            }
         } else {
             $contentsArray = [];        
         }
@@ -1155,7 +1159,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	        	// https://www.ophidia.net/typo3-8-filereference-aus-bild-erzeugen/
 	            $uploadedFileData = $this->request->getArgument('image'); //$_FILES['image'];
 	            if (substr($uploadedFileData['type'], 0, 5) == 'image') {
-	    	        $storage = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance()->getDefaultStorage();
+                    $resourceFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\ResourceFactory::class);
+	    	        $storage = $resourceFactory->getDefaultStorage();
 	    	        $delete1 = '';
 	    	        $delete2 = '';
 	    	        if ($this->settings['getLatLon']) {
@@ -1191,7 +1196,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 	    	        }
 	    	        
 	    	        # create reference; but not all Options are used :-(
-	    	        $resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
+	    	        //$resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
 	    	        $falFileReference = $resourceFactory->createFileReferenceObject(
 	    	        	[
 	    	        		'uid_local' => $imageFileToUse->getUid(),

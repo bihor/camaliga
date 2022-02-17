@@ -30,5 +30,6 @@ Kategorien
 
 .. important::
 
-   Jede Kategorie muss einen "parent" haben! Man braucht also mind. 2 Levels, denn die Root-Kategorie kann nicht genutzt werden...
+   Jede Kategorie muss einen "parent" haben! Man braucht also mind. 2 Levels, denn die Root-Kategorie kann nicht genutzt werden.
+   Im erweiterten Modus braucht man sogar mind. 3 Levels.
   

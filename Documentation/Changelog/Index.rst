@@ -264,5 +264,5 @@ Version     Changes
 
             New method for changing the page title and metatags. Utility PageTitle removed.
 
-            Backend-Layout adapted for TYPO3 11.
+            Bugfix for TYPO3 11 (e.g. backend-layout adapted for TYPO3 11.) and PHP 8.
 ==========  ==============================================================================================================================
