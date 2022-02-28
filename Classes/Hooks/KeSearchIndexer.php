@@ -2,8 +2,8 @@
 // set you own vendor name adjust the extension name part of the namespace to your extension key
 namespace Quizpalme\Camaliga\Hooks;
 
-use TeaminmediasPluswerk\KeSearch\Indexer\IndexerBase;
-use TeaminmediasPluswerk\KeSearch\Indexer\IndexerRunner;
+use Tpwd\KeSearch\Indexer\IndexerBase;
+use Tpwd\KeSearch\Indexer\IndexerRunner;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -54,6 +54,10 @@ class KeSearchIndexer extends IndexerBase
             $actionForLinks = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'actionForLinks');
             if (!$actionForLinks) {
             	$actionForLinks = 'show';
+            }
+
+            if (!isset($indexerConfig['sysfolder'])|| empty($indexerConfig['sysfolder'])) {
+                throw new \Exception('No folder specified. Please set the folder which should be indexed in the indexer configuration!');
             }
 
             // Doctrine DBAL using Connection Pool.

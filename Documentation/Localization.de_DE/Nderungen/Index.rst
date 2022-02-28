@@ -272,4 +272,6 @@ Version     Änderungen
             Neue Methode zum ändern des Seitentitels und der Metatags. Utility PageTitle entfernt.
 
             Bugfix für TYPO3 11 (z.B. das Backend-Layout an TYPO3 11 angepasst) und PHP 8.
+
+11.1.1      Der ke_search Indexer braucht nun mind. ke_search Version 4.0.0.
 ==========  =====================================================================================================================
