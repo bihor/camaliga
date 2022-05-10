@@ -266,5 +266,7 @@ Version     Changes
 
             Bugfix for TYPO3 11 (e.g. backend-layout adapted for TYPO3 11.) and PHP 8.
 
-11.1.1      The ke_search Indexer needs now at least ke_search version 4.0.0.
+11.2.0      The ke_search Indexer needs now at least ke_search version 4.0.0.
+
+            Bugfix for PHP 8.
 ==========  ==============================================================================================================================

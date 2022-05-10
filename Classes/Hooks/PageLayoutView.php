@@ -78,7 +78,7 @@ class PageLayoutView
      * Returns information about this extension's pi1 plugin
      *
      * @param array $params Parameters to the hook
-	 * @param	object		$pObj	A reference to calling object
+     * @param	object		$pObj	A reference to calling object
      * @return string Information about pi1 plugin
      */
     public function getExtensionSummary($params, &$pObj)
@@ -95,7 +95,7 @@ class PageLayoutView
             if (!empty($actions)) {
                 $actionList = GeneralUtility::trimExplode(';', $actions);
                 $actionList2 = GeneralUtility::trimExplode('>', $actionList[0]);
-                
+
                 // translate the first action into its translation
                 //$actionTranslationKey = strtolower(str_replace('->', '_', $actionList[0]));
                 $actionTranslationKey = strtolower($actionList2[1]);
@@ -109,50 +109,53 @@ class PageLayoutView
                 $td = '';
             }
             $this->tableData[] = [
-            		$th,
-            		$td
+                $th,
+                $td
             ];
 
             $this->getStartingPoint($params['row']['pages']);
-            
+
             if (is_array($this->flexformData)) {
-               $listPid = (int)$this->getFieldFromFlexform('settings.listId');
-               if ($listPid > 0) {
-               	$content = $this->getRecordData($listPid);
-               	$this->tableData[] = [
-               			$this->getLanguageService()->sL(self::LLPATH . 'layout.listId'),
-               			$content
-               	];
-               }
-               $detailPid = (int)$this->getFieldFromFlexform('settings.showId');
-               if ($detailPid > 0) {
-               	$content = $this->getRecordData($detailPid);
-               	$this->tableData[] = [
-               			$this->getLanguageService()->sL(self::LLPATH . 'layout.showId'),
-               			$content
-               	];
-               }
-               $teaserIDs = $this->getFieldFromFlexform('settings.teaserIDs', 'sTEASER');
-               if ($teaserIDs) {
-                   $content = '';
-                   $ids = explode(',', $teaserIDs);
-                   foreach ($ids as $teaserID) {
-                       $content .= $this->getRecordData(intval($teaserID), 'tx_camaliga_domain_model_content') . '<br>';
-                   }
-                   $this->tableData[] = [
-                       $this->getLanguageService()->sL(self::LLPATH . 'layout.teaserIDs'),
-                       $content
-                   ];
-               }
-               if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXT']['camaliga']['Quizpalme\\Camaliga\\Hooks\\PageLayoutView']['extensionSummary'])) {
-                    $params = [
-                        'action' => $actionTranslationKey
+                $listPid = (int)$this->getFieldFromFlexform('settings.listId');
+                if ($listPid > 0) {
+                    $content = $this->getRecordData($listPid);
+                    $this->tableData[] = [
+                        $this->getLanguageService()->sL(self::LLPATH . 'layout.listId'),
+                        $content
                     ];
-                    foreach ($GLOBALS['TYPO3_CONF_VARS']['EXT']['camaliga']['Quizpalme\\Camaliga\\Hooks\\PageLayoutView']['extensionSummary'] as $reference) {
-                        GeneralUtility::callUserFunction($reference, $params, $this);
+                }
+                $detailPid = (int)$this->getFieldFromFlexform('settings.showId');
+                if ($detailPid > 0) {
+                    $content = $this->getRecordData($detailPid);
+                    $this->tableData[] = [
+                        $this->getLanguageService()->sL(self::LLPATH . 'layout.showId'),
+                        $content
+                    ];
+                }
+                $teaserIDs = $this->getFieldFromFlexform('settings.teaserIDs', 'sTEASER');
+                if ($teaserIDs) {
+                    $content = '';
+                    $ids = explode(',', $teaserIDs);
+                    foreach ($ids as $teaserID) {
+                        $content .= $this->getRecordData(intval($teaserID), 'tx_camaliga_domain_model_content') . '<br>';
                     }
-               } 
-               $result = $this->renderSettingsAsTable($header, $params['row']['uid']);
+                    $this->tableData[] = [
+                        $this->getLanguageService()->sL(self::LLPATH . 'layout.teaserIDs'),
+                        $content
+                    ];
+                }
+                if (isset($GLOBALS['TYPO3_CONF_VARS']['EXT']['camaliga']['Quizpalme\\Camaliga\\Hooks\\PageLayoutView']['extensionSummary'])) {
+                    $entries = $GLOBALS['TYPO3_CONF_VARS']['EXT']['camaliga']['Quizpalme\\Camaliga\\Hooks\\PageLayoutView']['extensionSummary'];
+                    if (is_array($entries)) {
+                        $params = [
+                            'action' => $actionTranslationKey
+                        ];
+                        foreach ($entries as $reference) {
+                            GeneralUtility::callUserFunction($reference, $params, $this);
+                        }
+                    }
+                }
+                $result = $this->renderSettingsAsTable($header, $params['row']['uid']);
             }
         }
 
@@ -208,11 +211,11 @@ class PageLayoutView
         if (!empty($pids)) {
             $pageIds = GeneralUtility::intExplode(',', $pids, true);
             $pagesOut = [];
-            
+
             foreach ($pageIds as $id) {
                 $pagesOut[] = $this->getRecordData($id, 'pages');
             }
-            
+
             $recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
             $recursiveLevelText = '';
             if ($recursiveLevel === 250) {
@@ -220,12 +223,12 @@ class PageLayoutView
             } elseif ($recursiveLevel > 0) {
                 $recursiveLevelText = $this->getLanguageService()->sL('LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.' . $recursiveLevel);
             }
-            
+
             if (!empty($recursiveLevelText)) {
                 $recursiveLevelText = '<br />' .
                     $this->getLanguageService()->sL(self::LLPATH . 'recursive') . ' ' .  $recursiveLevelText;
             }
-            
+
             $this->tableData[] = [
                 $this->getLanguageService()->sL(self::LLPATH . 'startingpoint'),
                 implode(', ', $pagesOut) . $recursiveLevelText
@@ -285,8 +288,8 @@ class PageLayoutView
         $flexform = $this->flexformData;
         if (isset($flexform['data'])) {
             $flexform = $flexform['data'];
-            if (is_array($flexform) && is_array($flexform[$sheet]) && is_array($flexform[$sheet]['lDEF'])
-                && is_array($flexform[$sheet]['lDEF'][$key]) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
+            if (isset($flexform) && is_array($flexform) && isset($flexform[$sheet]) && is_array($flexform[$sheet]) && is_array($flexform[$sheet]['lDEF'])
+                && isset($flexform[$sheet]['lDEF'][$key]) && is_array($flexform[$sheet]['lDEF'][$key]) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
             ) {
                 return $flexform[$sheet]['lDEF'][$key]['vDEF'];
             }
