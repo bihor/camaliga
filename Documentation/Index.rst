@@ -30,11 +30,8 @@ EXT: Camaliga - carousel/map/list/gallery
 :Author:
       Kurt Gusbeth
 
-:Email:
-      info@quizpalme.de
-
 :Website:
-      `www.quizpalme.de <http://www.quizpalme.de/>`_
+      `www.quizpalme.de <https://www.quizpalme.de/>`_
 
 :Spachen:
       `english Version <https://docs.typo3.org/p/quizpalme/camaliga/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/>`_ 

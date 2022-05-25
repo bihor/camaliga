@@ -260,6 +260,5 @@ Example 2: present something like recipes
 	</f:if>
 	</f:section>
 
-- The whole `looks like a recipe from here`_.
-
-.. _looks like this: http://www.quizpalme.de/autor/rezepte
+- The whole `looks like a recipe from here
+  <https://www.quizpalme.de/autor/rezepte>`_

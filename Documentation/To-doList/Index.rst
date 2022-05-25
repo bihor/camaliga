@@ -18,6 +18,4 @@
 To-Do list
 ----------
 
-- Fix the known problems.
-
-- Extend the camaliga-jQuery-plugin.
+- empty.

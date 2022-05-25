@@ -18,6 +18,4 @@
 ToDo-Liste
 ----------
 
-- Bekannte Probleme lösen.
-
-- Das Camaliga-jQuery-Plugin erweitern.
+- leer.

@@ -19,5 +19,5 @@ Bekannte Probleme
 -----------------
 
 - Wenn du einen Bug findest, melde ihn unter TYPO3 Forge:
-  `http://forge.typo3.org/projects/show/extension-camaliga
-  <http://forge.typo3.org/projects/show/extension-camaliga>`_
+  `https://github.com/bihor/camaliga/issues
+  <https://github.com/bihor/camaliga/issues>`_

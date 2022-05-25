@@ -50,7 +50,8 @@ Collapse.html              Template für Twitter Bootstrap 4 Collapse/Accordion.
                            Infos: https://getbootstrap.com/docs/4.2/components/collapse/
 
                            Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/top-10-natur/berge
-Coolcarousel.html          Template, welches das Coolcarousel-Plugin benutzt.
+Coolcarousel.html          Wird nicht mehr unterstützt! Wird in Version 12.0.0 entfernt!
+                           Template, welches das Coolcarousel-Plugin benutzt.
                            Achtung: man muss Coolcarousel separat installieren.
 
                            Infos: http://coolcarousels.frebsite.nl/c/66/
