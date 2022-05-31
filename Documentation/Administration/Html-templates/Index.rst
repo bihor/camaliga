@@ -32,30 +32,27 @@ HTML-Templates
 =========================  ==================================================================================================================
 Template                   Information
 =========================  ==================================================================================================================
-AdGallery.html             Template that uses the AD Gallery plugin. Outdated!
+AdGallery.html             +++Deprecated! Will be removed in version 12.0.0!+++
+                           Template that uses the AD Gallery plugin.
                            Note: you must install AD Gallery separately.
-
-                           Infos: https://archive.codeplex.com/?p=adgallery
 Bootstrap.html             Template for the Twitter Bootstrap 4 Carousel.
 
                            Infos: https://getbootstrap.com/docs/4.2/components/carousel/
 
-                           Demo: http://www.quizpalme.de/foto-galerien/moderne-kunst/bootstrap-ansicht
+                           Demo: https://www.quizpalme.de/foto-galerien/moderne-kunst/bootstrap-ansicht
 Carousel.html              A carousel that uses the Camaliga-plugin. Default template. Not responsive!
                            Note: all item-settings affect only here.
 
-                           Demo: http://www.quizpalme.de/foto-galerien/externe-fotos
+                           Demo: https://www.quizpalme.de/foto-galerien/externe-fotos
 CarouselSeparated.html     A template with 2 separated carousels that uses the Camaliga-plugin.
 Collapse.html              Template for Twitter Bootstrap 4 Collapse/Accordion.
 
                            Infos: https://getbootstrap.com/docs/4.2/components/collapse/
 
-                           Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/top-10-natur/berge
-Coolcarousel.html          Deprecated! Will be removed in version 12.0.0!
+                           Demo: https://www.quizpalme.de/reiseberichte/reiseempfehlungen/top-10-natur/berge
+Coolcarousel.html          +++Deprecated! Will be removed in version 12.0.0!+++
                            Template that uses the Coolcarousel plugin.
                            Note: you must install Coolcarousel separately.
-
-                           Infos: http://coolcarousels.frebsite.nl/c/66/
 Create.html                Template after the new-action. 
 Ekko.html                  Template that uses the Bootstrap-Ekko-Lightbox.
                            Note: you must install Ekko separately.
@@ -67,30 +64,30 @@ Elastislide.html           Template that uses the Elastislide plugin.
 
                            Infos: http://tympanus.net/codrops/2011/09/12/elastislide-responsive-carousel/
 
-                           Demo: http://www.quizpalme.de/foto-galerien/moderne-kunst/elastislide-ansicht
+                           Demo: https://www.quizpalme.de/foto-galerien/moderne-kunst/elastislide-ansicht
 Elegant.html               Template that uses the Elegant Responsive Pure CSS3 Slider.
 
                            Infos: https://codepen.io/rizkykurniawanritonga/full/shmwC
 
-                           Demo: http://www.quizpalme.de/reiseberichte/rheinsteig/unkel-linz
+                           Demo: https://www.quizpalme.de/reiseberichte/rheinsteig/unkel-linz
 FancyBox.html              Template that uses only the FancyBox plugin.
                            Note: you must install FancyBox separately.
 
                            Infos: http://fancyapps.com/fancybox/
 
-                           Demo: http://www.quizpalme.de/reiseberichte/malta-2014/gozo
+                           Demo: https://www.quizpalme.de/reiseberichte/malta-2014/gozo
 Flexslider2.html           Template that uses the FlexSlider 2 plugin.
                            Note: you must install Flexslider 2 separately.
 
                            Infos: http://flexslider.woothemes.com/thumbnail-slider.html
 
-                           Demo: http://www.quizpalme.de/foto-galerien/moderne-kunst/flexslider-ansicht
+                           Demo: https://www.quizpalme.de/foto-galerien/moderne-kunst/flexslider-ansicht
 Flipster.html              Template that uses the jQuery.Flipster plugin.
                            Note: you must install Flexslider 2 separately.
 
                            Infos: https://github.com/drien/jquery-flipster
 
-                           Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/jqueryflipster-beispiel
+                           Demo: https://www.quizpalme.de/foto-galerien/externe-fotos/jqueryflipster-beispiel
 Fullwidth.html             Template that uses the "jQuery Full Width Image Slider" plugin.
                            Note: you must install "jQuery Full Width Image Slider" separately.
 
@@ -100,42 +97,42 @@ GalleryView.html           Template that uses the GalleryView plugin.
 
                            Infos: https://github.com/jackwanders/GalleryView
 
-                           Demo: http://www.quizpalme.de/foto-galerien/jugendstil-highlights
+                           Demo: https://www.quizpalme.de/foto-galerien/jugendstil-highlights
 Innerfade.html             Template that uses the Innerfade plugin.
                            Note: you must install Innerfade separately.
 
-                           Infos: http://medienfreunde.com/lab/innerfade/
+                           Infos: https://github.com/wesbaker/jquery.innerFade
 
-                           Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/jqueryinnerfade-beispiel
+                           Demo: https://www.quizpalme.de/foto-galerien/externe-fotos/jqueryinnerfade-beispiel
 Isotope.html               Template that uses the Isotope plugin.
                            Note: you must install Isotope separately.
 
                            Infos: http://isotope.metafizzy.co/
 
-                           Demo: http://www.quizpalme.de/autor
+                           Demo: https://www.quizpalme.de/autor
 Lightslider.html           Template that uses the lightSlider plugin.
                            Note: you must install jQuery lightSlider separately.
 
                            Infos: http://sachinchoolur.github.io/lightslider/index.html
 
-                           Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/lightslider-beispiel
+                           Demo: https://www.quizpalme.de/foto-galerien/externe-fotos/lightslider-beispiel
 List.html                  List view.
 ListExtended.html          List view with more fields.
 
-                           Demo: http://www.quizpalme.de/astronomische-uhren/liste-astronomischer-uhren
+                           Demo: https://www.quizpalme.de/astronomische-uhren/liste-astronomischer-uhren
 Magnific.html              Template that uses the "Magnific Popup" plugin.
                            Note 1: you must install Magnific Popup separately.
                            Note 2: you need to set settings.img.thumbWidth and .thumbHeight.
 
                            Infos: https://dimsemenov.com/plugins/magnific-popup/
 
-                           Demo: http://www.quizpalme.de/astronomische-uhren/sonnenuhren
+                           Demo: https://www.quizpalme.de/astronomische-uhren/sonnenuhren
 Map.html                   A google map.
 Modal.html                 Template for Twitter Bootstrap 4 Modal. Use the field custom1 for the modal-button.
 
                            Infos: https://getbootstrap.com/docs/4.2/components/modal/
 
-                           Demo: http://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen
+                           Demo: https://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen
 Nanogallery2.html          Template for the jQuery nanogallery2 plugin.
                            Note: you must install nanogallery2 separately.
 
@@ -146,24 +143,24 @@ Openstreetmap.html         Template that uses the Openstreetmap and Leaflet with
 
                            Infos: https://github.com/Leaflet/Leaflet.markercluster
 
-                           Demo: http://www.quizpalme.de/astronomische-uhren/kartenansicht-astr-uhren
+                           Demo: https://www.quizpalme.de/astronomische-uhren/kartenansicht-astr-uhren
 Owl2.html                  Template that uses the responsive Owl2 plugin.
                            Note: you must install OWL2 separately.
 
                            Infos: https://owlcarousel2.github.io/OwlCarousel2/
 
-                           Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/owl2-beispiel
+                           Demo: https://www.quizpalme.de/foto-galerien/externe-fotos/owl2-beispiel
 Parallax.html              Template that uses "Simple Parallax Scrolling".
                            Note 1: you must install Simple Parallax Scrolling separately.
                            Note 2: you need to set settings.img.with,.height,.thumbHeight and settings.more.speed.
 
                            Infos: http://pixelcog.github.io/parallax.js/
 
-                           Demo: http://www.quizpalme.de/
+                           Demo: https://www.quizpalme.de/
 Random.html                Shows a random element. Not cached.
 Responsive.html            A simple responsive template.
 
-                           Demo: http://www.quizpalme.de/foto-galerien/externe-fotos/responsive-beispiel
+                           Demo: https://www.quizpalme.de/foto-galerien/externe-fotos/responsive-beispiel
 ResponsiveCarousel.html    Template that uses the responsiveCarousel plugin.
                            Note: you must install responsiveCarousel separately.
 
@@ -189,12 +186,12 @@ Skdslider.html             Template that uses the SKDslider plugin. Outdated!
 Slick.html                 Template that uses the slick carousel plugin.
                            Note: you must install slick separately.
 
-                           Infos: http://kenwheeler.github.io/slick/
+                           Infos: https://kenwheeler.github.io/slick/
 
-                           Demo: http://www.quizpalme.de/reiseberichte/rheinsteig/bonn-oberdollendorf
+                           Demo: https://www.quizpalme.de/reiseberichte/rheinsteig/bonn-oberdollendorf
 Tab.html                   Template that uses the Bootstrap 4 Tabs.
 
-                           Demo: http://www.quizpalme.de/autor/meine-reiseziele
+                           Demo: https://www.quizpalme.de/autor/meine-reiseziele
 Teaser.html                Template that shows only some selected camaliga elements.
 Test.html                  Only for tests...
 =========================  ==================================================================================================================

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:camaliga/Resources/Private/Language/locallang_be.xlf" date="2021-07-28T09:15:06Z" product-name="camaliga">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:camaliga/Resources/Private/Language/locallang_be.xlf" date="2022-05-31T08:57:03Z" product-name="camaliga">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -58,6 +58,10 @@
 			<trans-unit id="template.showextended" resname="template.showextended">
 				<source>Single view 2: automatic extended version</source>
 				<target>Einzelansicht 2: automatisch erweitere Version</target>
+			</trans-unit>
+			<trans-unit id="template.showOrExtended" resname="template.showOrExtended">
+				<source>Single view 3: normal or extended version</source>
+				<target>Einzelansicht 3: normale oder erweitere Version</target>
 			</trans-unit>
 			<trans-unit id="template.map" resname="template.map">
 				<source>map view (google maps)</source>

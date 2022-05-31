@@ -39,39 +39,43 @@
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.showextended</numIndex>
                 <numIndex index="1">Content->showExtended</numIndex>
             </numIndex>
-            <numIndex index="6">
+              <numIndex index="6">
+                  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.showOrExtended</numIndex>
+                  <numIndex index="1">Content->show;Content->showExtended</numIndex>
+              </numIndex>
+            <numIndex index="7">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.map</numIndex>
                 <numIndex index="1">Content->map;Content->search;Content->show</numIndex>
             </numIndex>
-            <numIndex index="7">
+            <numIndex index="8">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.search</numIndex>
                 <numIndex index="1">Content->search;Content->showExtended</numIndex>
             </numIndex>
-            <numIndex index="8">
+            <numIndex index="9">
                 <numIndex index="0">Openstreetmap + Leaflet</numIndex>
                 <numIndex index="1">Content->openstreetmap;Content->search;Content->show</numIndex>
             </numIndex>
-            <numIndex index="9">
+            <numIndex index="11">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.random</numIndex>
                 <numIndex index="1">Content->random</numIndex>
             </numIndex>
-            <numIndex index="10">
+            <numIndex index="12">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.responsive</numIndex>
                 <numIndex index="1">Content->responsive</numIndex>
             </numIndex>
-            <numIndex index="11">
+            <numIndex index="13">
                 <numIndex index="0">Teaser</numIndex>
                 <numIndex index="1">Content->teaser;Content->show</numIndex>
             </numIndex>
-            <numIndex index="12">
+            <numIndex index="14">
                 <numIndex index="0">Elegant Responsive Pure CSS3 Slider</numIndex>
                 <numIndex index="1">Content->elegant</numIndex>
             </numIndex>
-            <numIndex index="14">
+            <numIndex index="15">
                 <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
                 <numIndex index="1">Content->new;Content->create</numIndex>
             </numIndex>
-            <numIndex index="15">
+            <numIndex index="16">
                 <numIndex index="0">Test</numIndex>
                 <numIndex index="1">Content->test;Content->show</numIndex>
             </numIndex>
