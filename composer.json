@@ -23,9 +23,6 @@
 	"replace" : {
 		"typo3-ter/camaliga" : "self.version"
 	},
-	"support" : {
-		"email" : "info@quizpalme.de"
-	},
 	"homepage" : "https://github.com/bihor/camaliga",
 	"license" : "GPL-3.0-or-later",
 	"keywords" : [
