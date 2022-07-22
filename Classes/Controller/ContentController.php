@@ -56,6 +56,13 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $configurationManager;
 
     /**
+     * Helpers
+     *
+     * @var \Quizpalme\Camaliga\Utility\HelpersUtility
+     */
+    protected $helpersUtility;
+
+    /**
      * templatePath
      *
      * @var string	Pfad zu den Templates
@@ -164,6 +171,17 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
+     * Injects the helpers utility
+     *
+     * @param \Quizpalme\Camaliga\Utility\HelpersUtility $helpersUtility
+     */
+    public function injectHelpersUtility(\Quizpalme\Camaliga\Utility\HelpersUtility $helpersUtility)
+    {
+        $this->helpersUtility = $helpersUtility;
+    }
+    
+
+    /**
      * action list
      *
      * @return void
@@ -215,7 +233,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 $contents = $this->contentRepository->findAll($this->settings['sortBy'], $this->settings['sortOrder'], $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
             }
             if ($this->settings['random']) {
-                $contents = $this->sortObjects($contents);
+                $contents = $this->helpersUtility->sortObjects($contents);
             }
             if ($this->settings['getLatLon']) {
                 $debug .= $this->getLatLon($contents);
@@ -231,7 +249,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     if ((($i % $mod) == 0) || ($i == $contents->count())) { $content->setModuloEnd($j); }
                 }
             }
-            $widthHeights = $this->calculateWidthAndHeight();
+            $widthHeights = $this->helpersUtility->calculateWidthAndHeight($this->settings);
 
             $this->view->assign('uid', $content_uid);
             $this->view->assign('pid', $content_pid);
@@ -459,7 +477,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 $distanceArray = $this->contentRepository->getDistanceArray();	// Distanz-Array vorhanden?
             }
             if ($this->settings['random']) {
-                $contents = $this->sortObjects($contents);	// zufällig umsortieren?
+                $contents = $this->helpersUtility->sortObjects($contents);	// zufällig umsortieren?
             }
             if ($this->settings['getLatLon']) {
                 $debug .= $this->getLatLon($contents);	// Position suchen? Bringt nach einer Umkreissuche freilich nichts!
@@ -507,7 +525,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
         $arrayPaginator = new ArrayPaginator($contentsArray, $currentPage, $this->settings['pagebrowser']['itemsPerPage']);
         $pagination = new SimplePagination($arrayPaginator);
-        $widthHeights = $this->calculateWidthAndHeight();
+        $widthHeights = $this->helpersUtility->calculateWidthAndHeight($this->settings);
 
         $this->view->assignMultiple(
             [
@@ -560,7 +578,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $debug .= 'findByUids(array(' . $this->settings['teaserIDs'] . '),' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ")\n";
         }
         $contents = $this->contentRepository->findByUids($ids, $this->settings['sortBy'], $this->settings['sortOrder']);
-        $widthHeights = $this->calculateWidthAndHeight();
+        $widthHeights = $this->helpersUtility->calculateWidthAndHeight($this->settings);
 
         $this->view->assign('uid', $content_uid);
         $this->view->assign('pid', $content_pid);
@@ -606,7 +624,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             // $this->view->setTemplatePathAndFilename($this->templatePath . 'Content/ShowExtended.html');
             $this->showExtendedAction($content);
         } else {
-            $this->setSeo($content);
+            $this->helpersUtility->setSeo($content, $this->settings);
 
             $this->view->assign('content', $content);
             $this->view->assign('error', 0);
@@ -622,7 +640,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
     {
-        $this->setSeo($content);
+        $this->helpersUtility->setSeo($content, $this->settings);
 
         $this->view->assign('content', $content);
         $this->view->assign('error', 0);
@@ -1166,7 +1184,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     $delete1 = '';
                     $delete2 = '';
                     if ($this->settings['getLatLon']) {
-                        $position = $this->getLatLonOfImage($uploadedFileData['tmp_name']);
+                        $position = $this->helpersUtility->getLatLonOfImage($uploadedFileData['tmp_name']);
                     }
 
                     # check if target folder exist or create it
@@ -1310,121 +1328,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /* ************************************* Helper *************************** */
 
     /**
-     * Calculate widths and heights
-     *
-     * @return array
-     */
-    protected function calculateWidthAndHeight()
-    {
-        $values = [];
-        $item_width = intval($this->settings['item']['width']);
-        $padding_item_width = $item_width + 2 * intval($this->settings['item']['padding']);
-        $total_item_width = $padding_item_width + 2 * intval($this->settings['item']['margin']);
-        $total_width = intval($this->settings['item']['items']) * $total_item_width;
-        $values['paddingItemWidth'] = $padding_item_width;
-        $values['totalItemWidth'] = $total_item_width;
-        $values['itemWidth'] = (($this->settings['addPadding']) ? $padding_item_width : $item_width);
-        $values['totalWidth'] = $total_width;
-        $item_height = intval($this->settings['item']['height']);
-        $padding_item_height = $item_height + 2 * intval($this->settings['item']['padding']);
-        $total_item_height = $padding_item_height + 2 * intval($this->settings['item']['margin']);
-        $values['paddingItemHeight'] = $padding_item_height;
-        $values['totalItemHeight'] = $total_item_height;
-        $values['itemHeight'] = (($this->settings['addPadding']) ? $padding_item_height : $item_height);
-        return $values;
-    }
-
-    /**
-     * set SEO head?
-     *
-     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-     * @return void
-     */
-    protected function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content)
-    {
-        $title = $content->getTitle();
-        $desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
-        $MetaTagManagerRegistry = GeneralUtility::makeInstance(\TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry::class);
-        if ($this->settings['seo']['setTitle'] == 1) {
-            //$GLOBALS['TSFE']->page['title'] = $title;
-            $titleProvider = GeneralUtility::makeInstance(\Quizpalme\Camaliga\PageTitle\PageTitleProvider::class);
-            $titleProvider->setTitle($title);
-        }
-        if (($this->settings['seo']['setDescription'] == 1) && $desc) {
-            //$GLOBALS['TSFE']->page['description'] = $desc;
-            $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('description');
-            $metaTagManager->addProperty('description', $desc);
-        }
-        if ($this->settings['seo']['setIndexedDocTitle'] == 1) {
-            $GLOBALS['TSFE']->indexedDocTitle = $title;
-        }
-        if ($this->settings['seo']['setOgTitle'] == 1) {
-            //$this->response->addAdditionalHeaderData('<meta property="og:title" content="' . $title .'">');
-            $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:title');
-            $metaTagManager->addProperty('og:title', $title);
-        }
-        if (($this->settings['seo']['setOgDescription'] == 1) && $desc) {
-            //$this->response->addAdditionalHeaderData('<meta property="og:description" content="' . $desc . '">');
-            $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:description');
-            $metaTagManager->addProperty('og:description', $desc);
-        }
-        if ($this->settings['seo']['setOgImage'] == 1) {
-            $server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
-            $server .= $_SERVER['SERVER_NAME'];
-            $image = '';
-            if ($content->getFalimage() && $content->getFalimage()->getUid()) {
-                $typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
-                $fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
-                $fileObjectData = $fileObject->toArray();
-                $image = $server . '/' . $fileObjectData['url'];
-            }
-            if ($image) {
-                //$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
-                $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:image');
-                $metaTagManager->addProperty('og:image', $image);
-            }
-        }
-    }
-
-    /**
-     * Zufälliges sortieren der Ergebnisse
-     *
-     * @return array
-     */
-    private function sortObjects($objects)
-    {
-        /**
-         * zuerst holen wir uns alle gewünschten Objekte, welche später in Fuid in zufälliger Reihenfolge ausgegeben werden sollen
-         * und erstellen ein zusätzelichen Array, in welches mittels array_push() die UIDs der Objekte   geschrieben werden
-         */
-        $uidArray = array();
-        foreach($objects as $object) {
-            array_push($uidArray, $object->getUid());
-        }
-        /**
-         * shuffle verwürfelt den Inhalt das UID Arrays
-         * außerdem erstellen wir ein neues Array, welches später von der Funktion zurückgegeben wird
-         */
-        shuffle($uidArray);
-        $objectArray = array();
-        /**
-         * für jeden Eintrag im UID Array gehen wir durch die vorhandenen Objekte
-         * und wenn die aktuelle uid im Array = der Uid des aktuellen Objektes ist
-         * wir das Objekt in das $objectArray geschrieben und zurückgegeben
-         */
-        foreach ($uidArray as $uid) {
-            foreach($objects as $object) {
-                if($uid == $object->getUid()) {
-                    array_push($objectArray, $object);
-                }
-            }
-        }
-        return $objectArray;
-    }
-
-    /**
      * Latitude und Longitude zu einer Adresse ermitteln
-     * Lösung von hier: http://stackoverflow.com/questions/8633574/get-latitude-and-longitude-automatically-using-php-api
      *
      * @return string
      */
@@ -1435,117 +1339,33 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
          */
         //$persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
         $debug = '';
-        $lati = 0;
-        $longi = 0;
         if (($this->settings['getLatLon'] == 1) && !$this->settings['maps']['key']) {
             return 'no google api key found!';
         }
         if (is_object($objects) || is_array($objects)) {
             foreach($objects as $object) {
                 if (($object->getLatitude() == 0) && ($object->getLongitude() == 0) && $object->getCity()) {
-                    $address = $object->getStreet();
-                    if ($object->getZip()) {
-                        $address .= ($address) ? ', ' . $object->getZip() : $object->getZip();
-                    }
-                    if ($object->getCity()) {
-                        $address .= ($address) ? ', ' . $object->getCity() : $object->getCity();
-                    }
-                    if ($object->getCountry()) {
-                        $address .= ($address) ? ', ' . $object->getCountry() : $object->getCountry();
-                    }
-                    $address = urlencode($address);
-                    $httpOptions = [
-                        "http" => [
-                            "method" => "GET",
-                            "header" => "User-Agent: TYPO3"
-                        ]
-                    ];
-                    $streamContext = stream_context_create($httpOptions);
-                    if ($this->settings['getLatLon'] == 2) {
-                        $url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' . $address;
-                    } else {
-                        $url = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $address . '&key=' . $this->settings['maps']['key'];
-                    }
-                    // get the json response
-                    $resp_json = file_get_contents($url, false, $streamContext);
-                    // decode the json
-                    $resp = json_decode($resp_json, true);
-                    // response status will be 'OK', if able to geocode given address
-                    if ($this->settings['getLatLon'] == 2) {
-                        if ($resp[0]['lat'] || $resp[0]['lon']) {
-                            $lati = $resp[0]['lat'];
-                            $longi = $resp[0]['lon'];
-                        }
-                    } else {
-                        if ($resp['status']=='OK'){
-                            // get the important data
-                            $lati = isset($resp['results'][0]['geometry']['location']['lat']) ? $resp['results'][0]['geometry']['location']['lat'] : "";
-                            $longi = isset($resp['results'][0]['geometry']['location']['lng']) ? $resp['results'][0]['geometry']['location']['lng'] : "";
-                            //$formatted_address = isset($resp['results'][0]['formatted_address']) ? $resp['results'][0]['formatted_address'] : "";
-                        } elseif ($this->settings['debug']) {
-                            $debug .= 'google geocode response to address "' . $address . '": ' . $resp['status'] . "\n";
-                        }
-                    }
-                    if ($lati || $longi) {    // && $formatted_address){
-                        $object->setLatitude($lati);
-                        $object->setLongitude($longi);
+                    $coordinates = $this->helpersUtility->getLatLonOfAddress(
+                        $object->getStreet(),
+                        $object->getZip(),
+                        $object->getCity(),
+                        $object->getCountry(),
+                        $this->settings['getLatLon'],
+                        $this->settings['maps']['key']);
+                    if ($coordinates['latitude'] || $coordinates['longitude']) {    // && $formatted_address){
+                        $object->setLatitude($coordinates['latitude']);
+                        $object->setLongitude($coordinates['longitude']);
                         $this->contentRepository->update($object);
                         //$persistenceManager->persistAll();
                     }
                     if ($this->settings['debug']) {
-                        $debug .= 'geocode answer to address "' . $address . '": ' . $lati .' / ' . $longi . "\n";
+                        $debug .= $coordinates['debug'];
+                        $debug .= 'geocode answer: ' . $coordinates['latitude'] .' / ' . $coordinates['longitude'] . "\n";
                     }
                 }
             }
         }
         return $debug;
-    }
-
-    /**
-     * Latitude und Longitude von einem Bild ermitteln
-     * Lösung von hier: https://stackoverflow.com/questions/5449282/reading-geotag-data-from-image-in-php
-     *
-     * @return array
-     */
-    private function getLatLonOfImage($fileName)
-    {
-        //get the EXIF all metadata from Images
-        $result = [];
-        $gps = [];
-        $exif = exif_read_data($fileName);
-        if(isset($exif["GPSLatitudeRef"])) {
-            $LatM = 1;
-            $LongM = 1;
-            if($exif["GPSLatitudeRef"] == 'S') {
-                $LatM = -1;
-            }
-            if($exif["GPSLongitudeRef"] == 'W') {
-                $LongM = -1;
-            }
-
-            //get the GPS data
-            $gps['LatDegree']=$exif["GPSLatitude"][0];
-            $gps['LatMinute']=$exif["GPSLatitude"][1];
-            $gps['LatgSeconds']=$exif["GPSLatitude"][2];
-            $gps['LongDegree']=$exif["GPSLongitude"][0];
-            $gps['LongMinute']=$exif["GPSLongitude"][1];
-            $gps['LongSeconds']=$exif["GPSLongitude"][2];
-
-            //convert strings to numbers
-            foreach($gps as $key => $value){
-                $pos = strpos($value, '/');
-                if($pos !== false){
-                    $temp = explode('/',$value);
-                    $gps[$key] = $temp[0] / $temp[1];
-                }
-            }
-
-            //calculate the decimal degree
-            $result['latitude']  = $LatM * ($gps['LatDegree'] + ($gps['LatMinute'] / 60) + ($gps['LatgSeconds'] / 3600));
-            $result['longitude'] = $LongM * ($gps['LongDegree'] + ($gps['LongMinute'] / 60) + ($gps['LongSeconds'] / 3600));
-            $result['datetime']  = $exif["DateTime"];
-        }
-        return $result;
     }
 
     /**

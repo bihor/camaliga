@@ -268,5 +268,7 @@ Version     Changes
 
 11.2.0      The ke_search Indexer needs now at least ke_search version 4.0.0.
 
+            Refactoring.
+
             Bugfix for PHP 8.
 ==========  ==============================================================================================================================
