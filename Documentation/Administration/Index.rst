@@ -55,7 +55,7 @@ Administration
    :titlesonly:
    :glob:
 
-   Extension-Manager/Index
+   Extension-Configuration/Index
    Html-templates/Index
    Extended-Templates/Index
    Maps/Index

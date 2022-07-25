@@ -15,10 +15,10 @@
 .. role::   php(code)
 
 
-Konfiguration via Extension-Manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Konfiguration via Extension-Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Bei der Konfiguration im Extension-Manager kann man verschiedene Sachen einstellen:
+Bei der Extension-Konfiguration bei den Einstellungen kann man verschiedene Sachen einstellen:
 
 - Man kann neu erzeugte Felder dort angeben.
 
@@ -32,3 +32,5 @@ Bei der Konfiguration im Extension-Manager kann man verschiedene Sachen einstell
 
 - Bei slugField1 und slugField1 kann man definieren, welche Felder für den Slug benutzt werden sollen.
   "person city" meint: person oder city (falls city nicht gesetzt ist).
+
+- Man kann eine Suche via Openstreetmap nach Koordinaten für eine angegebene Adresse im Backend einschalten.

@@ -51,6 +51,10 @@ if (TYPO3_MODE === 'BE') {
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['camaliga_pi1']['camaliga'] =
         \Quizpalme\Camaliga\Hooks\PageLayoutView::class . '->getExtensionSummary';
 
+    //BE Hook für Koordinaten
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['camaliga'] = \Quizpalme\Camaliga\Hooks\DataHandlerHook::class;
+
+
     // Add CSV-export task (sheduler)
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\CsvExportTask'] = array(
 			'extension' => 'camaliga',

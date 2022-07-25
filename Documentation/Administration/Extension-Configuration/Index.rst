@@ -15,10 +15,10 @@
 .. role::   php(code)
 
 
-Configuration via Extension-Manager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Configuration via Extension Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-At the configuration in the extension-manager you can set some things:
+At the extension configuration in the settings you can set some things:
 
 - You can define new fields, which you have created.
 
@@ -32,3 +32,5 @@ At the configuration in the extension-manager you can set some things:
 
 - slugField1 and slugField1 defines the fields that should be used for the slug. Standard: title.
   "person city" means: person or city (if person is not set).
+
+- You can enable a search via Openstreetmap for the coordinates for a given address in the backend.

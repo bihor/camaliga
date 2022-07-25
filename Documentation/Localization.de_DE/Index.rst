@@ -35,7 +35,7 @@ EXT: Camaliga - carousel/map/list/gallery
       info@quizpalme.de
 
 :Website:
-      `www.quizpalme.de <http://www.quizpalme.de/>`_
+      `www.quizpalme.de <https://www.quizpalme.de/>`_
 
 :Spachen:
       `english Version <http://docs.typo3.org/typo3cms/extensions/camaliga/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/camaliga/de-de/>`_ bzw. https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE

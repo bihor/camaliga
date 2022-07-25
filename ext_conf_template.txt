@@ -13,6 +13,9 @@ slugField1 = title
 # cat=basic/enable; type=string; label=Field 2 for the slug building. If more than one field, or is used (without comma, e.g. "title custom1"):
 slugField2 =
 
+# cat=disable_fields/enable; type=boolean; label=Try to find the coordinates for a given address in the backend:
+searchCoordinatesInBE = 0
+
 # cat=disable_fields/enable; type=boolean; label=Disable all further images (use only one image/falimage):
 disableFurtherImages = 0
 

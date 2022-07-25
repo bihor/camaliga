@@ -275,6 +275,8 @@ Version     Änderungen
 
 11.2.0      Der ke_search Indexer braucht nun mind. ke_search Version 4.0.0.
 
+            searchCoordinatesInBE hinzugefügt zur Extension-Konfiguration. Damit kann man die Suche nach den Koordinaten einer Adresse im Backend einschalten.
+
             Refactoring.
 
             Bugfix für PHP 8.

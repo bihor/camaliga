@@ -149,6 +149,8 @@ class HelpersUtility
             if ($resp[0]['lat'] || $resp[0]['lon']) {
                 $result['latitude'] = $resp[0]['lat'];
                 $result['longitude'] = $resp[0]['lon'];
+            } else {
+                $result['debug'] = 'no coordinates found at openstreetmap of address "' . $address . '". ' . "\n";
             }
         } else {
             if ($resp['status']=='OK'){
