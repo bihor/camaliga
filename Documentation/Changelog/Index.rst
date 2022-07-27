@@ -270,7 +270,7 @@ Version     Changes
 
             searchCoordinatesInBE added to the extension configuration. Searching for coordinates is now possible in the BE too.
 
-            Refactoring.
+            Important refactoring: clearing cache is necessary after update!
 
             Bugfix for PHP 8.
 ==========  ==============================================================================================================================

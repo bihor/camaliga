@@ -277,7 +277,7 @@ Version     Änderungen
 
             searchCoordinatesInBE hinzugefügt zur Extension-Konfiguration. Damit kann man die Suche nach den Koordinaten einer Adresse im Backend einschalten.
 
-            Refactoring.
+            Refactoring. Wichtig: der System-Cache muss nach dem Update geleert werden!
 
             Bugfix für PHP 8.
 ==========  =====================================================================================================================
