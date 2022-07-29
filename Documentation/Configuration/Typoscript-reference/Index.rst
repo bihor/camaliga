@@ -107,6 +107,12 @@ settings.normalCategoryMode               string         At normal templates: ho
                                                          and: and-mode.
 
                                                          or: or-mode.
+settings.extendedCategoryMode             boolean        At extended templates: how to use the categories for a search?                     0
+
+                                                         0: you can search only for subcategories.
+
+                                                         1: you can search for parent-categories too, but parent-categories must always
+                                                         be selected too in the camaliga element (only for radio-buttons)!
 overrideFlexformSettingsIfEmpty           boolean        Override FlexForm settings with TypoScript settings if the FlexForm                1
                                                          settings are empty?
 

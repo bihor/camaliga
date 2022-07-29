@@ -48,31 +48,40 @@
 </f:if>
 
 <f:for each="{categories}" as="catitemVal" key="catitemKey">
-   <div class="row">
-    <div class="col col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
-    <div class="col col-sm-9 col-xs-12">
-    <f:if condition="{0:catitemVal.description} != {0:'checkbox'}">
-      <label for="cat{catitemKey}_0" class="radio-inline">
-        <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
-        {f:translate(key: 'every', default: 'every')} &nbsp;
-      </label>
-    </f:if>
-    <f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
-      <f:if condition="{catitemVal.description} == 'checkbox'">
-        <f:then>
-          <label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox-inline">
-          <f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
-        </f:then>
-        <f:else>
-          <label for="cat{catitemKey}_{catitemKeyChild}" class="radio-inline">
-          <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
-        </f:else>
-      </f:if>
-      {catitemValChild.title}</label>
-    </f:for>
-    </div>
-   </div>
-   <hr />
+	<f:if condition="{catitemVal.title}">
+	   <div class="row">
+		<div class="col col-sm-3 col-xs-12" class="info">{catitemVal.title}:</div>
+		<div class="col col-sm-9 col-xs-12">
+		<f:if condition="{catitemVal.description} != 'checkbox'">
+			<f:if condition="{settings.extendedCategoryMode} == 1"><f:then>
+				<label for="cat{catitemKey}_0" class="radio-inline">
+					<f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="{catitemKey}" checked="({catitemVal.selected} == 0 || {catitemVal.selected} == {catitemKey})" />
+					{f:translate(key: 'all', default: 'all')} &nbsp;
+				</label>
+			</f:then><f:else>
+			  <label for="cat{catitemKey}_0" class="radio-inline">
+				<f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_0" value="0" checked="{catitemVal.selected} == 0" />
+				{f:translate(key: 'every', default: 'every')} &nbsp;
+			  </label>
+			</f:else></f:if>
+		</f:if>
+		<f:for each="{catitemVal.childs}" as="catitemValChild" key="catitemKeyChild">
+		  <f:if condition="{catitemVal.description} == 'checkbox'">
+			<f:then>
+			  <label for="cat{catitemKey}_{catitemKeyChild}" class="checkbox-inline">
+			  <f:form.checkbox name="cat{catitemKey}_{catitemKeyChild}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemValChild.selected} == {catitemKeyChild}" />
+			</f:then>
+			<f:else>
+			  <label for="cat{catitemKey}_{catitemKeyChild}" class="radio-inline">
+			  <f:form.radio name="cat{catitemKey}" id="cat{catitemKey}_{catitemKeyChild}" value="{catitemKeyChild}" checked="{catitemVal.selected} == {catitemKeyChild}" />
+			</f:else>
+		  </f:if>
+		  {catitemValChild.title}</label>
+		</f:for>
+		</div>
+	   </div>
+	   <hr />
+	</f:if>
 </f:for>
 
 <f:if condition="{storagePIDsArray -> f:count()} > 1">

@@ -112,6 +112,13 @@ settings.normalCategoryMode               string         Wie sollen bei normalen
                                                          and: und-Suche
 
                                                          or: oder-Suche
+settings.extendedCategoryMode             boolean        Wie sollen bei erweiterten Templates die Kategorien bei der Suche berücksichtigt   0
+                                                         werden?
+
+                                                         0: eine Suche ist nur nach Unterkategorien möglich.
+
+                                                         1: eine Suche nach Oberkategorien ist erlaubt und die Oberkategorie muss auch
+                                                         immer mit angeklickt werden beim Camaliga-Element (gilt nur für Radioboxen)!
 settings.overrideFlexformSettingsIfEmpty  boolean        Überschreibe die FlexForm-Einstellungen mit den TypoScript-                        1
                                                          Einstellungen, falls die FlexForm-Einstellung leer ist?
 

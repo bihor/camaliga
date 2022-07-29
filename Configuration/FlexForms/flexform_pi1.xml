@@ -1550,6 +1550,21 @@
 					</config>
 				</TCEforms>
 			</settings.normalCategoryMode>
+              <settings.extendedCategoryMode>
+                  <TCEforms>
+                      <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedCategoryMode</label>
+                      <config>
+                          <type>check</type>
+                          <items>
+                              <numIndex index="0">
+                                  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+                                  <numIndex index="1">1</numIndex>
+                              </numIndex>
+                          </items>
+                          <renderMode>checkbox</renderMode>
+                      </config>
+                  </TCEforms>
+              </settings.extendedCategoryMode>
         </el>
       </ROOT>
     </sCATS>

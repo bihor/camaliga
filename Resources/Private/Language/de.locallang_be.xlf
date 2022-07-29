@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:camaliga/Resources/Private/Language/locallang_be.xlf" date="2022-05-31T08:57:03Z" product-name="camaliga">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:camaliga/Resources/Private/Language/locallang_be.xlf" date="2022-07-29T15:02:33Z" product-name="camaliga">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -240,8 +240,8 @@
 				<target>Ausgewählte Kategorien (bei erweiterten Templates: UND für radio-Buttons und ODER für Checkboxen):</target>
 			</trans-unit>
 			<trans-unit id="normalCategoryMode" resname="normalCategoryMode">
-				<source>Category mode (for normal templates):</source>
-				<target>Kategorie-Modus (bei normalen Templates):</target>
+				<source>Category mode for normal templates:</source>
+				<target>Kategorie-Modus bei normalen Templates:</target>
 			</trans-unit>
 			<trans-unit id="normalCategoryMode.and" resname="normalCategoryMode.and">
 				<source>AND combination of the selected categories</source>
@@ -250,6 +250,10 @@
 			<trans-unit id="normalCategoryMode.or" resname="normalCategoryMode.or">
 				<source>OR combination of the selected categories</source>
 				<target>ODER-Verknüpfung der ausgewählten Kategorien</target>
+			</trans-unit>
+			<trans-unit id="extendedCategoryMode" resname="extendedCategoryMode">
+				<source>Category mode for extended templates: use parent-categories in the search too?</source>
+				<target>Kategorie-Modus bei erweiterten Templates: benutze Oberkategorien bei der Suche ebenfalls?</target>
 			</trans-unit>
 			<trans-unit id="showIndicators" resname="showIndicators">
 				<source>Show indicators:</source>

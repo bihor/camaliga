@@ -273,4 +273,6 @@ Version     Changes
             Important refactoring: clearing cache is necessary after update!
 
             Bugfix for PHP 8.
+
+11.3.0      Setting extendedCategoryMode added. Empty category entries will be ignored at the search options.
 ==========  ==============================================================================================================================

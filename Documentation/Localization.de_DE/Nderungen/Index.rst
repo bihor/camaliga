@@ -280,4 +280,6 @@ Version     Änderungen
             Refactoring. Wichtig: der System-Cache muss nach dem Update geleert werden!
 
             Bugfix für PHP 8.
+
+11.3.0      Setting extendedCategoryMode hinzugefügt. Leere Kategorie-Einträge werden nun beim Suchformular ignoriert.
 ==========  =====================================================================================================================

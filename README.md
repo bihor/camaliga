@@ -1,6 +1,6 @@
 # camaliga
 
-version 11.2.1
+version 11.2.2
 
 A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick. 
 Bootstrap 4 support. Indexer for ke_search. Many features.
@@ -30,3 +30,6 @@ Version 11.2:
 - searchCoordinatesInBE added to the extension configuration. Searching for coordinates is now possible in the BE too.
 - Important refactoring: clearing cache is necessary after update!
 - Bugfix für PHP 8.
+
+Version 11.3:
+- Setting extendedCategoryMode added. Empty category entries will be ignored at the search options.

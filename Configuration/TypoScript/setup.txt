@@ -133,7 +133,8 @@ plugin.tx_camaliga {
 		overrideFlexformSettingsIfEmpty = 1
 		defaultStoragePids =
 		defaultCatIDs =
-		normalCategoryMode =
+		normalCategoryMode = and
+		extendedCategoryMode = 0
 		debug = 0
 	}
 }

@@ -125,6 +125,9 @@
 			<trans-unit id="every">
 				<source>every</source>
 			</trans-unit>
+			<trans-unit id="all">
+				<source>all</source>
+			</trans-unit>
 			<trans-unit id="prev">
 				<source>preview</source>
 			</trans-unit>

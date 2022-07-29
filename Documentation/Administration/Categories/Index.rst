@@ -31,4 +31,5 @@ Categories
 .. important::
 
    Every category need to have a parent! So you need at least 2 levels. The root-category can not be used.
-   In the extended mode you will need at least 3 levels.
+   In the extended mode you will need at least 3 levels. With settings.extendedCategoryMode=1 you can search for
+   parent-categories (level 2) too. They are then called "all" in the search-form with the radio-buttons.
