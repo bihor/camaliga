@@ -275,4 +275,6 @@ Version     Changes
             Bugfix for PHP 8.
 
 11.3.0      Setting extendedCategoryMode added. Empty category entries will be ignored at the search options.
+
+            Bugfix: metadata for images now working again.
 ==========  ==============================================================================================================================

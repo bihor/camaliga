@@ -14,16 +14,16 @@ This example shows one selected element.
  <div class="carousel-single">
   <h1>{content.title}</h1>
   <div class="carousel-single-img">
-    <f:if condition="{content.falimage.uid}">
-    <f:if condition="{settings.img.width} && {settings.img.height}">
-    <f:then>
-	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.width}" maxHeight="{settings.img.height}" treatIdAsReference="1" />
-	</f:then>
-	<f:else>
-	<f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" treatIdAsReference="1" />
-	</f:else>
-    </f:if>
-    </f:if>
+	  <f:if condition="{content.falimage.uid}">
+		  <f:if condition="{settings.img.width} && {settings.img.height}">
+			  <f:then>
+				  <f:image src="{content.falimage.uid}" alt="{f:if(condition: '{content.falimage.originalResource.properties.alternative}', then: content.falimage.originalResource.properties.alternative, else: content.title)}" title="{f:if(condition: '{content.falimage.originalResource.properties.title}', then: content.falimage.originalResource.properties.title, else: content.title)}" maxWidth="{settings.img.width}" maxHeight="{settings.img.height}" treatIdAsReference="1" />
+			  </f:then>
+			  <f:else>
+				  <f:image src="{content.falimage.uid}" alt="{f:if(condition: '{content.falimage.originalResource.properties.alternative}', then: content.falimage.originalResource.properties.alternative, else: content.title)}" title="{f:if(condition: '{content.falimage.originalResource.properties.title}', then: content.falimage.originalResource.properties.title, else: content.title)}" treatIdAsReference="1" />
+			  </f:else>
+		  </f:if>
+	  </f:if>
   </div>
   <div class="carousel-single-text">
 	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
@@ -45,30 +45,30 @@ This example shows one selected element.
   </div>
   
   <div class="carousel-single-more">
-     <f:if condition="{content.falimage2.uid}">
-      <figure>
-	   <f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.originalFile.alternative}" title="{content.falimage2.originalResource.originalFile.title}" treatIdAsReference="1" />
-	   <figcaption>{content.falimage2.originalResource.originalFile.title}</figcaption>
-	  </figure>
-     </f:if>
-     <f:if condition="{content.falimage3.uid}">
-      <figure>
-	   <f:image src="{content.falimage3.uid}" alt="{content.falimage3.originalResource.originalFile.alternative}" title="{content.falimage3.originalResource.originalFile.title}" treatIdAsReference="1" />
-	   <figcaption>{content.falimage3.originalResource.originalFile.title}</figcaption>
-	  </figure>
-     </f:if>
-     <f:if condition="{content.falimage4.uid}">
-      <figure>
-	   <f:image src="{content.falimage4.uid}" alt="{content.falimage4.originalResource.originalFile.alternative}" title="{content.falimage4.originalResource.originalFile.title}" treatIdAsReference="1" />
-	   <figcaption>{content.falimage4.originalResource.originalFile.title}</figcaption>
-	  </figure>
-     </f:if>
-     <f:if condition="{content.falimage5.uid}">
-      <figure>
-	   <f:image src="{content.falimage5.uid}" alt="{content.falimage5.originalResource.originalFile.alternative}" title="{content.falimage5.originalResource.originalFile.title}" treatIdAsReference="1" />
-	   <figcaption>{content.falimage5.originalResource.originalFile.title}</figcaption>
-	  </figure>
-     </f:if>
+	  <f:if condition="{content.falimage2.uid}">
+		  <figure>
+			  <f:image src="{content.falimage2.uid}" alt="{content.falimage2.originalResource.properties.alternative}" title="{content.falimage2.originalResource.properties.title}" treatIdAsReference="1" />
+			  <figcaption>{content.falimage2.originalResource.properties.description}</figcaption>
+		  </figure>
+	  </f:if>
+	  <f:if condition="{content.falimage3.uid}">
+		  <figure>
+			  <f:image src="{content.falimage3.uid}" alt="{content.falimage3.originalResource.properties.alternative}" title="{content.falimage3.originalResource.properties.title}" treatIdAsReference="1" />
+			  <figcaption>{content.falimage3.originalResource.properties.description}</figcaption>
+		  </figure>
+	  </f:if>
+	  <f:if condition="{content.falimage4.uid}">
+		  <figure>
+			  <f:image src="{content.falimage4.uid}" alt="{content.falimage4.originalResource.properties.alternative}" title="{content.falimage4.originalResource.properties.title}" treatIdAsReference="1" />
+			  <figcaption>{content.falimage4.originalResource.properties.description}</figcaption>
+		  </figure>
+	  </f:if>
+	  <f:if condition="{content.falimage5.uid}">
+		  <figure>
+			  <f:image src="{content.falimage5.uid}" alt="{content.falimage5.originalResource.properties.alternative}" title="{content.falimage5.originalResource.properties.title}" treatIdAsReference="1" />
+			  <figcaption>{content.falimage5.originalResource.properties.description}</figcaption>
+		  </figure>
+	  </f:if>
  
  	<f:if condition="{settings.extended.enable} == 1">
 		<f:if condition="{hasParent} == 1">
