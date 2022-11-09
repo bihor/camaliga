@@ -93,7 +93,7 @@ Version     Änderungen
             Bug gefixt: Sortierung bei normalen Templates mit Kategorien.
 6.0.0       Camaliga ist nun TYPO3 7 LTS kompatibel:
 
-            - Vendor-Name geändert -> man muss nach dem Updaten den allgemeinen Chache löschen!
+            - Vendor-Name geändert -> man muss nach dem Updaten den allgemeinen Cache löschen!
             - alte Methoden ersetzt.
             - Pfad zu den Templates geändert -> siehe Kapitel Konfiguration/TypoScript-Referenz und Updaten auf camaliga 6.0.0.
 
@@ -132,7 +132,7 @@ Version     Änderungen
 6.3.1       Bugfix: Kleinigkeiten.
 6.4.0       Template Revolution-Slider und FracionSlider hinzugefügt.
 
-            Optionale Felder können nun auch im Extension-Maganger ausgeblendet werden.
+            Optionale Felder können nun auch im Extension-Manager ausgeblendet werden.
 
             Die Volltextsuche sucht jetzt auch in custom1.
 
@@ -155,7 +155,7 @@ Version     Änderungen
 7.1.0       Setting extended.saveSearch hinzugefügt.
             TYPO3 8.7 Kompatibilität hinzugefügt. Achtung: von TYPO3 8.7 erzeugte Links können noch nicht ausgewertet werden.
 7.1.6       Kleinere Bugs gefixt. Kleinere Änderungen in dieser Doku.
-8.0.0       Man kann nun auch FAL-Bilder benutzen. Diese können in der Kofiguration im Extension Manager eingeschaltet werden.
+8.0.0       Man kann nun auch FAL-Bilder benutzen. Diese können in der Konfiguration im Extension Manager eingeschaltet werden.
 
             Alle Templates aktualisiert. Z.B. alle Links zu f:link.typolink geändert.
 
@@ -183,7 +183,7 @@ Version     Änderungen
             Der Linkvalidator sollte nun funktionieren mit Camaliga-Elementen.
 
             Kleiner Bug im addPublicResources ViewHelper gefixt.
-8.2.11      Geocoding fixed. Für das Feature "automaisch die Position zu einer Adresse finden" braucht man nun einen Google
+8.2.11      Geocoding fixed. Für das Feature "automatisch die Position zu einer Adresse finden" braucht man nun einen Google
             maps API key! Die bisherige Lösung funktionierte nicht mehr!
 
             Elegant Responsive Pure CSS3 Slider hinzugefügt.
@@ -192,7 +192,7 @@ Version     Änderungen
             TYPO3_DLOG entfernt. Nur noch settings.debug aktiviert den debug mode.
             Karusell- und tt_news-import entfernt.
 8.4.4       TYPO3 9 Bugfix.
-8.5.0       Anpassungen an TYPO3 9 und die neue Dokumentations-Struktur bei typo3.org. typo3db_legacy noch notwendig.
+8.5.0       Anpassungen an TYPO3 9 und die neue Dokumentation-Struktur bei typo3.org. typo3db_legacy noch notwendig.
 9.0.0       Extension-Konfiguration categoryMode entfernt! Die Kategorien werden nun durch eine TYPO3-Core-Methode geholt!
             Die Kategorien in den Optionen werden nun richtig sortiert.
             TS category.storagePids, category.sortBy und category.orderBy hinzugefügt.
@@ -284,4 +284,6 @@ Version     Änderungen
 11.3.0      Setting extendedCategoryMode hinzugefügt. Leere Kategorie-Einträge werden nun beim Suchformular ignoriert.
 
             Bugfix: Metadaten der Bilder werden nun wieder richtig ausgegeben.
+
+            Bugfix: ignoriere die Datensatzsammlung nicht. Verhindert, dass man sich alle Camaliga-Elemente ansehen kann.
 ==========  =====================================================================================================================

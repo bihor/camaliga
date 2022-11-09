@@ -23,7 +23,7 @@ Version     Changes
 ==========  ==============================================================================================================================
 0.1.0       Initial upload to TER.
 1.0.0       More TypoScript- and FlexForms-Settings. Carousel-Example updated.
-1.1.0       More examples added. Karussell-Import improoved.
+1.1.0       More examples added. Karussell-Import improved.
 1.2.0       Major bug fixed: wrong path to the templates. More examples added.
 1.3.0       S Gallery and jQuery.Flipster template added.
             Template Carousel.html improved.
@@ -56,7 +56,7 @@ Version     Changes
 
             Option added: automatic search for Latitude and Longitude.
 
-            Posibility to extend the Camaliga-table-fields.
+            Possibility to extend the Camaliga-table-fields.
 
             Typo3 7 compatibility increased (does still not work with Typo3 7.1).
 3.2.0       Bug fixed: tt_news import.
@@ -65,7 +65,7 @@ Version     Changes
             New backend form: sortable thumbnail overview.
 
             New templates: Isotope, jQuery Full Width Image Slider, Coolcarousel.
-4.0.0       Template-list in the FlexForms rearrenged. Demo-link to the templates added in this documentation.
+4.0.0       Template-list in the FlexForms rearranged. Demo-link to the templates added in this documentation.
 
             New FlexForms for Bootstrap components.
 
@@ -95,7 +95,7 @@ Version     Changes
             - old methods replaced.
             - path to the templates changed: please read the chapter Configuration/TypoScript reference and Updating to camaliga 6.0.0.
 
-            Sheduler-task for CSV export added.
+            Scheduler-task for CSV export added.
 
             Deprecated actions and templates removed: galleryviewExtended, adGalleryExtended and mapExtended.
 6.0.3       TCA-problem with TYPO3 7 fixed (maybe you need to flush the general cache).
@@ -133,7 +133,7 @@ Version     Changes
 
             Fulltextsearch searches now in custom1 too.
 
-            Some small improvments.
+            Some small improvements.
 7.0.0       TYPO3 6.2 compatibility removed.
 
             Templates AdGalleryFancyBox, GalleryviewFancyBox and OwlSimpleModal removed.
@@ -148,7 +148,7 @@ Version     Changes
 
             New db-field: contact-person. More disable-options in the extension-configuration-manager.
 
-            New variable in the templates avaiable: {content.links}
+            New variable in the templates available: {content.links}
 7.1.0       Setting extended.saveSearch added.
             TYPO3 8.7 compatibility added. Note: there is still no way to parse links from TYPO3 8.
 7.1.6       Some minor bugs fixed. Some changes in the documentation.
@@ -184,7 +184,7 @@ Version     Changes
 8.3.0       Important change: Optimized for TYPO3 8, Bootstrap 4 and jQuery 3.
 8.4.0       Now for TYPO3 9 too (if typo3db_legacy is installed).
             TYPO3_DLOG removed. Now only settings.debug enables the debug mode.
-            Karusell and tt_news import removed.
+            Karussell and tt_news import removed.
 8.4.4       TYPO3 9 bugfix.
 8.5.0       TYPO3 9 and documentation adjustments. typo3db_legacy still necessary.
 9.0.0       Extension configuration categoryMode removed! The categories are now get by a TYPO3 core method.
@@ -277,4 +277,6 @@ Version     Changes
 11.3.0      Setting extendedCategoryMode added. Empty category entries will be ignored at the search options.
 
             Bugfix: metadata for images now working again.
+
+            Bugfix: don´t ignore given storage PIDs in the show actions. Prevent viewing all camaliga-entries at one place.
 ==========  ==============================================================================================================================

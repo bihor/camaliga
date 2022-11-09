@@ -625,9 +625,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->showExtendedAction($content);
         } else {
             $this->helpersUtility->setSeo($content, $this->settings);
-
+            $error = 0;
+            $storagePidsArray = $this->contentRepository->getStoragePids();
+            if (is_array($storagePidsArray) && !$storagePidsArray[0] == 0) {
+                if (!in_array($content->getPid(), $storagePidsArray)) {
+                    $error = 1;
+                }
+            }
             $this->view->assign('content', $content);
-            $this->view->assign('error', 0);
+            $this->view->assign('error', $error);
         }
     }
 
@@ -641,9 +647,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
     {
         $this->helpersUtility->setSeo($content, $this->settings);
-
+        $error = 0;
+        $storagePidsArray = $this->contentRepository->getStoragePids();
+        if (is_array($storagePidsArray) && !$storagePidsArray[0] == 0) {
+            if (!in_array($content->getPid(), $storagePidsArray)) {
+                $error = 1;
+            }
+        }
         $this->view->assign('content', $content);
-        $this->view->assign('error', 0);
+        $this->view->assign('error', $error);
         if ($content->getMother()) {
             // wir haben hier ein Kind
             $this->view->assign('parent', $this->contentRepository->findByUid($content->getMother()->getUid()));
@@ -1123,19 +1135,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action new
      *
-     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-     * @param int $error	Error-Code
      * @return void
      */
-    public function newAction(\Quizpalme\Camaliga\Domain\Model\Content $content = NULL, $error = 0)
+    public function newAction()
     {
-        if (!$content) {
-            $content = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Model\\Content');
-        }
+        $content = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Model\\Content');
         // gets all categories, which we want
         $cats = $this->getCategoriesAndParents();
 
-        $this->view->assign('error', $error);
+        $this->view->assign('error', 0);
         $this->view->assign('content', $content);
         $this->view->assign('categories', $cats);
     }
@@ -1148,181 +1156,173 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function createAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
     {
-        $error = 0;
         $debug = '';
         $mediaFolder = $this->settings['img']['folderForNewEntries'];
-        if (!$content->getTitle()) {
-            $error = 1;
-        }
 
-        if ($error >= 1) {
-            $this->redirect('new', NULL, NULL, ['content' => $content, 'error' => $error]);
-        } else {
-            $persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
-            //$content->setHidden(1);
-            if ($content->getUid() > 0) {
-                $this->contentRepository->update($content);
-            } else {
-                $this->contentRepository->add($content);
-                $persistenceManager->persistAll();
-            }
-            $position = [];					// GPS-Koordinaten
-            $categoryUids = [];				// was ausgewählt wurde
-            $uid = $content->getUid();
-
-            if ($this->request->hasArgument('image')) {
-                // Alte Lösungen für einen Bild-Upload:
-                // https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Fal/UsingFal/ExamplesFileFolder.html
-                // https://www.typo3tiger.de/blog/post/extbase-fal-filereference-im-controller-erzeugen.html
-                // https://various.at/news/image-upload-mit-typo3
-                // https://stackoverflow.com/questions/57828620/how-to-access-uploaded-files-in-frontend-in-the-controller-in-typo3
-                // https://www.ophidia.net/typo3-8-filereference-aus-bild-erzeugen/
-                $uploadedFileData = $this->request->getArgument('image'); //$_FILES['image'];
-                if (substr($uploadedFileData['type'], 0, 5) == 'image') {
-                    $resourceFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\ResourceFactory::class);
-                    $storage = $resourceFactory->getDefaultStorage();
-                    $delete1 = '';
-                    $delete2 = '';
-                    if ($this->settings['getLatLon']) {
-                        $position = $this->helpersUtility->getLatLonOfImage($uploadedFileData['tmp_name']);
-                    }
-
-                    # check if target folder exist or create it
-                    if ($storage->hasFolder($mediaFolder)) {
-                        $targetFolder = $storage->getFolder($mediaFolder);
-                    } else {
-                        $targetFolder = $storage->createFolder($mediaFolder);
-                    }
-
-                    # add uploaded file
-                    $imageFile = $targetFolder->addUploadedFile($uploadedFileData, \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME);
-                    $infos = $imageFile->getProperties();
-
-                    if (($infos['width'] > $this->settings['img']['width']) || ($infos['height'] > $this->settings['img']['height'])) {
-                        # resize uploaded image       //$image = $imageService->getImage($imgPath);
-                        $imageService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\ImageService');
-                        $processingInstructions = array(
-                            'maxWidth' => $this->settings['img']['width'],
-                            'maxHeight' => $this->settings['img']['height'],
-                        );
-                        $imageFileResized = $imageService->applyProcessingInstructions($imageFile, $processingInstructions);
-                        $persistenceManager->persistAll();
-                        // aufräumen, geht hier aber noch nicht: $imageFile->delete(); und $imageFileResized->delete();
-                        $imageFileToUse = $imageFileResized->copyTo($targetFolder);
-                        $delete1 = $imageService->getImageUri($imageFile);
-                        $delete2 = $imageService->getImageUri($imageFileResized);
-                    } else {
-                        $imageFileToUse = $imageFile;
-                    }
-
-                    # create reference; but not all Options are used :-(
-                    //$resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
-                    $falFileReference = $resourceFactory->createFileReferenceObject(
-                        [
-                            'uid_local' => $imageFileToUse->getUid(),
-                            'uid_foreign' => $uid,
-                            'uid' => uniqid('NEW_'),
-                            'tablenames' => 'tx_camaliga_domain_model_content',
-                            'fieldname' => 'falimage',
-                            'table_local' => 'sys_file',
-                            'crop' => null,
-                        ]
-                    );
-                    $imageFileReference = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
-                    $imageFileReference->setOriginalResource($falFileReference);
-
-                    # set reference and position in Camaliga
-                    $content->setFalimage($imageFileReference);
-                    if ($position['latitude']) {
-                        $content->setLatitude($position['latitude']);
-                        $content->setLongitude($position['longitude']);
-                    }
-                    $this->contentRepository->update($content);
-                    $persistenceManager->persistAll();
-                    if ($content->getFalimage()) {
-                        // the FAL image is not set correct in sys_file_reference. We correct that...
-                        $falID = $content->getFalimage()->getUid();
-                        $content->repairFALreference($falID);
-                        if ($this->settings['debug']) {
-                            $debug .= 'Uploaded image: ' . $infos['identifier'] . "\n";
-                        }
-                    }
-                    if ($delete1) {
-                        $imageFile->delete();
-                        if ($this->settings['debug']) {
-                            $debug .= 'Deleting this image (1): ' . $delete1 . "\n";
-                        }
-                    }
-                    if ($delete2) {
-                        $imageFileResized->delete();
-                        if ($this->settings['debug']) {
-                            $debug .= 'Deleting this image (2): ' . $delete2 . "\n";
-                        }
-                    }
-                }
-            }
-
-            // Position mittels Adresse bestimmen?
-            if ($this->settings['getLatLon'] && !$position['latitude']) {
-                $contents = [];
-                $contents[] = $content;
-                $debug .= $this->getLatLon($contents);
-            }
-
-            # Slug bilden! Achtung: uniqueInSite funktioniert hier nicht!
-            $fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
-            $slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
-            $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
-            $queryBuilder = $connection->createQueryBuilder();
-            $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
-            $statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
-                $queryBuilder->expr()->eq('uid', $uid)
-            )->execute();
-            $record = $statement->fetch();
-            // Klappt nicht: $record = get_object_vars($content);
-            $slug = $slugHelper->generate($record, $content->getPid());
-            $content->setSlug($slug);
-
-            # sorting setzen
-            $statement = $queryBuilder->select('sorting')->from('tx_camaliga_domain_model_content')->where(
-                $queryBuilder->expr()->eq('pid', intval($content->getPid()))
-            )->orderBy('sorting', 'DESC')->setMaxResults(1)->execute();
-            $record = $statement->fetch();
-            $content->setSorting($record['sorting'] + 64);
-
-            // Kategorien: get all categories, which we want
-            $cats = $this->getCategoriesAndParents();
-            // checke ausgewählte Kategorien
-            foreach ($cats as $uid => $row) {
-                $selected = ($this->request->hasArgument('cat'.$uid)) ?	intval($this->request->getArgument('cat'.$uid)) : 0;
-                $cats[$uid]['selected'] = $selected;
-                if ($selected > 0) {
-                    $categoryUids[$selected] = 1;
-                }
-                if (count($row['childs'])>0) {
-                    foreach ($row['childs'] as $child_uid => $child) {
-                        $selected = ($this->request->hasArgument('cat'.$uid.'_'.$child_uid)) ?	intval($this->request->getArgument('cat'.$uid.'_'.$child_uid)) : 0;
-                        $cats[$uid]['childs'][$child_uid]['selected'] = $selected;
-                        if ($selected > 0) {
-                            $categoryUids[$selected] = 1;
-                        }
-                    }
-                }
-            }
-            $categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
-            foreach ($categoryUids as $key => $value) {
-                $category = $categoryRepository->findOneByUid($key);
-                $content->addCategory($category);
-            }
-
+        $persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
+        //$content->setHidden(1);
+        if ($content->getUid() > 0) {
             $this->contentRepository->update($content);
-
-            // Anzeige
-            $this->view->assign('content', $content);
-            $this->view->assign('debug', $debug);
-            $this->view->assign('categories', $cats);
-            //$this->view->assign('data', $infos);
+        } else {
+            $this->contentRepository->add($content);
+            $persistenceManager->persistAll();
         }
+        $position = [];					// GPS-Koordinaten
+        $categoryUids = [];				// was ausgewählt wurde
+        $uid = $content->getUid();
+
+        if ($this->request->hasArgument('image')) {
+            // Alte Lösungen für einen Bild-Upload:
+            // https://docs.typo3.org/m/typo3/reference-coreapi/master/en-us/ApiOverview/Fal/UsingFal/ExamplesFileFolder.html
+            // https://www.typo3tiger.de/blog/post/extbase-fal-filereference-im-controller-erzeugen.html
+            // https://various.at/news/image-upload-mit-typo3
+            // https://stackoverflow.com/questions/57828620/how-to-access-uploaded-files-in-frontend-in-the-controller-in-typo3
+            // https://www.ophidia.net/typo3-8-filereference-aus-bild-erzeugen/
+            $uploadedFileData = $this->request->getArgument('image'); //$_FILES['image'];
+            if (substr($uploadedFileData['type'], 0, 5) == 'image') {
+                $resourceFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\ResourceFactory::class);
+                $storage = $resourceFactory->getDefaultStorage();
+                $delete1 = '';
+                $delete2 = '';
+                if ($this->settings['getLatLon']) {
+                    $position = $this->helpersUtility->getLatLonOfImage($uploadedFileData['tmp_name']);
+                }
+
+                # check if target folder exist or create it
+                if ($storage->hasFolder($mediaFolder)) {
+                    $targetFolder = $storage->getFolder($mediaFolder);
+                } else {
+                    $targetFolder = $storage->createFolder($mediaFolder);
+                }
+
+                # add uploaded file
+                $imageFile = $targetFolder->addUploadedFile($uploadedFileData, \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME);
+                $infos = $imageFile->getProperties();
+
+                if (($infos['width'] > $this->settings['img']['width']) || ($infos['height'] > $this->settings['img']['height'])) {
+                    # resize uploaded image       //$image = $imageService->getImage($imgPath);
+                    $imageService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\ImageService');
+                    $processingInstructions = array(
+                        'maxWidth' => $this->settings['img']['width'],
+                        'maxHeight' => $this->settings['img']['height'],
+                    );
+                    $imageFileResized = $imageService->applyProcessingInstructions($imageFile, $processingInstructions);
+                    $persistenceManager->persistAll();
+                    // aufräumen, geht hier aber noch nicht: $imageFile->delete(); und $imageFileResized->delete();
+                    $imageFileToUse = $imageFileResized->copyTo($targetFolder);
+                    $delete1 = $imageService->getImageUri($imageFile);
+                    $delete2 = $imageService->getImageUri($imageFileResized);
+                } else {
+                    $imageFileToUse = $imageFile;
+                }
+
+                # create reference; but not all Options are used :-(
+                //$resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
+                $falFileReference = $resourceFactory->createFileReferenceObject(
+                    [
+                        'uid_local' => $imageFileToUse->getUid(),
+                        'uid_foreign' => $uid,
+                        'uid' => uniqid('NEW_'),
+                        'tablenames' => 'tx_camaliga_domain_model_content',
+                        'fieldname' => 'falimage',
+                        'table_local' => 'sys_file',
+                        'crop' => null,
+                    ]
+                );
+                $imageFileReference = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
+                $imageFileReference->setOriginalResource($falFileReference);
+
+                # set reference and position in Camaliga
+                $content->setFalimage($imageFileReference);
+                if ($position['latitude']) {
+                    $content->setLatitude($position['latitude']);
+                    $content->setLongitude($position['longitude']);
+                }
+                $this->contentRepository->update($content);
+                $persistenceManager->persistAll();
+                if ($content->getFalimage()) {
+                    // the FAL image is not set correct in sys_file_reference. We correct that...
+                    $falID = $content->getFalimage()->getUid();
+                    $content->repairFALreference($falID);
+                    if ($this->settings['debug']) {
+                        $debug .= 'Uploaded image: ' . $infos['identifier'] . "\n";
+                    }
+                }
+                if ($delete1) {
+                    $imageFile->delete();
+                    if ($this->settings['debug']) {
+                        $debug .= 'Deleting this image (1): ' . $delete1 . "\n";
+                    }
+                }
+                if ($delete2) {
+                    $imageFileResized->delete();
+                    if ($this->settings['debug']) {
+                        $debug .= 'Deleting this image (2): ' . $delete2 . "\n";
+                    }
+                }
+            }
+        }
+
+        // Position mittels Adresse bestimmen?
+        if ($this->settings['getLatLon'] && !$position['latitude']) {
+            $contents = [];
+            $contents[] = $content;
+            $debug .= $this->getLatLon($contents);
+        }
+
+        # Slug bilden! Achtung: uniqueInSite funktioniert hier nicht!
+        $fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
+        $slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
+        $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
+        $queryBuilder = $connection->createQueryBuilder();
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+        $statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
+            $queryBuilder->expr()->eq('uid', $uid)
+        )->execute();
+        $record = $statement->fetch();
+        // Klappt nicht: $record = get_object_vars($content);
+        $slug = $slugHelper->generate($record, $content->getPid());
+        $content->setSlug($slug);
+
+        # sorting setzen
+        $statement = $queryBuilder->select('sorting')->from('tx_camaliga_domain_model_content')->where(
+            $queryBuilder->expr()->eq('pid', intval($content->getPid()))
+        )->orderBy('sorting', 'DESC')->setMaxResults(1)->execute();
+        $record = $statement->fetch();
+        $content->setSorting($record['sorting'] + 64);
+
+        // Kategorien: get all categories, which we want
+        $cats = $this->getCategoriesAndParents();
+        // checke ausgewählte Kategorien
+        foreach ($cats as $uid => $row) {
+            $selected = ($this->request->hasArgument('cat'.$uid)) ?	intval($this->request->getArgument('cat'.$uid)) : 0;
+            $cats[$uid]['selected'] = $selected;
+            if ($selected > 0) {
+                $categoryUids[$selected] = 1;
+            }
+            if (count($row['childs'])>0) {
+                foreach ($row['childs'] as $child_uid => $child) {
+                    $selected = ($this->request->hasArgument('cat'.$uid.'_'.$child_uid)) ?	intval($this->request->getArgument('cat'.$uid.'_'.$child_uid)) : 0;
+                    $cats[$uid]['childs'][$child_uid]['selected'] = $selected;
+                    if ($selected > 0) {
+                        $categoryUids[$selected] = 1;
+                    }
+                }
+            }
+        }
+        $categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        foreach ($categoryUids as $key => $value) {
+            $category = $categoryRepository->findOneByUid($key);
+            $content->addCategory($category);
+        }
+
+        $this->contentRepository->update($content);
+
+        // Anzeige
+        $this->view->assign('content', $content);
+        $this->view->assign('debug', $debug);
+        $this->view->assign('categories', $cats);
+        //$this->view->assign('data', $infos);
     }
 
     /* ************************************* Helper *************************** */
