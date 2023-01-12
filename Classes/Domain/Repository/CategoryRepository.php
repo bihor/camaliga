@@ -58,7 +58,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 			for ($i=1; $i<=2; $i++) {
 				foreach ($catRows as $row) {
 					$uid = $row->getUid();
-					if (($i==1 && $parentUids[$uid]==1) || ($i==2 && !$parentUids[$uid])) {
+					if (($i==1 && isset($parentUids[$uid]) && $parentUids[$uid]==1) || ($i==2 && !isset($parentUids[$uid]))) {
 						// In Durchgang 1 die Parents aufnehmen und in Durchgang 2 die Childs
 						$parent = $row->getParent();
 						if (!$parent) {
@@ -100,8 +100,8 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 				foreach ($all_cats as $row) {
 					$uid = $row['uid'];
 					$parent = $row['parent'];
-					if ((count($used_cats)==0) || ($used_cats[$uid])) {
-						if (($i==1 && $parentUids[$uid]==1) || ($i==2)) { // && !$parentUids[$uid])) {
+					if ((count($used_cats)==0) || isset($used_cats[$uid])) {
+						if (($i==1 && isset($parentUids[$uid]) && $parentUids[$uid]==1) || ($i==2)) { // && !$parentUids[$uid])) {
 							// In Durchgang 1 die Parents aufnehmen und in Durchgang 2 die Childs
 							if ($i==1) {
 								// nur parents sind dran
@@ -111,7 +111,7 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 								$cats[$uid]['title'] = $row['title'];
 								$cats[$uid]['description'] = $row['description'];
 								#echo " # parent ".$row['title'];
-							} elseif (($i==2) && is_array($cats[$parent]) && $cats[$parent]['title']) {
+							} elseif (($i==2) && isset($cats[$parent]) && is_array($cats[$parent]) && isset($cats[$parent]['title'])) {
 								// nur childs und tiefer gelegene parents sind dran
 								$cats[$parent]['childs'][$uid] = [];
 								$cats[$parent]['childs'][$uid]['uid'] = $uid;

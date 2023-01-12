@@ -383,7 +383,11 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 				$result = $queryBuilder->execute()->fetchAll();
 				foreach ($result as $row) {
 					$cam_uid = $row['uid'];
-					$elements[$cam_uid]++;
+                    if (isset($elements[$cam_uid])) {
+                        $elements[$cam_uid]++;
+                    } else {
+                        $elements[$cam_uid] = 1;
+                    }
 					$parents[$cam_uid] = $row['mother'];
 					$childs[$cam_uid] = 0;
 				}

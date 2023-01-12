@@ -427,7 +427,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             foreach ($defaultCats as $defCat) {
                 $uid = $selected = intval(trim($defCat));
                 $parent = $all_cats[$uid]['parent'];
-                if ($cats[$parent]['description'] == 'checkbox') {
+                if (isset($cats[$parent]['description']) && $cats[$parent]['description'] == 'checkbox') {
                     $cats[$parent]['childs'][$uid]['selected'] = $selected;
                     $categoryUids[$parent] = ($categoryUids[$parent]) ? $categoryUids[$parent].','.$selected : $selected;
                 } else {
