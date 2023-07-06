@@ -1,7 +1,10 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Repository;
 
-class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+
+class CategoryRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 	
 	/**
@@ -12,23 +15,20 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 	 * @param	array	$pids		Storage PIDs
 	 */
 	public function findAll($sortBy = 'sorting', $sortOrder = 'asc', $pids = []) {
-		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
-		\TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
+		$order = ($sortOrder == 'desc') ? 'DESC' : 'ASC';
 		if (!($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='crdate' || $sortBy=='title' || $sortBy=='uid')) {
 			$sortBy = 'sorting';
 		}
-		$constraints = [];
-		$query = $this->createQuery();
-		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		if (!empty($pids)) {
-			$constraints[] = $query->in('pid', $pids);
-		}
-		if (!empty($constraints)) {
-			$query->matching($query->logicalAnd($constraints));
-		}
-		return $query
-			->setOrderings(	array($sortBy => $order) )
-			->execute();
+        $table = 'sys_category';
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        $queryBuilder
+            ->select('*')
+            ->from($table);
+        if (!empty($pids)) {
+            $queryBuilder->where( $queryBuilder->expr()->in('pid', $pids) );
+        }
+        $queryBuilder->orderBy($sortBy, $sortOrder);
+        return $queryBuilder->executeQuery()->fetchAllAssociative();
 	}
 	
 	/**
@@ -49,26 +49,26 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
 			$parentUids = [];
 			foreach ($catRows as $row) {
 				// Die Parents sind für die Options sehr wichtig
-				$parent = $row->getParent();
+				$parent = $row['parent'];
 				if (!$parent) {
 					continue;
 				}
-				$parentUids[$parent->getUid()] = 1;
+				$parentUids[$parent] = 1;
 			}
 			for ($i=1; $i<=2; $i++) {
 				foreach ($catRows as $row) {
-					$uid = $row->getUid();
+					$uid = $row['uid'];
 					if (($i==1 && isset($parentUids[$uid]) && $parentUids[$uid]==1) || ($i==2 && !isset($parentUids[$uid]))) {
 						// In Durchgang 1 die Parents aufnehmen und in Durchgang 2 die Childs
-						$parent = $row->getParent();
+						$parent = $row['parent'];
 						if (!$parent) {
 							continue;		// wer keinen Parent hat, interessiert uns nicht
 						}
 						$all_cats[$uid] = [];
 						$all_cats[$uid]['uid'] = $uid;
-						$all_cats[$uid]['parent'] = $parent->getUid();
-						$all_cats[$uid]['title']  = $row->getTitle();
-						$all_cats[$uid]['description'] = $row->getDescription();
+						$all_cats[$uid]['parent'] = $parent;
+						$all_cats[$uid]['title']  = $row['title'];
+						$all_cats[$uid]['description'] = $row['description'];
 					}
 				}
 			}

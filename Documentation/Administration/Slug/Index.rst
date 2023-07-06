@@ -25,7 +25,7 @@ From TYPO3 9 you can use routeEnhancers to modify the format of links to single 
 	    type: Extbase
 	    limitToPages: [24]
 	    extension: Camaliga
-	    plugin: Pi1
+	    plugin: Show
 	    routes:
 	      - { routePath: '/more/{camaliga_uid}', _controller: 'Content::show', _arguments: {'camaliga_uid': 'content'} }
 	    defaultController: 'Content::list'
@@ -38,7 +38,7 @@ In this example the uid of a camaliga element is used after "more". Here another
 		type: Extbase
 		limitToPages: [24]
 		extension: Camaliga
-		plugin: Pi1
+		plugin: Show
 		routes:
 		  - { routePath: '/entry/{camaliga_title}', _controller: 'Content::show', _arguments: {'camaliga_title': 'content'} }
 		defaultController: 'Content::list'
@@ -53,6 +53,12 @@ Note 1: if you want to use the slug field, make sure it is not empty! You can us
 Note 2: if you have configured 2 fields for the slug-field, '_' or '-' is used as separator and not '/', because of this problem:
 https://forge.typo3.org/issues/87333
 
+Note 3: if you use the extended single view (Single view 2), then you must replace 'Content::show' with
+'Content::showExtended'.
+
+Note 4: before Camaliga 12 you must set at plugin Pi1 instead of Show. And with Camaliga 12 or higher you must replace
+Show with Showextended, if you are not using the normale single-view.
+
 
 You can use categories in the routeEnhancers too, but this works only for categories of one parent-category.
 If your categories have the parent category with the id 10, you can use this routeEnhancer::
@@ -61,7 +67,7 @@ If your categories have the parent category with the id 10, you can use this rou
       CatCamaliga:
         type: Extbase
         extension: Camaliga
-        plugin: Pi1
+        plugin: Show
         limitToPages:
           - 45
         routes:

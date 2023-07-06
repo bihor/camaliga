@@ -25,20 +25,21 @@ Note 4: you can use the crdate and tstamp field too.
     </div>
    </f:if>
    <div class="col">
-	<div><strong><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
+	<div><strong><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pluginName="show" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
 		<f:else><f:link.action action="show" arguments="{content : content}">{content.title}</f:link.action></f:else></f:if></strong></div>
 	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
 	<f:render partial="Optional" arguments="{content:content}" />
-	
+
 	<f:if condition="{settings.extended.enable} == 1">
 	<f:then>
+		<f:comment>never here, because ListExtended.html is used then</f:comment>
 	   	<f:render partial="CategoriesAndParents" arguments="{content:content}" />
 	</f:then>
 	<f:else>
 		<f:render partial="Categories" arguments="{content:content}" />
 	</f:else>
 	</f:if>
-	
+
 	<f:if condition="{content.link} != ''"><p>
 		<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
 	</p></f:if>

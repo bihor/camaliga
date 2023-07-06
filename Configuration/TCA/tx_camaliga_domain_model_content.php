@@ -37,253 +37,6 @@ if ($slugField2) {
 	$slugFields[] = $slugField2a;
 }
 
-$imgConfig1 = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-		'falimage',
-		[
-			'appearance' => [
-					'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-			],
-            'overrideChildTca' => [
-                'types' => [
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                        'showitem' => '
-                                    --palette--;;audioOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                        'showitem' => '
-                                    --palette--;;videoOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ]
-                ],
-            ],
-            'foreign_match_fields' => [
-                'fieldname' => 'falimage',
-                'tablenames' => 'tx_camaliga_domain_model_content',
-                'table_local' => 'sys_file',
-            ],
-			'maxitems' => 1
-		],
-		$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-);
-$imgConfig2 = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-		'falimage2',
-		[
-            'appearance' => [
-                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-            ],
-            'overrideChildTca' => [
-                'types' => [
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                        'showitem' => '
-                                    --palette--;;audioOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                        'showitem' => '
-                                    --palette--;;videoOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ]
-                ],
-            ],
-            'foreign_match_fields' => [
-                'fieldname' => 'falimage2',
-                'tablenames' => 'tx_camaliga_domain_model_content',
-                'table_local' => 'sys_file',
-            ],
-            'maxitems' => 1
-		],
-		$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-);
-$imgConfig3 = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-		'falimage3',
-		[
-            'appearance' => [
-                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-            ],
-            'overrideChildTca' => [
-                'types' => [
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                        'showitem' => '
-                                    --palette--;;audioOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                        'showitem' => '
-                                    --palette--;;videoOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ]
-                ],
-            ],
-            'foreign_match_fields' => [
-                'fieldname' => 'falimage3',
-                'tablenames' => 'tx_camaliga_domain_model_content',
-                'table_local' => 'sys_file',
-            ],
-            'maxitems' => 1
-		],
-		$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-);
-$imgConfig4 = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-		'falimage4',
-		[
-            'appearance' => [
-                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-            ],
-            'overrideChildTca' => [
-                'types' => [
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                        'showitem' => '
-                                    --palette--;;audioOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                        'showitem' => '
-                                    --palette--;;videoOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ]
-                ],
-            ],
-            'foreign_match_fields' => [
-                'fieldname' => 'falimage4',
-                'tablenames' => 'tx_camaliga_domain_model_content',
-                'table_local' => 'sys_file',
-            ],
-            'maxitems' => 1
-		],
-		$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-);
-$imgConfig5 = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-		'falimage5',
-		[
-            'appearance' => [
-                'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-            ],
-            'overrideChildTca' => [
-                'types' => [
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_UNKNOWN => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
-                        'showitem' => '
-                                    --palette--;;audioOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
-                        'showitem' => '
-                                    --palette--;;videoOverlayPalette,
-                                    --palette--;;filePalette'
-                    ],
-                    \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
-                        'showitem' => '
-                                    --palette--;;imageoverlayPalette,
-                                    --palette--;;filePalette'
-                    ]
-                ],
-            ],
-            'foreign_match_fields' => [
-                'fieldname' => 'falimage5',
-                'tablenames' => 'tx_camaliga_domain_model_content',
-                'table_local' => 'sys_file',
-            ],
-            'maxitems' => 1
-		],
-		$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
-);
-
-
 $tcaArray = array(
 	'ctrl' => array(
 		'title'	=> 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content',
@@ -303,6 +56,9 @@ $tcaArray = array(
 				'starttime' => 'starttime',
 				'endtime' => 'endtime',
 		),
+        'security' => [
+            'ignorePageTypeRestriction' => true,
+        ],
 		'searchFields' => 'title,shortdesc,longdesc,street,zip,city,country,person,custom1',
 		'iconfile' => 'EXT:camaliga/Resources/Public/Icons/tx_camaliga_domain_model_content.gif'
 	),
@@ -474,8 +230,17 @@ $tcaArray = array(
 		$pre.'image' => [
 			'exclude' => true,
 			'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image',
-			'config' => $imgConfig1,
+			'config' => [
+                'type' => 'file',
+                'maxitems' => 1,
+                'allowed' => 'common-image-types'
+            ],
 		],
+        'categories' => [
+            'config' => [
+                'type' => 'category',
+            ],
+        ],
 	),
 );
 
@@ -483,22 +248,38 @@ if (!$disableFurtherImages) {
 	$tcaArray['columns'][$pre.'image2'] = array(
 		'exclude' => true,
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image2',
-		'config' => $imgConfig2
+		'config' => [
+            'type' => 'file',
+            'maxitems' => 1,
+            'allowed' => 'common-image-types'
+        ],
 	);
 	$tcaArray['columns'][$pre.'image3'] = array(
 		'exclude' => true,
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image3',
-		'config' => $imgConfig3
+		'config' => [
+            'type' => 'file',
+            'maxitems' => 1,
+            'allowed' => 'common-image-types'
+        ],
 	);
 	$tcaArray['columns'][$pre.'image4'] = array(
 		'exclude' => true,
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image4',
-		'config' => $imgConfig4
+		'config' => [
+            'type' => 'file',
+            'maxitems' => 1,
+            'allowed' => 'common-image-types'
+        ],
 	);
 	$tcaArray['columns'][$pre.'image5'] = array(
 		'exclude' => true,
 		'label' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.image5',
-		'config' => $imgConfig5
+		'config' => [
+            'type' => 'file',
+            'maxitems' => 1,
+            'allowed' => 'common-image-types'
+        ],
 	);
 	$tcaArray['types']['1']['showitem'] .=  ',falimage2,--linebreak--, falimage3,--linebreak--, falimage4,--linebreak--, falimage5';
 }
@@ -651,6 +432,6 @@ if (!$disableMother) {
 	$tcaArray['types']['1']['showitem'] .= ',mother';
 }
 
-$tcaArray['types']['1']['showitem'] .= ',--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime';
+$tcaArray['types']['1']['showitem'] .= ',--div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access, starttime, endtime,--div--;LLL:EXT:camaliga/Resources/Private/Language/locallang_db.xlf:tx_camaliga_domain_model_content.categories, categories';
 
 return $tcaArray;

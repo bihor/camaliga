@@ -86,7 +86,7 @@ class HelpersUtility
             $metaTagManager->addProperty('og:description', $desc);
         }
         if ($settings['seo']['setOgImage'] == 1) {
-            $server = ($_SERVER['HTTPS']) ? 'https://' : 'http://';
+            $server = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']) ? 'https://' : 'http://';
             $server .= $_SERVER['SERVER_NAME'];
             $image = '';
             if ($content->getFalimage() && $content->getFalimage()->getUid()) {

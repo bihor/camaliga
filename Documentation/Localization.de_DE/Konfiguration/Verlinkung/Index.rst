@@ -45,9 +45,12 @@ Verlinkung
     typolink {
         parameter = 112
         additionalParams.data = field:uid
-        additionalParams.wrap = &tx_camaliga_pi1[content]=|&tx_camaliga_pi1[controller]=Content&tx_camaliga_pi1[action]=show
+        additionalParams.wrap = &tx_camaliga_show[content]=|&tx_camaliga_show[controller]=Content&tx_camaliga_show[action]=show
         useCacheHash = 1
     }
     // Do not force link generation when the records are hidden or deleted.
     forceLink = 0
   }
+
+Achtung: ersetze tx_camaliga_show mit tx_camaliga_pi1 in Camaliga-Versionen unter 12.
+Oder ersetze es mit tx_camaliga_showextended, wenn du nicht die normale Single-Ansicht benutzt.

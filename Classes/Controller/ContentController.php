@@ -6,6 +6,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use Psr\Http\Message\ResponseInterface;
 
 /***************************************************************
  *  Copyright notice
@@ -70,16 +71,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $templatePath;
 
     /**
-     * Injects the configuration manager, retrieves the plugin settings from it,
-     * merges / overrides the FlexForm settings with Typoscript settings if FlexForm setting is empty
-     *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
-     * @return void
+     * Merges / overrides the FlexForm settings with Typoscript settings if FlexForm setting is empty
      */
-    public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager)
+    public function initializeAction()
     {
-        //parent::injectConfigurationManager($configurationManager);
-        $this->configurationManager = $configurationManager;
         $tsSettings = $this->configurationManager->getConfiguration(
             \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
         );
@@ -184,9 +179,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action list
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function listAction()
+    public function listAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable'] == 1) {
             // extended-Version laden - this->template = 'ListExtended'; ?
@@ -266,15 +261,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('onlySearchForm', 0);
             $this->view->assign('debug', $debug);
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action listExtended
      *
      * @param int $currentPage
-     * @return void
+     * @return ResponseInterface
      */
-    public function listExtendedAction(int $currentPage = 1)
+    public function listExtendedAction(int $currentPage = 1): ResponseInterface
     {
         $this->settings['extended']['enable'] = 1;
         $search = false;	// search by user selection?
@@ -339,7 +335,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $storagePidsOnly  = array($storagePidsComma);
         }
         // gets all categories, which we want for the options
-        $categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        $categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
         if (isset($this->settings['category']['storagePids']) && $this->settings['category']['storagePids']) {
             if ($this->settings['category']['storagePids'] == -1) {
                 $catStoragePids = [];		// alle kategorien
@@ -558,14 +554,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 'debug' => $debug
             ]
         );
+        return $this->htmlResponse();
     }
 
     /**
      * action teaser
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function teaserAction()
+    public function teaserAction(): ResponseInterface
     {
         // @extensionScannerIgnoreLine
         $cobjData = $this->configurationManager->getContentObject();
@@ -573,11 +570,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $content_pid = $cobjData->data['pid'];
 
         $debug = '';
-        $ids = explode(',', $this->settings['teaserIDs']);
-        if ($this->settings['debug']) {
-            $debug .= 'findByUids(array(' . $this->settings['teaserIDs'] . '),' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ")\n";
+        if (isset($this->settings['teaserIDs'])) {
+            $ids = explode(',', $this->settings['teaserIDs']);
+            $contents = $this->contentRepository->findByUids($ids, $this->settings['sortBy'], $this->settings['sortOrder']);
+            if ($this->settings['debug']) {
+                $debug = 'findByUids(array(' . $this->settings['teaserIDs'] . '),' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ")\n";
+            }
+        } else {
+            $contents = [];
+            $debug = "No teaserIDs set!\n";
         }
-        $contents = $this->contentRepository->findByUids($ids, $this->settings['sortBy'], $this->settings['sortOrder']);
         $widthHeights = $this->helpersUtility->calculateWidthAndHeight($this->settings);
 
         $this->view->assign('uid', $content_uid);
@@ -591,14 +593,15 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->view->assign('totalItemHeight', $widthHeights['totalItemHeight']);
         $this->view->assign('itemHeight', $widthHeights['itemHeight']);
         $this->view->assign('debug', $debug);
+        return $this->htmlResponse();
     }
 
     /**
      * action search
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function searchAction()
+    public function searchAction(): ResponseInterface
     {
         $template = ($this->request->hasArgument('template')) ? $this->request->getArgument('template') : '';
         if (!$template && isset($this->settings['extended']['template'])) {
@@ -608,6 +611,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->setTemplatePathAndFilename($this->templatePath . 'Content/' . $template . '.html');
         }
         $this->listExtendedAction();
+        return $this->htmlResponse();
     }
 
     /**
@@ -615,9 +619,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param \Quizpalme\Camaliga\Domain\Model\Content $content
      * @Extbase\IgnoreValidation("content")
-     * @return void
+     * @return ResponseInterface
      */
-    public function showAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
+    public function showAction(\Quizpalme\Camaliga\Domain\Model\Content $content): ResponseInterface
     {
         if ($this->settings['extended']['enable'] == 1) {
             // extended-Version laden
@@ -635,6 +639,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('content', $content);
             $this->view->assign('error', $error);
         }
+        return $this->htmlResponse();
     }
 
     /**
@@ -642,9 +647,9 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      *
      * @param \Quizpalme\Camaliga\Domain\Model\Content $content
      * @Extbase\IgnoreValidation("content")
-     * @return void
+     * @return ResponseInterface
      */
-    public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
+    public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content): ResponseInterface
     {
         $this->helpersUtility->setSeo($content, $this->settings);
         $error = 0;
@@ -667,494 +672,421 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->view->assign('hasParent', 0);
             $this->view->assign('childs', $this->contentRepository->findByMother2($content->getUid(), 0));
         }
+        return $this->htmlResponse();
     }
 
     /* ************************************* weitere Templates *************************** */
 
     /**
      * action carousel
-     *
-     * @return void
      */
-    public function carouselAction()
+    public function carouselAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action separated carousel
-     *
-     * @return void
      */
-    public function carouselSeparatedAction()
+    public function carouselSeparatedAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action magnific popup
-     *
-     * @return void
      */
-    public function magnificAction()
+    public function magnificAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action roundabout
-     *
-     * @return void
      */
-    public function roundaboutAction()
+    public function roundaboutAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action flipster
-     *
-     * @return void
      */
-    public function flipsterAction()
+    public function flipsterAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action bootstrap
-     *
-     * @return void
      */
-    public function bootstrapAction()
+    public function bootstrapAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action collapse
-     *
-     * @return void
      */
-    public function collapseAction()
+    public function collapseAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action modal
-     *
-     * @return void
      */
-    public function modalAction()
+    public function modalAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action tab
-     *
-     * @return void
      */
-    public function tabAction()
+    public function tabAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action S Gallery
-     *
-     * @return void
      */
-    public function sgalleryAction()
+    public function sgalleryAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
-    }
-
-    /**
-     * action AD Gallery
-     *
-     * @return void
-     */
-    public function adGalleryAction()
-    {
-        if ($this->settings['extended']['enable']) {
-            //	$this->template = 'AdGalleryExtended';
-            $this->listExtendedAction();
-        } else {
-            $this->listAction();
-        }
-    }
-
-    /**
-     * action Coolcarousel
-     *
-     * @return void
-     */
-    public function coolcarouselAction()
-    {
-        if ($this->settings['extended']['enable']) {
-            $this->listExtendedAction();
-        } else {
-            $this->listAction();
-        }
+        return $this->htmlResponse();
     }
 
     /**
      * action Ekko Lightslider
-     *
-     * @return void
      */
-    public function ekkoAction()
+    public function ekkoAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Elastislide
-     *
-     * @return void
      */
-    public function elastislideAction()
+    public function elastislideAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Elegant CSS3 Slider
-     *
-     * @return void
      */
-    public function elegantAction()
+    public function elegantAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action FancyBox
-     *
-     * @return void
      */
-    public function fancyBoxAction()
+    public function fancyBoxAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action GalleryView
-     *
-     * @return void
      */
-    public function galleryviewAction()
+    public function galleryviewAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Innerfade
-     *
-     * @return void
      */
-    public function innerfadeAction()
+    public function innerfadeAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action FlexSlider 2
-     *
-     * @return void
      */
-    public function flexslider2Action()
+    public function flexslider2Action(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Lightslider
-     *
-     * @return void
      */
-    public function lightsliderAction()
+    public function lightsliderAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Fullwidth
-     *
-     * @return void
      */
-    public function fullwidthAction()
+    public function fullwidthAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Responsive carousel
-     *
-     * @return void
      */
-    public function responsiveAction()
+    public function responsiveAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Responsive carousel (2)
-     *
-     * @return void
      */
-    public function responsiveCarouselAction()
+    public function responsiveCarouselAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action OWL carousel 2
-     *
-     * @return void
      */
-    public function owl2Action()
+    public function owl2Action(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Bootstrap+Isotope
-     *
-     * @return void
      */
-    public function isotopeAction()
+    public function isotopeAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action Stellar Parallax
-     *
-     * @return void
      */
-    public function parallaxAction()
+    public function parallaxAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action nanogallery2
-     *
-     * @return void
      */
-    public function nanogallery2Action()
+    public function nanogallery2Action(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action SDKSlider
-     *
-     * @return void
      */
-    public function skdsliderAction()
+    public function skdsliderAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action slick
-     *
-     * @return void
      */
-    public function slickAction()
+    public function slickAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
-    }
-
-    /**
-     * action test
-     *
-     * @return void
-     */
-    public function testAction()
-    {
-        if ($this->settings['extended']['enable']) {
-            $this->listExtendedAction();
-        } else {
-            $this->listAction();
-        }
+        return $this->htmlResponse();
     }
 
     /**
      * action Map
-     *
-     * @return void
      */
-    public function mapAction()
+    public function mapAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action OpenStreetMap
-     *
-     * @return void
      */
-    public function openstreetmapAction()
+    public function openstreetmapAction(): ResponseInterface
     {
         if ($this->settings['extended']['enable']) {
             $this->listExtendedAction();
         } else {
             $this->listAction();
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action one random uncached element
-     *
-     * @return void
      */
-    public function randomAction()
+    public function randomAction(): ResponseInterface
     {
         $contents = $this->contentRepository->findRandom();
 
         $this->view->assign('contents', $contents);
+        return $this->htmlResponse();
     }
 
     /**
      * action new
-     *
-     * @return void
      */
-    public function newAction()
+    public function newAction(): ResponseInterface
     {
-        $content = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Model\\Content');
+        $content = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Model\\Content');
         // gets all categories, which we want
         $cats = $this->getCategoriesAndParents();
 
         $this->view->assign('error', 0);
         $this->view->assign('content', $content);
         $this->view->assign('categories', $cats);
+        return $this->htmlResponse();
     }
 
     /**
      * action create
      *
      * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-     * @return void
+     * @return ResponseInterface
      */
-    public function createAction(\Quizpalme\Camaliga\Domain\Model\Content $content)
+    public function createAction(\Quizpalme\Camaliga\Domain\Model\Content $content): ResponseInterface
     {
         $debug = '';
         $mediaFolder = $this->settings['img']['folderForNewEntries'];
@@ -1201,7 +1133,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
                 if (($infos['width'] > $this->settings['img']['width']) || ($infos['height'] > $this->settings['img']['height'])) {
                     # resize uploaded image       //$image = $imageService->getImage($imgPath);
-                    $imageService = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Service\\ImageService');
+                    $imageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\ImageService');
                     $processingInstructions = array(
                         'maxWidth' => $this->settings['img']['width'],
                         'maxHeight' => $this->settings['img']['height'],
@@ -1217,7 +1149,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 }
 
                 # create reference; but not all Options are used :-(
-                //$resourceFactory = $this->objectManager->get('TYPO3\\CMS\\Core\\Resource\\ResourceFactory');
                 $falFileReference = $resourceFactory->createFileReferenceObject(
                     [
                         'uid_local' => $imageFileToUse->getUid(),
@@ -1229,7 +1160,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                         'crop' => null,
                     ]
                 );
-                $imageFileReference = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
+                $imageFileReference = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
                 $imageFileReference->setOriginalResource($falFileReference);
 
                 # set reference and position in Camaliga
@@ -1278,8 +1209,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
         $statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
             $queryBuilder->expr()->eq('uid', $uid)
-        )->execute();
-        $record = $statement->fetch();
+        )->executeQuery();
+        $record = $statement->fetchAssociative();
         // Klappt nicht: $record = get_object_vars($content);
         $slug = $slugHelper->generate($record, $content->getPid());
         $content->setSlug($slug);
@@ -1287,8 +1218,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         # sorting setzen
         $statement = $queryBuilder->select('sorting')->from('tx_camaliga_domain_model_content')->where(
             $queryBuilder->expr()->eq('pid', intval($content->getPid()))
-        )->orderBy('sorting', 'DESC')->setMaxResults(1)->execute();
-        $record = $statement->fetch();
+        )->orderBy('sorting', 'DESC')->setMaxResults(1)->executeQuery();
+        $record = $statement->fetchAssociative();
         $content->setSorting($record['sorting'] + 64);
 
         // Kategorien: get all categories, which we want
@@ -1310,7 +1241,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 }
             }
         }
-        $categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        $categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
         foreach ($categoryUids as $key => $value) {
             $category = $categoryRepository->findOneByUid($key);
             $content->addCategory($category);
@@ -1323,6 +1254,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->view->assign('debug', $debug);
         $this->view->assign('categories', $cats);
         //$this->view->assign('data', $infos);
+        return $this->htmlResponse();
     }
 
     /* ************************************* Helper *************************** */
@@ -1375,7 +1307,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     private function getCategoriesAndParents()
     {
-        $categoryRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        $categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
         if ($this->settings['category']['storagePids']) {
             if ($this->settings['category']['storagePids'] == -1) {
                 $catStoragePids = [];		// alle kategorien

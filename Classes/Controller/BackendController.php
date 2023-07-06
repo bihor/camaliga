@@ -3,6 +3,10 @@ namespace Quizpalme\Camaliga\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Backend\Template\ModuleTemplate;
+use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
+use TYPO3\CMS\Core\Localization\LanguageService;
 
 /***************************************************************
  *  Copyright notice
@@ -38,12 +42,27 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
+    protected int $id;
+
+    protected ModuleTemplate $moduleTemplate;
+
 	/**
 	 * contentRepository
 	 *
 	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
 	 */
 	protected $contentRepository;
+
+    public function __construct(
+        protected readonly ModuleTemplateFactory $moduleTemplateFactory,
+    ) {
+    }
+
+    public function initializeAction()
+    {
+        $this->id = (int)($this->request->getQueryParams()['id'] ?? 0);
+        $this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
+    }
 
     /**
      * Injects the content-Repository
@@ -70,22 +89,13 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		return (integer) $this->contentRepository->getSiteRoot();
 	}
 
-	/**
-	 * action index
-	 *
-	 * @return void
-	 */
-	public function indexAction()
-	{
-		$this->view->assign('pid', intval($this->getCurrentPageId()));
-	}
 
 	/**
 	 * action thumb
 	 *
-	 * @return void
+	 * @return ResponseInterface
 	 */
-	public function thumbAction()
+	public function thumbAction(): ResponseInterface
 	{
 		$pid = intval($this->getCurrentPageId());
 		$saved = 0;
@@ -108,5 +118,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 		$this->view->assign('pid', $pid);
 		$this->view->assign('saved', $saved);
 		$this->view->assign('contents', $contents);
+        $this->moduleTemplate->setContent($this->view->render());
+        return $this->htmlResponse($this->moduleTemplate->renderContent());
 	}
 }

@@ -46,3 +46,4 @@ Beachte: dieser Task wurde in Version 10 gelöscht!
   Dieser Task befüllt alle slug-Felder mit Werten.
 
 Achtung: dieser Task wurde in Version 11 durch einen Command ersetzt (scheduler - Execute console commands)!
+Und der Task wurde in Version 12 gelöscht!

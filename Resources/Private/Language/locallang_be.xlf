@@ -30,7 +30,7 @@
 			<trans-unit id="template.carousel" resname="template.carousel">
 				<source>Carousel: elements are side by side</source>
 			</trans-unit>
-			<trans-unit id="template.separated" resname="template.separated">
+			<trans-unit id="template.carouselseparated" resname="template.carouselseparated">
 				<source>Carousel: text and images separated</source>
 			</trans-unit>
 			<trans-unit id="template.list" resname="template.list">
@@ -43,13 +43,13 @@
 				<source>Single view: one element</source>
 			</trans-unit>
 			<trans-unit id="template.showextended" resname="template.showextended">
-				<source>Single view 2: automatic extended version</source>
-			</trans-unit>
-			<trans-unit id="template.showOrExtended" resname="template.showOrExtended">
-				<source>Single view 3: normal or extended version</source>
+				<source>Single view 2: automatic extended version (supports the normal version too)</source>
 			</trans-unit>
 			<trans-unit id="template.map" resname="template.map">
-				<source>map view (google maps)</source>
+				<source>Map view (google maps)</source>
+			</trans-unit>
+			<trans-unit id="template.openstreetmap" resname="template.openstreetmap">
+				<source>Openstreetmap + Leaflet</source>
 			</trans-unit>
 			<trans-unit id="template.random" resname="template.random">
 				<source>Only one random element (uncached)</source>
@@ -60,8 +60,83 @@
 			<trans-unit id="template.search" resname="template.search">
 				<source>Google maps 2: (uncached search template)</source>
 			</trans-unit>
-			<trans-unit id="template.new" resname="template.new">
-				<source>Create new entries in the frontend</source>
+			<trans-unit id="template.teaser" resname="template.teaser">
+				<source>Teaser</source>
+			</trans-unit>
+			<trans-unit id="template.teaser" resname="template.teaser">
+				<source>Teaser</source>
+			</trans-unit>
+			<trans-unit id="template.elegant" resname="template.elegant">
+				<source>Elegant Responsive Pure CSS3 Slider</source>
+			</trans-unit>
+			<trans-unit id="template.bootstrap" resname="template.bootstrap">
+				<source>Bootstrap 4 Carousel</source>
+			</trans-unit>
+			<trans-unit id="template.collapse" resname="template.collapse">
+				<source>Bootstrap 4 Collapse/Accordion</source>
+			</trans-unit>
+			<trans-unit id="template.modal" resname="template.modal">
+				<source>Bootstrap 4 Modal box</source>
+			</trans-unit>
+			<trans-unit id="template.tab" resname="template.tab">
+				<source>Bootstrap 4 Tab</source>
+			</trans-unit>
+			<trans-unit id="template.ekko" resname="template.ekko">
+				<source>Ekko Lightbox</source>
+			</trans-unit>
+			<trans-unit id="template.elastislide" resname="template.elastislide">
+				<source>Elastislide</source>
+			</trans-unit>
+			<trans-unit id="template.fancybox" resname="template.fancybox">
+				<source>FancyBox</source>
+			</trans-unit>
+			<trans-unit id="template.flexslider2" resname="template.flexslider2">
+				<source>Flexslider 2</source>
+			</trans-unit>
+			<trans-unit id="template.flipster" resname="template.flipster">
+				<source>jQuery.Flipster</source>
+			</trans-unit>
+			<trans-unit id="template.fullwidth" resname="template.fullwidth">
+				<source>jQuery Full Width Image Slider</source>
+			</trans-unit>
+			<trans-unit id="template.galleryview" resname="template.galleryview">
+				<source>GalleryView</source>
+			</trans-unit>
+			<trans-unit id="template.innerfade" resname="template.innerfade">
+				<source>Innerfade</source>
+			</trans-unit>
+			<trans-unit id="template.isotope" resname="template.isotope">
+				<source>Isotope</source>
+			</trans-unit>
+			<trans-unit id="template.lightslider" resname="template.lightslider">
+				<source>Lightslider</source>
+			</trans-unit>
+			<trans-unit id="template.magnific" resname="template.magnific">
+				<source>Magnific Popup</source>
+			</trans-unit>
+			<trans-unit id="template.nanogallery2" resname="template.nanogallery2">
+				<source>nanogallery2</source>
+			</trans-unit>
+			<trans-unit id="template.owl2" resname="template.owl2">
+				<source>OWL Carousel 2</source>
+			</trans-unit>
+			<trans-unit id="template.parallax" resname="template.parallax">
+				<source>Parallax (Simple Parallax Scrolling)</source>
+			</trans-unit>
+			<trans-unit id="template.responsivecarousel" resname="template.responsivecarousel">
+				<source>responsiveCarousel by Basilio Cáceres</source>
+			</trans-unit>
+			<trans-unit id="template.roundabout" resname="template.roundabout">
+				<source>Roundabout</source>
+			</trans-unit>
+			<trans-unit id="template.sgallery" resname="template.sgallery">
+				<source>S Gallery</source>
+			</trans-unit>
+			<trans-unit id="template.skdslider" resname="template.skdslider">
+				<source>SKDSlider</source>
+			</trans-unit>
+			<trans-unit id="template.slick" resname="template.slick">
+				<source>slick carousel</source>
 			</trans-unit>
 			<trans-unit id="templateLayout" resname="templateLayout">
 				<source>Template layout (see manual):</source>

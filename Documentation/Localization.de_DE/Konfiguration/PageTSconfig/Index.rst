@@ -89,3 +89,6 @@ Hier ein Beispiel mit 2 Layouts:
 			}
 		}
 	}
+
+Achtung: ab Camaliga 12 muss man camaliga_pi1 durch das jeweilige Plugin ersetzen, z.B. camaliga_list.
+Und dort gibt es das Feld switchableControllerActions nicht mehr.

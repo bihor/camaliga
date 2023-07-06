@@ -331,16 +331,16 @@
         </el>
       </ROOT>
     </sITEM>
-    <sEXTENDED>
+    <sBOOT>
       <ROOT>
     	<TCEforms>
-          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedOptions</sheetTitle>
+          <sheetTitle>Bootstrap Carousel</sheetTitle>
         </TCEforms>
         <type>array</type>
     	  <el>
-			<settings.extended.enable>
+			<settings.bootstrap.showIndicators>
 				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedVersion</label>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:showIndicators</label>
 					<config>
 					<type>check</type>
 					<items>
@@ -352,10 +352,10 @@
 					  <renderMode>checkbox</renderMode>
 					</config>
 				</TCEforms>
-			</settings.extended.enable>
-			<settings.extended.onlySearchForm>
+			</settings.bootstrap.showIndicators>
+			<settings.bootstrap.showControls>
 				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:onlySearchForm</label>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:showControls</label>
 					<config>
 					<type>check</type>
 					<items>
@@ -367,85 +367,21 @@
 					  <renderMode>checkbox</renderMode>
 					</config>
 				</TCEforms>
-			</settings.extended.onlySearchForm>
-			<settings.extended.restrictSearch>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:restrictSearch</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.extended.restrictSearch>
-			<settings.extended.radiusValues>
+			</settings.bootstrap.showControls>
+			<settings.bootstrap.interval>
               <TCEforms>
-                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:radiusValues</label>
+                <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:interval</label>
                 <config>
                     <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
+                    <size>7</size>
+                    <max>6</max>
                     <eval>trim</eval>
                 </config>
               </TCEforms>
-			</settings.extended.radiusValues>
-			<settings.extended.saveSearch>
+			</settings.bootstrap.interval>
+			<settings.bootstrap.pause>
 				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:saveSearch</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.extended.saveSearch>
-        </el>
-      </ROOT>
-    </sEXTENDED>
-    <sCATS>
-      <ROOT>
-    	<TCEforms>
-          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:categories</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-    	  <el>
-			<settings.defaultCatIDs>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:default_categories</label>
-					<config>
-						<type>select</type>
-						<renderMode>tree</renderMode>
-						<renderType>selectTree</renderType>
-						<treeConfig>
-							<parentField>parent</parentField>
-							<appearance>
-								<maxLevels>99</maxLevels>
-								<expandAll>TRUE</expandAll>
-								<showHeader>TRUE</showHeader>
-							</appearance>
-						</treeConfig>
-						<foreign_table>sys_category</foreign_table>
-						<foreign_table_where> AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting ASC</foreign_table_where>
-						<size>10</size>
-						<autoSizeMax>20</autoSizeMax>
-						<minitems>0</minitems>
-						<maxitems>99</maxitems>
-					</config>
-				</TCEforms>
-			</settings.defaultCatIDs>
-			<settings.normalCategoryMode>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode</label>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:pause</label>
 					<config>
 					<type>select</type>
 					<renderType>selectSingle</renderType>
@@ -455,177 +391,218 @@
 					      <numIndex index="1"></numIndex>
 					  </numIndex>
 					  <numIndex index="1">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode.and</numIndex>
-					      <numIndex index="1">and</numIndex>
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">"hover"</numIndex>
 					  </numIndex>
 					  <numIndex index="2">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode.or</numIndex>
-					      <numIndex index="1">or</numIndex>
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">"none"</numIndex>
 					  </numIndex>
 					  </items>
 					</config>
 				</TCEforms>
-			</settings.normalCategoryMode>
-              <settings.extendedCategoryMode>
-                  <TCEforms>
-                      <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedCategoryMode</label>
-                      <config>
-                          <type>check</type>
-                          <items>
-                              <numIndex index="0">
-                                  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-                                  <numIndex index="1">1</numIndex>
-                              </numIndex>
-                          </items>
-                          <renderMode>checkbox</renderMode>
-                      </config>
-                  </TCEforms>
-              </settings.extendedCategoryMode>
+			</settings.bootstrap.pause>
+			<settings.bootstrap.wrap>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:wrap</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.wrap>
+			<settings.bootstrap.keyboard>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:keyboard</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.keyboard>
         </el>
       </ROOT>
-    </sCATS>
-    <sMAPS>
-      <ROOT>
-    	<TCEforms>
-          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-    	  <el>
-			<settings.maps.key>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.key</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>50</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.key>
-			<settings.maps.language>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.language</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.language>
-			<settings.maps.dontIncludeAPI>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.dontIncludeAPI</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.dontIncludeAPI>
-			<settings.maps.includeRoute>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.includeRoute</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.includeRoute>
-			<settings.maps.clustering>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.clustering</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.clustering>
-			<settings.maps.zoom>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.zoom</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.zoom>
-			<settings.maps.maxZoom>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.maxZoom</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.maxZoom>
-			<settings.maps.startLatitude>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLatitude</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.startLatitude>
-			<settings.maps.startLongitude>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLongitude</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.startLongitude>
-			<settings.maps.tileLayer>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.tileLayer</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>250</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.tileLayer>
-			<settings.maps.attribution>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.attribution</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>250</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.attribution>
-        </el>
-      </ROOT>
-    </sMAPS>
+    </sBOOT>
+	  <sEXTENDED>
+		  <ROOT>
+			  <TCEforms>
+				  <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedOptions</sheetTitle>
+			  </TCEforms>
+			  <type>array</type>
+			  <el>
+				  <settings.extended.enable>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedVersion</label>
+						  <config>
+							  <type>check</type>
+							  <items>
+								  <numIndex index="0">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+									  <numIndex index="1">1</numIndex>
+								  </numIndex>
+							  </items>
+							  <renderMode>checkbox</renderMode>
+						  </config>
+					  </TCEforms>
+				  </settings.extended.enable>
+				  <settings.extended.onlySearchForm>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:onlySearchForm</label>
+						  <config>
+							  <type>check</type>
+							  <items>
+								  <numIndex index="0">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+									  <numIndex index="1">1</numIndex>
+								  </numIndex>
+							  </items>
+							  <renderMode>checkbox</renderMode>
+						  </config>
+					  </TCEforms>
+				  </settings.extended.onlySearchForm>
+				  <settings.extended.restrictSearch>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:restrictSearch</label>
+						  <config>
+							  <type>check</type>
+							  <items>
+								  <numIndex index="0">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+									  <numIndex index="1">1</numIndex>
+								  </numIndex>
+							  </items>
+							  <renderMode>checkbox</renderMode>
+						  </config>
+					  </TCEforms>
+				  </settings.extended.restrictSearch>
+				  <settings.extended.radiusValues>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:radiusValues</label>
+						  <config>
+							  <type>input</type>
+							  <size>15</size>
+							  <max>25</max>
+							  <eval>trim</eval>
+						  </config>
+					  </TCEforms>
+				  </settings.extended.radiusValues>
+				  <settings.extended.saveSearch>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:saveSearch</label>
+						  <config>
+							  <type>check</type>
+							  <items>
+								  <numIndex index="0">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+									  <numIndex index="1">1</numIndex>
+								  </numIndex>
+							  </items>
+							  <renderMode>checkbox</renderMode>
+						  </config>
+					  </TCEforms>
+				  </settings.extended.saveSearch>
+			  </el>
+		  </ROOT>
+	  </sEXTENDED>
+	  <sCATS>
+		  <ROOT>
+			  <TCEforms>
+				  <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:categories</sheetTitle>
+			  </TCEforms>
+			  <type>array</type>
+			  <el>
+				  <settings.defaultCatIDs>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:default_categories</label>
+						  <config>
+							  <type>select</type>
+							  <renderMode>tree</renderMode>
+							  <renderType>selectTree</renderType>
+							  <treeConfig>
+								  <parentField>parent</parentField>
+								  <appearance>
+									  <maxLevels>99</maxLevels>
+									  <expandAll>TRUE</expandAll>
+									  <showHeader>TRUE</showHeader>
+								  </appearance>
+							  </treeConfig>
+							  <foreign_table>sys_category</foreign_table>
+							  <foreign_table_where> AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting ASC</foreign_table_where>
+							  <size>10</size>
+							  <autoSizeMax>20</autoSizeMax>
+							  <minitems>0</minitems>
+							  <maxitems>99</maxitems>
+						  </config>
+					  </TCEforms>
+				  </settings.defaultCatIDs>
+				  <settings.normalCategoryMode>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode</label>
+						  <config>
+							  <type>select</type>
+							  <renderType>selectSingle</renderType>
+							  <items>
+								  <numIndex index="0">
+									  <numIndex index="0">TypoScript</numIndex>
+									  <numIndex index="1"></numIndex>
+								  </numIndex>
+								  <numIndex index="1">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode.and</numIndex>
+									  <numIndex index="1">and</numIndex>
+								  </numIndex>
+								  <numIndex index="2">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:normalCategoryMode.or</numIndex>
+									  <numIndex index="1">or</numIndex>
+								  </numIndex>
+							  </items>
+						  </config>
+					  </TCEforms>
+				  </settings.normalCategoryMode>
+				  <settings.extendedCategoryMode>
+					  <TCEforms>
+						  <label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:extendedCategoryMode</label>
+						  <config>
+							  <type>check</type>
+							  <items>
+								  <numIndex index="0">
+									  <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+									  <numIndex index="1">1</numIndex>
+								  </numIndex>
+							  </items>
+							  <renderMode>checkbox</renderMode>
+						  </config>
+					  </TCEforms>
+				  </settings.extendedCategoryMode>
+			  </el>
+		  </ROOT>
+	  </sCATS>
   </sheets>
 </T3DataStructure>

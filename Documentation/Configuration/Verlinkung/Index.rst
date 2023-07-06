@@ -45,9 +45,12 @@ that you can also link to the single view of a camaliga element directly in the 
     typolink {
         parameter = 112
         additionalParams.data = field:uid
-        additionalParams.wrap = &tx_camaliga_pi1[content]=|&tx_camaliga_pi1[controller]=Content&tx_camaliga_pi1[action]=show
+        additionalParams.wrap = &tx_camaliga_show[content]=|&tx_camaliga_show[controller]=Content&tx_camaliga_show[action]=show
         useCacheHash = 1
     }
     // Do not force link generation when the records are hidden or deleted.
     forceLink = 0
   }
+
+Note: replace tx_camaliga_show with tx_camaliga_pi1 in Camaliga version below 12.
+Or replace it with tx_camaliga_showextended if you are not using the regular single-view.

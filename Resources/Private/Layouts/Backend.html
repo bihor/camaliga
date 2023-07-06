@@ -1,26 +1,16 @@
-<html
-        xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-        xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
-        data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<be:moduleLayout>
-    <f:be.pageRenderer
-            includeRequireJsModules="{
-            0:'TYPO3/CMS/Backend/ContextMenu'
-        }"
-    />
-
-    <be:moduleLayout.menu identifier="CamaligaModuleMenu">
-        <be:moduleLayout.menuItem label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:index.title')}" uri="{f:uri.action(controller: 'Backend', action: 'index')}"/>
-        <be:moduleLayout.menuItem label="{f:translate(key: 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title')}" uri="{f:uri.action(controller: 'Backend', action: 'thumb')}"/>
-    </be:moduleLayout.menu>
-
-    <be:moduleLayout.button.shortcutButton displayName="Create a shortcut" />
-
-    <div id="camaliga-main-content">
-        <f:flashMessages />
-        <f:render section="main" />
-    </div>
-</be:moduleLayout>
+<script>
+    require(["jquery"], function($) {
+        $(document).ready(function(){
+            $( "#sortable" ).sortable();
+            $( "#sortable" ).disableSelection();
+        });
+    });
+</script>
+<div id="camaliga-main-content">
+    <f:flashMessages />
+    <f:render section="Content" />
+</div>
 
 </html>

@@ -290,8 +290,7 @@ class CsvExportTask extends AbstractTask
 		$this->configurationManager->setConfiguration($configurationArray);
 		
 		// Step 1: select all categories of the current language
-		$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
 		$all_cats = $categoryRepository->getAllCats('sorting', 'asc', []);
 		
 		// Step 2: store more category datas in arrays
@@ -317,18 +316,26 @@ class CsvExportTask extends AbstractTask
 		->andWhere(
 			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \PDO::PARAM_INT))
 		)
-		->execute();
-		while ($row = $statement->fetch()) {
+		->executeQuery();
+		while ($row = $statement->fetchAssociative()) {
 				$uid_cam = $row['uid_foreign'];
 				$uid_cat = $row['uid_local'];
-				if (!is_array($cat_rel[$uid_cam]))
-					$cat_rel[$uid_cam] = array();
-				if ($cat_rel[$uid_cam][$cat_parents[$uid_cat]])
+				if (!isset($cat_rel[$uid_cam]) || !is_array($cat_rel[$uid_cam]))
+					$cat_rel[$uid_cam] = [];
+				if (isset($cat_rel[$uid_cam][$cat_parents[$uid_cat]]) && $cat_rel[$uid_cam][$cat_parents[$uid_cat]])
 					$cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $cat_del;
-				$cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $all_cats[$uid_cat]['title'];
+                if (isset($cat_rel[$uid_cam][$cat_parents[$uid_cat]]))
+    				$cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $all_cats[$uid_cat]['title'];
+                else
+                    $cat_rel[$uid_cam][$cat_parents[$uid_cat]] = $all_cats[$uid_cat]['title'];
 				foreach ($catsArray as $aCat) {
-					if ($aCat == $uid_cat)	// gesuchte Kategorie vorhanden?
-						$cat_counts[$uid_cam]++;
+					if ($aCat == $uid_cat) {
+                        // gesuchte Kategorie vorhanden?
+                        if (isset($cat_counts[$uid_cam]))
+                            $cat_counts[$uid_cam]++;
+                        else
+                            $cat_counts[$uid_cam] = 1;
+                    }
 				}
 		}
 				
@@ -344,10 +351,10 @@ class CsvExportTask extends AbstractTask
 			$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \PDO::PARAM_INT))
 		)
 		->orderBy('sorting')
-		->execute();
-		while ($row = $statement->fetch()) {
+		->executeQuery();
+		while ($row = $statement->fetchAssociative()) {
 				$uid = $row['uid'];
-				if (!$cats || ($cat_counts[$uid]>0)) {
+				if (!$cats || (isset($cat_counts[$uid]) && $cat_counts[$uid]>0)) {
 					if ($i > 0)
 						$content .= $ln;
 					$j = 0;

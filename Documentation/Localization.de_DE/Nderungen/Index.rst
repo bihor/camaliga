@@ -250,11 +250,11 @@ Version     Änderungen
             AddPublicResourcesViewHelper: addSlash-argument erneut aktiviert.
 
             TCA-Bugfix für TYPO3 10.
-11.0.1      Erste Version für TYPO3 11. Kein Support mehr für TYPO3 9.
+11.0        Erste Version für TYPO3 11. Kein Support mehr für TYPO3 9.
 
             Positionsbestimmung mittels Openstreetmap-API ist nun auch möglich.
 
-            Breaking: Template Fractionslider entfernt! Dafür das Template nanogallery2 hinzugefügt.
+            Breaking: Template Fractionslider entfernt! Dafür das Template Nanogallery2 hinzugefügt.
 
             Breaking: den Slug-Task durch einen Slug-Command ersetzt. Man sollte den Task vor dem Update löschen.
             Andernfalls muss man "Rebuild PHP Autoload Information" ausführen.
@@ -267,13 +267,13 @@ Version     Änderungen
             Ordner css nach Css umbenannt!
 
             ListExtended-Template: die Suche nutzt jetzt auch die search-Action.
-11.1.0      Den Viewhelper cam:addPublicResources ersetzt (da "deprecated"). Benutze f:asset.css oder f:asset.script stattdessen.
+11.1        Den Viewhelper cam:addPublicResources ersetzt (da "deprecated"). Benutze f:asset.css oder f:asset.script stattdessen.
 
             Neue Methode zum ändern des Seitentitels und der Metatags. Utility PageTitle entfernt.
 
             Bugfix für TYPO3 11 (z.B. das Backend-Layout an TYPO3 11 angepasst) und PHP 8.
 
-11.2.0      Der ke_search Indexer braucht nun mind. ke_search Version 4.0.0.
+11.2        Der ke_search Indexer braucht nun mind. ke_search Version 4.0.0.
 
             searchCoordinatesInBE hinzugefügt zur Extension-Konfiguration. Damit kann man die Suche nach den Koordinaten einer Adresse im Backend einschalten.
 
@@ -281,9 +281,22 @@ Version     Änderungen
 
             Bugfix für PHP 8.
 
-11.3.0      Setting extendedCategoryMode hinzugefügt. Leere Kategorie-Einträge werden nun beim Suchformular ignoriert.
+11.3        Setting extendedCategoryMode hinzugefügt. Leere Kategorie-Einträge werden nun beim Suchformular ignoriert.
 
             Bugfix: Metadaten der Bilder werden nun wieder richtig ausgegeben.
 
             Bugfix: ignoriere die Datensatzsammlung nicht. Verhindert, dass man sich alle Camaliga-Elemente ansehen kann.
+
+12.0        Breaking: alle Plugins müssen per Update-Skript (im Install-Tool) umgestellt werden!
+
+            Breaking: der Viewhelper cam:addPublicResources wurde entfernt.
+
+            Breaking: die Templates AdGallery, Coolcarousel und Test wurden entfernt.
+
+            Breaking: der Slug-Task wurde gelöscht.
+
+            Neue Konfigurationsmöglichkeit: pluginForLinks (für ke_search).
+
+            Achtung: wenn man eigene Templates benutzt, muss man z.B. pluginName="show" zu Links zu Single-Seiten hinzufügen,
+            falls man pageUid="{settings.showId}" benutzt.
 ==========  =====================================================================================================================

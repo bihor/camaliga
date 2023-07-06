@@ -413,8 +413,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $link
 	 */
 	public function getLinkResolved() {
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$contentRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
+		$contentRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
 		$output = '';
 		$linkArray = explode('?', $this->link);
 		if ($linkArray[0] == 't3://file') {
@@ -935,8 +934,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return array categories
 	 */
 	public function getCategoriesAndParents() {
-		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$configurationManager = $objectManager->get('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
+		$configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
 		$settings = $configurationManager->getConfiguration(
 			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
@@ -948,10 +946,10 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 				$catStoragePids = explode(',', $categorySettings['storagePids']);
 			}
 		} else {
-			$contentRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
+			$contentRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
 			$catStoragePids = $contentRepository->getStoragePids();
 		}
-		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$categoryRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
 		$all_cats = $categoryRepository->getAllCats($categorySettings['sortBy'], $categorySettings['orderBy'], $catStoragePids);
 		$used_cats = [];
 		foreach ($this->getCategories() as $category) {
@@ -1027,8 +1025,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 						$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($orig_uid, \PDO::PARAM_INT))
 					)
 					->setMaxResults(1)
-					->execute();
-					while ($row = $statement->fetch()) {
+					->executeQuery();
+					while ($row = $statement->fetchAssociative()) {
 						$extended[$field] = $row[$field];
 					}
 				}
@@ -1052,7 +1050,6 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 			->set('tablenames', 'tx_camaliga_domain_model_content')
 			->set('sorting_foreign', 1)
 			->set('table_local', 'sys_file')
-			->execute();
+			->executeStatement();
 	}
 }
-?>

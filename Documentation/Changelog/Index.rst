@@ -243,7 +243,7 @@ Version     Changes
             AddPublicResourcesViewHelper: addSlash-argument activated again.
 
             TCA-Bugfix for TYPO3 10.
-11.0.1      Now for TYPO3 11.3 too. Support for TYPO3 9 dropped.
+11.0        Now for TYPO3 11.3 too. Support for TYPO3 9 dropped.
 
             Using the Openstreetmap-API for finding a position is now possible too.
 
@@ -260,13 +260,13 @@ Version     Changes
             Folder css renamed to Css!
 
             ListExtended-Template: the search uses now the search-action too.
-11.1.0      Replacement of the Viewhelper cam:addPublicResources. It is now deprecated. Use f:asset.css or f:asset.script instead.
+11.1        Replacement of the Viewhelper cam:addPublicResources. It is now deprecated. Use f:asset.css or f:asset.script instead.
 
             New method for changing the page title and metatags. Utility PageTitle removed.
 
             Bugfix for TYPO3 11 (e.g. backend-layout adapted for TYPO3 11.) and PHP 8.
 
-11.2.0      The ke_search Indexer needs now at least ke_search version 4.0.0.
+11.2        The ke_search Indexer needs now at least ke_search version 4.0.0.
 
             searchCoordinatesInBE added to the extension configuration. Searching for coordinates is now possible in the BE too.
 
@@ -274,9 +274,22 @@ Version     Changes
 
             Bugfix for PHP 8.
 
-11.3.0      Setting extendedCategoryMode added. Empty category entries will be ignored at the search options.
+11.3        Setting extendedCategoryMode added. Empty category entries will be ignored at the search options.
 
             Bugfix: metadata for images now working again.
 
             Bugfix: don´t ignore given storage PIDs in the show actions. Prevent viewing all camaliga-entries at one place.
+
+12.0        Breaking: all plugins must be changed via an update-script (in the install-tool)!
+
+            Breaking: the Viewhelper cam:addPublicResources was removed.
+
+            Breaking: removed the templates AdGallery, Coolcarousel and Test.
+
+            Breaking: the slug-task was removed.
+
+            New configuration option: pluginForLinks (for ke_search).
+
+            Note: if you use own templates, you need to add e.g. pluginName="show" to links to single-pages if pageUid="{settings.showId}"
+            is set.
 ==========  ==============================================================================================================================

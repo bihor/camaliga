@@ -55,6 +55,10 @@ class KeSearchIndexer extends IndexerBase
             if (!$actionForLinks) {
             	$actionForLinks = 'show';
             }
+            $pluginForLinks = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'pluginForLinks');
+            if (!$pluginForLinks) {
+                $pluginForLinks = 'show';
+            }
 
             if (!isset($indexerConfig['sysfolder'])|| empty($indexerConfig['sysfolder'])) {
                 throw new \Exception('No folder specified. Please set the folder which should be indexed in the indexer configuration!');
@@ -80,10 +84,10 @@ class KeSearchIndexer extends IndexerBase
                 ->select('*')
                 ->from($table)
                 ->where($queryBuilder->expr()->in( 'pid', $folders))
-                ->execute();
+                ->executeQuery();
 
             // Loop through the records and write them to the index.
-            while ($record = $statement->fetch()) {
+            while ($record = $statement->fetchAssociative()) {
                     // compile the information which should go into the index
                     // the field names depend on the table you want to index!
                     $title = strip_tags($record['title']);
@@ -94,9 +98,9 @@ class KeSearchIndexer extends IndexerBase
 																	  : ' ' . strip_tags($record['country']);
 					$fullContent = $title . "\n" . $abstract . "\n" . $content . "\n" .$place;
 					$tags = ''; // oder '#camaliga#';
-					$params = '&tx_camaliga_pi1[content]=' . $record['uid'];
+					$params = '&tx_camaliga_' . $pluginForLinks . '[content]=' . $record['uid'];
 					if ($dontSwitchContAct) {
-						$params = '&tx_camaliga_pi1[action]=' . $actionForLinks . '&tx_camaliga_pi1[controller]=Content' . $params;
+						$params = '&tx_camaliga_' . $pluginForLinks . '[action]=' . $actionForLinks . '&tx_camaliga_' . $pluginForLinks . '[controller]=Content' . $params;
 					}
 
                     // Additional information

@@ -51,17 +51,23 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
 	 */
 	public function render()
 	{
-	    if ($_GET['tx_camaliga_pi1'])
-	        $camaligaArray = $_GET['tx_camaliga_pi1'];
-	    else if ($_POST['tx_camaliga_pi1'])
-	    	$camaligaArray = $_POST['tx_camaliga_pi1'];
-	    else
-	    	$camaligaArray = array();
-	    $uid = intval($camaligaArray['content']);
+	    if (isset($_GET['tx_camaliga_show']))
+	        $camaligaArray = $_GET['tx_camaliga_show'];
+	    else if (isset($_POST['tx_camaliga_show']))
+	    	$camaligaArray = $_POST['tx_camaliga_show'];
+	    else if (isset($_GET['tx_camaliga_showextended']))
+            $camaligaArray = $_GET['tx_camaliga_showextended'];
+        else if (isset($_POST['tx_camaliga_showextended']))
+            $camaligaArray = $_POST['tx_camaliga_showextended'];
+        else
+	    	$camaligaArray = [];
+        if (isset($camaligaArray['content']))
+	        $uid = intval($camaligaArray['content']);
+        else
+            $uid = 0;
 	    //$lang = intval($_GET['L']);
         $row = [];
         if ($uid > 0) {
-        	//$contentRepository = $this->objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\ConentRepository');
             $entry = $this->contentRepository->findOneByUid2($uid);
             if ($entry && $entry->getUid()) {
             	$row['camaliga_title'] = $entry->getTitle();
@@ -90,4 +96,3 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
 		);
 	}
 }
-?>

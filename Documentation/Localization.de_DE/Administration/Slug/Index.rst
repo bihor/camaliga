@@ -25,7 +25,7 @@ Ab TYPO3 9 kann man routeEnhancers benutzen, um das Format der Links zu Einzelse
 	    type: Extbase
 	    limitToPages: [24]
 	    extension: Camaliga
-	    plugin: Pi1
+	    plugin: Show
 	    routes:
 	      - { routePath: '/more/{camaliga_uid}', _controller: 'Content::show', _arguments: {'camaliga_uid': 'content'} }
 	    defaultController: 'Content::list'
@@ -38,7 +38,7 @@ In diesem Beispiel wird die uid eines Camaliga-Elements hinter "more" eingefügt
 		type: Extbase
 		limitToPages: [24]
 		extension: Camaliga
-		plugin: Pi1
+		plugin: Show
 		routes:
 		  - { routePath: '/eintrag/{camaliga_title}', _controller: 'Content::show', _arguments: {'camaliga_title': 'content'} }
 		defaultController: 'Content::list'
@@ -48,10 +48,17 @@ In diesem Beispiel wird die uid eines Camaliga-Elements hinter "more" eingefügt
 			tableName: 'tx_camaliga_domain_model_content'
 			routeFieldName: 'slug'
 
-Achtung 1: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug-Felder auch befüllt sind. Dazu kann man einen Scheduler-Task von camaliga benutzen.
+Achtung 1: wenn man das slug-Feld benutzt, sollte man sicher sein, dass die slug-Felder auch befüllt sind.
+Dazu kann man einen Scheduler-Task von camaliga benutzen.
 
 Achtung 2: wenn man 2 Felder für das slug-Feld konfiguriert hat, wird '_' oder '-' statt '/' als Separator benutzt, wegen diesem Problem:
 https://forge.typo3.org/issues/87333
+
+Achtung 3: wenn man die "Einzelansicht 2" (erweiterte Einzelansicht) benutzt, muss man Content::show durch
+Content::showExtended ersetzen.
+
+Achtung 4: vor Camaliga 12 muss man bei plugin: Pi1 statt Show benutzen. Und ab Camaliga 12 muss man Show evtl. durch
+Showextended ersetzen, wenn man nicht die normale Single-Ansicht benutzt!
 
 
 Man kann auch Kategorien in den routeEnhancers verwenden. Allerdings geht das nur mit Kategorien eines "parents". 
@@ -61,7 +68,7 @@ Wenn der parent die ID 10 hat, kann man so einen routeEnhancer für die Suche na
       CatCamaliga:
         type: Extbase
         extension: Camaliga
-        plugin: Pi1
+        plugin: Show
         limitToPages:
           - 45
         routes:

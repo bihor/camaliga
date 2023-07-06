@@ -39,7 +39,7 @@
 				<source>Carousel: elements are side by side</source>
 				<target>Karussell: Elemente nebeneinander</target>
 			</trans-unit>
-			<trans-unit id="template.separated" resname="template.separated">
+			<trans-unit id="template.carouselseparated" resname="template.carouselseparated">
 				<source>Carousel: text and images separated</source>
 				<target>Karussell: Text und Bild getrennt voneinander</target>
 			</trans-unit>
@@ -57,15 +57,15 @@
 			</trans-unit>
 			<trans-unit id="template.showextended" resname="template.showextended">
 				<source>Single view 2: automatic extended version</source>
-				<target>Einzelansicht 2: automatisch erweitere Version</target>
-			</trans-unit>
-			<trans-unit id="template.showOrExtended" resname="template.showOrExtended">
-				<source>Single view 3: normal or extended version</source>
-				<target>Einzelansicht 3: normale oder erweitere Version</target>
+				<target>Einzelansicht 2: automatisch erweitere Version (unterstützt auch die normale Version)</target>
 			</trans-unit>
 			<trans-unit id="template.map" resname="template.map">
 				<source>map view (google maps)</source>
 				<target>Kartenansicht (Google maps)</target>
+			</trans-unit>
+			<trans-unit id="template.openstreetmap" resname="template.openstreetmap">
+				<source>Openstreetmap + Leaflet</source>
+				<target>Openstreetmap + Leaflet</target>
 			</trans-unit>
 			<trans-unit id="template.random" resname="template.random">
 				<source>Only one random element (uncached)</source>
@@ -79,9 +79,86 @@
 				<source>Google maps 2: (uncached search template)</source>
 				<target>Google map 2: automatisch erweitere Version (ungecachtes search-Template)</target>
 			</trans-unit>
+			<trans-unit id="template.teaser" resname="template.teaser">
+				<source>Teaser</source>
+				<target>Teaser</target>
+			</trans-unit>
+			<trans-unit id="template.elegant" resname="template.elegant">
+				<source>Elegant Responsive Pure CSS3 Slider</source>
+				<target>Elegant Responsive Pure CSS3 Slider</target>
+			</trans-unit>
 			<trans-unit id="template.new" resname="template.new">
 				<source>Create new entries in the frontend</source>
 				<target>Formular für neue Einträge im FE</target>
+			</trans-unit>
+			<trans-unit id="template.bootstrap" resname="template.bootstrap">
+				<target>Bootstrap 4 Carousel</target>
+			</trans-unit>
+			<trans-unit id="template.collapse" resname="template.collapse">
+				<target>Bootstrap 4 Collapse/Accordion</target>
+			</trans-unit>
+			<trans-unit id="template.modal" resname="template.modal">
+				<target>Bootstrap 4 Modal-Box</target>
+			</trans-unit>
+			<trans-unit id="template.tab" resname="template.tab">
+				<target>Bootstrap 4 Tab</target>
+			</trans-unit>
+			<trans-unit id="template.ekko" resname="template.ekko">
+				<target>Ekko Lightbox</target>
+			</trans-unit>
+			<trans-unit id="template.elastislide" resname="template.elastislide">
+				<target>Elastislide</target>
+			</trans-unit>
+			<trans-unit id="template.fancybox" resname="template.fancybox">
+				<target>FancyBox</target>
+			</trans-unit>
+			<trans-unit id="template.flexslider2" resname="template.flexslider2">
+				<target>Flexslider 2</target>
+			</trans-unit>
+			<trans-unit id="template.flipster" resname="template.flipster">
+				<target>jQuery.Flipster</target>
+			</trans-unit>
+			<trans-unit id="template.fullwidth" resname="template.fullwidth">
+				<target>jQuery Full Width Image Slider</target>
+			</trans-unit>
+			<trans-unit id="template.galleryview" resname="template.galleryview">
+				<target>GalleryView</target>
+			</trans-unit>
+			<trans-unit id="template.innerfade" resname="template.innerfade">
+				<target>Innerfade</target>
+			</trans-unit>
+			<trans-unit id="template.isotope" resname="template.isotope">
+				<target>Isotope</target>
+			</trans-unit>
+			<trans-unit id="template.lightslider" resname="template.lightslider">
+				<target>Lightslider</target>
+			</trans-unit>
+			<trans-unit id="template.magnific" resname="template.magnific">
+				<target>Magnific Popup</target>
+			</trans-unit>
+			<trans-unit id="template.nanogallery2" resname="template.nanogallery2">
+				<target>nanogallery2</target>
+			</trans-unit>
+			<trans-unit id="template.owl2" resname="template.owl2">
+				<target>OWL Carousel 2</target>
+			</trans-unit>
+			<trans-unit id="template.parallax" resname="template.parallax">
+				<target>Parallax (Simple Parallax Scrolling)</target>
+			</trans-unit>
+			<trans-unit id="template.responsivecarousel" resname="template.responsivecarousel">
+				<target>responsiveCarousel by Basilio Cáceres</target>
+			</trans-unit>
+			<trans-unit id="template.roundabout" resname="template.roundabout">
+				<target>Roundabout</target>
+			</trans-unit>
+			<trans-unit id="template.sgallery" resname="template.sgallery">
+				<target>S Gallery</target>
+			</trans-unit>
+			<trans-unit id="template.skdslider" resname="template.skdslider">
+				<target>SKDSlider</target>
+			</trans-unit>
+			<trans-unit id="template.slick" resname="template.slick">
+				<target>slick carousel</target>
 			</trans-unit>
 			<trans-unit id="templateLayout" resname="templateLayout">
 				<source>Template layout (see manual):</source>

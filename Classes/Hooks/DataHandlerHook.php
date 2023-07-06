@@ -70,8 +70,8 @@ class DataHandlerHook {
                         ->select('street', 'city', 'zip', 'country', 'latitude', 'longitude')
                         ->from($table)
                         ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)))
-                        ->execute();
-                    while ($row = $statement->fetch()) {
+                        ->executeQuery();
+                    while ($row = $statement->fetchAssociative()) {
                         $street = $row['street'];
                         $zip = $row['zip'];
                         $city = $row['city'];
@@ -90,7 +90,7 @@ class DataHandlerHook {
                             ->set('latitude', (float)$coordinates['latitude'])
                             ->set('longitude', (float)$coordinates['longitude'])
                         //    ->set('custom3', 'DEBUG1: ' . $ccordinates['debug'])
-                            ->execute();
+                            ->executeStatement();
                     }
                 }
             }

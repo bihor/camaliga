@@ -372,8 +372,8 @@ class CsvImportTask extends AbstractTask
 				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \PDO::PARAM_INT))
 			)
 			->orderBy('sorting')
-			->execute();
-			while ($row = $statement->fetch()) {
+			->executeQuery();
+			while ($row = $statement->fetchAssociative()) {
 				$uids[] = $row['uid'];
 			}
 					
@@ -383,7 +383,7 @@ class CsvImportTask extends AbstractTask
 			->where(
 				$queryBuilder->expr()->in('uid_foreign', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
 			)
-			->execute();
+			->executeStatement();
 			
 			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
 			$affectedRows = $queryBuilder
@@ -391,7 +391,7 @@ class CsvImportTask extends AbstractTask
 			->where(
 				$queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
 			)
-			->execute();
+			->executeStatement();
 		}
 		
 		// Step 0: init
@@ -418,12 +418,11 @@ class CsvImportTask extends AbstractTask
 		if ($catpage) {
 			$cat_pids[] = $pid;
 		}
-		$objectManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-		$categoryRepository = $objectManager->get('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
 		$all_cats = $categoryRepository->getAllCats('uid', 'asc', $cat_pids);
 		foreach ($all_cats as $row) {
 			$catArray[$row['title']] = $row['uid'];
-			if (!is_array($catParentArray[$row['parent']])) {
+			if (!isset($catParentArray[$row['parent']]) || !is_array($catParentArray[$row['parent']])) {
 				$catParentArray[$row['parent']] = [];
 			}
 			$catParentArray[$row['parent']][$row['title']] = $row['uid'];
@@ -444,8 +443,8 @@ class CsvImportTask extends AbstractTask
 			)
 			->orderBy('sorting', 'DESC')
 			->setMaxResults(1)
-			->execute();
-			while ($row = $statement->fetch()) {
+			->executeQuery();
+			while ($row = $statement->fetchAssociative()) {
 				$sorting = $row['sorting'];
 			}
 		}
@@ -462,7 +461,7 @@ class CsvImportTask extends AbstractTask
 			$fields_values['tstamp'] = time();
 			$fields_values['crdate'] = time();
 			$fields_values['sys_language_uid'] = $syslanguid;
-			$fields_values['cruser_id'] = $GLOBALS['BE_USER']->user["uid"];
+		//	$fields_values['cruser_id'] = $GLOBALS['BE_USER']->user["uid"];
 			$handle = fopen ($newestFile, "r");              // Datei zum Lesen oeffnen
 
 			if ($separator) {
@@ -555,7 +554,7 @@ class CsvImportTask extends AbstractTask
 			$success_camaliga = $queryBuilder
 			->insert('tx_camaliga_domain_model_content')
 			->values($values)
-			->execute();
+			->executeStatement();
 			if ($success_camaliga) {
 				$values['uid'] = $queryBuilder->getConnection()->lastInsertId();
 				
@@ -563,15 +562,15 @@ class CsvImportTask extends AbstractTask
 				$queryBuilder = $connection->createQueryBuilder();
 				$statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
 					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
-				)->execute();
-				$record = $statement->fetch();
+				)->executeQuery();
+				$record = $statement->fetchAssociative();
 				$slug = $slugHelper->generate($record, $record['pid']);
 					
 				// Update
 				$queryBuilder = $connection->createQueryBuilder();
 				$queryBuilder->update('tx_camaliga_domain_model_content')->where(
 					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
-				)->set('slug', $slug)->execute();
+				)->set('slug', $slug)->executeStatement();
 			} else {
 				$values['uid'] = 0;
 				$success_global = FALSE;
@@ -639,7 +638,7 @@ class CsvImportTask extends AbstractTask
 							$success_cats = $queryBuilder
 							->insert('sys_category_record_mm')
 							->values($mmInsertArray)
-							->execute();
+							->executeStatement();
 							if ($success_cats) {
 								$cats++;
 							} else {
@@ -658,7 +657,7 @@ class CsvImportTask extends AbstractTask
 					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
 				)
 				->set('categories', $cats)
-				->execute();
+				->executeStatement();
 			}
 		}
 		

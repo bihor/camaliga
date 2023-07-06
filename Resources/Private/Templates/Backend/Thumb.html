@@ -1,14 +1,16 @@
+<html
+		xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+		xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+		xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+		data-namespace-typo3-fluid="true">
 <f:layout name="Backend" />
-<f:section name="main">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<style>
-	  #sortable { list-style-type: none; margin: 0; padding: 0; }
-	  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; min-height: 75px; }
-	  #sortable li h3 { margin-top: 5px; }
-	  #sortable .flexme { display: flex;-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row; }
-	  #sortable .flexme div {padding: 0 8px;}
-	</style>
+<f:section name="Content">
+	<f:be.pageRenderer
+			includeCssFiles="{0: 'EXT:camaliga/Resources/Public/Css/Backend.css'}"
+			includeJsFiles="{0: 'EXT:camaliga/Resources/Public/JavaScript/Backend.js'}"
+	/>
 
+	<!-- link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" -->
 	<h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title" /></h1>
 	<f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" />
 
@@ -34,23 +36,8 @@
 		</f:for>
 		</ul>
 		<br>
-		<f:form.button type="button" onclick="saveorder();" class="btn btn-primary"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button>
+		<f:form.button type="button" class="btn btn-primary" id="cambutso"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button>
 	</f:form>
 
-	<script>
-	  require(["jquery","jquery-ui/sortable"], function($) {
-		  $(document).ready(function(){
-			  $( "#sortable" ).sortable();
-			  $( "#sortable" ).disableSelection();
-		  });
-	  });
-	  function saveorder() {
-		  let sorting = 0;
-		  $('ul#sortable li').each(function( index ) {
-			  sorting = (index+1)*10;
-			  $('#e' + $( this ).attr('id')).val(sorting);
-		  });
-		  $('#thumbform').submit();
-	  }
-	</script>
 </f:section>
+</html>

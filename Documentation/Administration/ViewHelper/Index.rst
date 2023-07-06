@@ -18,7 +18,7 @@
 ViewHelpers
 ^^^^^^^^^^^
 
-- Camaliga comes with two ViewHelpers: one for the camaliga content and one to include JS- or CSS-files.
+- Camaliga comes with one/two ViewHelpers: one for the camaliga content and one to include JS- or CSS-files.
 
 - The ViewHelper for the camaliga content can be used at single pages. Why?
   If you want to display camaliga-content on different places on your page, you can use this ViewHelper in your
@@ -40,7 +40,7 @@ ViewHelpers
   and
   https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Asset/Css.html
 
-  In TYPO3 9 you can use this one.
+  In TYPO3 9 you can use this one. From TYPO3 12 you can not use it anymore!
   First set the namespace at the top of the template like above.
   Then use the ViewHelper to include JS- oder CSS-files like this::
 

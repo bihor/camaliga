@@ -331,6 +331,89 @@
         </el>
       </ROOT>
     </sITEM>
+    <sCOLLAPSE>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>Bootstrap Collapse</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.bootstrap.expanded>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:expanded</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:expandall</numIndex>
+					      <numIndex index="1">all</numIndex>
+					  </numIndex>
+					  <numIndex index="3">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.expanded>
+			<settings.bootstrap.parent>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:parent</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.parent>
+			<settings.bootstrap.toggle>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:toggle</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">collapse</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.toggle>
+        </el>
+      </ROOT>
+    </sCOLLAPSE>
     <sEXTENDED>
       <ROOT>
     	<TCEforms>
@@ -484,148 +567,5 @@
         </el>
       </ROOT>
     </sCATS>
-    <sMAPS>
-      <ROOT>
-    	<TCEforms>
-          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-    	  <el>
-			<settings.maps.key>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.key</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>50</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.key>
-			<settings.maps.language>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.language</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.language>
-			<settings.maps.dontIncludeAPI>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.dontIncludeAPI</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.dontIncludeAPI>
-			<settings.maps.includeRoute>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.includeRoute</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.includeRoute>
-			<settings.maps.clustering>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.clustering</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.clustering>
-			<settings.maps.zoom>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.zoom</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.zoom>
-			<settings.maps.maxZoom>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.maxZoom</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.maxZoom>
-			<settings.maps.startLatitude>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLatitude</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.startLatitude>
-			<settings.maps.startLongitude>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLongitude</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.startLongitude>
-			<settings.maps.tileLayer>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.tileLayer</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>250</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.tileLayer>
-			<settings.maps.attribution>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.attribution</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>250</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.attribution>
-        </el>
-      </ROOT>
-    </sMAPS>
   </sheets>
 </T3DataStructure>

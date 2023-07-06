@@ -1,6 +1,6 @@
 # camaliga
 
-version 11.3.1
+version 12.0.0
 
 A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick. 
 Bootstrap 4 support. Indexer for ke_search. Many features.
@@ -38,3 +38,11 @@ Version 11.3:
 
 Version 11.3.1:
 - Bugfix for PHP 8.
+
+Version 12.0:
+- Breaking: all plugins must be changed via an update-script (in the install-tool)!
+- Breaking: the Viewhelper cam:addPublicResources was removed.
+- Breaking: removed the templates AdGallery, Coolcarousel and Test.
+- Breaking: the slug-task was removed.
+- New configuration option: pluginForLinks (for ke_search).
+- Note: if you use own templates, you need to add e.g. pluginName="show" to links to single-pages if pageUid="{settings.showId}" is set.

@@ -104,7 +104,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		// keine gute Idee: Mutter muss 0 sein, aber nur wenn die Mutter vorhanden ist (die könnte auch in einem anderen Ordner liegen)
 		//if ($onlyDistinct) $constraints[] = $query->equals('mother', 0);
 		if (!empty($constraints)) {
-			$query->matching($query->logicalAnd($constraints));
+			$query->matching($query->logicalAnd(...$constraints));
 		}
 		if ($limit > 0) {
 			$query->setLimit(intval($limit));
@@ -293,7 +293,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			}
 			if (!empty($constraints)) {
 			    //var_dump($constraints);
-				$query->matching($query->logicalAnd($constraints));
+				$query->matching($query->logicalAnd(...$constraints));
 			}
 			if ($limit > 0) {
 				$query->setLimit(intval($limit));
@@ -380,7 +380,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 				}
 				$queryBuilder->groupBy('tx_camaliga_domain_model_content.uid');
 				//debug($queryBuilder->getSQL());
-				$result = $queryBuilder->execute()->fetchAll();
+				$result = $queryBuilder->executeQuery()->fetchAllAssociative();
 				foreach ($result as $row) {
 					$cam_uid = $row['uid'];
                     if (isset($elements[$cam_uid])) {
@@ -506,7 +506,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		)
 		->set('sorting', intval($sorting))
 		->set('tstamp', time())
-		->execute();
+		->executeStatement();
 	}
 	
 	/**
@@ -543,8 +543,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			)
 			->groupBy('categoryMM.uid_local');
 		//debug($queryBuilder->getSQL());
-		$statement = $queryBuilder->execute();
-		return $statement->fetchAll();
+		return $queryBuilder->executeQuery()->fetchAllAssociative();
 	}
 	
 	/**
@@ -563,8 +562,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			->where(
 				$queryBuilder->expr()->in('uid', $pids)
 			)
-			->execute();
-		while ($row = $statement->fetch()) {
+			->executeQuery();
+		while ($row = $statement->fetchAssociative()) {
 			$uid = $row['uid'];
 			$storagePidsData_tmp[$uid] = [];
 			$storagePidsData_tmp[$uid]['uid'] = $uid;
@@ -601,8 +600,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     		$queryBuilder->expr()->eq('is_siteroot', 1)
    		)
    		->setMaxResults(1)
-   		->execute();
-   		while ($row = $statement->fetch()) {
+   		->executeQuery();
+   		while ($row = $statement->fetchAssociative()) {
    			$uid = $row['uid'];
    		}
    		return $uid;
@@ -625,11 +624,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
    		)
    		->setMaxResults(1)
-   		->execute();
-   		while ($row = $statement->fetch()) {
+   		->executeQuery();
+   		while ($row = $statement->fetchAssociative()) {
    			$output = ($row['storage'] == 1) ? '/fileadmin' . $row['identifier'] : $row['identifier'];
    		}
    		return $output;
     }
 }
-?>

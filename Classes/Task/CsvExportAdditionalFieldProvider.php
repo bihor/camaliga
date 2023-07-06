@@ -95,7 +95,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_page';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][page]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['page']) . '"/>';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.page');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -104,7 +103,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_cats';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][cats]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['cats']) . '"/>';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.cats');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -113,7 +111,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_csvfile';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][csvfile]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['csvfile']) . '" size="50" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.csvfile');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -122,7 +119,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_header';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][header]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['header']) . '" size="50" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.header');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -131,7 +127,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_fields';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][fields]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['fields']) . '" size="50" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.fields');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -140,7 +135,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_separator';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][separator]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['separator']) . '" size="5" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.separator');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -149,7 +143,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_delimiter';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][delimiter]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['delimiter']) . '" size="5" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.delimiter');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -158,7 +151,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$fieldId = 'task_catdelimiter';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][catdelimiter]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['catdelimiter']) . '" size="5" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.catdelimiter');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -168,7 +160,6 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$checked = ($taskInfo['convert']) ? ' checked="checked"' : '';
 		$fieldCode = '<input type="checkbox" name="tx_scheduler[camaliga][convert]" id="' . $fieldId . '" value="1"' . $checked . ' />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.convert');
-		$label = BackendUtility::wrapInHelp('camaliga', $fieldId, $label);
 		$additionalFields[$fieldId] = array(
 				'code' => $fieldCode,
 				'label' => $label
@@ -196,8 +187,8 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 			->where(
 				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter((int)$submittedData['camaliga']['page'], \PDO::PARAM_INT))
 			)
-			->execute()
-			->fetchColumn(0);
+			->executeQuery()
+			->fetchOne();
 			if ($count == 0) {
 				$isValid = FALSE;
 				$this->addMessage(
@@ -240,6 +231,9 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$task->setSeparator($submittedData['camaliga']['separator']);
 		$task->setDelimiter($submittedData['camaliga']['delimiter']);
 		$task->setCatdelimiter($submittedData['camaliga']['catdelimiter']);
-		$task->setConvert($submittedData['camaliga']['convert']);
+        if (isset($submittedData['camaliga']['convert']))
+		    $task->setConvert($submittedData['camaliga']['convert']);
+        else
+            $task->setConvert(0);
 	}
 }

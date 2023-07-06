@@ -20,7 +20,7 @@ Note 2: you can use pageUid="{settings.showId}" in link.action if you have a sep
     </div>
    </f:if>
    <div class="col">
-	<div><strong><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
+	<div><strong><f:if condition="{settings.showId} > 0"><f:then><f:link.action action="show" pluginName="show" pageUid="{settings.showId}" arguments="{content : content}">{content.title}</f:link.action></f:then>
 		<f:else><f:link.action action="show" arguments="{content : content}">{content.title}</f:link.action></f:else></f:if></strong></div>
 	<div><em><f:format.nl2br>{content.shortdesc}</f:format.nl2br></em></div>
 	<f:render partial="Optional" arguments="{content:content}" />

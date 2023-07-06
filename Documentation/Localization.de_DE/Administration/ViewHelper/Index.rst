@@ -18,7 +18,7 @@
 ViewHelpers
 ^^^^^^^^^^^
 
-- Camaliga besitzt einen ViewHelper für Camaliga-Elemente und einen ViewHelper um JS- oder CSS-Dateien zu laden.
+- Camaliga besitzt(e) einen ViewHelper für Camaliga-Elemente und einen ViewHelper um JS- oder CSS-Dateien zu laden.
 
 - Den ViewHelper für Camaliga-Elemente kann man bei Seiten-Templates benutzen. Wozu?
   Nun, wenn man Infos eines Elements an verschiedenen Stellen darstellen will, muss man nicht mehrere Plugins benutzen.
@@ -42,7 +42,7 @@ ViewHelpers
   und
   https://docs.typo3.org/other/typo3/view-helper-reference/master/en-us/typo3/fluid/latest/Asset/Css.html
 
-  In TYPO3 9 kann man ihn noch benutzen.
+  In TYPO3 9 kann man ihn noch benutzen. Ab TYPO3 12 steht er nicht mehr zur Verfügung!
   Zuerst setzt man den Namespace wie oben und weiter unten nutzt man ihn dann so zum einbinden von JS- oder CSS-Dateien::
 
     <cam:addPublicResources path="{f:uri.resource(path:'Css/Carousel.css')}"></cam:addPublicResources>

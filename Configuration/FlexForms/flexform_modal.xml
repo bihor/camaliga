@@ -331,6 +331,81 @@
         </el>
       </ROOT>
     </sITEM>
+    <sMODAL>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>Bootstrap Modal</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.bootstrap.dialog>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:dialog</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:small</numIndex>
+					      <numIndex index="1">modal-sm</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:large</numIndex>
+					      <numIndex index="1">modal-lg</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.dialog>
+			<settings.bootstrap.animation>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:animation</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:fade</numIndex>
+					      <numIndex index="1">fade</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.animation>
+			<settings.bootstrap.escape>
+				<TCEforms>
+					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:escape</label>
+					<config>
+					<type>select</type>
+					<renderType>selectSingle</renderType>
+					<items>
+					  <numIndex index="0">
+					      <numIndex index="0">TypoScript</numIndex>
+					      <numIndex index="1"></numIndex>
+					  </numIndex>
+					  <numIndex index="1">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
+					      <numIndex index="1">true</numIndex>
+					  </numIndex>
+					  <numIndex index="2">
+					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
+					      <numIndex index="1">false</numIndex>
+					  </numIndex>
+					  </items>
+					</config>
+				</TCEforms>
+			</settings.bootstrap.escape>
+        </el>
+      </ROOT>
+    </sMODAL>
     <sEXTENDED>
       <ROOT>
     	<TCEforms>
@@ -484,148 +559,5 @@
         </el>
       </ROOT>
     </sCATS>
-    <sMAPS>
-      <ROOT>
-    	<TCEforms>
-          <sheetTitle>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps</sheetTitle>
-        </TCEforms>
-        <type>array</type>
-    	  <el>
-			<settings.maps.key>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.key</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>50</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.key>
-			<settings.maps.language>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.language</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.language>
-			<settings.maps.dontIncludeAPI>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.dontIncludeAPI</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.dontIncludeAPI>
-			<settings.maps.includeRoute>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.includeRoute</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.includeRoute>
-			<settings.maps.clustering>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.clustering</label>
-					<config>
-					<type>check</type>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">1</numIndex>
-					  </numIndex>
-					  </items>
-					  <renderMode>checkbox</renderMode>
-					</config>
-				</TCEforms>
-			</settings.maps.clustering>
-			<settings.maps.zoom>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.zoom</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.zoom>
-			<settings.maps.maxZoom>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.maxZoom</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.maxZoom>
-			<settings.maps.startLatitude>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLatitude</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.startLatitude>
-			<settings.maps.startLongitude>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.startLongitude</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>25</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.startLongitude>
-			<settings.maps.tileLayer>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.tileLayer</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>250</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.tileLayer>
-			<settings.maps.attribution>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:maps.attribution</label>
-					<config>
-                    <type>input</type>
-                    <size>15</size>
-                    <max>250</max>
-                    <eval>trim</eval>
-                    </config>
-				</TCEforms>
-			</settings.maps.attribution>
-        </el>
-      </ROOT>
-    </sMAPS>
   </sheets>
 </T3DataStructure>

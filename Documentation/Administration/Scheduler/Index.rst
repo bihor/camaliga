@@ -47,3 +47,4 @@ Note: this task was removed in version 10!
   to fill the slug-field with values.
 
 Note: this task was replaced in version 11 with a scheduler command (scheduler - Execute console commands)!
+And this task was removed in version 12.

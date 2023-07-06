@@ -79,6 +79,9 @@
 			<trans-unit id="tx_camaliga_domain_model_content.slug">
 				<source>Slug</source>
 			</trans-unit>
+			<trans-unit id="tx_camaliga_domain_model_content.categories">
+				<source>Categories</source>
+			</trans-unit>
 
 		</body>
 	</file>

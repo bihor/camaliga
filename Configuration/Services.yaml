@@ -5,10 +5,10 @@ services:
     public: false
 
   Quizpalme\Camaliga\:
-    resource: "../Classes/*"
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
 
-  Quizpalme\Camaliga\Command\BuildSlugScheduler:
+  Quizpalme\Camaliga\Backend\EventListener\PreviewEventListener:
     tags:
-      - name: "console.command"
-        command: "camaliga:buildslug"
-        description: "Set slug for camaliga-elements without a slug"
+      - name: "event.listener"
+        identifier: 'camaliga/preview-rendering'

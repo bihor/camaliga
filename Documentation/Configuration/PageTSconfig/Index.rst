@@ -87,3 +87,6 @@ Here an example for a template (extract) with 2 layouts:
 			}
 		}
 	}
+
+Note: from Camaliga 12 you must replace camaliga_pi1 with the used Plugin type, e.g. camaliga_list.
+And there is no field switchableControllerActions anymore.
