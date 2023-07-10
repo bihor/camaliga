@@ -2,7 +2,7 @@
 /**
  * Register plugins, flexform and remove unused fields
  */
-foreach (['list', 'listextended', 'show', 'showextended', 'carousel', 'carouselseparated', 'map', 'search', 'openstreetmap', 'random', 'teaser', 'responsive', 'elegant', 'bootstrap', 'collapse', 'modal', 'tab', 'ekko', 'elastislide', 'fancybox', 'flexslider2', 'flipster', 'fullwidth', 'galleryview', 'innerfade', 'isotope', 'lightslider', 'magnific', 'nanogallery2', 'owl2', 'parallax', 'responsivecarousel', 'roundabout', 'sgallery', 'skdslider', 'slick'] as $plugin) {
+foreach (['list', 'listextended', 'show', 'showextended', 'carousel', 'carouselseparated', 'new', 'map', 'search', 'openstreetmap', 'random', 'teaser', 'responsive', 'elegant', 'bootstrap', 'collapse', 'modal', 'tab', 'ekko', 'elastislide', 'fancybox', 'flexslider2', 'flipster', 'fullwidth', 'galleryview', 'innerfade', 'isotope', 'lightslider', 'magnific', 'nanogallery2', 'owl2', 'parallax', 'responsivecarousel', 'roundabout', 'sgallery', 'skdslider', 'slick'] as $plugin) {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'Camaliga',
         ucfirst($plugin),
@@ -51,7 +51,6 @@ foreach (['list', 'listextended', 'show', 'showextended', 'carousel', 'carousels
         case 'slick':
             $xml = 'more';
             break;
-
     }
     $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['camaliga_' . $plugin] = 'pi_flexform';
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
