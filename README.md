@@ -46,3 +46,4 @@ Version 12.0:
 - Breaking: the slug-task was removed.
 - New configuration option: pluginForLinks (for ke_search).
 - Note: if you use own templates, you need to add e.g. pluginName="show" to links to single-pages if pageUid="{settings.showId}" is set.
+- Note: the backend-module is not ready yet.
