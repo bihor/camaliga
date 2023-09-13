@@ -6,7 +6,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
-use \Quizpalme\Camaliga\Domain\Model\Content;
+use Quizpalme\Camaliga\Domain\Model\Content;
 use Psr\Http\Message\ResponseInterface;
 
 /***************************************************************

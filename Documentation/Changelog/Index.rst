@@ -292,4 +292,6 @@ Version     Changes
 
             Note: if you use own templates, you need to add e.g. pluginName="show" to links to single-pages if pageUid="{settings.showId}"
             is set.
+
+12.0.2      Allow the show-action at a showExtended-plugin.
 ==========  ==============================================================================================================================
