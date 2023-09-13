@@ -6,6 +6,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
+use \Quizpalme\Camaliga\Domain\Model\Content;
 use Psr\Http\Message\ResponseInterface;
 
 /***************************************************************
@@ -71,7 +72,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $templatePath;
 
     /**
-     * Merges / overrides the FlexForm settings with Typoscript settings if FlexForm setting is empty
+     * Merges / overrides the FlexForm settings with TypoScript settings if FlexForm setting is empty
      */
     public function initializeAction()
     {
@@ -615,13 +616,13 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * action show one element. ignorevalidation added because of validation erros
+     * action show one element. ignorevalidation added because of validation errors
      *
-     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+     * @param Content $content
      * @Extbase\IgnoreValidation("content")
      * @return ResponseInterface
      */
-    public function showAction(\Quizpalme\Camaliga\Domain\Model\Content $content): ResponseInterface
+    public function showAction(Content $content): ResponseInterface
     {
         if ($this->settings['extended']['enable'] == 1) {
             // extended-Version laden
@@ -643,14 +644,21 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * action show one element, extended. ignorevalidation added because of validation erros
+     * action show one element, extended. ignorevalidation added because of validation errors
      *
-     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+     * @param Content|$content |null $content
      * @Extbase\IgnoreValidation("content")
      * @return ResponseInterface
      */
-    public function showExtendedAction(\Quizpalme\Camaliga\Domain\Model\Content $content): ResponseInterface
+    public function showExtendedAction(?Content $content = null): ResponseInterface
     {
+        if (!$content) {
+            // Ein show-Parameter ist bei extended auch erlaubt
+            $params = $this->request->getQueryParams()['tx_camaliga_show'];
+            if ($params['content'] && $params['action'] == 'show') {
+                $content = $this->contentRepository->findByUid((int)$params['content']);
+            }
+        }
         $this->helpersUtility->setSeo($content, $this->settings);
         $error = 0;
         $storagePidsArray = $this->contentRepository->getStoragePids();
@@ -1083,10 +1091,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action create
      *
-     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
+     * @param Content $content
      * @return ResponseInterface
      */
-    public function createAction(\Quizpalme\Camaliga\Domain\Model\Content $content): ResponseInterface
+    public function createAction(Content $content): ResponseInterface
     {
         $debug = '';
         $mediaFolder = $this->settings['img']['folderForNewEntries'];
