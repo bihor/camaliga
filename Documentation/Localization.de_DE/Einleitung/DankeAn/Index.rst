@@ -22,6 +22,6 @@ Ich habe sehr viel Zeit in diese Extension investiert. Ich hoffe sie gefällt di
 `www.fixpunkt.com <https://www.fixpunkt.com/>`_
 
 Danke an die
-`fixpunkt werbeagentur gmbh, Bonn <https://www.fixpunkt.com/webentwicklung/typo3/>`_, die geholfen hat,
+`fixpunkt für digitales GmbH, Bonn <https://www.fixpunkt.com/webentwicklung/typo3/>`_, die geholfen hat,
 `diese Extension <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`_
 weiter zu entwickeln, um sie mit der TYPO3-Community zu teilen.

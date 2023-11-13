@@ -300,5 +300,6 @@ Version     Änderungen
             Achtung: wenn man eigene Templates benutzt, muss man z.B. pluginName="show" zu Links zu Single-Seiten hinzufügen,
             falls man pageUid="{settings.showId}" benutzt.
 
-12.0.2      Die show-action ist nun in einem showExtended-Plugin auch erlaubt.
+12.0.3      Die show-/search-action ist nun in einem showExtended/map-Plugin auch erlaubt.
+            Bugfix: Plugin-Updater.
 ==========  =====================================================================================================================

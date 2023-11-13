@@ -41,13 +41,7 @@ defined('TYPO3') || die();
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Camaliga',
         'Map',
-        [  \Quizpalme\Camaliga\Controller\ContentController::class => 'map'        ],
-        [   \Quizpalme\Camaliga\Controller\ContentController::class => ''        ]
-    );
-    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-        'Camaliga',
-        'Search',
-        [   \Quizpalme\Camaliga\Controller\ContentController::class => 'search'        ],
+        [  \Quizpalme\Camaliga\Controller\ContentController::class => 'map, search, show'        ],
         [   \Quizpalme\Camaliga\Controller\ContentController::class => 'search'        ]
     );
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -55,6 +49,12 @@ defined('TYPO3') || die();
         'Openstreetmap',
         [   \Quizpalme\Camaliga\Controller\ContentController::class => 'openstreetmap, search, show'      ],
         [   \Quizpalme\Camaliga\Controller\ContentController::class => 'search'       ]
+    );
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+        'Camaliga',
+        'Search',
+        [   \Quizpalme\Camaliga\Controller\ContentController::class => 'search'        ],
+        [   \Quizpalme\Camaliga\Controller\ContentController::class => 'search'        ]
     );
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Camaliga',
