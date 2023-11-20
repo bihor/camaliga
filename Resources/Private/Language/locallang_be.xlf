@@ -70,16 +70,16 @@
 				<source>Elegant Responsive Pure CSS3 Slider</source>
 			</trans-unit>
 			<trans-unit id="template.bootstrap" resname="template.bootstrap">
-				<source>Bootstrap 4 Carousel</source>
+				<source>Bootstrap 5 Carousel</source>
 			</trans-unit>
 			<trans-unit id="template.collapse" resname="template.collapse">
-				<source>Bootstrap 4 Collapse/Accordion</source>
+				<source>Bootstrap 5 Collapse/Accordion</source>
 			</trans-unit>
 			<trans-unit id="template.modal" resname="template.modal">
-				<source>Bootstrap 4 Modal box</source>
+				<source>Bootstrap 5 Modal box</source>
 			</trans-unit>
 			<trans-unit id="template.tab" resname="template.tab">
-				<source>Bootstrap 4 Tab</source>
+				<source>Bootstrap 5 Tab</source>
 			</trans-unit>
 			<trans-unit id="template.ekko" resname="template.ekko">
 				<source>Ekko Lightbox</source>
@@ -310,10 +310,7 @@
 				<source>open all collapsible elements</source>
 			</trans-unit>
 			<trans-unit id="parent" resname="parent">
-				<source>Open allways max. one collapsible element (you need to change the template now)?</source>
-			</trans-unit>
-			<trans-unit id="toggle" resname="toggle">
-				<source>Toggles the collapsible element on invocation (not in use anymore)?</source>
+				<source>Open always max. one collapsible element (you need to change the template now)?</source>
 			</trans-unit>
 			<trans-unit id="extendedOptions" resname="extendedOptions">
 				<source>Extended options</source>

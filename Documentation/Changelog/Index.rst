@@ -21,7 +21,6 @@ ChangeLog
 ==========  ==============================================================================================================================
 Version     Changes
 ==========  ==============================================================================================================================
-0.1.0       Initial upload to TER.
 1.0.0       More TypoScript- and FlexForms-Settings. Carousel-Example updated.
 1.1.0       More examples added. Karussell-Import improved.
 1.2.0       Major bug fixed: wrong path to the templates. More examples added.
@@ -294,5 +293,8 @@ Version     Changes
             is set.
 
 12.0.3      Allow the show-action at a showExtended-plugin. Allow the search-action at a map-plugin.
+
             Bugfix: plugin-updater.
+
+12.1.0      Important change: the Bootstrap templates supports now Bootstrap 5 instead of Bootstrap 4.
 ==========  ==============================================================================================================================

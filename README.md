@@ -1,9 +1,9 @@
 # camaliga
 
-version 12.0.3
+version 12.1.0
 
 A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick. 
-Bootstrap 4 support. Indexer for ke_search. Many features.
+Bootstrap 5 support. Indexer for ke_search. Many features.
 
 You find the documentation at docs.typo3.org:
 https://docs.typo3.org/p/quizpalme/camaliga/master/en-us/
@@ -51,3 +51,6 @@ Version 12.0:
 Version 12.0.3:
 - Allow the show-action at a showExtended-plugin. Allow the search-action at a map-plugin.
 - Bugfix: plugin-updater.
+
+Version 12.1:
+- Important change: the Bootstrap templates supports now Bootstrap 5 instead of Bootstrap 4. 

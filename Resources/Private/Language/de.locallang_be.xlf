@@ -92,16 +92,16 @@
 				<target>Formular für neue Einträge im FE</target>
 			</trans-unit>
 			<trans-unit id="template.bootstrap" resname="template.bootstrap">
-				<target>Bootstrap 4 Carousel</target>
+				<target>Bootstrap 5 Carousel</target>
 			</trans-unit>
 			<trans-unit id="template.collapse" resname="template.collapse">
-				<target>Bootstrap 4 Collapse/Accordion</target>
+				<target>Bootstrap 5 Collapse/Accordion</target>
 			</trans-unit>
 			<trans-unit id="template.modal" resname="template.modal">
-				<target>Bootstrap 4 Modal-Box</target>
+				<target>Bootstrap 5 Modal-Box</target>
 			</trans-unit>
 			<trans-unit id="template.tab" resname="template.tab">
-				<target>Bootstrap 4 Tab</target>
+				<target>Bootstrap 5 Tab</target>
 			</trans-unit>
 			<trans-unit id="template.ekko" resname="template.ekko">
 				<target>Ekko Lightbox</target>
@@ -391,10 +391,6 @@
 			<trans-unit id="parent" resname="parent">
 				<source>Open allways max. one collapsible element (you need to change the template now)?</source>
 				<target>Nur höchstens ein Element aufklappen (erfordert nun einen Template-Umbau)?</target>
-			</trans-unit>
-			<trans-unit id="toggle" resname="toggle">
-				<source>Toggles the collapsible element on invocation (not in use anymore)?</source>
-				<target>Sollen die Elemente aufklappbar sein (keine Funktion mehr)?</target>
 			</trans-unit>
 			<trans-unit id="extendedOptions" resname="extendedOptions">
 				<source>Extended options</source>

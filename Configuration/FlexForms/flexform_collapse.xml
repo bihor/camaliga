@@ -388,29 +388,6 @@
 					</config>
 				</TCEforms>
 			</settings.bootstrap.parent>
-			<settings.bootstrap.toggle>
-				<TCEforms>
-					<label>LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:toggle</label>
-					<config>
-					<type>select</type>
-					<renderType>selectSingle</renderType>
-					<items>
-					  <numIndex index="0">
-					      <numIndex index="0">TypoScript</numIndex>
-					      <numIndex index="1"></numIndex>
-					  </numIndex>
-					  <numIndex index="1">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:yes</numIndex>
-					      <numIndex index="1">collapse</numIndex>
-					  </numIndex>
-					  <numIndex index="2">
-					      <numIndex index="0">LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:no</numIndex>
-					      <numIndex index="1">false</numIndex>
-					  </numIndex>
-					  </items>
-					</config>
-				</TCEforms>
-			</settings.bootstrap.toggle>
         </el>
       </ROOT>
     </sCOLLAPSE>

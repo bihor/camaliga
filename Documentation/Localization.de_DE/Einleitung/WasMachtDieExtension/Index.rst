@@ -31,7 +31,7 @@ Diese flexible Extension kann Elemente z.B. als Karussell, Galerie, Liste oder a
 
 - Man kann natürlich auch verschiedene andere jQuery-Plugins benutzen – selbst eigene.
 
-- Auch Bootstrap 4 wird unterstützt. Es gibt dazu 4 Templates: Karussell, Tab, Akkordeon und Modal.
+- Auch Bootstrap 5 wird unterstützt. Es gibt dazu 4 Templates: Karussell, Tab, Akkordeon und Modal.
 
 - ke_search wird unterstüzt.
 

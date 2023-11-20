@@ -1,11 +1,11 @@
 <f:layout name="Default" />
 
-This example shows a Bootstrap Collapse/Accordion.
-Note 1: you need Bootstrap & Bootstrap Collapse for this example. Download it from here:
-https://getbootstrap.com/docs/4.2/components/collapse/
+This example shows a Bootstrap 5 Collapse/Accordion.
+Note 1: you need Bootstrap 5 & Bootstrap Collapse for this example. Download it from here:
+https://getbootstrap.com/docs/5.2/components/collapse/
 Copy the JS- and CSS-file into your fileadmin-folder!
 Or better: install a Bootstrap extension and you are done!
-Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+Note 2: if you want to copy this HTML-file to your fileadmin/extension-folder, you can specify the folder like this:
  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
 Copy this file in a subfolder named "Content" of this folder.
 
@@ -17,32 +17,34 @@ Copy this file in a subfolder named "Content" of this folder.
     <div class="card-header" id="heading{content.uid}">
       <h4 class="mb-0">
         <f:if condition="{settings.bootstrap.expanded} == 'all'"><f:then>
-        <button class="btn btn-link" type="button" data-toggle="collapse" aria-expanded="true" data-target="#collapse{content.uid}" aria-controls="collapse{content.uid}">
+        <button class="btn btn-link" type="button" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#collapse{content.uid}" aria-controls="collapse{content.uid}">
         </f:then><f:else>
-        <button class="btn btn-link {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: '', else: 'collapsed')}" type="button" data-toggle="collapse"
+        <button class="btn btn-link {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: '', else: 'collapsed')}" type="button" data-bs-toggle="collapse"
            aria-expanded="{f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: 'true', else: 'false')}"
-           data-target="#collapse{content.uid}" aria-controls="collapse{content.uid}">
+           data-bs-target="#collapse{content.uid}" aria-controls="collapse{content.uid}">
         </f:else></f:if>
            {content.title}
         </button>
       </h4>
     </div>
     <f:if condition="{settings.bootstrap.expanded} == 'all'"><f:then>
-    <div id="collapse{content.uid}" aria-labelledby="heading{content.uid}" data-parent="#accordion{uid}" class="collapse show{f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: ' multi-collapse')}">
+    <div id="collapse{content.uid}" aria-labelledby="heading{content.uid}" data-bs-parent="#accordion{uid}" class="collapse show{f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: ' multi-collapse')}">
     </f:then><f:else>
-    <div id="collapse{content.uid}" aria-labelledby="heading{content.uid}" data-parent="#accordion{uid}"
+    <div id="collapse{content.uid}" aria-labelledby="heading{content.uid}" data-bs-parent="#accordion{uid}"
          class="collapse {f:if(condition: '{0: settings.bootstrap.expanded, 1: iter.isFirst} == {0: \'true\', 1: \'1\'}', then: 'show')} {f:if(condition: '{settings.bootstrap.parent} == \'true\'', then: 'multi-collapse')}">
     </f:else></f:if>
       <div class="card-body"><div class="row">
       	<f:if condition="{content.falimage.uid}"><div class="col col-3">
-		    <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" treatIdAsReference="1" />
+		    <f:image src="{content.falimage.uid}" alt="{content.title}" title="{content.title}" maxWidth="{settings.img.thumbWidth}" maxHeight="{settings.img.thumbHeight}" treatIdAsReference="1" class="img-fluid" />
 		 </div></f:if>
 		<div class="col">
-        <h4><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
-        <f:format.html>{content.longdesc}</f:format.html>
-		<f:if condition="{content.link} != ''">
-			<f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
-		</f:if>
+            <h4 class="card-title"><f:format.nl2br>{content.shortdesc}</f:format.nl2br></h4>
+            <div class="card-text">
+                <f:format.html>{content.longdesc}</f:format.html>
+                <f:if condition="{content.link} != ''">
+                    <f:link.typolink parameter="{content.link}">{f:translate(key: 'more')}</f:link.typolink>
+                </f:if>
+            </div>
 		</div></div>
       </div>
     </div>

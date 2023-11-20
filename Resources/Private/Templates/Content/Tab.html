@@ -1,11 +1,11 @@
 <f:layout name="Default" />
 
-This example shows a Bootstrap Tab.
-Note 1: you need Bootstrap & Bootstrap Tab for this example. Download it from here:
-http://getbootstrap.com/javascript/#tabs
-Copy the JS- and CSS-file into your fileadmin-folder!
+This example shows a Bootstrap 5 Tab.
+Note 1: you need Bootstrap 5 & Bootstrap Tab for this example. Download it from here:
+https://getbootstrap.com/docs/5.2/components/navs-tabs/
+Copy the JS- and CSS-file into your fileadmin/extension-folder!
 Or better: install a Bootstrap extension and you are done!
-Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specify the folder like this:
  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
 Copy this file in a subfolder named "Content" of this folder.
 
@@ -25,7 +25,7 @@ Copy this file in a subfolder named "Content" of this folder.
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
 	<f:for each="{contents}" as="content" iteration="itemIteration">
-		<li role="presentation" class="nav-item"><a href="#tab{content.uid}" class="nav-link{f:if(condition: itemIteration.isFirst, then: ' active')}" aria-controls="tab{content.uid}" role="tab" data-toggle="tab">{content.title}</a></li>
+		<li role="presentation" class="nav-item"><a href="#tab{content.uid}" class="nav-link{f:if(condition: itemIteration.isFirst, then: ' active')}" aria-controls="tab{content.uid}" role="tab" data-bs-toggle="tab">{content.title}</a></li>
 	</f:for>
   </ul>
 
@@ -43,15 +43,6 @@ Copy this file in a subfolder named "Content" of this folder.
   </div>
 
 </div>
-
-<script type="text/javascript">
-jQuery(document).ready(function() {
-	$('.nav-tabs a').click(function (e) {
-		  e.preventDefault()
-		  $(this).tab('show')
-	})
-});
-</script>
 
 </f:then>
 <f:else>

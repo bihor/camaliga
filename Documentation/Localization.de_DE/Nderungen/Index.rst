@@ -23,7 +23,6 @@
 ==========  =====================================================================================================================
 Version     Änderungen
 ==========  =====================================================================================================================
-0.1.0       Erster Upload ins TER.
 1.0.0       Mehr TypoScript- und FlexForm-Einstellungen. Karussell-Beispiel upgedatet.
 1.1.0       Einige Beispiele hinzugefügt. Karussell-Import verbessert.
 1.2.0       Schwerer Bug gefixt: falscher Pfad zu den Templates. Einige Beispiele hinzugefügt.
@@ -301,5 +300,8 @@ Version     Änderungen
             falls man pageUid="{settings.showId}" benutzt.
 
 12.0.3      Die show-/search-action ist nun in einem showExtended/map-Plugin auch erlaubt.
+
             Bugfix: Plugin-Updater.
+
+12.1.0      Wichtige Änderung: die Bootstrap-Templates unterstützen nun Bootstrap 5 statt Bootstrap 4.
 ==========  =====================================================================================================================

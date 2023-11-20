@@ -32,12 +32,9 @@ HTML-Templates
 =========================  ==================================================================================================================
 Template                   Information
 =========================  ==================================================================================================================
-AdGallery.html             +++Deprecated! Will be removed in version 12.0.0!+++
-                           Template that uses the AD Gallery plugin.
-                           Note: you must install AD Gallery separately.
-Bootstrap.html             Template for the Twitter Bootstrap 4 Carousel.
+Bootstrap.html             Template for the Bootstrap 5 Carousel.
 
-                           Infos: https://getbootstrap.com/docs/4.2/components/carousel/
+                           Infos: https://getbootstrap.com/docs/5.2/components/carousel/
 
                            Demo: https://www.quizpalme.de/foto-galerien/moderne-kunst/bootstrap-ansicht
 Carousel.html              A carousel that uses the Camaliga-plugin. Default template. Not responsive!
@@ -45,15 +42,12 @@ Carousel.html              A carousel that uses the Camaliga-plugin. Default tem
 
                            Demo: https://www.quizpalme.de/foto-galerien/externe-fotos
 CarouselSeparated.html     A template with 2 separated carousels that uses the Camaliga-plugin.
-Collapse.html              Template for Twitter Bootstrap 4 Collapse/Accordion.
+Collapse.html              Template for Bootstrap 5 Collapse/Accordion.
 
-                           Infos: https://getbootstrap.com/docs/4.2/components/collapse/
+                           Infos: https://getbootstrap.com/docs/5.2/components/collapse/
 
                            Demo: https://www.quizpalme.de/reiseberichte/reiseempfehlungen/top-10-natur/berge
-Coolcarousel.html          +++Deprecated! Will be removed in version 12.0.0!+++
-                           Template that uses the Coolcarousel plugin.
-                           Note: you must install Coolcarousel separately.
-Create.html                Template after the new-action. 
+Create.html                Template after the new-action.
 Ekko.html                  Template that uses the Bootstrap-Ekko-Lightbox.
                            Note: you must install Ekko separately.
                            Runs only, if you set settings.more.setModulo=1
@@ -128,9 +122,9 @@ Magnific.html              Template that uses the "Magnific Popup" plugin.
 
                            Demo: https://www.quizpalme.de/astronomische-uhren/sonnenuhren
 Map.html                   A google map.
-Modal.html                 Template for Twitter Bootstrap 4 Modal. Use the field custom1 for the modal-button.
+Modal.html                 Template for Bootstrap 5 Modal. Use the field custom1 for the modal-button.
 
-                           Infos: https://getbootstrap.com/docs/4.2/components/modal/
+                           Infos: https://getbootstrap.com/docs/5.2/components/modal/
 
                            Demo: https://www.quizpalme.de/reiseberichte/reiseempfehlungen/alle-empfehlungen
 Nanogallery2.html          Template for the jQuery nanogallery2 plugin.
@@ -189,9 +183,10 @@ Slick.html                 Template that uses the slick carousel plugin.
                            Infos: https://kenwheeler.github.io/slick/
 
                            Demo: https://www.quizpalme.de/reiseberichte/rheinsteig/bonn-oberdollendorf
-Tab.html                   Template that uses the Bootstrap 4 Tabs.
+Tab.html                   Template that uses the Bootstrap 5 Tabs.
+
+                           Infos: https://getbootstrap.com/docs/5.2/components/navs-tabs/
 
                            Demo: https://www.quizpalme.de/autor/meine-reiseziele
 Teaser.html                Template that shows only some selected camaliga elements.
-Test.html                  Only for tests...
 =========================  ==================================================================================================================

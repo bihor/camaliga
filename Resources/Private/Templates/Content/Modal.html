@@ -1,11 +1,11 @@
 <f:layout name="Default" />
 
-This example shows a Bootstrap Modal.
-Note 1: you need Bootstrap & Bootstrap Modal for this example. Download it from here:
-http://getbootstrap.com/javascript/#modals
-Copy the JS- and CSS-file into your fileadmin-folder!
+This example shows a Bootstrap 5 Modal.
+Note 1: you need Bootstrap 5 & Bootstrap Modal for this example. Download it from here:
+https://getbootstrap.com/docs/5.2/components/modal/
+Copy the JS- and CSS-file into your fileadmin/extension-folder!
 Or better: install a Bootstrap extension and you are done!
-Note 2: if you want to copy this HTML-file to your fileadmin-folder, you can specifty the folder like this:
+Note 2: if you want to copy this HTML-file to your fileadmin/extension-folder, you can specify the folder like this:
  plugin.tx_camaliga.view.templateRootPaths.1 = fileadmin/template/files/
 Copy this file in a subfolder named "Content" of this folder.
 Note 3: use the field "custom1" for the modal-button/link or change the template.
@@ -19,7 +19,7 @@ Note 3: use the field "custom1" for the modal-button/link or change the template
 </style>
 
 <f:for each="{contents}" as="content">
- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-keyboard="{settings.bootstrap.escape}" data-target="#myModal{content.uid}">{content.custom1}</button>
+ <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-keyboard="{settings.bootstrap.escape}" data-bs-target="#myModal{content.uid}">{content.custom1}</button> &nbsp;
 </f:for>
 
 <f:for each="{contents}" as="content" iteration="iter">
@@ -28,7 +28,7 @@ Note 3: use the field "custom1" for the modal-button/link or change the template
     <div class="modal-content mymodal">
       <div class="modal-header">
         <h3 class="modal-title" id="myModalLabel{content.uid}">{content.title}</h3>
-        <button type="button" class="close" data-dismiss="modal" aria-label="{f:translate(key: 'close')}"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="{f:translate(key: 'close')}"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
 	    <f:if condition="{content.falimage.uid}">
@@ -41,7 +41,7 @@ Note 3: use the field "custom1" for the modal-button/link or change the template
 		</p></f:if>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">{f:translate(key: 'close')}</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{f:translate(key: 'close')}</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
