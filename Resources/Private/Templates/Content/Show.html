@@ -3,14 +3,20 @@
 This example shows one selected element.
 
 <f:section name="main">
-	<f:flashMessages />
-	<f:asset.css identifier="camaliga-list" href="EXT:camaliga/Resources/Public/Css/Single.css" />
+<f:flashMessages />
+<f:asset.css identifier="camaliga-list" href="EXT:camaliga/Resources/Public/Css/Single.css" />
 
-<f:if condition="{error} == 1">
+<f:if condition="{error} >= 1">
 <f:then>
-  <h3><f:translate key="error_show" default="Nothing found with this pids." /></h3>
-</f:then>
-<f:else>
+	<f:if condition="{error} == 2">
+		<f:then>
+			<h3><f:translate key="error_no-content" default="No content element found." /></h3>
+		</f:then>
+		<f:else>
+			<h3><f:translate key="error_show" default="Nothing found with this pids." /></h3>
+		</f:else>
+	</f:if>
+</f:then><f:else>
  <div class="carousel-single">
   <h1>{content.title}</h1>
   <div class="carousel-single-img">

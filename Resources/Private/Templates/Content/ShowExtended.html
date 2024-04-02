@@ -15,9 +15,16 @@ https://developers.google.com/maps/documentation/directions/intro?hl=de#Directio
 	</f:else></f:if>
 </f:if>
 
-<f:if condition="{error} == 1">
+<f:if condition="{error} >= 1">
 <f:then>
-  <h3><f:translate key="error_show" default="Nothing found with this pids." /></h3>
+	<f:if condition="{error} == 2">
+		<f:then>
+			<h3><f:translate key="error_no-content" default="No content element found." /></h3>
+		</f:then>
+		<f:else>
+		  <h3><f:translate key="error_show" default="Nothing found with this pids." /></h3>
+		</f:else>
+	</f:if>
 </f:then>
 <f:else>
  <div class="carousel-single">
@@ -145,7 +152,7 @@ https://developers.google.com/maps/documentation/directions/intro?hl=de#Directio
  	<f:render partial="Route" arguments="{_all}" />
  </f:if>
  </f:if>
- 
+
  <p class="carousel-single-back"><a href="javascript:history.back();">{f:translate(key: 'back', default: 'back')}</a></p>
  </div>
 </f:else>

@@ -152,6 +152,9 @@
 			<trans-unit id="error_show">
 				<target>Eintrag nicht gefunden. Vielleicht stimmt die angegebene Datensatzsammlung nicht überein.</target>
 			</trans-unit>
+			<trans-unit id="error_no-content">
+				<target>Kein Eintrag nicht gefunden. Vielleicht fehlt ein Parameter.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

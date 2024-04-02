@@ -147,10 +147,13 @@
 				<source>Create new entry</source>
 			</trans-unit>
 			<trans-unit id="error_create">
-				<source>Create was not successfull. Title missing?</source>
+				<source>Create was not successfully. Title missing?</source>
 			</trans-unit>
 			<trans-unit id="error_show">
 				<source>No entry found. Maybe the given starting-point is wrong.</source>
+			</trans-unit>
+			<trans-unit id="error_no-content">
+				<source>No entry found. Maybe there was no parameter.</source>
 			</trans-unit>
 		</body>
 	</file>

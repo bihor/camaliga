@@ -21,6 +21,7 @@ plugin.tx_camaliga {
 		listId =
 		searchId =
 		showId =
+		errorId =
 		sortBy =
 		sortOrder =
 		limit = 0
