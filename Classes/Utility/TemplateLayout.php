@@ -26,6 +26,8 @@
 */
 namespace Quizpalme\Camaliga\Utility;
 
+use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 /**
  * TemplateLayout: Template-Layout per TSconfig
  *
@@ -33,7 +35,7 @@ namespace Quizpalme\Camaliga\Utility;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class TemplateLayout implements \TYPO3\CMS\Core\SingletonInterface {
+class TemplateLayout implements SingletonInterface {
 
 	/**
 	 * Get available template layouts for a page
@@ -42,9 +44,9 @@ class TemplateLayout implements \TYPO3\CMS\Core\SingletonInterface {
 	 * @return array
 	 */
 	public function getAvailableTemplateLayouts($pageUid) {
-		$templateLayouts = array();
+		$templateLayouts = [];
 		foreach($this->getTemplateLayoutsFromTsConfig($pageUid) as $templateKey => $title) {
-			$templateLayouts[] = array($title, $templateKey);
+			$templateLayouts[] = [$title, $templateKey];
 		}
 		return $templateLayouts;
 	}
@@ -56,8 +58,8 @@ class TemplateLayout implements \TYPO3\CMS\Core\SingletonInterface {
 	 * @return array
 	 */
 	protected function getTemplateLayoutsFromTsConfig($pageUid) {
-		$templateLayouts = array();
-		$pagesTsConfig = \TYPO3\CMS\Backend\Utility\BackendUtility::getPagesTSconfig($pageUid);
+		$templateLayouts = [];
+		$pagesTsConfig = BackendUtility::getPagesTSconfig($pageUid);
 		if (isset($pagesTsConfig['tx_camaliga.']['templateLayouts.']) && is_array($pagesTsConfig['tx_camaliga.']['templateLayouts.'])) {
 			$templateLayouts = $pagesTsConfig['tx_camaliga.']['templateLayouts.'];
 		}

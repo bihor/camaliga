@@ -298,7 +298,9 @@ Version     Changes
 
 12.1.0      Important change: the Bootstrap templates supports now Bootstrap 5 instead of Bootstrap 4.
 
-13.0.0      Setting errorId added: if no uid given, a redirect to an error page can be configured.
+13.0.0      Refactored with the rector tool.
+
+            Setting errorId added: if no uid given, a redirect to an error page can be configured.
 
             Ignore validation in show and showExtended action removed!
 ==========  ==============================================================================================================================

@@ -1,6 +1,16 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractValueObject;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Domain\Model\Category;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Quizpalme\Camaliga\Domain\Repository\ContentRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use Quizpalme\Camaliga\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /***************************************************************
@@ -34,7 +44,7 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
+class Content extends AbstractValueObject
 {
     /**
      * @var \DateTime
@@ -54,12 +64,12 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
     protected $sorting = 0;
     
 	/**
-	 * Title
-	 * 
-	 * @Extbase\Validate("NotEmpty")
-	 * @var string
-	 */
-	protected $title;
+  * Title
+  *
+  * @var string
+  */
+ #[Extbase\Validate(['validator' => 'NotEmpty'])]
+ protected $title;
 
 	/**
 	 * Short description
@@ -90,44 +100,44 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $slug;
 	
 	/**
-	 * Image 1
-	 *
-	 * @Extbase\ORM\Cascade("remove")
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $falimage = null;
+  * Image 1
+  *
+  * @var FileReference
+  */
+ #[Extbase\ORM\Cascade(['value' => 'remove'])]
+ protected $falimage = null;
 
 	/**
-	 * Image 2
-	 *
-	 * @Extbase\ORM\Cascade("remove")
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $falimage2 = null;
+  * Image 2
+  *
+  * @var FileReference
+  */
+ #[Extbase\ORM\Cascade(['value' => 'remove'])]
+ protected $falimage2 = null;
 
 	/**
-	 * Image 3
-	 *
-	 * @Extbase\ORM\Cascade("remove")
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $falimage3 = null;
+  * Image 3
+  *
+  * @var FileReference
+  */
+ #[Extbase\ORM\Cascade(['value' => 'remove'])]
+ protected $falimage3 = null;
 
 	/**
-	 * Image 4
-	 * 
-	 * @Extbase\ORM\Cascade("remove")
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $falimage4 = null;
+  * Image 4
+  *
+  * @var FileReference
+  */
+ #[Extbase\ORM\Cascade(['value' => 'remove'])]
+ protected $falimage4 = null;
 
 	/**
-	 * Image 5
-	 *
-	 * @Extbase\ORM\Cascade("remove")
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $falimage5 = null;
+  * Image 5
+  *
+  * @var FileReference
+  */
+ #[Extbase\ORM\Cascade(['value' => 'remove'])]
+ protected $falimage5 = null;
 	
 	/**
 	 * Street
@@ -228,19 +238,19 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	protected $custom3;
 
 	/**
-	 * Mutter-Element: Quizpalme\Camaliga\Domain\Model\Content. Früher integer
-	 *
-	 * @Extbase\ORM\Lazy
-	 * @var \Quizpalme\Camaliga\Domain\Model\Content
-	 */
-	protected $mother;
+  * Mutter-Element: Quizpalme\Camaliga\Domain\Model\Content. Früher integer
+  *
+  * @var \Quizpalme\Camaliga\Domain\Model\Content
+  */
+ #[Extbase\ORM\Lazy]
+ protected $mother;
 	
 	/**
-	 * Categories. Früher: integer
-	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category>
-	 */
-	protected $categories;
+  * Categories. Früher: integer
+  *
+  * @var ObjectStorage<Category>
+  */
+ protected $categories;
 	
 	/**
 	 * Modulo begin
@@ -264,7 +274,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	{
 		//Do not remove the next line: It would break the functionality
 		$this->initStorageObjects();
-		$this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+		$this->categories = new ObjectStorage();
 	}
 	
 	/**
@@ -326,8 +336,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $title
 	 */
 	public function getTitleNl2br() {
-		$title = str_replace(array("'"), "\'", $this->title);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $title);
+		$title = str_replace(["'"], "\'", $this->title);
+		return str_replace(["\r\n", "\r", "\n"], "<br />", $title);
 	}
 	
 	/**
@@ -355,8 +365,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $shortdesc
 	 */
 	public function getShortdescNl2br() {
-		$tmp = str_replace(array("'"), "\'", $this->shortdesc);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $tmp);
+		$tmp = str_replace(["'"], "\'", $this->shortdesc);
+		return str_replace(["\r\n", "\r", "\n"], "<br />", $tmp);
 	}
 
 	/**
@@ -384,8 +394,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $longdesc
 	 */
 	public function getLongdescNl2br() {
-		$tmp = str_replace(array("'"), "\'", $this->longdesc);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $tmp);
+		$tmp = str_replace(["'"], "\'", $this->longdesc);
+		return str_replace(["\r\n", "\r", "\n"], "<br />", $tmp);
 	}
 
 	/**
@@ -413,7 +423,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $link
 	 */
 	public function getLinkResolved() {
-		$contentRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
+		$contentRepository = GeneralUtility::makeInstance(ContentRepository::class);
 		$output = '';
 		$linkArray = explode('?', $this->link);
 		if ($linkArray[0] == 't3://file') {
@@ -430,16 +440,16 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 */
 	public function getLinks() {
 		$links_tmp = explode(' ', $this->link);
-		$links = array();
+		$links = [];
 		$i = 0;
 		foreach ($links_tmp as $link) {
-			$links[$i] = array();
+			$links[$i] = [];
 			$links[$i]['link'] = $link;
-			if ((substr(trim($link), 0, 3) == 'www') || (substr(trim($link), 0, 4) == 'http')) {
+			if ((str_starts_with(trim($link), 'www')) || (str_starts_with(trim($link), 'http'))) {
 				$links[$i]['type'] = 2;
-			} elseif (substr(trim($link), 0, 5) == 'file:') {
+			} elseif (str_starts_with(trim($link), 'file:')) {
 				$links[$i]['type'] = 3;
-			} elseif (substr(trim($link), 0, 7) == 'mailto:') {
+			} elseif (str_starts_with(trim($link), 'mailto:')) {
 				$links[$i]['type'] = 4;
 			} else if (is_numeric(trim($link))) {
 				$links[$i]['type'] = 1;
@@ -490,106 +500,101 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	}
 	
 	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage
-	 */
-	public function getFalimage()
+  * Returns the image
+  *
+  * @return FileReference $falimage
+  */
+ public function getFalimage()
 	{
 		return $this->falimage;
 	}
 	
 	/**
-	 * Sets the falimage
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage
-	 * @return void
-	 */
-	public function setFalimage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage)
+  * Sets the falimage
+  *
+  * @return void
+  */
+ public function setFalimage(FileReference $falimage)
 	{
 		$this->falimage = $falimage;
 	}
 
 	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage2
-	 */
-	public function getFalimage2()
+  * Returns the image
+  *
+  * @return FileReference $falimage2
+  */
+ public function getFalimage2()
 	{
 		return $this->falimage2;
 	}
 	
 	/**
-	 * Sets the falimage2
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage2
-	 * @return void
-	 */
-	public function setFalimage2(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage2)
+  * Sets the falimage2
+  *
+  * @return void
+  */
+ public function setFalimage2(FileReference $falimage2)
 	{
 		$this->falimage2 = $falimage2;
 	}
 
 	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage3
-	 */
-	public function getFalimage3()
+  * Returns the image
+  *
+  * @return FileReference $falimage3
+  */
+ public function getFalimage3()
 	{
 		return $this->falimage3;
 	}
 	
 	/**
-	 * Sets the falimage3
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage3
-	 * @return void
-	 */
-	public function setFalimage3(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage3)
+  * Sets the falimage3
+  *
+  * @return void
+  */
+ public function setFalimage3(FileReference $falimage3)
 	{
 		$this->falimage3 = $falimage3;
 	}
 
 	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage4
-	 */
-	public function getFalimage4()
+  * Returns the image
+  *
+  * @return FileReference $falimage4
+  */
+ public function getFalimage4()
 	{
 		return $this->falimage4;
 	}
 	
 	/**
-	 * Sets the falimage4
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage4
-	 * @return void
-	 */
-	public function setFalimage4(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage4)
+  * Sets the falimage4
+  *
+  * @return void
+  */
+ public function setFalimage4(FileReference $falimage4)
 	{
 		$this->falimage4 = $falimage4;
 	}
 
 	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimag5
-	 */
-	public function getFalimage5()
+  * Returns the image
+  *
+  * @return FileReference $falimag5
+  */
+ public function getFalimage5()
 	{
 		return $this->falimage5;
 	}
 	
 	/**
-	 * Sets the falimage5
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage5
-	 * @return void
-	 */
-	public function setFalimage5(\TYPO3\CMS\Extbase\Domain\Model\FileReference $falimage5)
+  * Sets the falimage5
+  *
+  * @return void
+  */
+ public function setFalimage5(FileReference $falimage5)
 	{
 		$this->falimage5 = $falimage5;
 	}
@@ -609,8 +614,8 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return string $street
 	 */
 	public function getStreetNl2br() {
-		$tmp = str_replace(array("'"), "\'", $this->street);
-		return str_replace(array("\r\n", "\r", "\n"), "<br />", $tmp);
+		$tmp = str_replace(["'"], "\'", $this->street);
+		return str_replace(["\r\n", "\r", "\n"], "<br />", $tmp);
 	}
 	
 	/**
@@ -880,51 +885,49 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	}
 
 	/**
-	 * Sets the mother
-	 *
-	 * @param \Quizpalme\Camaliga\Domain\Model\Content $mother
-	 * @return void
-	 */
-	public function setMother(\Quizpalme\Camaliga\Domain\Model\Content $mother) {
+  * Sets the mother
+  *
+  * @return void
+  */
+ public function setMother(\Quizpalme\Camaliga\Domain\Model\Content $mother) {
 		$this->mother = $mother;
 	}
 
 	/**
-	 * Adds a Category
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $category
-	 * @return void
-	 */
-	public function addCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $category) {
+  * Adds a Category
+  *
+  * @return void
+  */
+ public function addCategory(Category $category) {
 		$this->categories->attach($category);
 	}
 	
 	/**
-	 * Removes a Category
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove The Category to be removed
-	 * @return void
-	 */
-	public function removeCategory(\TYPO3\CMS\Extbase\Domain\Model\Category $categoryToRemove) {
+  * Removes a Category
+  *
+  * @param Category $categoryToRemove The Category to be removed
+  * @return void
+  */
+ public function removeCategory(Category $categoryToRemove) {
 		$this->categories->detach($categoryToRemove);
 	}
 	
 	/**
-	 * Sets the categories
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
-	 * @return void
-	 */
-	public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories) {
+  * Sets the categories
+  *
+  * @param ObjectStorage<Category> $categories
+  * @return void
+  */
+ public function setCategories(ObjectStorage $categories) {
 		$this->categories = $categories;
 	}
 	
 	/**
-	 * Returns the categories
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\Category> $categories
-	 */
-	public function getCategories() {
+  * Returns the categories
+  *
+  * @return ObjectStorage<Category> $categories
+  */
+ public function getCategories() {
 		return $this->categories;
 	}
 	
@@ -934,22 +937,22 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @return array categories
 	 */
 	public function getCategoriesAndParents() {
-		$configurationManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface');
+		$configurationManager = GeneralUtility::makeInstance(ConfigurationManagerInterface::class);
 		$settings = $configurationManager->getConfiguration(
-			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+			ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
 		);
 		$categorySettings = $settings['plugin.']['tx_camaliga.']['settings.']['category.'];
 		if ($categorySettings['storagePids']) {
 			if ($categorySettings['storagePids'] == -1) {
 				$catStoragePids = [];
 			} else {
-				$catStoragePids = explode(',', $categorySettings['storagePids']);
+				$catStoragePids = explode(',', (string) $categorySettings['storagePids']);
 			}
 		} else {
-			$contentRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\ContentRepository');
+			$contentRepository = GeneralUtility::makeInstance(ContentRepository::class);
 			$catStoragePids = $contentRepository->getStoragePids();
 		}
-		$categoryRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
 		$all_cats = $categoryRepository->getAllCats($categorySettings['sortBy'], $categorySettings['orderBy'], $catStoragePids);
 		$used_cats = [];
 		foreach ($this->getCategories() as $category) {
@@ -1010,14 +1013,14 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 */
 	public function getExtended() {
 		$extended = [];
-		$extendedFields = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
+		$extendedFields = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga', 'extendedFields');
 		if ($extendedFields) {
 			$orig_uid = intval($this->getUid());	// ist immer die original uid (nicht vom übersetzten Element!)
-			$fieldsArray = explode(' ', trim($extendedFields));
+			$fieldsArray = explode(' ', trim((string) $extendedFields));
 			//$search = implode(',', $fieldsArray);
 			if (!empty($fieldsArray)) {
 				foreach ($fieldsArray as $field) {
-					$queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
+					$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
 					$statement = $queryBuilder
 					->select($field)
 					->from('tx_camaliga_domain_model_content')
@@ -1041,7 +1044,7 @@ class Content extends \TYPO3\CMS\Extbase\DomainObject\AbstractValueObject
 	 * @param integer $uid UID
 	 */
 	public function repairFALreference($uid) {
-		$queryBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getQueryBuilderForTable('sys_file_reference');
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file_reference');
 		$queryBuilder
 			->update('sys_file_reference')
 			->where(

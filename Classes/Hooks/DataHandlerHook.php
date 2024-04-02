@@ -12,6 +12,8 @@ namespace Quizpalme\Camaliga\Hooks;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use Quizpalme\Camaliga\Utility\HelpersUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -23,19 +25,16 @@ class DataHandlerHook {
     /**
      * Pre command map hook
      *
-     * @param array $incomingFieldArray
-     * @param string $table
      * @param string|int $id (id could be string, for this reason no type hint)
-     * @param DataHandler $dataHandler
      */
     public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, string $table, $id, DataHandler $dataHandler): void
     {
         if ($table == 'tx_camaliga_domain_model_content' &&
             $incomingFieldArray['city'] && !floatval($incomingFieldArray['latitude']) && !floatval($incomingFieldArray['longitude'])) {
             // dies hier greift bei neuen Einträgen
-            $configurationUtility = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('camaliga');
+            $configurationUtility = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga');
             if ((bool)$configurationUtility['searchCoordinatesInBE']) {
-                $coordinates = GeneralUtility::makeInstance(\Quizpalme\Camaliga\Utility\HelpersUtility::class)->getLatLonOfAddress($incomingFieldArray['street'], $incomingFieldArray['zip'], $incomingFieldArray['city'], $incomingFieldArray['country'], 2, '');
+                $coordinates = GeneralUtility::makeInstance(HelpersUtility::class)->getLatLonOfAddress($incomingFieldArray['street'], $incomingFieldArray['zip'], $incomingFieldArray['city'], $incomingFieldArray['country'], 2, '');
                 if ($coordinates['latitude'] || $coordinates['longitude']) {
                     $incomingFieldArray['latitude'] = sprintf('%01.9f', $coordinates['latitude']);
                     $incomingFieldArray['longitude'] = sprintf('%01.9f', $coordinates['longitude']);
@@ -51,7 +50,7 @@ class DataHandlerHook {
     public function processDatamap_postProcessFieldArray(string $status, string $table, $id, array $fieldArray, DataHandler $dataHandler): void
     {
         if ($table == 'tx_camaliga_domain_model_content' && is_numeric($id)) {
-            $configurationUtility = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class)->get('camaliga');
+            $configurationUtility = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga');
             if ((bool)$configurationUtility['searchCoordinatesInBE']) {
                 $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
                 $city = '';
@@ -82,7 +81,7 @@ class DataHandlerHook {
                 }
                 if ($city && !$latitude && !$longitude) {
                     //$helpersUtility = GeneralUtility::makeInstance("Quizpalme\\Camaliga\\Utility\\HelpersUtility");
-                    $coordinates = GeneralUtility::makeInstance(\Quizpalme\Camaliga\Utility\HelpersUtility::class)->getLatLonOfAddress($street, $zip, $city, $country, 2, '');
+                    $coordinates = GeneralUtility::makeInstance(HelpersUtility::class)->getLatLonOfAddress($street, $zip, $city, $country, 2, '');
                     if ($coordinates['latitude'] || $coordinates['longitude']) {
                         $queryBuilder
                             ->update($table)

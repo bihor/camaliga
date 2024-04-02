@@ -305,7 +305,9 @@ Version     Änderungen
 
 12.1.0      Wichtige Änderung: die Bootstrap-Templates unterstützen nun Bootstrap 5 statt Bootstrap 4.
 
-13.0.0      Setting errorId ist neu: wenn keine uid angegeben ist, kann eine Weiterleitung eingerichtet werden.
+13.0.0      Refactored mit dem rector-Tool.
+
+            Setting errorId ist neu: wenn keine uid angegeben ist, kann eine Weiterleitung eingerichtet werden.
 
             Ignore validation in der show- und showExtended-action entfernt!
 ==========  =====================================================================================================================

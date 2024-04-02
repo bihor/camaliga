@@ -339,7 +339,7 @@ class SwitchableControllerActionsPluginUpdater implements UpgradeWizardInterface
         $settings = [];
         $flexFormFile = $GLOBALS['TCA']['tt_content']['columns']['pi_flexform']['config']['ds'][$listType . ',list'];
         if ($flexFormFile) {
-            $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim($flexFormFile), 5)));
+            $flexFormContent = file_get_contents(GeneralUtility::getFileAbsFileName(substr(trim((string) $flexFormFile), 5)));
             $flexFormData = GeneralUtility::xml2array($flexFormContent);
 
             // Iterate each sheet and extract all settings
@@ -354,10 +354,6 @@ class SwitchableControllerActionsPluginUpdater implements UpgradeWizardInterface
 
     /**
      * Updates list_type and pi_flexform of the given content element UID
-     *
-     * @param int $uid
-     * @param string $newListType
-     * @param string $flexform
      */
     protected function updateContentElement(int $uid, string $newListType, string $flexform): void
     {
@@ -377,7 +373,6 @@ class SwitchableControllerActionsPluginUpdater implements UpgradeWizardInterface
     /**
      * Transforms the given array to FlexForm XML
      *
-     * @param array $input
      * @return string
      */
     protected function array2xml(array $input = []): string

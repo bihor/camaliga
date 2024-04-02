@@ -18,19 +18,19 @@ final class PreviewEventListener
      *
      * @var string
      */
-    const KEY = 'camaliga';
+    public const KEY = 'camaliga';
 
     /**
      * Path to the locallang file
      *
      * @var string
      */
-    const LLPATH = 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:';
+    public const LLPATH = 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:';
 
     /**
      * Max shown settings
      */
-    const SETTINGS_IN_PREVIEW = 10;
+    public const SETTINGS_IN_PREVIEW = 10;
 
     protected $recordMapping = [
         'listId' => [
@@ -84,8 +84,8 @@ final class PreviewEventListener
             return;
         }
         if ($event->getRecord()['CType'] === 'list' && in_array($event->getRecord()['list_type'], $this->pis)) {
-            $pi = substr($event->getRecord()['list_type'], strpos($event->getRecord()['list_type'], '_')+1);
-            $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'template.' . $pi)) . '</strong>';
+            $pi = substr((string) $event->getRecord()['list_type'], strpos((string) $event->getRecord()['list_type'], '_')+1);
+            $header = '<strong>' . htmlspecialchars((string) $this->getLanguageService()->sL(self::LLPATH . 'template.' . $pi)) . '</strong>';
             $this->flexformData = GeneralUtility::xml2array($event->getRecord()['pi_flexform']);
 
             $this->getStartingPoint($event->getRecord()['pages']);

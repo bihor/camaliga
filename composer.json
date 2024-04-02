@@ -2,7 +2,8 @@
 	"name" : "quizpalme/camaliga",
 	"type" : "typo3-cms-extension",
 	"description" : "A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins like Slick or Isotope. Bootstrap 5 support. Indexer for ke_search.",
-	"authors" : [{
+	"authors" : [
+		{
 			"name" : "Kurt Gusbeth",
 			"role" : "Developer"
 		}

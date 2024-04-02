@@ -2,6 +2,10 @@
 
 namespace Quizpalme\Camaliga\Utility;
 
+use Quizpalme\Camaliga\Domain\Model\Content;
+use TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry;
+use Quizpalme\Camaliga\PageTitle\PageTitleProvider;
+use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -25,7 +29,7 @@ class HelpersUtility
          * zuerst holen wir uns alle gewünschten Objekte, welche später in Fuid in zufälliger Reihenfolge ausgegeben werden sollen
          * und erstellen ein zusätzelichen Array, in welches mittels array_push() die UIDs der Objekte   geschrieben werden
          */
-        $uidArray = array();
+        $uidArray = [];
         foreach($objects as $object) {
             array_push($uidArray, $object->getUid());
         }
@@ -34,7 +38,7 @@ class HelpersUtility
          * außerdem erstellen wir ein neues Array, welches später von der Funktion zurückgegeben wird
          */
         shuffle($uidArray);
-        $objectArray = array();
+        $objectArray = [];
         /**
          * für jeden Eintrag im UID Array gehen wir durch die vorhandenen Objekte
          * und wenn die aktuelle uid im Array = der Uid des aktuellen Objektes ist,
@@ -53,18 +57,16 @@ class HelpersUtility
     /**
      * set SEO head?
      *
-     * @param \Quizpalme\Camaliga\Domain\Model\Content $content
-     * @param array $settings
      * @return void
      */
-    public function setSeo(\Quizpalme\Camaliga\Domain\Model\Content $content, array $settings)
+    public function setSeo(Content $content, array $settings)
     {
         $title = $content->getTitle();
         $desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());
-        $MetaTagManagerRegistry = GeneralUtility::makeInstance(\TYPO3\CMS\Core\MetaTag\MetaTagManagerRegistry::class);
+        $MetaTagManagerRegistry = GeneralUtility::makeInstance(MetaTagManagerRegistry::class);
         if ($settings['seo']['setTitle'] == 1) {
             //$GLOBALS['TSFE']->page['title'] = $title;
-            $titleProvider = GeneralUtility::makeInstance(\Quizpalme\Camaliga\PageTitle\PageTitleProvider::class);
+            $titleProvider = GeneralUtility::makeInstance(PageTitleProvider::class);
             $titleProvider->setTitle($title);
         }
         if (($settings['seo']['setDescription'] == 1) && $desc) {
@@ -91,7 +93,7 @@ class HelpersUtility
             $image = '';
             if ($content->getFalimage() && $content->getFalimage()->getUid()) {
                 //$typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
-                $typo3FALRepository = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\FileRepository::class);
+                $typo3FALRepository = GeneralUtility::makeInstance(FileRepository::class);
                 $fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
                 $fileObjectData = $fileObject->toArray();
                 $image = $server . '/' . $fileObjectData['url'];
@@ -127,7 +129,7 @@ class HelpersUtility
         if ($country) {
             $address .= ($address) ? ', ' . $country : $country;
         }
-        $address = urlencode($address);
+        $address = urlencode((string) $address);
         $httpOptions = [
             "http" => [
                 "method" => "GET",
@@ -155,8 +157,8 @@ class HelpersUtility
         } else {
             if ($resp['status']=='OK'){
                 // get the important data
-                $result['latitude'] = isset($resp['results'][0]['geometry']['location']['lat']) ? $resp['results'][0]['geometry']['location']['lat'] : "";
-                $result['longitude'] = isset($resp['results'][0]['geometry']['location']['lng']) ? $resp['results'][0]['geometry']['location']['lng'] : "";
+                $result['latitude'] = $resp['results'][0]['geometry']['location']['lat'] ?? "";
+                $result['longitude'] = $resp['results'][0]['geometry']['location']['lng'] ?? "";
                 //$formatted_address = isset($resp['results'][0]['formatted_address']) ? $resp['results'][0]['formatted_address'] : "";
             } else {
                 $result['debug'] = 'google geocode response to address "' . $address . '": ' . $resp['status'] . "\n";
@@ -197,9 +199,9 @@ class HelpersUtility
 
             //convert strings to numbers
             foreach($gps as $key => $value){
-                $pos = strpos($value, '/');
+                $pos = strpos((string) $value, '/');
                 if($pos !== false){
-                    $temp = explode('/',$value);
+                    $temp = explode('/',(string) $value);
                     $gps[$key] = $temp[0] / $temp[1];
                 }
             }

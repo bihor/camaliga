@@ -135,7 +135,7 @@ plugin.tx_camaliga {
 # plugin.tx_camaliga._CSS_DEFAULT_STYLE ( )
 
 # Icon für die Suche.
-plugin.tx_kesearch_pi2.additionalPathForTypeIcons = typo3conf/ext/camaliga/
+plugin.tx_kesearch_pi2.additionalPathForTypeIcons = EXT:camaliga/
 
 module.tx_camaliga < plugin.tx_camaliga
 

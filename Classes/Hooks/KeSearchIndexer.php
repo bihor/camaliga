@@ -15,7 +15,7 @@ class KeSearchIndexer extends IndexerBase
 {
     // Set a key for your indexer configuration.
     // Add this in Configuration/TCA/Overrides/tx_kesearch_indexerconfig.php, too!
-    const KEY = 'camaliga';
+    public const KEY = 'camaliga';
 
     /**
      * Adds the custom indexer to the TCA of indexer configurations, so that
@@ -28,11 +28,11 @@ class KeSearchIndexer extends IndexerBase
     public function registerIndexerConfiguration(&$params, $pObj)
     {
         // Set a name and an icon for your indexer.
-        $customIndexer = array(
+        $customIndexer = [
             'Camaliga elements (ext:camaliga)',
             KeSearchIndexer::KEY,
-        	'EXT:camaliga/Resources/Public/Icons/Extension.gif'
-        );
+            'EXT:camaliga/Resources/Public/Icons/Extension.gif'
+        ];
         $params['items'][] = $customIndexer;
     }
 
@@ -79,7 +79,7 @@ class KeSearchIndexer extends IndexerBase
                 ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
                 ->add(GeneralUtility::makeInstance(HiddenRestriction::class));
 
-            $folders = GeneralUtility::trimExplode(',', htmlentities($indexerConfig['sysfolder']));
+            $folders = GeneralUtility::trimExplode(',', htmlentities((string) $indexerConfig['sysfolder']));
             $statement = $queryBuilder
                 ->select('*')
                 ->from($table)
@@ -90,12 +90,12 @@ class KeSearchIndexer extends IndexerBase
             while ($record = $statement->fetchAssociative()) {
                     // compile the information which should go into the index
                     // the field names depend on the table you want to index!
-                    $title = strip_tags($record['title']);
-					$abstract = strip_tags($record['shortdesc']);
-					$content = strip_tags($record['longdesc']);
-					$place = strip_tags($record['city']);
-					$place .= ($record['city'] && $record['country']) ? ', ' . strip_tags($record['country'])
-																	  : ' ' . strip_tags($record['country']);
+                    $title = strip_tags((string) $record['title']);
+					$abstract = strip_tags((string) $record['shortdesc']);
+					$content = strip_tags((string) $record['longdesc']);
+					$place = strip_tags((string) $record['city']);
+					$place .= ($record['city'] && $record['country']) ? ', ' . strip_tags((string) $record['country'])
+																	  : ' ' . strip_tags((string) $record['country']);
 					$fullContent = $title . "\n" . $abstract . "\n" . $content . "\n" .$place;
 					$tags = ''; // oder '#camaliga#';
 					$params = '&tx_camaliga_' . $pluginForLinks . '[content]=' . $record['uid'];
@@ -104,11 +104,7 @@ class KeSearchIndexer extends IndexerBase
 					}
 
                     // Additional information
-                    $additionalFields = array(
-                        'sortdate' => $record['crdate'],
-                        'orig_uid' => $record['uid'],
-                        'orig_pid' => $record['pid'],
-                    );
+                    $additionalFields = ['sortdate' => $record['crdate'], 'orig_uid' => $record['uid'], 'orig_pid' => $record['pid']];
 
                     // add something to the title, just to identify the entries
                     // in the frontend

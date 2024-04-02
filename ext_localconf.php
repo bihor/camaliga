@@ -251,23 +251,23 @@ defined('TYPO3') || die();
 
 
     // Add CSV-export task (sheduler)
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\CsvExportTask'] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Quizpalme\Camaliga\Task\CsvExportTask::class] = [
         'extension' => 'camaliga',
         'title' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.title',
         'description' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.description',
-        'additionalFields' => 'Quizpalme\\Camaliga\\Task\\CsvExportAdditionalFieldProvider'
+        'additionalFields' => \Quizpalme\Camaliga\Task\CsvExportAdditionalFieldProvider::class
     ];
 
     // Add CSV-import task (sheduler)
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['Quizpalme\\Camaliga\\Task\\CsvImportTask'] = [
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Quizpalme\Camaliga\Task\CsvImportTask::class] = [
         'extension' => 'camaliga',
         'title' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.title',
         'description' => 'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.description',
-        'additionalFields' => 'Quizpalme\\Camaliga\\Task\\CsvImportAdditionalFieldProvider'
+        'additionalFields' => \Quizpalme\Camaliga\Task\CsvImportAdditionalFieldProvider::class
     ];
 
     // TCA-Validator
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals']['Quizpalme\\Camaliga\\Evaluation\\Double9Evaluation'] = '';
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\Quizpalme\Camaliga\Evaluation\Double9Evaluation::class] = '';
 
 
     // Register switchableControllerActions plugin migrator

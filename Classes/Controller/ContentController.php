@@ -1,6 +1,20 @@
 <?php
 namespace Quizpalme\Camaliga\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Quizpalme\Camaliga\Domain\Repository\ContentRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use Quizpalme\Camaliga\Utility\HelpersUtility;
+use TYPO3\CMS\Core\Context\Context;
+use Quizpalme\Camaliga\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Resource\DuplicationBehavior;
+use TYPO3\CMS\Extbase\Service\ImageService;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Core\DataHandling\SlugHelper;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
@@ -39,27 +53,27 @@ use Psr\Http\Message\ResponseInterface;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class ContentController extends ActionController
 {
 
     /**
      * contentRepository
      *
-     * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
+     * @var ContentRepository
      */
     protected $contentRepository;
 
     /**
      * configurationManager
      *
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     * @var ConfigurationManagerInterface
      */
     protected $configurationManager;
 
     /**
      * Helpers
      *
-     * @var \Quizpalme\Camaliga\Utility\HelpersUtility
+     * @var HelpersUtility
      */
     protected $helpersUtility;
 
@@ -76,7 +90,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function initializeAction()
     {
         $tsSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
         );
         for ($i=10; $i>0; $i--) {
             if (isset($tsSettings['plugin.']['tx_camaliga.']['view.']['templateRootPaths.'][$i])) {
@@ -88,7 +102,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         }
         $tsSettings = $tsSettings['plugin.']['tx_camaliga.']['settings.'];
         $originalSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
 
         // start override
@@ -157,20 +171,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     /**
      * Injects the content-Repository
-     *
-     * @param \Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository
      */
-    public function injectContentRepository(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+    public function injectContentRepository(ContentRepository $contentRepository)
     {
         $this->contentRepository = $contentRepository;
     }
 
     /**
      * Injects the helpers utility
-     *
-     * @param \Quizpalme\Camaliga\Utility\HelpersUtility $helpersUtility
      */
-    public function injectHelpersUtility(\Quizpalme\Camaliga\Utility\HelpersUtility $helpersUtility)
+    public function injectHelpersUtility(HelpersUtility $helpersUtility)
     {
         $this->helpersUtility = $helpersUtility;
     }
@@ -197,14 +207,14 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             if (!$storagePidsComma) {
                 // nix ausgewählt => aktuelle PID nehmen
                 $storagePidsComma = intval($content_pid);
-                $storagePidsArray = array($storagePidsComma);
-                $storagePidsOnly  = array($storagePidsComma);
+                $storagePidsArray = [$storagePidsComma];
+                $storagePidsOnly  = [$storagePidsComma];
             } else {
                 $storagePidsOnly = [];
             }
             $categoryUids = [];
             if ($this->settings['defaultCatIDs']) {
-                $defaultCats = explode(',', $this->settings['defaultCatIDs']);
+                $defaultCats = explode(',', (string) $this->settings['defaultCatIDs']);
                 foreach ($defaultCats as $defCat) {
                     $selected = intval(trim($defCat));
                     $categoryUids[$selected] = $selected;
@@ -267,7 +277,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action listExtended
      *
-     * @param int $currentPage
      * @return ResponseInterface
      */
     public function listExtendedAction(int $currentPage = 1): ResponseInterface
@@ -285,7 +294,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 $search = true;
             }
         }
-        $languageAspect = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class)->getAspect('language');
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = $languageAspect->getId();
 
         // @extensionScannerIgnoreLine
@@ -309,7 +318,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 // es kommt eben auf die Reihenfolge der Einspeisung an!
                 $storagePidsData[$value] = $storagePidsData_tmp[$value];
             }
-            $defPids = ',' . str_replace(' ', '', $this->settings['defaultStoragePids']) . ',';
+            $defPids = ',' . str_replace(' ', '', (string) $this->settings['defaultStoragePids']) . ',';
             foreach ($storagePidsArray as $aPID) {
                 // Prüfen, ob nur bestimmte Ordner ausgewählt sind
                 if ($this->request->hasArgument('search')) {
@@ -322,7 +331,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     }
                 } else if ($this->settings['defaultStoragePids']) {
                     // Default-PID vorhanden?
-                    if (strpos($defPids, ',' . $aPID . ',') !== false) {
+                    if (str_contains($defPids, ',' . $aPID . ',')) {
                         $storagePidsData[$aPID]['selected'] = $aPID;
                         $storagePidsOnly[] = intval($aPID);
                     }
@@ -331,16 +340,16 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         } else if (!$storagePidsComma) {
             // nix ausgewählt => aktuelle PID nehmen
             $storagePidsComma = intval($content_pid);
-            $storagePidsArray = array($storagePidsComma);
-            $storagePidsOnly  = array($storagePidsComma);
+            $storagePidsArray = [$storagePidsComma];
+            $storagePidsOnly  = [$storagePidsComma];
         }
         // gets all categories, which we want for the options
-        $categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         if (isset($this->settings['category']['storagePids']) && $this->settings['category']['storagePids']) {
             if ($this->settings['category']['storagePids'] == -1) {
                 $catStoragePids = [];		// alle kategorien
             } else {
-                $catStoragePids = explode(',', $this->settings['category']['storagePids']);		// category-folder
+                $catStoragePids = explode(',', (string) $this->settings['category']['storagePids']);		// category-folder
             }
         } else {
             $catStoragePids = $storagePidsArray;	// camaliga-folder(s)
@@ -406,7 +415,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                     $storagePidsData[$aPID]['selected'] = $aPID;
                 }
                 foreach ($categoryUids as $defCat) {
-                    foreach (explode(',', $defCat) as $selected) {
+                    foreach (explode(',', (string) $defCat) as $selected) {
                         $uid = intval(trim($selected));
                         $parent = $all_cats[$uid]['parent'];
                         if ($cats[$parent]['description'] == 'checkbox') {
@@ -419,7 +428,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             }
         } else if (!$search && $this->settings['defaultCatIDs']) {
             // keine Suche, keine Cookies => default cats auswählen
-            $defaultCats = explode(',', $this->settings['defaultCatIDs']);
+            $defaultCats = explode(',', (string) $this->settings['defaultCatIDs']);
             foreach ($defaultCats as $defCat) {
                 $uid = $selected = intval(trim($defCat));
                 $parent = $all_cats[$uid]['parent'];
@@ -435,7 +444,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         // Suche
         if (!$search && $this->settings['extended']['onlySearchForm'] == 1) {
-            $contents = array();
+            $contents = [];
             $this->view->assign('onlySearchForm', 1);
         } else {
             if (isset($cUid) && $cUid > 0) {
@@ -443,7 +452,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 if ($this->settings['debug']) {
                     $debug .= 'findByUids(array(' . $cUid . "))\n";
                 }
-                $contents = $this->contentRepository->findByUids(array($cUid));
+                $contents = $this->contentRepository->findByUids([$cUid]);
             } else if (!empty($categoryUids)) {
                 if (count($storagePidsOnly)==0 && count($storagePidsArray)>0) {
                     $storagePidsOnly = $storagePidsArray;
@@ -461,7 +470,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 if ($this->settings['debug']) {
                     $debug .= 'findComplex( ,' . $sword . ',' . $place . ',' . $radius . ',' . $sortBy . ',' . $sortOrder . ',' . $this->settings['onlyDistinct'] . ',' . implode(',', $storagePidsOnly) . ',' . $this->settings['limit'] . ")\n";
                 }
-                $contents = $this->contentRepository->findComplex(array(), $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
+                $contents = $this->contentRepository->findComplex([], $sword, $place, $radius, $sortBy, $sortOrder, $this->settings['onlyDistinct'], $storagePidsOnly, $this->settings['limit']);
             } else {
                 // Simple Suche
                 if ($this->settings['debug']) {
@@ -494,7 +503,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         if ($this->settings['extended']['radiusValues']) {
             $radiusArray = [];
-            $radiusTemp = explode(',', $this->settings['extended']['radiusValues']);
+            $radiusTemp = explode(',', (string) $this->settings['extended']['radiusValues']);
             foreach ($radiusTemp as $aRadius) {
                 $radiusArray[$aRadius] = $aRadius . ' km';
             }
@@ -571,7 +580,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         $debug = '';
         if (isset($this->settings['teaserIDs'])) {
-            $ids = explode(',', $this->settings['teaserIDs']);
+            $ids = explode(',', (string) $this->settings['teaserIDs']);
             $contents = $this->contentRepository->findByUids($ids, $this->settings['sortBy'], $this->settings['sortOrder']);
             if ($this->settings['debug']) {
                 $debug = 'findByUids(array(' . $this->settings['teaserIDs'] . '),' . $this->settings['sortBy'] . ',' . $this->settings['sortOrder'] . ")\n";
@@ -1095,7 +1104,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function newAction(): ResponseInterface
     {
-        $content = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Model\\Content');
+        $content = GeneralUtility::makeInstance(Content::class);
         // gets all categories, which we want
         $cats = $this->getCategoriesAndParents();
 
@@ -1108,7 +1117,6 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * action create
      *
-     * @param Content $content
      * @return ResponseInterface
      */
     public function createAction(Content $content): ResponseInterface
@@ -1116,7 +1124,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $debug = '';
         $mediaFolder = $this->settings['img']['folderForNewEntries'];
 
-        $persistenceManager = GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
+        $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         //$content->setHidden(1);
         if ($content->getUid() > 0) {
             $this->contentRepository->update($content);
@@ -1136,8 +1144,8 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             // https://stackoverflow.com/questions/57828620/how-to-access-uploaded-files-in-frontend-in-the-controller-in-typo3
             // https://www.ophidia.net/typo3-8-filereference-aus-bild-erzeugen/
             $uploadedFileData = $this->request->getArgument('image'); //$_FILES['image'];
-            if (substr($uploadedFileData['type'], 0, 5) == 'image') {
-                $resourceFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Resource\ResourceFactory::class);
+            if (str_starts_with((string) $uploadedFileData['type'], 'image')) {
+                $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
                 $storage = $resourceFactory->getDefaultStorage();
                 $delete1 = '';
                 $delete2 = '';
@@ -1153,16 +1161,13 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 }
 
                 # add uploaded file
-                $imageFile = $targetFolder->addUploadedFile($uploadedFileData, \TYPO3\CMS\Core\Resource\DuplicationBehavior::RENAME);
+                $imageFile = $targetFolder->addUploadedFile($uploadedFileData, DuplicationBehavior::RENAME);
                 $infos = $imageFile->getProperties();
 
                 if (($infos['width'] > $this->settings['img']['width']) || ($infos['height'] > $this->settings['img']['height'])) {
                     # resize uploaded image       //$image = $imageService->getImage($imgPath);
-                    $imageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Service\\ImageService');
-                    $processingInstructions = array(
-                        'maxWidth' => $this->settings['img']['width'],
-                        'maxHeight' => $this->settings['img']['height'],
-                    );
+                    $imageService = GeneralUtility::makeInstance(ImageService::class);
+                    $processingInstructions = ['maxWidth' => $this->settings['img']['width'], 'maxHeight' => $this->settings['img']['height']];
                     $imageFileResized = $imageService->applyProcessingInstructions($imageFile, $processingInstructions);
                     $persistenceManager->persistAll();
                     // aufräumen, geht hier aber noch nicht: $imageFile->delete(); und $imageFileResized->delete();
@@ -1185,7 +1190,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                         'crop' => null,
                     ]
                 );
-                $imageFileReference = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference');
+                $imageFileReference = GeneralUtility::makeInstance(FileReference::class);
                 $imageFileReference->setOriginalResource($falFileReference);
 
                 # set reference and position in Camaliga
@@ -1228,10 +1233,10 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         # Slug bilden! Achtung: uniqueInSite funktioniert hier nicht!
         $fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
-        $slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
-        $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
+        $slugHelper = GeneralUtility::makeInstance(SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
         $queryBuilder = $connection->createQueryBuilder();
-        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction::class));
+        $queryBuilder->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
         $statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
             $queryBuilder->expr()->eq('uid', $uid)
         )->executeQuery();
@@ -1266,7 +1271,7 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 }
             }
         }
-        $categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         foreach ($categoryUids as $key => $value) {
             $category = $categoryRepository->findOneByUid($key);
             $content->addCategory($category);
@@ -1332,18 +1337,18 @@ class ContentController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     private function getCategoriesAndParents()
     {
-        $categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+        $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         if ($this->settings['category']['storagePids']) {
             if ($this->settings['category']['storagePids'] == -1) {
                 $catStoragePids = [];		// alle kategorien
             } else {
-                $catStoragePids = explode(',', $this->settings['category']['storagePids']);		// category-folder
+                $catStoragePids = explode(',', (string) $this->settings['category']['storagePids']);		// category-folder
             }
         } else {
             $storagePidsArray = $this->contentRepository->getStoragePids();
             if (empty($storagePidsArray)) {
                 // nix ausgewählt => aktuelle PID nehmen
-                $storagePidsArray = array(intval($GLOBALS["TSFE"]->id));
+                $storagePidsArray = [intval($GLOBALS["TSFE"]->id)];
             }
             $catStoragePids = $storagePidsArray;	// camaliga-folder(s)
         }

@@ -1,6 +1,11 @@
 <?php
 namespace Quizpalme\Camaliga\Task;
 
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use Quizpalme\Camaliga\Domain\Model\Category;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use Quizpalme\Camaliga\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
@@ -74,9 +79,9 @@ class CsvExportTask extends AbstractTask
 	protected $convert = 0;
 	
 	/**
-	 * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-	 */
-	protected $configurationManager;
+  * @var ConfigurationManagerInterface
+  */
+ protected $configurationManager;
 	
 	/**
 	 * Get the value of the csv file
@@ -266,10 +271,10 @@ class CsvExportTask extends AbstractTask
 		$text = $this->getHeader();
 		if ($convert) $text = iconv('utf-8', 'iso-8859-1', $text);
 		$content = $text . $ln;					// header of the csv file
-		$cat_keys = array();					// uids of category names
-		$cat_parents = array();					// parent of the categories
-		$cat_rel = array();						// camaliga-category-relations
-		$cat_counts = array();					// count $cats categories
+		$cat_keys = [];					// uids of category names
+		$cat_parents = [];					// parent of the categories
+		$cat_rel = [];						// camaliga-category-relations
+		$cat_counts = [];					// count $cats categories
 		$i = 0;									// Counter
 		
 		// Step 0: init
@@ -277,7 +282,7 @@ class CsvExportTask extends AbstractTask
 			'persistence' => [
 				'storagePid' => '',
 				'classes' => [
-					'Quizpalme\Camaliga\Domain\Model\Category' => [
+					Category::class => [
 						'mapping' => [
 							'recordType' => 0,
 							'tableName' => 'sys_category'
@@ -286,11 +291,11 @@ class CsvExportTask extends AbstractTask
 				]
 			]
 		];
-		$this->configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
+		$this->configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
 		$this->configurationManager->setConfiguration($configurationArray);
 		
 		// Step 1: select all categories of the current language
-		$categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
 		$all_cats = $categoryRepository->getAllCats('sorting', 'asc', []);
 		
 		// Step 2: store more category datas in arrays
@@ -361,13 +366,13 @@ class CsvExportTask extends AbstractTask
 					foreach ($fieldArry as $field) {
 						if ($j>0)
 							$content .= $delimiter;
-						if (substr(trim($field), 0, 10) != '"category:') {
-							$text = preg_replace( "/\r|\n/", " ", $row[trim($field)]);
+						if (!str_starts_with(trim($field), '"category:')) {
+							$text = preg_replace( "/\r|\n/", " ", (string) $row[trim($field)]);
 							if ($convert) $text = iconv('utf-8', 'iso-8859-1', $text);
 							$content .= $separator . $text . $separator;
 						} else {
 							$cat = trim(substr(trim($field), 10, -1));	// Name der parent kategorie
-							$text = ($convert) ? iconv('utf-8', 'iso-8859-1', $cat_rel[$uid][$cat_keys[$cat]]) : $cat_rel[$uid][$cat_keys[$cat]];
+							$text = ($convert) ? iconv('utf-8', 'iso-8859-1', (string) $cat_rel[$uid][$cat_keys[$cat]]) : $cat_rel[$uid][$cat_keys[$cat]];
 							$content .= $separator . $text . $separator;	// Kinder einer gesuchten Kategorie
 						}
 						$j++;
@@ -376,7 +381,7 @@ class CsvExportTask extends AbstractTask
 				}
 		}
 		
-		$fp = fopen(\TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $this->getCsvfile(), 'w');
+		$fp = fopen(Environment::getPublicPath() . '/' . $this->getCsvfile(), 'w');
 		$ergebnis = fwrite($fp, $content);
 		fclose($fp);
 		if (!$ergebnis)

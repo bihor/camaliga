@@ -26,6 +26,8 @@
 */
 namespace Quizpalme\Camaliga\Hooks;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Quizpalme\Camaliga\Utility\TemplateLayout;
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 
 /**
@@ -49,11 +51,11 @@ class ItemsProcFunc {
         } else {
             $pid = 0;
         }
-	    $templateLayoutsUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Utility\\TemplateLayout');
+	    $templateLayoutsUtility = GeneralUtility::makeInstance(TemplateLayout::class);
 	    $templateLayouts = $templateLayoutsUtility->getAvailableTemplateLayouts($pid);
 	    foreach ($templateLayouts as $layout) {
 	        $additionalLayout = [
-	            htmlspecialchars($this->getLanguageService()->sL($layout[0])),
+	            htmlspecialchars((string) $this->getLanguageService()->sL($layout[0])),
 	            $layout[1]
 	        ];
 	        array_push($config['items'], $additionalLayout);

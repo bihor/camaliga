@@ -1,6 +1,7 @@
 <?php
 namespace Quizpalme\Camaliga\ViewHelpers;
 
+use Quizpalme\Camaliga\Domain\Repository\ContentRepository;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
@@ -21,18 +22,16 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
 	protected $escapeOutput = false;
 	
 	/**
-	 * contentRepository
-	 *
-	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
-	 */
-	protected $contentRepository = NULL;
+  * contentRepository
+  *
+  * @var ContentRepository
+  */
+ protected $contentRepository = NULL;
 	
 	/**
-	 * Injects the content-Repository
-	 * 
-	 * @param \Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository
-	 */ 
-	public function injectContentRepository(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+  * Injects the content-Repository
+  */
+ public function injectContentRepository(ContentRepository $contentRepository)
 	{ 
 		$this->contentRepository = $contentRepository; 
 	}
@@ -92,7 +91,7 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
 		return str_replace(
 			array_keys($row),
 			array_values($row),
-			$this->arguments['param']
+			(string) $this->arguments['param']
 		);
 	}
 }

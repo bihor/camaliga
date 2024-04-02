@@ -1,6 +1,7 @@
 <?php
 namespace Quizpalme\Camaliga\Task;
 
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -25,7 +26,7 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 	 */
 	public function getAdditionalFields(array &$taskInfo, $task, SchedulerModuleController $schedulerModule)
 	{
-		$additionalFields = array();
+		$additionalFields = [];
 		$currentSchedulerModuleAction = $schedulerModule->getCurrentAction();
 		
 		if (empty($taskInfo['page'])) {
@@ -108,96 +109,63 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		
 		// Ordner
 		$fieldId = 'task_page';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][page]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['page']) . '"/>';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][page]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['page']) . '"/>';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.page');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// cat-folder
 		$fieldId = 'task_catpage';
 		$checked = ($taskInfo['catpage']) ? ' checked="checked"' : '';
 		$fieldCode = '<input type="checkbox" name="tx_scheduler[camaliga][catpage]" id="' . $fieldId . '" value="1"' . $checked . ' />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.validate.catpage');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// Sprache
 		$fieldId = 'task_language';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][language]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['language']) . '"/>';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][language]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['language']) . '"/>';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.language');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// path to csv file
 		$fieldId = 'task_csvfile';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][csvfile]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['csvfile']) . '" size="50" />';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][csvfile]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['csvfile']) . '" size="50" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.validate.csvfile');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// fields in the DB
 		$fieldId = 'task_fields';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][fields]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['fields']) . '" size="50" />';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][fields]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['fields']) . '" size="50" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.validate.fields');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// separator
 		$fieldId = 'task_separator';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][separator]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['separator']) . '" size="5" />';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][separator]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['separator']) . '" size="5" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.separator');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// delimiter
 		$fieldId = 'task_delimiter';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][delimiter]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['delimiter']) . '" size="5" />';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][delimiter]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['delimiter']) . '" size="5" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.delimiter');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// catdelimiter
 		$fieldId = 'task_catdelimiter';
-		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][catdelimiter]" id="' . $fieldId . '" value="' . htmlspecialchars($taskInfo['catdelimiter']) . '" size="5" />';
+		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][catdelimiter]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['catdelimiter']) . '" size="5" />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.catdelimiter');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// convert
 		$fieldId = 'task_convert';
 		$checked = ($taskInfo['convert']) ? ' checked="checked"' : '';
 		$fieldCode = '<input type="checkbox" name="tx_scheduler[camaliga][convert]" id="' . $fieldId . '" value="1"' . $checked . ' />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.validate.convert');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// delete
 		$fieldId = 'task_delete';
 		$checked = ($taskInfo['delete']) ? ' checked="checked"' : '';
 		$fieldCode = '<input type="checkbox" name="tx_scheduler[camaliga][delete]" id="' . $fieldId . '" value="1"' . $checked . ' />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.validate.delete');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		// simulate
 		$fieldId = 'task_simulate';
 		$checked = ($taskInfo['simulate']) ? ' checked="checked"' : '';
 		$fieldCode = '<input type="checkbox" name="tx_scheduler[camaliga][simulate]" id="' . $fieldId . '" value="1"' . $checked . ' />';
 		$label = $GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:itasks.validate.simulate');
-		$additionalFields[$fieldId] = array(
-				'code' => $fieldCode,
-				'label' => $label
-		);
+		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		return $additionalFields;
 	}
 	
@@ -226,14 +194,14 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 				$isValid = FALSE;
 				$this->addMessage(
 					$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidPage'),
-					FlashMessage::ERROR
+					ContextualFeedbackSeverity::ERROR
 				);
 			}
 		} else {
 			$isValid = FALSE;
 			$this->addMessage(
 				$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidPage'),
-				FlashMessage::ERROR
+				ContextualFeedbackSeverity::ERROR
 			);
 		}
 		$lang = (int)$submittedData['camaliga']['language'];
@@ -251,15 +219,15 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 				$isValid = FALSE;
 				$this->addMessage(
 					$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidLanguage'),
-					FlashMessage::ERROR
+					ContextualFeedbackSeverity::ERROR
 				);
 			}
 		}
-		if (substr($submittedData['camaliga']['csvfile'],0,10) != 'fileadmin/') {
+		if (!str_starts_with((string) $submittedData['camaliga']['csvfile'], 'fileadmin/')) {
 			$isValid = FALSE;
 			$this->addMessage(
 				$GLOBALS['LANG']->sL('LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:tasks.validate.invalidCsvfile'),
-				FlashMessage::ERROR
+				ContextualFeedbackSeverity::ERROR
 			);
 		}
 		return $isValid;

@@ -1,6 +1,15 @@
 <?php
 namespace Quizpalme\Camaliga\Task;
 
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Core\Core\Environment;
+use Quizpalme\Camaliga\Domain\Model\Category;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use Quizpalme\Camaliga\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Core\Messaging\FlashMessage;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
+use TYPO3\CMS\Core\Messaging\FlashMessageService;
+use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -95,9 +104,9 @@ class CsvImportTask extends AbstractTask
 	protected $simulate = 0;
 	
 	/**
-	 * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
-	 */
-	protected $configurationManager;
+  * @var ConfigurationManagerInterface
+  */
+ protected $configurationManager;
 	
 	
 	/**
@@ -331,7 +340,7 @@ class CsvImportTask extends AbstractTask
 	
 	public function execute() {
 		$successfullyExecuted = TRUE;
-		$insert = array();
+		$insert = [];
 		$ln = "\r\n";							// line break
 		$pid = (int) $this->getPage();			// folder with camaliga elements
 		$syslanguid = (int) $this->getLanguage();	// sys_language_uid ID
@@ -345,7 +354,7 @@ class CsvImportTask extends AbstractTask
 		$fields_names = explode(',', $fields);	// field-array
 		
 		// files sortiert nach Name, dann umkehren
-		$path = \TYPO3\CMS\Core\Core\Environment::getPublicPath() . '/' . $this->getCsvfile();
+		$path = Environment::getPublicPath() . '/' . $this->getCsvfile();
 		$files = array_filter(glob($path), 'is_file');
 		$total = count($files);
 		if ($total > 1) $files = array_reverse($files);
@@ -399,7 +408,7 @@ class CsvImportTask extends AbstractTask
 			'persistence' => [
 				'storagePid' => '',
 				'classes' => [
-					'Quizpalme\Camaliga\Domain\Model\Category' => [
+					Category::class => [
 						'mapping' => [
 							'recordType' => 0,
 							'tableName' => 'sys_category'
@@ -408,7 +417,7 @@ class CsvImportTask extends AbstractTask
 				]
 			]
 		];
-		$this->configurationManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Configuration\\ConfigurationManager');
+		$this->configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
 		$this->configurationManager->setConfiguration($configurationArray);
 		
 		// Step 1: search all categories
@@ -418,7 +427,7 @@ class CsvImportTask extends AbstractTask
 		if ($catpage) {
 			$cat_pids[] = $pid;
 		}
-		$categoryRepository = GeneralUtility::makeInstance('Quizpalme\\Camaliga\\Domain\\Repository\\CategoryRepository');
+		$categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
 		$all_cats = $categoryRepository->getAllCats('uid', 'asc', $cat_pids);
 		foreach ($all_cats as $row) {
 			$catArray[$row['title']] = $row['uid'];
@@ -450,13 +459,13 @@ class CsvImportTask extends AbstractTask
 		}
 		
 		// Step 3: Import
-		$lines = array();
+		$lines = [];
 		if ($newestFile) {
 			$lines = file($newestFile);
 		}
 		if ( count($lines) > 1 ) {
 			$nr = 0;
-			$fields_values = array();
+			$fields_values = [];
 			$fields_values['pid'] = $pid;
 			$fields_values['tstamp'] = time();
 			$fields_values['crdate'] = time();
@@ -512,13 +521,13 @@ class CsvImportTask extends AbstractTask
 			if ($simulate && count($insert)>0) {
 				$output = $this->build_table($insert);
 				// vielleicht so: https://readthedocs.org/projects/bartacus-bundle/downloads/pdf/stable/
-				$message = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessage',
+				$message = GeneralUtility::makeInstance(FlashMessage::class,
 						$output,
 						'Simulation:', // the header is optional
-						\TYPO3\CMS\Core\Messaging\FlashMessage::INFO,
+						ContextualFeedbackSeverity::INFO,
 						FALSE
 				);
-				$flashMessageService = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Messaging\\FlashMessageService');
+				$flashMessageService = GeneralUtility::makeInstance(FlashMessageService::class);
 				$messageQueue = $flashMessageService->getMessageQueueByIdentifier();
 				$messageQueue->addMessage($message);
 			}
@@ -537,15 +546,15 @@ class CsvImportTask extends AbstractTask
 		$success_global = TRUE;
 		$connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
 		$fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
-		$slugHelper = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
+		$slugHelper = GeneralUtility::makeInstance(SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
 		
 		for ($i=0; $i<count($names); $i++) {
-			$feld = trim($names[$i]);
-			if (substr($feld, 0, 8) != 'category') {
+			$feld = trim((string) $names[$i]);
+			if (!str_starts_with($feld, 'category')) {
 				if ($convert) {
-					$values[$feld] = trim(iconv('iso-8859-1','utf-8',$fields[$i]));
+					$values[$feld] = trim(iconv('iso-8859-1','utf-8',(string) $fields[$i]));
 				} else {
-					$values[$feld] = trim($fields[$i]);
+					$values[$feld] = trim((string) $fields[$i]);
 				}
 			}
 		}
@@ -582,37 +591,37 @@ class CsvImportTask extends AbstractTask
 		if (($values['uid'] > 0) || $simulate) {
 			// Kategorie-Relationen einfügen? Kategorien müssen vorhanden sein!
 			$cats = 0;
-			$catIDs = array(); 
+			$catIDs = []; 
 			for ($i=0; $i<count($names); $i++) {
 				$feld = $names[$i];
-				if (substr($feld, 0, 8) == 'category') {
+				if (str_starts_with((string) $feld, 'category')) {
 					// eine Kategorie ist dran
-					if (substr($feld, 8, 8) == '-parent:') {
+					if (substr((string) $feld, 8, 8) == '-parent:') {
 						// Vater wurde angegeben
 						$cat = '';
-						$cat_parent = substr($feld, 16);
+						$cat_parent = substr((string) $feld, 16);
 					} else {
 						// Wurde eine Kategorie angegeben: wenn ja, dann werte 0 oder 1 aus
-						$cat = substr($feld, 9);
+						$cat = substr((string) $feld, 9);
 						$cat_parent = '';
 					}
 					
 					if ($cat_parent) {
 						// a) Vater-Kategorie im Header angegeben
-						$catParentID = ($convert) ? trim(iconv('iso-8859-1','utf-8',$catArray[$cat_parent])) : trim($catArray[$cat_parent]);
-						$catName = ($convert) ? trim(iconv('iso-8859-1','utf-8',$fields[$i])) : trim($fields[$i]);
+						$catParentID = ($convert) ? trim(iconv('iso-8859-1','utf-8',(string) $catArray[$cat_parent])) : trim((string) $catArray[$cat_parent]);
+						$catName = ($convert) ? trim(iconv('iso-8859-1','utf-8',(string) $fields[$i])) : trim((string) $fields[$i]);
 						$catNameArray = explode(',', $catName);
 						foreach ($catNameArray as $oneCatName)
 							$catIDs[] = $catParentArray[$catParentID][trim($oneCatName)];
 					} else if ($cat) {
 						// b) Kategorie im Header angegeben
-						if (trim($fields[$i]) == 1) {	// nur eine 1 wird in der Spalte akzeptiert
+						if (trim((string) $fields[$i]) == 1) {	// nur eine 1 wird in der Spalte akzeptiert
 							$catName = ($convert) ? trim(iconv('iso-8859-1','utf-8',$cat)) : trim($cat);
 							$catIDs[] = $catArray[$catName];
 						}
 					} else {
 						// c) Kategorie in den Zeilen angegeben
-						$catName = ($convert) ? trim(iconv('iso-8859-1','utf-8',$fields[$i])) : trim($fields[$i]);
+						$catName = ($convert) ? trim(iconv('iso-8859-1','utf-8',(string) $fields[$i])) : trim((string) $fields[$i]);
 						$catIDs[] = $catArray[$catName];
 					}
 				}
@@ -629,7 +638,7 @@ class CsvImportTask extends AbstractTask
 							}
 						} else {
 							// Kategorie-Relationen einfügen
-							$mmInsertArray = array('tablenames' => 'tx_camaliga_domain_model_content', 'fieldname' => 'categories');
+							$mmInsertArray = ['tablenames' => 'tx_camaliga_domain_model_content', 'fieldname' => 'categories'];
 							$mmInsertArray['uid_local'] = $catID;	// Die Kategorie
 							$mmInsertArray['uid_foreign'] = $values['uid'];			// Das Camaliga-Element
 							$mmInsertArray['sorting'] = ($cats+1)*10;
@@ -684,7 +693,7 @@ class CsvImportTask extends AbstractTask
 		// data rows
 		foreach( $array as $key=>$value){
 			foreach($value as $key2=>$value2){
-				$html .= strip_tags($value2) . '; ';
+				$html .= strip_tags((string) $value2) . '; ';
 			}
 			$html .= "###\n\r";
 		}

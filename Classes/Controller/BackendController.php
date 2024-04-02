@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Controller;
 
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Quizpalme\Camaliga\Domain\Repository\ContentRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use Psr\Http\Message\ResponseInterface;
@@ -39,7 +41,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class BackendController extends ActionController
 {
 
     protected int $id;
@@ -47,11 +49,11 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected ModuleTemplate $moduleTemplate;
 
 	/**
-	 * contentRepository
-	 *
-	 * @var \Quizpalme\Camaliga\Domain\Repository\ContentRepository
-	 */
-	protected $contentRepository;
+  * contentRepository
+  *
+  * @var ContentRepository
+  */
+ protected $contentRepository;
 
     public function __construct(
         protected readonly ModuleTemplateFactory $moduleTemplateFactory,
@@ -66,10 +68,8 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
     /**
      * Injects the content-Repository
-     *
-     * @param \Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository
      */
-    public function injectContentRepository(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+    public function injectContentRepository(ContentRepository $contentRepository)
     {
         $this->contentRepository = $contentRepository;
     }
@@ -113,7 +113,7 @@ class BackendController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 			}
 		}
 		// Elemente sortiert holen
-		$contents = $this->contentRepository->findAll('sorting', 'asc', false, array($pid));
+		$contents = $this->contentRepository->findAll('sorting', 'asc', false, [$pid]);
 		
 		$this->view->assign('pid', $pid);
 		$this->view->assign('saved', $saved);

@@ -1,6 +1,8 @@
 <?php
 namespace Quizpalme\Camaliga\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
@@ -35,7 +37,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class ContentRepository extends Repository
 {
 
 	/**
@@ -43,7 +45,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 *
 	 * @var \array
 	 */
-	protected $distanceArray = array();
+	protected $distanceArray = [];
 	
 	// Entferungsarray zurück geben
 	function getDistanceArray()
@@ -61,17 +63,17 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			return $data;
 		}
 	
-		$non_displayables = array(
+		$non_displayables = [
 				'/%0[0-8bcef]/',            // url encoded 00-08, 11, 12, 14, 15
 				'/%1[0-9a-f]/',             // url encoded 16-31
 				'/[\x00-\x08]/',            // 00-08
 				'/\x0b/',                   // 11
 				'/\x0c/',                   // 12
 				'/[\x0e-\x1f]/'             // 14-31
-		);
-		$entf = array('\\', '"', "'", '%', '´', '`');
+		];
+		$entf = ['\\', '"', "'", '%', '´', '`'];
 		foreach ( $non_displayables as $regex ) {
-			$data = preg_replace( $regex, '', $data );
+			$data = preg_replace( $regex, '', (string) $data );
 		}
 		return str_replace( $entf, '', $data );
 	}
@@ -84,10 +86,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	array	$pids		Storage PIDs
 	 * @param	integer	$limit		Limit
 	 */
-	public function findAll($sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $limit = 0)
+	public function findAll($sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = [], $limit = 0)
 	{
-		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
-										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
+		$order = ($sortOrder == 'desc') ? QueryInterface::ORDER_DESCENDING :
+										 QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='crdate' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 		 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
 		 	// OK
@@ -95,7 +97,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		 	$sortBy = 'sorting';
 		 }
 		
-		$constraints = array();
+		$constraints = [];
 		$query = $this->createQuery();
 		if (!empty($pids)) {
 			$query->getQuerySettings()->setRespectStoragePage(FALSE);
@@ -111,13 +113,13 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		}
 		//	->setOffset($page * $limit)
 		$result = $query
-			->setOrderings(	array($sortBy => $order) )
+			->setOrderings(	[$sortBy => $order] )
 			->execute();
 		
 		if ($onlyDistinct) {
 			// bessere Idee:
-			$resUids = array();
-			$delKeys = array();
+			$resUids = [];
+			$delKeys = [];
 			foreach ($result as $element) {
 				$resUids[$element->getUid()] = 1;
 			}
@@ -149,10 +151,10 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	array	$pids		Storage PIDs
 	 * @param	integer	$limit		Limit
 	 */
-	public function findComplex($uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = array(), $limit = 0)
+	public function findComplex($uids, $sword, $place, $radius, $sortBy = 'sorting', $sortOrder = 'asc', $onlyDistinct = FALSE, $pids = [], $limit = 0)
 	{
-		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
-										  \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
+		$order = ($sortOrder == 'desc') ? QueryInterface::ORDER_DESCENDING :
+										  QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 			 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
 		 	// OK
@@ -169,7 +171,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			$uids = [];
 		}
 		$noMatch = FALSE;
-		$this->distanceArray = array();
+		$this->distanceArray = [];
 		
 		// Umkreissuche von hier: http://opengeodb.org/wiki/OpenGeoDB_-_Umkreissuche
 		if ($place && $radius) {
@@ -250,7 +252,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		
 		if (!$noMatch) {
 		    //var_dump($uids);
-			$constraints = array();
+			$constraints = [];
 			$query = $this->createQuery();
 			if (!empty($pids)) {
 				$query->getQuerySettings()->setRespectStoragePage(false);
@@ -299,7 +301,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 				$query->setLimit(intval($limit));
 			}
 			return $query
-				->setOrderings(array($sortBy => $order))
+				->setOrderings([$sortBy => $order])
 				->execute();
 		}
 	}
@@ -312,8 +314,8 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 */
 	public function findByUids($uids, $sortBy = 'sorting', $sortOrder = 'asc')
 	{
-		$order = ($sortOrder == 'desc') ? \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING :
-										 \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING;
+		$order = ($sortOrder == 'desc') ? QueryInterface::ORDER_DESCENDING :
+										 QueryInterface::ORDER_ASCENDING;
 		if ($sortBy=='sorting' || $sortBy=='tstamp' || $sortBy=='title' || $sortBy=='zip' || $sortBy=='city'
 		 || $sortBy=='country' || $sortBy=='custom1' || $sortBy=='custom2' || $sortBy=='custom3') {
 		 	// OK
@@ -325,7 +327,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		// nicht nötig: if ($onlyDistinct) $query->matching($query->logicalAnd($query->equals('mother', 0), $query->in('uid', $uids))); else 
 		$query->matching($query->in('uid', $uids));
 		return $query
-			->setOrderings(	array($sortBy => $order) )
+			->setOrderings(	[$sortBy => $order] )
 			->execute();
 	}
 	
@@ -373,7 +375,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 					->where(
 						$queryBuilder->expr()->eq('categoryMM.tablenames', $queryBuilder->createNamedParameter($table)),
 						$queryBuilder->expr()->eq('categoryMM.fieldname', $queryBuilder->createNamedParameter('categories')),
-						$queryBuilder->expr()->in('categoryMM.uid_local', explode(',', $uidsChilds))
+						$queryBuilder->expr()->in('categoryMM.uid_local', explode(',', (string) $uidsChilds))
 					);
 				if (!empty($pids)) {
 					$queryBuilder->andWhere( $queryBuilder->expr()->in('tx_camaliga_domain_model_content.pid', $pids) );
@@ -553,7 +555,7 @@ class ContentRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 */
 	public function getStoragePidsData()
 	{
-		$storagePidsData_tmp = array();
+		$storagePidsData_tmp = [];
 		$pids = $this->getStoragePids();
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
 		$statement = $queryBuilder
