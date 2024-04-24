@@ -6,6 +6,8 @@ function saveorder() {
     });
     $('#thumbform').submit();
 }
-$('#cambutso').click(function(event){
-    saveorder();
-});
+document.addEventListener('DOMContentLoaded', function(){
+    $('#cambutso').click(function(event){
+        saveorder();
+    });
+}, false);

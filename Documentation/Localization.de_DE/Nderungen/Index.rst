@@ -310,4 +310,6 @@ Version     Änderungen
             Setting errorId ist neu: wenn keine uid angegeben ist, kann eine Weiterleitung eingerichtet werden.
 
             Ignore validation in der show- und showExtended-action entfernt!
+
+13.0.1      Sortierung im Backend-Modul klappt wieder.
 ==========  =====================================================================================================================

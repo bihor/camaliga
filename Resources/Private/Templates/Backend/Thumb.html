@@ -9,10 +9,11 @@
 			includeCssFiles="{0: 'EXT:camaliga/Resources/Public/Css/Backend.css'}"
 			includeJsFiles="{0: 'EXT:camaliga/Resources/Public/JavaScript/Backend.js'}"
 	/>
-
-	<!-- link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
 	<h1><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.title" /></h1>
-	<!-- <f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" /> -->
+	<f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.text" />
 
     <br><br>
 	<f:if condition="{saved} == 1">
@@ -35,10 +36,8 @@
 		  </li>
 		</f:for>
 		</ul>
-		<!--
 		<br>
 		<f:form.button type="button" class="btn btn-primary" id="cambutso"><f:translate key="LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:thumb.save" /></f:form.button>
-		-->
 	</f:form>
 
 </f:section>
