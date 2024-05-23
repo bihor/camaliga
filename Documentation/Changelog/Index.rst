@@ -305,4 +305,6 @@ Version     Changes
             Ignore validation in show and showExtended action removed!
 
 13.0.1      Sorting in the backend module works now again.
+
+13.0.2      Bugfix: backend preview.
 ==========  ==============================================================================================================================
