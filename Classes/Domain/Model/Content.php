@@ -1052,7 +1052,6 @@ class Content extends AbstractValueObject
 			)
 			->set('tablenames', 'tx_camaliga_domain_model_content')
 			->set('sorting_foreign', 1)
-			->set('table_local', 'sys_file')
 			->executeStatement();
 	}
 }

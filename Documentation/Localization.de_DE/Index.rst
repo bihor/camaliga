@@ -57,5 +57,4 @@ EXT: Camaliga - carousel/map/list/gallery
    Updaten7/Index
    Updaten9/Index
    BekannteProbleme/Index
-   Todo-liste/Index
    Nderungen/Index

@@ -1186,7 +1186,6 @@ class ContentController extends ActionController
                         'uid' => uniqid('NEW_'),
                         'tablenames' => 'tx_camaliga_domain_model_content',
                         'fieldname' => 'falimage',
-                        'table_local' => 'sys_file',
                         'crop' => null,
                     ]
                 );
