@@ -309,4 +309,6 @@ Version     Changes
             Bugfix: backend preview.
 
             Bugfix: old TYPO3 fields removed.
+
+13.0.4.     Bugfix: data handler hook.
 ==========  ==============================================================================================================================

@@ -316,4 +316,6 @@ Version     Änderungen
             Bugfix: Backend-Vorschau.
 
             Bugfix: von TYPO3 entfernte Felder entfernt.
+
+13.0.4.     Bugfix: data handler hook.
 ==========  =====================================================================================================================

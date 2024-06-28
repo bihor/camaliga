@@ -29,15 +29,18 @@ class DataHandlerHook {
      */
     public function processDatamap_preProcessFieldArray(array &$incomingFieldArray, string $table, $id, DataHandler $dataHandler): void
     {
-        if ($table == 'tx_camaliga_domain_model_content' &&
-            $incomingFieldArray['city'] && !floatval($incomingFieldArray['latitude']) && !floatval($incomingFieldArray['longitude'])) {
-            // dies hier greift bei neuen Einträgen
+        if ($table == 'tx_camaliga_domain_model_content') {
             $configurationUtility = GeneralUtility::makeInstance(ExtensionConfiguration::class)->get('camaliga');
+            // dies hier greift bei neuen Einträgen
             if ((bool)$configurationUtility['searchCoordinatesInBE']) {
-                $coordinates = GeneralUtility::makeInstance(HelpersUtility::class)->getLatLonOfAddress($incomingFieldArray['street'], $incomingFieldArray['zip'], $incomingFieldArray['city'], $incomingFieldArray['country'], 2, '');
-                if ($coordinates['latitude'] || $coordinates['longitude']) {
-                    $incomingFieldArray['latitude'] = sprintf('%01.9f', $coordinates['latitude']);
-                    $incomingFieldArray['longitude'] = sprintf('%01.9f', $coordinates['longitude']);
+                if (isset($incomingFieldArray['city']) && $incomingFieldArray['city'] &&
+                    (!isset($incomingFieldArray['latitude']) || !floatval($incomingFieldArray['latitude'])) &&
+                    (!isset($incomingFieldArray['longitude']) || !floatval($incomingFieldArray['longitude']))) {
+                    $coordinates = GeneralUtility::makeInstance(HelpersUtility::class)->getLatLonOfAddress($incomingFieldArray['street'], $incomingFieldArray['zip'], $incomingFieldArray['city'], $incomingFieldArray['country'], 2, '');
+                    if ($coordinates['latitude'] || $coordinates['longitude']) {
+                        $incomingFieldArray['latitude'] = sprintf('%01.9f', $coordinates['latitude']);
+                        $incomingFieldArray['longitude'] = sprintf('%01.9f', $coordinates['longitude']);
+                    }
                 }
             }
         }
@@ -88,7 +91,7 @@ class DataHandlerHook {
                             ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)))
                             ->set('latitude', (float)$coordinates['latitude'])
                             ->set('longitude', (float)$coordinates['longitude'])
-                        //    ->set('custom3', 'DEBUG1: ' . $ccordinates['debug'])
+                            //    ->set('custom3', 'DEBUG1: ' . $ccordinates['debug'])
                             ->executeStatement();
                     }
                 }
