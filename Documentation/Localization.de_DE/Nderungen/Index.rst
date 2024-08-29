@@ -317,5 +317,7 @@ Version     Änderungen
 
             Bugfix: von TYPO3 entfernte Felder entfernt.
 
-13.0.4.     Bugfix: data handler hook.
+13.0.5      Bugfix: data handler hook.
+
+            Bugfix für sql_mode=only_full_group_by.
 ==========  =====================================================================================================================

@@ -182,7 +182,7 @@ class ContentRepository extends Repository
 			
 			// Position des Suchortes finden
 			$where = (is_numeric($ort)) ? "zc_zip = '" . $ort . "'" : "zc_location_name LIKE '" . $ort . "%'";
-			$statement = 'SELECT zc_id, zc_location_name FROM geodb_zip_coordinates WHERE ' . $where . ' GROUP BY zc_location_name LIMIT 1';
+			$statement = 'SELECT zc_id, zc_location_name FROM geodb_zip_coordinates WHERE ' . $where . ' ORDER BY zc_location_name LIMIT 1';
 			$query = $this->createQuery();
 			$query->getQuerySettings()->setRespectStoragePage(FALSE);
 			$query->statement($statement);
