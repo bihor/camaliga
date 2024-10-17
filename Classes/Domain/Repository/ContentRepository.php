@@ -218,7 +218,7 @@ class ContentRepository extends Repository
 						//echo "\nGefunden: " . $uid . ': ' . $row['zip'] . ' ' . $row['city'];
 						if ($catSearch) {
 							// Gibt es auch eine Übereinstimmung bei der Kategoriensuche?
-							if ($uids[$uid] > 0) {
+							if (isset($uids[$uid]) && $uids[$uid] > 0) {
 								$new_uids[$uid] = $uid;
 								$this->distanceArray[$uid] = $row['distance'];
                                // echo "\nÜbrig 1: " . $uid . ': ' . $row['zip'] . ' ' . $row['city'];

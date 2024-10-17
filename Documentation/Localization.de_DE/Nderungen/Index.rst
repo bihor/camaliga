@@ -320,4 +320,6 @@ Version     Änderungen
 13.0.5      Bugfix: data handler hook.
 
             Bugfix für sql_mode=only_full_group_by.
+
+13.0.6      Bugfix: Warnungen verhindern.
 ==========  =====================================================================================================================
