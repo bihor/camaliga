@@ -1,12 +1,12 @@
 <?php
 namespace Quizpalme\Camaliga\Controller;
 
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use Quizpalme\Camaliga\Domain\Repository\ContentRepository;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Quizpalme\Camaliga\Utility\HelpersUtility;
-use TYPO3\CMS\Core\Context\Context;
+use Quizpalme\Camaliga\Domain\Repository\ContentRepository;
 use Quizpalme\Camaliga\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Resource\DuplicationBehavior;
@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\DataHandling\SlugHelper;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Pagination\ArrayPaginator;
 use TYPO3\CMS\Core\Pagination\SimplePagination;
 use Quizpalme\Camaliga\Domain\Model\Content;
@@ -64,13 +63,6 @@ class ContentController extends ActionController
     protected $contentRepository;
 
     /**
-     * configurationManager
-     *
-     * @var ConfigurationManagerInterface
-     */
-    protected $configurationManager;
-
-    /**
      * Helpers
      *
      * @var HelpersUtility
@@ -87,7 +79,7 @@ class ContentController extends ActionController
     /**
      * Merges / overrides the FlexForm settings with TypoScript settings if FlexForm setting is empty
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $tsSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
@@ -197,10 +189,14 @@ class ContentController extends ActionController
             // extended-Version laden - this->template = 'ListExtended'; ?
             $this->listExtendedAction();
         } else {
-            // @extensionScannerIgnoreLine
-            $cobjData = $this->configurationManager->getContentObject();
-            $content_uid = $cobjData->data['uid'];
-            $content_pid = $cobjData->data['pid'];
+            $content_uid = 0;
+            $content_pid = 0;
+            if (isset($this->request->getAttribute('currentContentObject')->data['uid'])) {
+                $content_uid = $this->request->getAttribute('currentContentObject')->data['uid'];
+            }
+            if (isset($this->request->getAttribute('currentContentObject')->data['pid'])) {
+                $content_pid = $this->request->getAttribute('currentContentObject')->data['pid'];
+            }
 
             $storagePidsArray = $this->contentRepository->getStoragePids();
             $storagePidsComma = implode(',', $storagePidsArray);
@@ -297,10 +293,14 @@ class ContentController extends ActionController
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = $languageAspect->getId();
 
-        // @extensionScannerIgnoreLine
-        $cobjData = $this->configurationManager->getContentObject();
-        $content_uid = $cobjData->data['uid'];
-        $content_pid = $cobjData->data['pid'];
+        $content_uid = 0;
+        $content_pid = 0;
+        if (isset($this->request->getAttribute('currentContentObject')->data['uid'])) {
+            $content_uid = $this->request->getAttribute('currentContentObject')->data['uid'];
+        }
+        if (isset($this->request->getAttribute('currentContentObject')->data['pid'])) {
+            $content_pid = $this->request->getAttribute('currentContentObject')->data['pid'];
+        }
 
         $distanceArray = [];
         $categoryUids = [];
@@ -381,7 +381,8 @@ class ContentController extends ActionController
         if ($this->request->hasArgument('search')) {
             $search = true;
         }
-
+        /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+        $frontendUser = $this->request->getAttribute('frontend.user');
         if ($search && $this->settings['extended']['saveSearch'] == 1) {
             // Suchparameter in Cookie speichern
             $searchCookie = [];
@@ -394,11 +395,11 @@ class ContentController extends ActionController
             $searchCookie['categoryUids'] = $categoryUids;
             //$searchCookie['start'] = $start;
             // Cookie speichern
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'camaliga' . $content_uid, serialize($searchCookie));
-            $GLOBALS['TSFE']->fe_user->storeSessionData();
+            $frontendUser->setKey('ses', 'camaliga' . $content_uid, serialize($searchCookie));
+            $frontendUser->storeSessionData();
         } else	if (!$search && $this->settings['extended']['saveSearch'] == 1) {
             // Suchparameter aus Cookie laden
-            $cookie = $GLOBALS['TSFE']->fe_user->getKey('ses', 'camaliga' . $content_uid);
+            $cookie = $frontendUser->getKey('ses', 'camaliga' . $content_uid);
             if ($cookie) {
                 $searchCookie = unserialize($cookie);
                 $sortBy = $searchCookie['sortBy'];
@@ -1347,7 +1348,8 @@ class ContentController extends ActionController
             $storagePidsArray = $this->contentRepository->getStoragePids();
             if (empty($storagePidsArray)) {
                 // nix ausgewählt => aktuelle PID nehmen
-                $storagePidsArray = [intval($GLOBALS["TSFE"]->id)];
+                $pageArguments = $this->request->getAttribute('routing');
+                $storagePidsArray = [intval($pageArguments->getPageId())];
             }
             $catStoragePids = $storagePidsArray;	// camaliga-folder(s)
         }

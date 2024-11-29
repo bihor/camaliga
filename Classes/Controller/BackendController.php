@@ -60,7 +60,7 @@ class BackendController extends ActionController
     ) {
     }
 
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $this->id = (int)($this->request->getQueryParams()['id'] ?? 0);
         $this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);

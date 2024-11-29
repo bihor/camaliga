@@ -3,7 +3,7 @@ return [
     'camaliga' => [
         'parent' => 'web',
         'position' => ['after' => '*'],
-        'access' => 'user,group',
+        'access' => 'user',
         'workspaces' => 'live',
         'iconIdentifier' => 'extension-camaliga-module',
         'path' => '/module/page/camaliga',

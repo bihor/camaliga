@@ -75,6 +75,7 @@ class HelpersUtility
             $metaTagManager->addProperty('description', $desc);
         }
         if ($settings['seo']['setIndexedDocTitle'] == 1) {
+            // TODO
             $GLOBALS['TSFE']->indexedDocTitle = $title;
         }
         if ($settings['seo']['setOgTitle'] == 1) {

@@ -57,6 +57,4 @@ foreach (['list', 'listextended', 'show', 'showextended', 'carousel', 'carousels
         'camaliga_' . $plugin,
         'FILE:EXT:camaliga/Configuration/FlexForms/flexform_' . $xml . '.xml'
     );
-
-    // $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['plainfaq_' . $plugin] = 'layout,select_key,pages,recursive';
 }

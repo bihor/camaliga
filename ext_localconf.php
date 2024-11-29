@@ -1,4 +1,6 @@
 <?php
+use TYPO3\CMS\Core\Information\Typo3Version;
+
 defined('TYPO3') || die();
 
 (function () {
@@ -227,13 +229,16 @@ defined('TYPO3') || die();
 
 
     // wizards
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:camaliga/Configuration/TSconfig/ContentElementWizard.tsconfig">');
+    if ((new Typo3Version())->getMajorVersion() < 13) {
+        // @extensionScannerIgnoreLine
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:camaliga/Configuration/TSconfig/ContentElementWizard.tsconfig">');
 
-    // Add page TSConfig für den Linkvalidator
-    if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:camaliga/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig">');
+        // Add page TSConfig für den Linkvalidator
+        if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('linkvalidator')) {
+            // @extensionScannerIgnoreLine
+            \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('<INCLUDE_TYPOSCRIPT: source="FILE:EXT:camaliga/Configuration/TSconfig/Page/mod.linkvalidator.tsconfig">');
+        }
     }
-
 
 
     //BE Hook für Koordinaten
