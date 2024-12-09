@@ -574,10 +574,14 @@ class ContentController extends ActionController
      */
     public function teaserAction(): ResponseInterface
     {
-        // @extensionScannerIgnoreLine
-        $cobjData = $this->configurationManager->getContentObject();
-        $content_uid = $cobjData->data['uid'];
-        $content_pid = $cobjData->data['pid'];
+        $content_uid = 0;
+        $content_pid = 0;
+        if (isset($this->request->getAttribute('currentContentObject')->data['uid'])) {
+            $content_uid = $this->request->getAttribute('currentContentObject')->data['uid'];
+        }
+        if (isset($this->request->getAttribute('currentContentObject')->data['pid'])) {
+            $content_pid = $this->request->getAttribute('currentContentObject')->data['pid'];
+        }
 
         $debug = '';
         if (isset($this->settings['teaserIDs'])) {

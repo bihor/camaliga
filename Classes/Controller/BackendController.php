@@ -74,21 +74,6 @@ class BackendController extends ActionController
         $this->contentRepository = $contentRepository;
     }
 
-    /**
-	 * Ordner-ID
-	 *
-	 * @return integer
-	 */
-	protected function getCurrentPageId()
-	{
-		$pageId = (integer) GeneralUtility::_GP('id');
-		if ($pageId > 0) {
-		  return $pageId;
-		}
-		// get a site root
-		return (integer) $this->contentRepository->getSiteRoot();
-	}
-
 
 	/**
 	 * action thumb
@@ -97,7 +82,7 @@ class BackendController extends ActionController
 	 */
 	public function thumbAction(): ResponseInterface
 	{
-		$pid = intval($this->getCurrentPageId());
+        $pid = $this->id;
 		$saved = 0;
 		
 		// save new order first
@@ -115,10 +100,9 @@ class BackendController extends ActionController
 		// Elemente sortiert holen
 		$contents = $this->contentRepository->findAll('sorting', 'asc', false, [$pid]);
 		
-		$this->view->assign('pid', $pid);
-		$this->view->assign('saved', $saved);
-		$this->view->assign('contents', $contents);
-        $this->moduleTemplate->setContent($this->view->render());
-        return $this->htmlResponse($this->moduleTemplate->renderContent());
+		$this->moduleTemplate->assign('pid', $pid);
+		$this->moduleTemplate->assign('saved', $saved);
+		$this->moduleTemplate->assign('contents', $contents);
+        return $this->moduleTemplate->renderResponse('Backend/Thumb');
 	}
 }

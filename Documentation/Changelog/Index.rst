@@ -315,4 +315,8 @@ Version     Changes
             Bugfix for sql_mode=only_full_group_by.
 
 13.0.6      Bugfix: prevent warnings.
+
+13.1.0      First version for TYPO3 13.
+
+            SwitchableControllerActionsPluginUpdater (update script) removed.
 ==========  ==============================================================================================================================

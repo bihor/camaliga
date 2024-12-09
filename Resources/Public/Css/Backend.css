@@ -1,6 +1,8 @@
-:root {
-    --shadow: 0.3rem 0.3rem 0.6rem #aaddff,
-    -0.2rem -0.2rem 0.5rem #ffffff;
+body {
+    overflow-y: scroll;
+}
+#camaliga-main-content {
+    padding: 10px;
 }
 #camaliga-main-content h1 {
     margin-top:0;

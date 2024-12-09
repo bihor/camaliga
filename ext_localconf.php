@@ -253,8 +253,6 @@ defined('TYPO3') || die();
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['customIndexer'][] = \Quizpalme\Camaliga\Hooks\KeSearchIndexer::class;
     }
 
-
-
     // Add CSV-export task (sheduler)
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Quizpalme\Camaliga\Task\CsvExportTask::class] = [
         'extension' => 'camaliga',
@@ -273,10 +271,5 @@ defined('TYPO3') || die();
 
     // TCA-Validator
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\Quizpalme\Camaliga\Evaluation\Double9Evaluation::class] = '';
-
-
-    // Register switchableControllerActions plugin migrator
-    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['switchableControllerActionsPluginUpdaterCamaliga']
-        = \Quizpalme\Camaliga\Updates\SwitchableControllerActionsPluginUpdater::class;
 
 })();
