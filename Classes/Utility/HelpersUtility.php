@@ -93,13 +93,20 @@ class HelpersUtility
             $server .= $_SERVER['SERVER_NAME'];
             $image = '';
             if ($content->getFalimage() && $content->getFalimage()->getUid()) {
-                //$typo3FALRepository = $this->objectManager->get("TYPO3\\CMS\\Core\\Resource\\FileRepository");
                 $typo3FALRepository = GeneralUtility::makeInstance(FileRepository::class);
-                $fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
-                $fileObjectData = $fileObject->toArray();
-                $image = $server . '/' . $fileObjectData['url'];
+                // gibt es nicht mehr in T13:
+                //$fileObject = $typo3FALRepository->findFileReferenceByUid($content->getFalimage()->getUid());
+                $fileObject = $typo3FALRepository->findByRelation(
+                    'tx_camaliga_domain_model_content',
+                    'falimage',
+                    $content->getUid()
+                );
+                if (is_array($fileObject) && is_object($fileObject[0])) {
+                    $fileObjectData = $fileObject[0]->toArray();
+                    $image = $server . '/' . $fileObjectData['url'];
+                }
             }
-            if ($image && is_array($fileObjectData)) {
+            if ($image) {
                 //$this->response->addAdditionalHeaderData('<meta property="og:image" content="' . $image . '">');
                 $metaTagManager = $MetaTagManagerRegistry->getManagerForProperty('og:image');
                 $metaTagManager->addProperty('og:image', $image);
