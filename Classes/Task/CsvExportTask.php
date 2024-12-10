@@ -316,10 +316,10 @@ class CsvExportTask extends AbstractTask
 			$queryBuilder->expr()->eq('mm.uid_foreign', $queryBuilder->quoteIdentifier('tx_camaliga_domain_model_content.uid'))
 		)
 		->where(
-			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.pid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.pid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 		)
 		->andWhere(
-			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \PDO::PARAM_INT))
+			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 		)
 		->executeQuery();
 		while ($row = $statement->fetchAssociative()) {
@@ -350,10 +350,10 @@ class CsvExportTask extends AbstractTask
 		->select('*')
 		->from('tx_camaliga_domain_model_content')
 		->where(
-			$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+			$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 		)
 		->andWhere(
-			$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \PDO::PARAM_INT))
+			$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 		)
 		->orderBy('sorting')
 		->executeQuery();

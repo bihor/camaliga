@@ -42,3 +42,4 @@ Version 13.0.1/2/3/4/5:
 
 Version 13.1:
 - First version for TYPO3 13.
+- SwitchableControllerActionsPluginUpdater (update script) removed.

@@ -504,7 +504,7 @@ class ContentRepository extends Repository
 		$queryBuilder
 		->update($table)
 		->where(
-			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 		)
 		->set('sorting', intval($sorting))
 		->set('tstamp', time())
@@ -623,7 +623,7 @@ class ContentRepository extends Repository
     	->select('identifier', 'storage')
     	->from('sys_file')
     	->where(
-    		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+    		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
    		)
    		->setMaxResults(1)
    		->executeQuery();

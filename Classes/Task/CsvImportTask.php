@@ -375,10 +375,10 @@ class CsvImportTask extends AbstractTask
 			->select('uid')
 			->from('tx_camaliga_domain_model_content')
 			->where(
-				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT))
+				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 			)
 			->andWhere(
-				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \PDO::PARAM_INT))
+				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 			)
 			->orderBy('sorting')
 			->executeQuery();
@@ -445,10 +445,10 @@ class CsvImportTask extends AbstractTask
 			->select('sorting')
 			->from('tx_camaliga_domain_model_content')
 			->where(
-				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT))
+				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 			)
 			->andWhere(
-				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \PDO::PARAM_INT))
+				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 			)
 			->orderBy('sorting', 'DESC')
 			->setMaxResults(1)
@@ -570,7 +570,7 @@ class CsvImportTask extends AbstractTask
 				// slug setzen!
 				$queryBuilder = $connection->createQueryBuilder();
 				$statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
-					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
+					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 				)->executeQuery();
 				$record = $statement->fetchAssociative();
 				$slug = $slugHelper->generate($record, $record['pid']);
@@ -578,7 +578,7 @@ class CsvImportTask extends AbstractTask
 				// Update
 				$queryBuilder = $connection->createQueryBuilder();
 				$queryBuilder->update('tx_camaliga_domain_model_content')->where(
-					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
+					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 				)->set('slug', $slug)->executeStatement();
 			} else {
 				$values['uid'] = 0;
@@ -663,7 +663,7 @@ class CsvImportTask extends AbstractTask
 				$queryBuilder
 				->update('tx_camaliga_domain_model_content')
 				->where(
-					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \PDO::PARAM_INT))
+					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 				)
 				->set('categories', $cats)
 				->executeStatement();

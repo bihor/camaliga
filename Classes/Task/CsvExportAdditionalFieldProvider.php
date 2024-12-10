@@ -159,7 +159,7 @@ class CsvExportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 			->count('uid')
 			->from('pages')
 			->where(
-				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter((int)$submittedData['camaliga']['page'], \PDO::PARAM_INT))
+				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter((int)$submittedData['camaliga']['page'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 			)
 			->executeQuery()
 			->fetchOne();

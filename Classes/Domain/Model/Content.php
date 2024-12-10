@@ -1025,7 +1025,7 @@ class Content extends AbstractValueObject
 					->select($field)
 					->from('tx_camaliga_domain_model_content')
 					->where(
-						$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($orig_uid, \PDO::PARAM_INT))
+						$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($orig_uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 					)
 					->setMaxResults(1)
 					->executeQuery();
@@ -1048,7 +1048,7 @@ class Content extends AbstractValueObject
 		$queryBuilder
 			->update('sys_file_reference')
 			->where(
-				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+				$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 			)
 			->set('tablenames', 'tx_camaliga_domain_model_content')
 			->set('sorting_foreign', 1)

@@ -71,7 +71,7 @@ class DataHandlerHook {
                     $statement = $queryBuilder
                         ->select('street', 'city', 'zip', 'country', 'latitude', 'longitude')
                         ->from($table)
-                        ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)))
+                        ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \TYPO3\CMS\Core\Database\Connection::PARAM_INT)))
                         ->executeQuery();
                     while ($row = $statement->fetchAssociative()) {
                         $street = $row['street'];
@@ -88,7 +88,7 @@ class DataHandlerHook {
                     if ($coordinates['latitude'] || $coordinates['longitude']) {
                         $queryBuilder
                             ->update($table)
-                            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \PDO::PARAM_INT)))
+                            ->where($queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($id, \TYPO3\CMS\Core\Database\Connection::PARAM_INT)))
                             ->set('latitude', (float)$coordinates['latitude'])
                             ->set('longitude', (float)$coordinates['longitude'])
                             //    ->set('custom3', 'DEBUG1: ' . $ccordinates['debug'])
