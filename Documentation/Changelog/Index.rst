@@ -198,42 +198,42 @@ Version     Changes
 9.2.0       slug-field added. If you want to use, you should generate slugs via a scheduler task.
 
             Switch to the QueryBuilder at the tasks.
-            
+
             exclude=1 at the backend-fields.
-            
+
             Bugfix: getLinkResolved.
-            
+
             Using the uploads-folder is now deprecated and will be removed in version 10.0. Switch to FAL (see Administration/Scheduler)!
 9.3.0       Bugfix: categoriesAndParents contains now again deeper parents in the child list.
 
             Bugfix: extended fields now working again.
-            
+
             Update-script deleted. Use an older version of camaliga (below 9.2.6) to use it.
-            
+
             Slug-task: updates now only entries without a slug.
-            
+
             Now compatible with TYPO3 10.
 10.0.0      Support for the uploads-folder removed! Default-mode changed! Switch to FAL before you update.
-            
+
             Magnific Popup-template added.
-            
+
             Revolution- and scrollable-template removed. (Use fp_fractionslider instead.)
 10.1.0      Evaluation for coordinates added again.
-            
+
             Get geocode now with file_get_contents instead of curl.
-            
+
             Debug-output now in the template. Deprecated DevLog removed.
-            
+
             Templates changed: new partials.
-            
+
             TCA-Bugfix for TYPO3 10.
 10.2.0      New and create action added.
 
             The test-class uses now PHPUnit.
 10.3.0      Layout of list templates changed. Using now div instead of table.
-            
+
             Teaser template added.
-            
+
             The fields crdate, tstamp and sorting can be used now in the FE-templates too.
 10.4.0      Settings extended.template added.
 
@@ -319,4 +319,6 @@ Version     Changes
 13.1.0      First version for TYPO3 13.
 
             SwitchableControllerActionsPluginUpdater (update script) removed.
+
+13.1.1:     Bugfix: tasks fixed for TYPO3 13.
 ==========  ==============================================================================================================================

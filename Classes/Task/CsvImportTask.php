@@ -32,14 +32,14 @@ class CsvImportTask extends AbstractTask
 	 * @var string
 	 */
 	protected $header;
-	
+
 	/**
 	 * Fields to export
 	 *
 	 * @var string
 	 */
 	protected $fields;
-	
+
 	/**
 	 * Uid of the folder
 	 *
@@ -53,14 +53,14 @@ class CsvImportTask extends AbstractTask
 	 * @var integer
 	 */
 	protected $catpage = 0;
-	
+
 	/**
 	 * Uid of the language
 	 *
 	 * @var integer
 	 */
 	protected $language = 0;
-	
+
 	/**
 	 * Separator
 	 *
@@ -81,7 +81,7 @@ class CsvImportTask extends AbstractTask
 	 * @var string
 	 */
 	protected $catdelimiter;
-	
+
 	/**
 	 * Convert from UTF-8 to ISO?
 	 *
@@ -102,13 +102,13 @@ class CsvImportTask extends AbstractTask
 	 * @var integer
 	 */
 	protected $simulate = 0;
-	
+
 	/**
   * @var ConfigurationManagerInterface
   */
  protected $configurationManager;
-	
-	
+
+
 	/**
 	 * Get the value of the csv file
 	 *
@@ -136,7 +136,7 @@ class CsvImportTask extends AbstractTask
 	public function getHeader() {
 		return $this->header;
 	}
-	
+
 	/**
 	 * Set the value of the private property header.
 	 *
@@ -146,7 +146,7 @@ class CsvImportTask extends AbstractTask
 	public function setHeader($header) {
 		$this->header = $header;
 	}
-	
+
 	/**
 	 * Get the value of fields
 	 *
@@ -155,7 +155,7 @@ class CsvImportTask extends AbstractTask
 	public function getFields() {
 		return $this->fields;
 	}
-	
+
 	/**
 	 * Set the value of the private property fields.
 	 *
@@ -165,7 +165,7 @@ class CsvImportTask extends AbstractTask
 	public function setFields($fields) {
 		$this->fields = $fields;
 	}
-	
+
 	/**
 	 * Get the value of the protected property page
 	 *
@@ -193,7 +193,7 @@ class CsvImportTask extends AbstractTask
 	public function getCatPage() {
 		return $this->catpage;
 	}
-	
+
 	/**
 	 * Set the value of the private property page
 	 *
@@ -203,7 +203,7 @@ class CsvImportTask extends AbstractTask
 	public function setCatPage($catpage) {
 		$this->catpage = ($catpage) ? 1 : 0;
 	}
-	
+
 	/**
 	 * Get the value of the protected property language
 	 *
@@ -212,7 +212,7 @@ class CsvImportTask extends AbstractTask
 	public function getLanguage() {
 		return $this->language;
 	}
-	
+
 	/**
 	 * Set the value of the private property language
 	 *
@@ -222,7 +222,7 @@ class CsvImportTask extends AbstractTask
 	public function setLanguage($language) {
 		$this->language = $language;
 	}
-	
+
 	/**
 	 * Get the separator
 	 *
@@ -231,7 +231,7 @@ class CsvImportTask extends AbstractTask
 	public function getSeparator() {
 		return $this->separator;
 	}
-	
+
 	/**
 	 * Set the value of the separator
 	 *
@@ -250,7 +250,7 @@ class CsvImportTask extends AbstractTask
 	public function getDelimiter() {
 		return $this->delimiter;
 	}
-	
+
 	/**
 	 * Set the value of the delimiter
 	 *
@@ -269,7 +269,7 @@ class CsvImportTask extends AbstractTask
 	public function getCatdelimiter() {
 		return $this->catdelimiter;
 	}
-	
+
 	/**
 	 * Set the value of the catdelimiter
 	 *
@@ -279,7 +279,7 @@ class CsvImportTask extends AbstractTask
 	public function setCatdelimiter($catdelimiter) {
 		$this->catdelimiter = $catdelimiter;
 	}
-	
+
 	/**
 	 * Get the value of the protected property convert
 	 *
@@ -288,7 +288,7 @@ class CsvImportTask extends AbstractTask
 	public function getConvert() {
 		return $this->convert;
 	}
-	
+
 	/**
 	 * Set the value of the private property convert
 	 *
@@ -307,7 +307,7 @@ class CsvImportTask extends AbstractTask
 	public function getDelete() {
 		return $this->delete;
 	}
-	
+
 	/**
 	 * Set the value of the private property delete
 	 *
@@ -326,7 +326,7 @@ class CsvImportTask extends AbstractTask
 	public function getSimulate() {
 		return $this->simulate;
 	}
-	
+
 	/**
 	 * Set the value of the private property simulate
 	 *
@@ -336,9 +336,10 @@ class CsvImportTask extends AbstractTask
 	public function setSimulate($simulate) {
 		$this->simulate = ($simulate) ? 1 : 0;
 	}
-	
-	
-	public function execute() {
+
+
+	public function execute(): bool
+    {
 		$successfullyExecuted = TRUE;
 		$insert = [];
 		$ln = "\r\n";							// line break
@@ -348,11 +349,11 @@ class CsvImportTask extends AbstractTask
 		$delimiter = $this->getDelimiter();		// Feldtrenner
 		$catpage = ($this->getCatPage()) ? TRUE : FALSE;	// search cats only in the pid-folder?
 		$convert = ($this->getConvert()) ? TRUE : FALSE;	// convert from ASCII to UTF-8?
-		$delete = ($this->getDelete()) ? TRUE : FALSE;		// delete entries first?
-		$simulate = ($this->getSimulate()) ? TRUE : FALSE;	// simulate import?
+		$delete = (bool)$this->getDelete();		// delete entries first?
+		$simulate = (bool)$this->getSimulate();	// simulate import?
 		$fields = $this->getFields();			// fields for import
 		$fields_names = explode(',', $fields);	// field-array
-		
+
 		// files sortiert nach Name, dann umkehren
 		$path = Environment::getPublicPath() . '/' . $this->getCsvfile();
 		$files = array_filter(glob($path), 'is_file');
@@ -366,43 +367,43 @@ class CsvImportTask extends AbstractTask
 		if (!$newestFile) {
 			return FALSE;	// keine Datei gefunden
 		}
-		
+
 		if ($delete && !$simulate) {
 			// erst löschen
 			$uids = [];
 			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
-			$statement = $queryBuilder
-			->select('uid')
-			->from('tx_camaliga_domain_model_content')
-			->where(
-				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-			)
-			->andWhere(
-				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-			)
-			->orderBy('sorting')
-			->executeQuery();
-			while ($row = $statement->fetchAssociative()) {
+			$result = $queryBuilder
+                ->select('uid')
+                ->from('tx_camaliga_domain_model_content')
+                ->where(
+                    $queryBuilder->expr()->eq('pid', $pid)
+                )
+                ->andWhere(
+                    $queryBuilder->expr()->eq('sys_language_uid', $syslanguid)
+                )
+                ->orderBy('sorting')
+                ->executeQuery()->fetchAllAssociative();
+            foreach ($result as $row) {
 				$uids[] = $row['uid'];
 			}
-					
+
 			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
 			$affectedRows = $queryBuilder
-			->delete('sys_category_record_mm')
-			->where(
-				$queryBuilder->expr()->in('uid_foreign', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
-			)
-			->executeStatement();
-			
+                ->delete('sys_category_record_mm')
+                ->where(
+                    $queryBuilder->expr()->in('uid_foreign', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
+                )
+                ->executeStatement();
+
 			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
 			$affectedRows = $queryBuilder
-			->delete('tx_camaliga_domain_model_content')
-			->where(
-				$queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
-			)
-			->executeStatement();
+                ->delete('tx_camaliga_domain_model_content')
+                ->where(
+                    $queryBuilder->expr()->in('uid', $queryBuilder->createNamedParameter($uids, Connection::PARAM_INT_ARRAY))
+                )
+                ->executeStatement();
 		}
-		
+
 		// Step 0: init
 		$configurationArray = [
 			'persistence' => [
@@ -419,7 +420,7 @@ class CsvImportTask extends AbstractTask
 		];
 		$this->configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
 		$this->configurationManager->setConfiguration($configurationArray);
-		
+
 		// Step 1: search all categories
 		$catArray = [];
 		$catParentArray = [];
@@ -436,28 +437,28 @@ class CsvImportTask extends AbstractTask
 			}
 			$catParentArray[$row['parent']][$row['title']] = $row['uid'];
 		}
-		
+
 		// Step 2: max sorting till now
 		$sorting=0;
 		if (!$delete) {
 			$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
-			$statement = $queryBuilder
-			->select('sorting')
-			->from('tx_camaliga_domain_model_content')
-			->where(
-				$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-			)
-			->andWhere(
-				$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-			)
-			->orderBy('sorting', 'DESC')
-			->setMaxResults(1)
-			->executeQuery();
-			while ($row = $statement->fetchAssociative()) {
+			$result = $queryBuilder
+                ->select('sorting')
+                ->from('tx_camaliga_domain_model_content')
+                ->where(
+                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
+                )
+                ->andWhere(
+                    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($syslanguid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
+                )
+                ->orderBy('sorting', 'DESC')
+                ->setMaxResults(1)
+                ->executeQuery()->fetchAllAssociative();
+            foreach ($result as $row) {
 				$sorting = $row['sorting'];
 			}
 		}
-		
+
 		// Step 3: Import
 		$lines = [];
 		if ($newestFile) {
@@ -516,7 +517,7 @@ class CsvImportTask extends AbstractTask
 					$nr++;
 				}
 			}
-			
+
 			fclose ($handle);
 			if ($simulate && count($insert)>0) {
 				$output = $this->build_table($insert);
@@ -536,7 +537,7 @@ class CsvImportTask extends AbstractTask
 		}
 		return $successfullyExecuted;
 	}
-	
+
 	/**
 	 * Inserts a line to the database
 	 *
@@ -547,7 +548,7 @@ class CsvImportTask extends AbstractTask
 		$connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tx_camaliga_domain_model_content');
 		$fieldConfig = $GLOBALS['TCA']['tx_camaliga_domain_model_content']['columns']['slug']['config'];
 		$slugHelper = GeneralUtility::makeInstance(SlugHelper::class, 'tx_camaliga_domain_model_content', 'slug', $fieldConfig);
-		
+
 		for ($i=0; $i<count($names); $i++) {
 			$feld = trim((string) $names[$i]);
 			if (!str_starts_with($feld, 'category')) {
@@ -561,12 +562,12 @@ class CsvImportTask extends AbstractTask
 		if (!$simulate) {
 			$queryBuilder = $connection->createQueryBuilder();
 			$success_camaliga = $queryBuilder
-			->insert('tx_camaliga_domain_model_content')
-			->values($values)
-			->executeStatement();
+                ->insert('tx_camaliga_domain_model_content')
+                ->values($values)
+                ->executeStatement();
 			if ($success_camaliga) {
 				$values['uid'] = $queryBuilder->getConnection()->lastInsertId();
-				
+
 				// slug setzen!
 				$queryBuilder = $connection->createQueryBuilder();
 				$statement = $queryBuilder->select('*')->from('tx_camaliga_domain_model_content')->where(
@@ -574,7 +575,7 @@ class CsvImportTask extends AbstractTask
 				)->executeQuery();
 				$record = $statement->fetchAssociative();
 				$slug = $slugHelper->generate($record, $record['pid']);
-					
+
 				// Update
 				$queryBuilder = $connection->createQueryBuilder();
 				$queryBuilder->update('tx_camaliga_domain_model_content')->where(
@@ -587,13 +588,13 @@ class CsvImportTask extends AbstractTask
 		} else {
 			$values['uid'] = 0;
 		}
-		
+
 		if (($values['uid'] > 0) || $simulate) {
 			// Kategorie-Relationen einfügen? Kategorien müssen vorhanden sein!
 			$cats = 0;
-			$catIDs = []; 
+			$catIDs = [];
 			for ($i=0; $i<count($names); $i++) {
-				$feld = $names[$i];
+				$feld = trim($names[$i]);
 				if (str_starts_with((string) $feld, 'category')) {
 					// eine Kategorie ist dran
 					if (substr((string) $feld, 8, 8) == '-parent:') {
@@ -605,7 +606,7 @@ class CsvImportTask extends AbstractTask
 						$cat = substr((string) $feld, 9);
 						$cat_parent = '';
 					}
-					
+
 					if ($cat_parent) {
 						// a) Vater-Kategorie im Header angegeben
 						$catParentID = ($convert) ? trim(iconv('iso-8859-1','utf-8',(string) $catArray[$cat_parent])) : trim((string) $catArray[$cat_parent]);
@@ -626,12 +627,12 @@ class CsvImportTask extends AbstractTask
 					}
 				}
 			}
-			
+
 			if (count($catIDs) > 0) {
 				foreach ($catIDs as $catID) {
 					if ($catID > 0) {
 						if ($simulate) {
-							if ($values['categories']) {
+							if (isset($values['categories']) && $values['categories']) {
 								$values['categories'] .= ', ' . $catID;
 							} else {
 								$values['categories'] = $catID;
@@ -645,9 +646,9 @@ class CsvImportTask extends AbstractTask
 							$mmInsertArray['sorting_foreign'] = ($cats+1)*10;
 							$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
 							$success_cats = $queryBuilder
-							->insert('sys_category_record_mm')
-							->values($mmInsertArray)
-							->executeStatement();
+                                ->insert('sys_category_record_mm')
+                                ->values($mmInsertArray)
+                                ->executeStatement();
 							if ($success_cats) {
 								$cats++;
 							} else {
@@ -657,19 +658,19 @@ class CsvImportTask extends AbstractTask
 					}
 				}
 			}
-			
+
 			if (!$simulate && ($cats > 0)) {
 				$queryBuilder = $connection->createQueryBuilder();
 				$queryBuilder
-				->update('tx_camaliga_domain_model_content')
-				->where(
-					$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-				)
-				->set('categories', $cats)
-				->executeStatement();
+                    ->update('tx_camaliga_domain_model_content')
+                    ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($values['uid'], \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
+                    )
+                    ->set('categories', $cats)
+                    ->executeStatement();
 			}
 		}
-		
+
 		if ($simulate) {
 			return $values;
 		} else {

@@ -42,7 +42,7 @@ class CsvExportTask extends AbstractTask
 	 * @var string
 	 */
 	protected $header;
-	
+
 	/**
 	 * Fields to export
 	 *
@@ -77,12 +77,12 @@ class CsvExportTask extends AbstractTask
 	 * @var integer
 	 */
 	protected $convert = 0;
-	
+
 	/**
   * @var ConfigurationManagerInterface
   */
  protected $configurationManager;
-	
+
 	/**
 	 * Get the value of the csv file
 	 *
@@ -129,7 +129,7 @@ class CsvExportTask extends AbstractTask
 	public function getCats() {
 		return $this->cats;
 	}
-	
+
 	/**
 	 * Set the value of cats.
 	 *
@@ -139,7 +139,7 @@ class CsvExportTask extends AbstractTask
 	public function setCats($cats) {
 		$this->cats = $cats;
 	}
-	
+
 	/**
 	 * Get the header of the csv file
 	 *
@@ -148,7 +148,7 @@ class CsvExportTask extends AbstractTask
 	public function getHeader() {
 		return $this->header;
 	}
-	
+
 	/**
 	 * Set the value of the private property header.
 	 *
@@ -167,7 +167,7 @@ class CsvExportTask extends AbstractTask
 	public function getFields() {
 		return $this->fields;
 	}
-	
+
 	/**
 	 * Set the value of the private property fields.
 	 *
@@ -186,7 +186,7 @@ class CsvExportTask extends AbstractTask
 	public function getSeparator() {
 		return $this->separator;
 	}
-	
+
 	/**
 	 * Set the value of the separator
 	 *
@@ -205,7 +205,7 @@ class CsvExportTask extends AbstractTask
 	public function getDelimiter() {
 		return $this->delimiter;
 	}
-	
+
 	/**
 	 * Set the value of the delimiter
 	 *
@@ -224,7 +224,7 @@ class CsvExportTask extends AbstractTask
 	public function getCatdelimiter() {
 		return $this->catdelimiter;
 	}
-	
+
 	/**
 	 * Set the value of the catdelimiter
 	 *
@@ -234,7 +234,7 @@ class CsvExportTask extends AbstractTask
 	public function setCatdelimiter($catdelimiter) {
 		$this->catdelimiter = $catdelimiter;
 	}
-	
+
 	/**
 	 * Get the value of the protected property convert
 	 *
@@ -243,7 +243,7 @@ class CsvExportTask extends AbstractTask
 	public function getConvert() {
 		return $this->convert;
 	}
-	
+
 	/**
 	 * Set the value of the private property convert
 	 *
@@ -253,9 +253,10 @@ class CsvExportTask extends AbstractTask
 	public function setConvert($convert) {
 		$this->convert = ($convert) ? 1 : 0;
 	}
-	
-	
-	public function execute() {
+
+
+	public function execute(): bool
+    {
 		$successfullyExecuted = TRUE;
 		$ln = "\r\n";							// line break
 		$uid = (int) $this->getPage();			// folder with camaliga elements
@@ -276,7 +277,7 @@ class CsvExportTask extends AbstractTask
 		$cat_rel = [];						// camaliga-category-relations
 		$cat_counts = [];					// count $cats categories
 		$i = 0;									// Counter
-		
+
 		// Step 0: init
 		$configurationArray = [
 			'persistence' => [
@@ -293,11 +294,11 @@ class CsvExportTask extends AbstractTask
 		];
 		$this->configurationManager = GeneralUtility::makeInstance(ConfigurationManager::class);
 		$this->configurationManager->setConfiguration($configurationArray);
-		
+
 		// Step 1: select all categories of the current language
 		$categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
 		$all_cats = $categoryRepository->getAllCats('sorting', 'asc', []);
-		
+
 		// Step 2: store more category datas in arrays
 		foreach ($all_cats as $key => $one_cat) {
 			$cat_keys[$one_cat['title']] = $key;
@@ -306,7 +307,7 @@ class CsvExportTask extends AbstractTask
 
 		// Step 3: select camaliga-category-relations
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
-		$statement = $queryBuilder
+		$result = $queryBuilder
 		->select('uid_foreign', 'uid_local')
 		->from('tx_camaliga_domain_model_content')
 		->join(
@@ -321,18 +322,20 @@ class CsvExportTask extends AbstractTask
 		->andWhere(
 			$queryBuilder->expr()->eq('tx_camaliga_domain_model_content.sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
 		)
-		->executeQuery();
-		while ($row = $statement->fetchAssociative()) {
+		->executeQuery()->fetchAllAssociative();
+        foreach ($result as $row) {
 				$uid_cam = $row['uid_foreign'];
 				$uid_cat = $row['uid_local'];
 				if (!isset($cat_rel[$uid_cam]) || !is_array($cat_rel[$uid_cam]))
 					$cat_rel[$uid_cam] = [];
-				if (isset($cat_rel[$uid_cam][$cat_parents[$uid_cat]]) && $cat_rel[$uid_cam][$cat_parents[$uid_cat]])
-					$cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $cat_del;
-                if (isset($cat_rel[$uid_cam][$cat_parents[$uid_cat]]))
-    				$cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $all_cats[$uid_cat]['title'];
-                else
-                    $cat_rel[$uid_cam][$cat_parents[$uid_cat]] = $all_cats[$uid_cat]['title'];
+                if (isset($cat_parents[$uid_cat])) {
+                    if (isset($cat_rel[$uid_cam][$cat_parents[$uid_cat]]) && $cat_rel[$uid_cam][$cat_parents[$uid_cat]])
+                        $cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $cat_del;
+                    if (isset($cat_rel[$uid_cam][$cat_parents[$uid_cat]]))
+                        $cat_rel[$uid_cam][$cat_parents[$uid_cat]] .= $all_cats[$uid_cat]['title'];
+                    else
+                        $cat_rel[$uid_cam][$cat_parents[$uid_cat]] = $all_cats[$uid_cat]['title'];
+                }
 				foreach ($catsArray as $aCat) {
 					if ($aCat == $uid_cat) {
                         // gesuchte Kategorie vorhanden?
@@ -343,21 +346,21 @@ class CsvExportTask extends AbstractTask
                     }
 				}
 		}
-				
+
 		// Step 4: select camaliga entries
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_camaliga_domain_model_content');
-		$statement = $queryBuilder
-		->select('*')
-		->from('tx_camaliga_domain_model_content')
-		->where(
-			$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-		)
-		->andWhere(
-			$queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
-		)
-		->orderBy('sorting')
-		->executeQuery();
-		while ($row = $statement->fetchAssociative()) {
+        $result = $queryBuilder
+		    ->select('*')
+		    ->from('tx_camaliga_domain_model_content')
+		    ->where(
+			    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
+		    )
+		    ->andWhere(
+			    $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter($lang_uid, \TYPO3\CMS\Core\Database\Connection::PARAM_INT))
+		    )
+		    ->orderBy('sorting')
+            ->executeQuery()->fetchAllAssociative();
+        foreach ($result as $row) {
 				$uid = $row['uid'];
 				if (!$cats || (isset($cat_counts[$uid]) && $cat_counts[$uid]>0)) {
 					if ($i > 0)
@@ -372,7 +375,11 @@ class CsvExportTask extends AbstractTask
 							$content .= $separator . $text . $separator;
 						} else {
 							$cat = trim(substr(trim($field), 10, -1));	// Name der parent kategorie
-							$text = ($convert) ? iconv('utf-8', 'iso-8859-1', (string) $cat_rel[$uid][$cat_keys[$cat]]) : $cat_rel[$uid][$cat_keys[$cat]];
+                            if (isset($cat_keys[$cat]) && array_key_exists($cat_keys[$cat], $cat_rel[$uid])) {
+                                $text = ($convert) ? iconv('utf-8', 'iso-8859-1', (string)$cat_rel[$uid][$cat_keys[$cat]]) : $cat_rel[$uid][$cat_keys[$cat]];
+                            } else {
+                                $text = '';
+                            }
 							$content .= $separator . $text . $separator;	// Kinder einer gesuchten Kategorie
 						}
 						$j++;
@@ -380,13 +387,13 @@ class CsvExportTask extends AbstractTask
 					$i++;
 				}
 		}
-		
+
 		$fp = fopen(Environment::getPublicPath() . '/' . $this->getCsvfile(), 'w');
 		$ergebnis = fwrite($fp, $content);
 		fclose($fp);
 		if (!$ergebnis)
 			$successfullyExecuted = FALSE;
-		
+
 		//echo "Anzahl exportiert: " . $i;
 		return $successfullyExecuted;
 	}

@@ -28,85 +28,85 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 	{
 		$additionalFields = [];
 		$currentSchedulerModuleAction = $schedulerModule->getCurrentAction();
-		
+
 		if (empty($taskInfo['page'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['page'] = '';
 			} else {
 				$taskInfo['page'] = $task->getPage();
 			}
 		}
 		if (empty($taskInfo['catpage'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['catpage'] = 0;
 			} else {
 				$taskInfo['catpage'] = $task->getCatPage();
 			}
 		}
 		if (empty($taskInfo['language'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['language'] = '0';
 			} else {
 				$taskInfo['language'] = $task->getLanguage();
 			}
 		}
 		if (empty($taskInfo['csvfile'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['csvfile'] = 'fileadmin/';
 			} else {
 				$taskInfo['csvfile'] = $task->getCsvfile();
 			}
 		}
 		if (empty($taskInfo['fields'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['fields'] = '';
 			} else {
 				$taskInfo['fields'] = $task->getFields();
 			}
 		}
 		if (empty($taskInfo['separator'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['separator'] = '"';
 			} else {
 				$taskInfo['separator'] = $task->getSeparator();
 			}
 		}
 		if (empty($taskInfo['delimiter'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['delimiter'] = ';';
 			} else {
 				$taskInfo['delimiter'] = $task->getDelimiter();
 			}
 		}
 		if (empty($taskInfo['catdelimiter'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['catdelimiter'] = ',';
 			} else {
 				$taskInfo['catdelimiter'] = $task->getCatdelimiter();
 			}
 		}
 		if (empty($taskInfo['convert'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['convert'] = 0;
 			} else {
 				$taskInfo['convert'] = $task->getConvert();
 			}
 		}
 		if (empty($taskInfo['delete'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['delete'] = 0;
 			} else {
 				$taskInfo['delete'] = $task->getDelete();
 			}
 		}
 		if (empty($taskInfo['simulate'])) {
-			if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
 				$taskInfo['simulate'] = 0;
 			} else {
 				$taskInfo['simulate'] = $task->getSimulate();
 			}
 		}
-		
+
 		// Ordner
 		$fieldId = 'task_page';
 		$fieldCode = '<input type="text" name="tx_scheduler[camaliga][page]" id="' . $fieldId . '" value="' . htmlspecialchars((string) $taskInfo['page']) . '"/>';
@@ -168,7 +168,7 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 		return $additionalFields;
 	}
-	
+
 	/**
 	 * This method checks any additional data that is relevant to the specific task.
 	 * If the task class is not relevant, the method is expected to return TRUE.
@@ -232,7 +232,7 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		}
 		return $isValid;
 	}
-	
+
 	/**
 	 * This method is used to save any additional input into the current task object
 	 * if the task class matches.

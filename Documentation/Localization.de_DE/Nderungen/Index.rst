@@ -205,42 +205,42 @@ Version     Änderungen
 9.2.0       slug-Feld hinzugefügt. Bevor man es benutzt, sollte man den zugehörigen Scheduler-Task ausführen.
 
             Wechsel zum QueryBuilder bei den Tasks.
-            
+
             exclude=1 bei den Backend-Feldern.
-            
+
             Bugfix: getLinkResolved.
-            
+
             Deprecation: der uploads-Ordner wird ab Version 10 nicht mehr unterstützt! Wechsele zu FAL (siehe Admin./Scheduler)!
 9.3.0       Bugfix: categoriesAndParents enthält nun wieder auch tiefer gelegene "parents" bei den "childs".
 
             Bugfix: erweiterte Felder funktionieren nun wieder.
-            
+
             Update-Skript gelöscht! Benutze eine ältere Camaliga-Version (unter 9.2.6), falls es noch benötigt wird.
-            
+
             Slug-Task: es werden nun nur Einträge ohne Slug aktualisiert.
-            
+
             Jetzt TYPO3 10 kompatibel.
 10.0.0      Support für den uploads-Ordner gelöscht. Default-Verhalten geändert! Wechsele zu FAL vor dem Update.
-            
+
             Magnific Popup-Template hinzugefügt.
-            
+
             Revolution- und Scrollable-Template gelöscht. Benutze evtl. die Extension fp_fractionslider stattdessen.
 10.1.0      Eval für Koordinaten erneut hinzugefügt.
-            
+
             Geocode benutzt nun file_get_contents anstatt curl.
-            
+
             Templates geändert: neue Partials eingebaut.
-            
+
             Debug-Ausgabe jetzt im Template. DevLog-Aufruf entfernt.
-            
+
             TCA-Bugfix für TYPO3 10.
 10.2.0      New und create action hinzugefügt.
 
             Die Test-Klasse nutzt nun PHPUnit.
 10.3.0      Layout der List-Templates geändert. Jetzt mit div statt table.
-            
+
             Teaser-Template hinzugefügt.
-            
+
             Die Felder crdate, tstamp und sorting können nun in FE-Templates benutzt werden.
 10.4.0      Settings extended.template hinzugefügt.
 
@@ -326,4 +326,6 @@ Version     Änderungen
 13.1.0      Erste Version für TYPO3 13.
 
             SwitchableControllerActionsPluginUpdater (Update-Skript) wieder entfernt.
+
+13.1.1:     Bugfix: Tasks fixed für TYPO3 13.
 ==========  =====================================================================================================================
