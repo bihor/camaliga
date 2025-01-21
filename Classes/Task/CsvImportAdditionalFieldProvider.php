@@ -4,6 +4,7 @@ namespace Quizpalme\Camaliga\Task;
 use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\BackendWorkspaceRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
@@ -29,83 +30,163 @@ class CsvImportAdditionalFieldProvider extends AbstractAdditionalFieldProvider
 		$additionalFields = [];
 		$currentSchedulerModuleAction = $schedulerModule->getCurrentAction();
 
-		if (empty($taskInfo['page'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['page'] = '';
-			} else {
-				$taskInfo['page'] = $task->getPage();
-			}
-		}
-		if (empty($taskInfo['catpage'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['catpage'] = 0;
-			} else {
-				$taskInfo['catpage'] = $task->getCatPage();
-			}
-		}
-		if (empty($taskInfo['language'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['language'] = '0';
-			} else {
-				$taskInfo['language'] = $task->getLanguage();
-			}
-		}
-		if (empty($taskInfo['csvfile'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['csvfile'] = 'fileadmin/';
-			} else {
-				$taskInfo['csvfile'] = $task->getCsvfile();
-			}
-		}
-		if (empty($taskInfo['fields'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['fields'] = '';
-			} else {
-				$taskInfo['fields'] = $task->getFields();
-			}
-		}
-		if (empty($taskInfo['separator'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['separator'] = '"';
-			} else {
-				$taskInfo['separator'] = $task->getSeparator();
-			}
-		}
-		if (empty($taskInfo['delimiter'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['delimiter'] = ';';
-			} else {
-				$taskInfo['delimiter'] = $task->getDelimiter();
-			}
-		}
-		if (empty($taskInfo['catdelimiter'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['catdelimiter'] = ',';
-			} else {
-				$taskInfo['catdelimiter'] = $task->getCatdelimiter();
-			}
-		}
-		if (empty($taskInfo['convert'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['convert'] = 0;
-			} else {
-				$taskInfo['convert'] = $task->getConvert();
-			}
-		}
-		if (empty($taskInfo['delete'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['delete'] = 0;
-			} else {
-				$taskInfo['delete'] = $task->getDelete();
-			}
-		}
-		if (empty($taskInfo['simulate'])) {
-			if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
-				$taskInfo['simulate'] = 0;
-			} else {
-				$taskInfo['simulate'] = $task->getSimulate();
-			}
-		}
+        if ((new Typo3Version())->getMajorVersion() < 13) {
+            if (empty($taskInfo['page'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['page'] = '';
+                } else {
+                    $taskInfo['page'] = $task->getPage();
+                }
+            }
+            if (empty($taskInfo['catpage'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['catpage'] = 0;
+                } else {
+                    $taskInfo['catpage'] = $task->getCatPage();
+                }
+            }
+            if (empty($taskInfo['language'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['language'] = '0';
+                } else {
+                    $taskInfo['language'] = $task->getLanguage();
+                }
+            }
+            if (empty($taskInfo['csvfile'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['csvfile'] = 'fileadmin/';
+                } else {
+                    $taskInfo['csvfile'] = $task->getCsvfile();
+                }
+            }
+            if (empty($taskInfo['fields'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['fields'] = '';
+                } else {
+                    $taskInfo['fields'] = $task->getFields();
+                }
+            }
+            if (empty($taskInfo['separator'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['separator'] = '"';
+                } else {
+                    $taskInfo['separator'] = $task->getSeparator();
+                }
+            }
+            if (empty($taskInfo['delimiter'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['delimiter'] = ';';
+                } else {
+                    $taskInfo['delimiter'] = $task->getDelimiter();
+                }
+            }
+            if (empty($taskInfo['catdelimiter'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['catdelimiter'] = ',';
+                } else {
+                    $taskInfo['catdelimiter'] = $task->getCatdelimiter();
+                }
+            }
+            if (empty($taskInfo['convert'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['convert'] = 0;
+                } else {
+                    $taskInfo['convert'] = $task->getConvert();
+                }
+            }
+            if (empty($taskInfo['delete'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['delete'] = 0;
+                } else {
+                    $taskInfo['delete'] = $task->getDelete();
+                }
+            }
+            if (empty($taskInfo['simulate'])) {
+                if ($currentSchedulerModuleAction->equals(Action::ADD)) {
+                    $taskInfo['simulate'] = 0;
+                } else {
+                    $taskInfo['simulate'] = $task->getSimulate();
+                }
+            }
+        } else {
+            if (empty($taskInfo['page'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['page'] = '';
+                } else {
+                    $taskInfo['page'] = $task->getPage();
+                }
+            }
+            if (empty($taskInfo['catpage'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['catpage'] = 0;
+                } else {
+                    $taskInfo['catpage'] = $task->getCatPage();
+                }
+            }
+            if (empty($taskInfo['language'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['language'] = '0';
+                } else {
+                    $taskInfo['language'] = $task->getLanguage();
+                }
+            }
+            if (empty($taskInfo['csvfile'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['csvfile'] = 'fileadmin/';
+                } else {
+                    $taskInfo['csvfile'] = $task->getCsvfile();
+                }
+            }
+            if (empty($taskInfo['fields'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['fields'] = '';
+                } else {
+                    $taskInfo['fields'] = $task->getFields();
+                }
+            }
+            if (empty($taskInfo['separator'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['separator'] = '"';
+                } else {
+                    $taskInfo['separator'] = $task->getSeparator();
+                }
+            }
+            if (empty($taskInfo['delimiter'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['delimiter'] = ';';
+                } else {
+                    $taskInfo['delimiter'] = $task->getDelimiter();
+                }
+            }
+            if (empty($taskInfo['catdelimiter'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['catdelimiter'] = ',';
+                } else {
+                    $taskInfo['catdelimiter'] = $task->getCatdelimiter();
+                }
+            }
+            if (empty($taskInfo['convert'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['convert'] = 0;
+                } else {
+                    $taskInfo['convert'] = $task->getConvert();
+                }
+            }
+            if (empty($taskInfo['delete'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['delete'] = 0;
+                } else {
+                    $taskInfo['delete'] = $task->getDelete();
+                }
+            }
+            if (empty($taskInfo['simulate'])) {
+                if ($currentSchedulerModuleAction == \TYPO3\CMS\Scheduler\SchedulerManagementAction::ADD) {
+                    $taskInfo['simulate'] = 0;
+                } else {
+                    $taskInfo['simulate'] = $task->getSimulate();
+                }
+            }
+        }
 
 		// Ordner
 		$fieldId = 'task_page';
