@@ -1,10 +1,10 @@
 <?php
 namespace Quizpalme\Camaliga\Task;
 
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use Quizpalme\Camaliga\Domain\Model\Category;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use Quizpalme\Camaliga\Domain\Repository\CategoryRepository;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;

@@ -327,5 +327,5 @@ Version     Änderungen
 
             SwitchableControllerActionsPluginUpdater (Update-Skript) wieder entfernt.
 
-13.1.1:     Bugfix: Tasks fixed für TYPO3 13.
+13.1.1/2:   Bugfix: Tasks fixed für TYPO3 13.
 ==========  =====================================================================================================================
