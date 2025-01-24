@@ -7,8 +7,9 @@ foreach (['list', 'listextended', 'show', 'showextended', 'carousel', 'carousels
         'Camaliga',
         ucfirst($plugin),
         'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.' . $plugin,
-        'EXT:camaliga/Resources/Public/Icons/Extension.gif',
-        'Camaliga'
+        'ext-camaliga-wizard-icon',
+        'Camaliga',
+        'LLL:EXT:camaliga/Resources/Private/Language/locallang_be.xlf:template.description'
     );
 
     $xml = 'pi1';

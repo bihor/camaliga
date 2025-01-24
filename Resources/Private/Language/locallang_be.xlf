@@ -27,6 +27,9 @@
 			<trans-unit id="template.not_configured" resname="template.not_configured">
 				<source>no template layout selected!</source>
 			</trans-unit>
+			<trans-unit id="template.description" resname="template.description">
+				<source>Camaliga: carousel/map/list/gallery that uses TYPO3 categories.</source>
+			</trans-unit>
 			<trans-unit id="template.carousel" resname="template.carousel">
 				<source>Carousel: elements are side by side</source>
 			</trans-unit>

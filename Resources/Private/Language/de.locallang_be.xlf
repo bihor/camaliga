@@ -35,6 +35,10 @@
 				<source>no template layout selected!</source>
 				<target>kein Template-Layout ausgewählt!</target>
 			</trans-unit>
+			<trans-unit id="template.description" resname="template.description">
+				<source>Camaliga: carousel/map/list/gallery that uses TYPO3 categories.</source>
+				<target>Camaliga: carousel/map/list/gallery Extension, die TYPO3-Kategorien nutzt.</target>
+			</trans-unit>
 			<trans-unit id="template.carousel" resname="template.carousel">
 				<source>Carousel: elements are side by side</source>
 				<target>Karussell: Elemente nebeneinander</target>
