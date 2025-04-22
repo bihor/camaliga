@@ -1,18 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 TypoScript-Reference
@@ -87,7 +73,7 @@ settings.random                           boolean        Shuffle elements (rando
                                                          1: yes, shuffle the elements every time the cache is cleared.
 settings.getLatLon                        boolean        Try to get the latitude and longitude from an API                                  0
                                                          for every entry with an address but no latitude? Checks the GPS-coordinates of
-                                                         images in the create-action too. 
+                                                         images in the create-action too.
 
                                                          0: no.
 

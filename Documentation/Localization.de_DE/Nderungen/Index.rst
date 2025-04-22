@@ -1,19 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
-
+﻿.. include:: /Includes.rst.txt
 
 Änderungen
 ----------
@@ -327,5 +312,9 @@ Version     Änderungen
 
             SwitchableControllerActionsPluginUpdater (Update-Skript) wieder entfernt.
 
-13.1.1/2:   Bugfix: Tasks fixed für TYPO3 13.
+13.1.1/2    Bugfix: Tasks fixed für TYPO3 13.
+
+13.1.3      Bugfix: Plugin-Wizard.
+
+13.1.4      Dokumentation.
 ==========  =====================================================================================================================

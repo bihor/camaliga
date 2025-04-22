@@ -1,18 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Extend the Camaliga tables
@@ -39,7 +25,7 @@ You will need to edit /Configuration/TCA/Overrides/tx_camaliga_domain_model_cont
 Remove everything in that file but not the lines like this ones::
 
 	$tmp_camaliga_addon_columns = [
-	
+
 	    'lokal' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:camaliga_addon/Resources/Private/Language/locallang_db.xlf:tx_camaligaaddon_domain_model_zusatz.lokal',
@@ -58,9 +44,9 @@ Remove everything in that file but not the lines like this ones::
 	            'eval' => 'trim'
 	        ],
 	    ],
-	
+
 	];
-	
+
 	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('tx_camaliga_domain_model_content',$tmp_camaliga_addon_columns);
 
 Replace "camaliga_addon" with the name of your extension. Now you need to add a linke tike this one::

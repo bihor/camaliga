@@ -1,19 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
-
+﻿.. include:: /Includes.rst.txt
 
 =========================================
 EXT: Camaliga - carousel/map/list/gallery
@@ -52,9 +37,6 @@ EXT: Camaliga - carousel/map/list/gallery
    Administration/Index
    Konfiguration/Index
    Tutorial/Index
-   Updaten5/Index
-   Updaten6/Index
-   Updaten7/Index
    Updaten9/Index
    BekannteProbleme/Index
    Nderungen/Index

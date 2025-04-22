@@ -1,18 +1,5 @@
-﻿
+﻿.. include:: /Includes.rst.txt
 
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
 
 =========================================
 EXT: Camaliga - carousel/map/list/gallery
@@ -34,10 +21,10 @@ EXT: Camaliga - carousel/map/list/gallery
       `www.quizpalme.de <https://www.quizpalme.de/>`_
 
 :Spachen:
-      `english Version <https://docs.typo3.org/p/quizpalme/camaliga/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/>`_ 
+      `english Version <https://docs.typo3.org/p/quizpalme/camaliga/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/quizpalme/camaliga/master/de-de/>`_
       Die Doku gibt es auch bei GitHub:
       https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE
-      
+
 
 
 .. toctree::
@@ -50,9 +37,6 @@ EXT: Camaliga - carousel/map/list/gallery
    Administration/Index
    Configuration/Index
    Tutorial/Index
-   Updating5/Index
-   Updating6/Index
-   Updating7/Index
    Updating9/Index
    KnownProblems/Index
    Changelog/Index

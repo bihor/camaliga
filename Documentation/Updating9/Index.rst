@@ -1,18 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Updating to camaliga 8.0.0 or 9.0.0
@@ -25,7 +11,7 @@ First the setting "categoryMode" in the extension-configuration was removed, bec
 Furthermore you can now define an additional folder with the categories (see chapter "Configuration  / TypoScript-Reference")::
 
  plugin.tx_camaliga.settings.category.storagePids = 100,123
- 
+
 There is a "breaking"-change too. If you use the variable
 {content.categoriesAndParents} in an own template outside this extension, you need to change this line::
 

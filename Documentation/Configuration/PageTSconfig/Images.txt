@@ -1,6 +1,0 @@
-﻿.. |img-19|     image:: ../../Images/camaliga_tsconfig.png
-.. :align: left
-.. :border: 0
-.. :name: Grafik16
-.. :width: 100%
-

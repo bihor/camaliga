@@ -1,18 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Page TSconfig
@@ -63,9 +49,10 @@ Here an example for a template (extract) with 2 layouts:
    TCEFORM.tx_camaliga_domain_model_content.custom2.disabled = 1
    TCEFORM.tx_camaliga_domain_model_content.custom1.label = Date:
 
-|img-19|
+.. figure:: /Images/camaliga_tsconfig.png
+   :width: 100%
 
-*Image 17: You find this on the Ressources tab of a page*
+   *Image 17: You find this on the Ressources tab of a page*
 
 - Furthermore you can use TSconfig to hide/remove FlexForm-settings. Examples:
 

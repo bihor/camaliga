@@ -1,19 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
-
+﻿.. include:: /Includes.rst.txt
 
 Tutorial
 --------
@@ -39,9 +24,9 @@ Tutorial
   categories. Note: if you want to use checkboxes in the search, you
   need to write “checkbox” in the parent category. See image below.
 
-|img-20|
+.. figure:: /Images/camaliga_tut1.png
 
-*Image 18: Categories for our example page*
+   *Image 18: Categories for our example page*
 
 - Now you can create some camaliga-entries. First create a entry for
   every house/flat. You can use up to 6 images. When you are done you can create additional entries
@@ -50,21 +35,13 @@ Tutorial
   additional entries will be shown only at the single-page-view. Reason:
   you want to show related houses or more than six images on the detail-page.
 
-  .. ### BEGIN~OF~TABLE ###
+.. figure:: /Images/camaliga_tut2.png
 
-  .. container:: table-row
+   Image 19: Select a parent element only for additional elements
 
-     a
-           |img-21|
+.. figure:: /Images/camaliga_tut3.png
 
-           *Image 19: Select a parent element only for additional elements*
-
-     b
-           |img-22|
-
-           *Image 20: Categories of a house*
-
-  .. ###### END~OF~TABLE ######
+   Image 20: Categories of a house
 
 - Now we can present our camaliga-entries. Include the static TypoScript
   of this extension and add this plugin to your start page. For the
@@ -80,9 +57,9 @@ Tutorial
 
    plugin.tx_camaliga.settings.defaultCatIDs = 30
 
-|img-23|
+.. figure:: /Images/camaliga_tut4.png
 
-*Image 21: Category for the search restriction*
+   Image 21: Category for the search restriction
 
 - Now you see only some highlights on your start page. In the next step
   you want to customize the layout of the carousel or gallery. Therefore
@@ -117,23 +94,13 @@ Tutorial
 
    <f:link.action action="showExtended" pageUid="{settings.showId}" arguments="{content : content}">
 
-.. ### BEGIN~OF~TABLE ###
+.. figure:: /Images/camaliga_tut5.png
 
-.. container:: table-row
+   Image 22: Extended list view with search options
 
-   a
-         |img-24|
+.. figure:: /Images/camaliga_tut6.png
 
-         *Image 22: Extended list view with search options*
-
-   b
-         |img-25|
-
-         *Image 23: Detail view with an addiotional child-element*
-
-
-.. ###### END~OF~TABLE ######
-
+   Image 23: Detail view with an addiotional child-element
 
 - Read the chapter "Administration / Extended templates" for more infos about the extended version of a template.
 

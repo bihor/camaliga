@@ -1,18 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Slug
@@ -128,28 +114,3 @@ You can use another version too. The result is the same (but without /googlemaps
 			routeFieldResult: '{city}-{uid}'
 
 You find more about this things here: https://typo3worx.eu/2018/12/typo3-routing-extensions-and-enhancers/
-
-RealUrl
-^^^^^^^
-
-In TYPO3 8 you can use RealUrl to modify the format the links to single-pages. Here an example for the RealUrl-config-file::
-
-  'postVarSets' => array(
-    '_DEFAULT' => array(
-    ...
-
-	  'camaliga' => array( // this key must be unique
-	      array(
-		  'GETvar' => 'tx_camaliga_pi1[action]',
-	      ),
-	      array(
-		  'GETvar' => 'tx_camaliga_pi1[controller]',
-	      ),
-	      array(
-		  'GETvar' => 'tx_camaliga_pi1[content]',
-	      ),
-	  ),
-
-    ...
-   ),
-  ),

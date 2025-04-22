@@ -1,18 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Screenshots
@@ -21,36 +7,26 @@ Screenshots
 - Some visual impressions. Only a small choice. You find more screenshots in the chapter Tutorial and
   links to demo-sites in the chapter Administration/HTML templates. Screenshots form the backend are in the "User Guide".
 
-.. ### BEGIN~OF~TABLE ###
-
-.. container:: table-row
+.. figure:: /Images/camaliga_screenshot1.jpg
 
    Image 1: A carousel with 3 elements
-         |img-3|
+
+.. figure:: /Images/camaliga_screenshot2.jpg
 
    Image 2: A gallery
-         |img-4|
 
-
-.. container:: table-row
+.. figure:: /Images/camaliga_screenshot3.jpg
 
    Image 3: A list view
-         |img-5|
+
+.. figure:: /Images/camaliga_screenshot4.jpg
 
    Image 4: A Google-maps example
-         |img-6|
 
+.. figure:: /Images/camaliga-suchfelder.jpg
 
-.. container:: table-row
+   Image 5: Example of searchfields in the frontend
 
-   a
-         |img-38|
+.. figure:: /Images/camaliga-backend-fields.jpg
 
-         *Image 5: Example of searchfields in the frontend*
-
-   b
-         |img-39|
-
-         *Image 6: some of the fields in the backend*
-
-.. ###### END~OF~TABLE ######
+   Image 6: some of the fields in the backend

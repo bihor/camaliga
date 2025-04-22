@@ -1,18 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Updaten auf Camaliga 8.0.0 oder 9.0.0
@@ -26,7 +12,7 @@ mittels Core-Methoden. Weiterhin kann man jetzt angeben, in welchem Order die Ka
 Siehe dazu Kapitel "Konfiguration / TypoScript-Referenz". Mit der Einstellung::
 
  plugin.tx_camaliga.settings.category.storagePids = 100,123
- 
+
 kann man nun einen alternativen Ordner für die Kategorien definieren.
 
 Es gibt aber auch eine "breaking"-Änderung. Also eine Änderung, die nicht abwärtskompatibel ist. Wenn die Variable

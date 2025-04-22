@@ -1,19 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
-
+﻿.. include:: /Includes.rst.txt
 
 What does it do?
 ^^^^^^^^^^^^^^^^
@@ -42,4 +27,4 @@ This flexible extension can display elements as e.g. carousel, gallery, list or 
 
 - Backend module.
 
-The extension is not allways easy to use, but it is very flexible and admins will like that.
+The extension is not always easy to use, but it is very flexible and admins will like that.

@@ -1,18 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 User Guide
@@ -27,36 +13,36 @@ User Guide
 
 - Now create a folder for the new elements. Change to that folder and into the list view. Create some elements:
 
-|img-7|
+.. figure:: /Images/camaliga_element.png
 
-*Image 5: Create new elements*
+   Image 5: Create new elements
 
 - There are several fields. You must fill out only the title. When done,
   add a new plugin to your page and select Camaliga. You will see a lot of FlexForm-options:
 
-|img-8|
+.. figure:: /Images/camaliga_plugin.png
 
-*Image 6: FlexForm-options*
+   Image 6: FlexForm-options
 
 - Select a template layout and make other settings:
 
-|img-9|
+.. figure:: /Images/camaliga_template.png
 
-*Image 7: Select a layout*
+   Image 7: Select a layout
 
 - Select the folder with the elements. If you don´t select something,
   the TypoScript setting is used. If there is no storagePid defined too,
   the current document will be used as storage pid.
 
-|img-10|
+.. figure:: /Images/camaliga_mode.png
 
-*Image 8: Select the folder*
+   Image 8: Select the folder
 
 - Done. You can make some more settings via TypoScript, e.g. the image width:
 
-|img-11|
+.. figure:: /Images/camaliga_typoscript.png
 
-*Image 9: Some TypoScript settings*
+   Image 9: Some TypoScript settings
 
 - See chapter Configuration for the TypoScript settings.
 
@@ -68,13 +54,13 @@ User Guide
   describes your element, then you must use a parent category too that
   describes that category. In this case: “Type”. See image:
 
-|img-12|
+.. figure:: /Images/camaliga_cat.png
 
-*Image 10: Create a category*
+   Image 10: Create a category
 
-|img-13|
+.. figure:: /Images/camaliga_cat2.png
 
-*Image 11: How to use categories*
+   Image 11: How to use categories
 
 - Note: normally the categories are used as radio-button in the search.
   If you want to use checkboxes in the search, you need to write
@@ -82,28 +68,28 @@ User Guide
   Note: the parent categories are ignored in normal templates.
   Now you can use the categories in the camaliga-elements:
 
-|img-14|
+.. figure:: /Images/camaliga_cat3.png
 
-*Image 12: Use the categories*
+   Image 12: Use the categories
 
 - Finally you can select the categories that should be used in the plugin:
 
-|img-15|
+.. figure:: /Images/camaliga_category.png
 
-*Image 13: Select the categories in the plugin-mode*
+   Image 13: Select the categories in the plugin-mode
 
 - Another features is the parent-child-relation. This is important if
   you want to show on some pages only distinct elements (parents) and on
   a single page both elements. Otherwise you can use 2 different
   folders, but the relation has some other pros too.
 
-|img-16|
+.. figure:: /Images/camaliga_mother.png
 
-*Image 14: Mother-Child-Relation*
+   Image 14: Mother-Child-Relation
 
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :titlesonly:
    :glob:
 

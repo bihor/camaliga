@@ -1,18 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Tutorial
@@ -47,9 +33,9 @@ Tutorial
   eingetragen ist, damit bei der Suche bei dieser Kategorie eine
   checkbox statt ein Radio-Button benutzt wird.
 
-|img-18|
+.. figure:: /Images/camaliga_tut1.png
 
-*Abbildung 18: Kategorien für unsere Beispiel-Seiten*
+   *Abbildung 18: Kategorien für unsere Beispiel-Seiten*
 
 - Nun kann man die camaliga-Elemente anlegen. Als erstes wird für jede
   Wohung/Haus ein Eintrag gemacht. Man kann bis zu 6 Bilder pro Eintrag verwenden. Wenn man fertig ist, kann man dann
@@ -57,25 +43,15 @@ Tutorial
   angibt. Außerdem wählt man ganz unten das übergeordnete Element aus.
   Die zusätzlichen Elemente werden dann nur auf der Detail-Seite
   angezeigt. Grund: auf der Detail-Seite sollen mehr als sechs Bilder
-  angezeigt werden oder du möchstest verwandte Elemente anzeigen.
+  angezeigt werden oder du möchtest verwandte Elemente anzeigen.
 
-  .. ### BEGIN~OF~TABLE ###
+.. figure:: /Images/camaliga_tut2.png
 
-  .. container:: table-row
+   *Abbildung 19: Wähle ein übergeordnetes Element nur bei zusätzlichen Elementen aus*
 
-     a
-           |img-19|
+.. figure:: /Images/camaliga_tut3.png
 
-           *Abbildung 19: Wähle ein übergeordnetes Element nur bei zusätzlichen
-           Elementen aus*
-
-     b
-           |img-20|
-
-           *Abbildung 20: Kategorien eines Hauses*
-
-
-  .. ###### END~OF~TABLE ######
+   *Abbildung 20: Kategorien eines Hauses*
 
 - Nun können wir die camaliga-Einträge präsentieren. Füge das statische
   TypoScript dieser Extension ein und füge das Plugin auf der Startseite
@@ -91,9 +67,9 @@ Tutorial
 
    plugin.tx_camaliga.settings.defaultCatIDs = 30
 
-|img-21|
+.. figure:: /Images/camaliga_tut4.png
 
-*Abbildung 21: Kategorie für die Sucheinschränkung*
+   *Abbildung 21: Kategorie für die Sucheinschränkung*
 
 - Nun werden nur noch Highlights auf der Startseite angezeigt. Im
   nächsten Schritt soll das Layout des Karussell oder der Gallerie
@@ -146,22 +122,13 @@ Tutorial
 
    <f:link.action action="showExtended" pageUid="{settings.showId}" arguments="{content : content}">
 
-.. ### BEGIN~OF~TABLE ###
+.. figure:: /Images/camaliga_tut5.png
 
-.. container:: table-row
+   *Abbildung 22: Erweiterte Listenansicht mit Suchmöglichkeit*
 
-   a
-         |img-22|
+.. figure:: /Images/camaliga_tut6.png
 
-         *Abbildung 22: Erweiterte Listenansicht mit Suchmöglichkeit*
-
-   b
-         |img-23|
-
-         *Abbildung 23: Detailansicht mit einem zusätzlichem Kind-Element*
-
-
-.. ###### END~OF~TABLE ######
+   *Abbildung 23: Detailansicht mit einem zusätzlichem Kind-Element*
 
 
 ===========================================

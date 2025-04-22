@@ -1,5 +1,0 @@
-﻿.. |img-18|     image:: ../../Images/backend_sortierung.jpg
-.. :align: left
-.. :border: 0
-.. :name: Backend
-.. :width: 100%

@@ -1,18 +1,4 @@
-﻿
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Slug
@@ -61,7 +47,7 @@ Achtung 4: vor Camaliga 12 muss man bei plugin: Pi1 statt Show benutzen. Und ab 
 Showextended ersetzen, wenn man nicht die normale Single-Ansicht benutzt!
 
 
-Man kann auch Kategorien in den routeEnhancers verwenden. Allerdings geht das nur mit Kategorien eines "parents". 
+Man kann auch Kategorien in den routeEnhancers verwenden. Allerdings geht das nur mit Kategorien eines "parents".
 Wenn der parent die ID 10 hat, kann man so einen routeEnhancer für die Suche nach Camaliga-Elementen, die eine Kategorie haben, deren parent 10 ist::
 
     routeEnhancers:
@@ -130,28 +116,3 @@ Man kann das ganze auch anders schreiben. Das Ergebnis ist allerdings das gleich
 			routeFieldResult: '{city}-{uid}'
 
 Weitere Informationen dazu findet man hier: https://typo3worx.eu/2018/12/typo3-routing-extensions-and-enhancers/
-
-RealUrl
-^^^^^^^
-
-Bis TYPO3 8 kann man RealUrl benutzen, um das Format der Links zu Einzelseiten zu ändern. Hier ein Beispiel für die RealUrl-config-Datei::
-
-  'postVarSets' => array(
-    '_DEFAULT' => array(
-    ...
-
-	  'camaliga' => array( // this key must be unique
-	      array(
-		  'GETvar' => 'tx_camaliga_pi1[action]',
-	      ),
-	      array(
-		  'GETvar' => 'tx_camaliga_pi1[controller]',
-	      ),
-	      array(
-		  'GETvar' => 'tx_camaliga_pi1[content]',
-	      ),
-	  ),
-
-    ...
-   ),
-  ),

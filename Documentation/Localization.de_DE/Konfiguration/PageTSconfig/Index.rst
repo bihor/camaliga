@@ -1,18 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Seiten-TSconfig
@@ -65,9 +51,10 @@ Hier ein Beispiel mit 2 Layouts:
    TCEFORM.tx_camaliga_domain_model_content.custom1.label = Datum:
    TCEFORM.tx_camaliga_domain_model_content.custom2.disabled = 1
 
-|img-17|
+.. figure:: /Images/camaliga_tsconfig.png
+   :width: 100%
 
-*Abbildung 17: Dies findet man im Ressources-Tab einer Seite*
+   *Abbildung 17: Dies findet man im Ressources-Tab einer Seite*
 
 - Man kann über die TSconfig auch unnötige FlexForm-Felder ausblenden. Ein Beispiel:
 

@@ -1,18 +1,4 @@
-﻿.. include:: Images.txt
-
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+﻿.. include:: /Includes.rst.txt
 
 
 Screenshots
@@ -22,45 +8,26 @@ Screenshots
   Im Kapitel Administration/HTML-Templates findet man Links zu den Demo-Seiten.
   Screenshots aus dem Backend findet man auch im Benutzerhandbuch.
 
-.. ### BEGIN~OF~TABLE ###
+.. figure:: /Images/camaliga_screenshot1.jpg
 
-.. container:: table-row
+   *Abbildung 1: Ein Karussell mit 3 Elementen*
 
-   a
-         |img-1|
+.. figure:: /Images/camaliga_screenshot2.jpg
 
-         *Abbildung 1: Ein Karussell mit 3 Elementen*
+   *Abbildung 2: Eine der vielen Galerien*
 
-   b
-         |img-2|
+.. figure:: /Images/camaliga_screenshot3.jpg
 
-         *Abbildung 2: Eine der vielen Galerien*
+   *Abbildung 3: Eine Listen-Ansicht*
 
+.. figure:: /Images/camaliga_screenshot4.jpg
 
-.. container:: table-row
+   *Abbildung 4: Eine GoogleMaps-Karte*
 
-   a
-         |img-3|
+.. figure:: /Images/camaliga-suchfelder.jpg
 
-         *Abbildung 3: Eine Listen-Ansicht*
+   *Abbildung 5: Beispiel für Suchfelder im Frontend*
 
-   b
-         |img-4|
+.. figure:: /Images/camaliga-backend-fields.jpg
 
-         *Abbildung 4: Eine GoogleMaps-Karte*
-
-
-.. container:: table-row
-
-   a
-         |img-38|
-
-         *Abbildung 5: Beispiel für Suchfelder im Frontend*
-
-   b
-         |img-39|
-
-         *Abbildung 6: Einige der Felder im Backend (nicht benötige Felder kann man deaktivieren)*
-
-.. ###### END~OF~TABLE ######
-
+   *Abbildung 6: Einige der Felder im Backend (nicht benötige Felder kann man deaktivieren)*
