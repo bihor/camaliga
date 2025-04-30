@@ -13,7 +13,7 @@
                edit-on-github="bihor/camaliga"
                interlink-shortcode="quizpalme/camaliga"
     />
-    <project title="Camaliga: A carousel/gallery/map/list extension that can use the TYPO3 categories and different jQuery-plugins."
+    <project title="Camaliga: A carousel/gallery/map/list extension"
              version="local"
              copyright="Kurt Gusbeth"
     />

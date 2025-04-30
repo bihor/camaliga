@@ -12,7 +12,7 @@ Verlinkung
 ::
 
   TCEMAIN.linkHandler.tx_camaliga_domain_model_content {
-    handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+    handler = TYPO3\CMS\Backend\LinkHandler\RecordLinkHandler
     label = Camaliga
     configuration {
         table = tx_camaliga_domain_model_content
@@ -22,6 +22,9 @@ Verlinkung
     scanAfter = page
   }
 
+Achtung: bis TYPO3 12 muss es heißen::
+
+    handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
 
 - Dann braucht man noch etwas TypoScript-Setup (die 112 ersetzen!):
 

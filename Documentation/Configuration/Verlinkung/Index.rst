@@ -12,7 +12,7 @@ that you can also link to the single view of a camaliga element directly in the 
 ::
 
   TCEMAIN.linkHandler.tx_camaliga_domain_model_content {
-    handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
+    handler = TYPO3\CMS\Backend\LinkHandler\RecordLinkHandler
     label = Camaliga
     configuration {
         table = tx_camaliga_domain_model_content
@@ -22,6 +22,9 @@ that you can also link to the single view of a camaliga element directly in the 
     scanAfter = page
   }
 
+Note: till TYPO3 12 replace the handler with this one::
+
+    handler = TYPO3\CMS\Recordlist\LinkHandler\RecordLinkHandler
 
 - Then you need some TypoScript setup (replace 112!):
 
