@@ -317,4 +317,6 @@ Version     Änderungen
 13.1.3      Bugfix: Plugin-Wizard.
 
 13.1.4/5    Dokumentation.
+
+13.2.0      Refactoring. Man muss alle Caches leeren!
 ==========  =====================================================================================================================

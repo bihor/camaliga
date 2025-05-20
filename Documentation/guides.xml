@@ -12,6 +12,7 @@
                edit-on-github-branch="master"
                edit-on-github="bihor/camaliga"
                interlink-shortcode="quizpalme/camaliga"
+               typo3-core-preferred="13.4"
     />
     <project title="Camaliga: A carousel/gallery/map/list extension"
              version="local"

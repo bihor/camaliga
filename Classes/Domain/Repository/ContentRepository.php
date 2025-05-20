@@ -497,7 +497,7 @@ class ContentRepository extends Repository
 	 * @param	integer	$uid		UID
 	 * @param	integer	$sorting	Sorting order
 	 */
-	public function setNewSorting($uid, $sorting)
+	public function setNewSorting($uid, $sorting): void
 	{
 		$table = 'tx_camaliga_domain_model_content';
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);

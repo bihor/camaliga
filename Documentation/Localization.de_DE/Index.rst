@@ -1,36 +1,49 @@
 ﻿.. include:: /Includes.rst.txt
 
-=========================================
+
+.. _start:
+
+=============================================================
 EXT: Camaliga - carousel/map/list/gallery
-=========================================
+=============================================================
 
-:Extension:
-      camaliga
+.. only:: html
 
-:Beschreibung:
-      Camaliga carousel/map/list/gallery ist eine flexible Extension um Elemente auf verschiedene Art anzuzeigen. Es können Kategorien für Sortierung und Restriktionen genutzt werden. Zudem gibt es eine Volltextsuche und eine Umkreissuche. Außerdem kann man verschiedene jQuery-Plugins benutzen.
+	:Klassifikation:
+		camaliga
 
-:Keywords:
-      extbase, fluid, carousel, gallery, slider, google, maps, geo
+	:Version:
+		|release|
 
-:Autor:
-      Kurt Gusbeth
+	:Sprache:
+		de
 
-:Email:
-      info@quizpalme.de
+	:Beschreibung:
+		Camaliga carousel/map/list/gallery ist eine flexible Extension um Elemente auf verschiedene Art anzuzeigen. Es können Kategorien für Sortierung und Restriktionen genutzt werden.
 
-:Website:
-      `www.quizpalme.de <https://www.quizpalme.de/>`_
+	:Schlüsselwörter:
+		extbase,fluid,carousel,slider,gallery,google,maps,geo
 
-:Spachen:
-      `english Version <http://docs.typo3.org/typo3cms/extensions/camaliga/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/camaliga/de-de/>`_ bzw. https://github.com/bihor/camaliga/tree/master/Documentation/Localization.de_DE
+	:Copyright:
+		2025
+
+	:Autor:
+		Kurt Gusbeth
+
+	:Lizenz:
+		Dieses Dokument wird unter der Open Publication License, siehe
+		http://www.opencontent.org/openpub/ veröffentlicht.
+
+	:Gerendert:
+		|today|
+
+	Der Inhalt dieses Dokuments bezieht sich auf TYPO3,
+	ein GNU/GPL CMS-Framework auf `www.typo3.org <https://typo3.org/>`__.
 
 
+	**Inhaltsverzeichnis**
 
 .. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
 
    Einleitung/Index
    Benutzerhandbuch/Index

@@ -25,7 +25,7 @@ class KeSearchIndexer extends IndexerBase
      * @param array $params
      * @param type $pObj
      */
-    public function registerIndexerConfiguration(&$params, $pObj)
+    public function registerIndexerConfiguration(&$params, $pObj): void
     {
         // Set a name and an icon for your indexer.
         $customIndexer = [
@@ -61,7 +61,7 @@ class KeSearchIndexer extends IndexerBase
             }
 
             if (!isset($indexerConfig['sysfolder'])|| empty($indexerConfig['sysfolder'])) {
-                throw new \Exception('No folder specified. Please set the folder which should be indexed in the indexer configuration!');
+                throw new \Exception('No folder specified. Please set the folder which should be indexed in the indexer configuration!', 8587085735);
             }
 
             // Doctrine DBAL using Connection Pool.

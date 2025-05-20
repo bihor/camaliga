@@ -39,9 +39,6 @@ Administration
 
 
 .. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
 
    Extension-Configuration/Index
    Html-templates/Index

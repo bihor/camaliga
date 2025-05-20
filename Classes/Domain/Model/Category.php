@@ -29,7 +29,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
   * @param ObjectStorage $categories
   * @return void
   */
- public function setCategories($categories)
+ public function setCategories($categories): void
 	{
 		$this->categories = $categories;
 	}

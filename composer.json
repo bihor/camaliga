@@ -16,11 +16,6 @@
 			"Quizpalme\\Camaliga\\" : "Classes"
 		}
 	},
-	"autoload-dev" : {
-		"psr-4" : {
-			"Quizpalme\\Camaliga\\Tests\\" : "Tests"
-		}
-	},
 	"replace" : {
 		"typo3-ter/camaliga" : "self.version"
 	},

@@ -9,9 +9,6 @@ Konfiguration
 
 
 .. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
 
    Typoscript-referenz/Index
    Karussell-konfiguration/Index

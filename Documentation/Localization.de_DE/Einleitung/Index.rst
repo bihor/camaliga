@@ -6,9 +6,6 @@ Einleitung
 
 
 .. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
 
    WasMachtDieExtension/Index
    Screenshots/Index

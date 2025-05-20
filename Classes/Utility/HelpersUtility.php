@@ -59,7 +59,7 @@ class HelpersUtility
      *
      * @return void
      */
-    public function setSeo(Content $content, array $settings)
+    public function setSeo(Content $content, array $settings): void
     {
         $title = $content->getTitle();
         $desc = preg_replace("/[\n\r]/"," - ", $content->getShortdesc());

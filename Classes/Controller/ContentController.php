@@ -75,6 +75,11 @@ class ContentController extends ActionController
      * @var string	Pfad zu den Templates
      */
     protected $templatePath;
+    public function __construct(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository, \Quizpalme\Camaliga\Utility\HelpersUtility $helpersUtility)
+    {
+        $this->contentRepository = $contentRepository;
+        $this->helpersUtility = $helpersUtility;
+    }
 
     /**
      * Merges / overrides the FlexForm settings with TypoScript settings if FlexForm setting is empty
@@ -159,22 +164,6 @@ class ContentController extends ActionController
             }
         }
         $this->settings = $originalSettings;
-    }
-
-    /**
-     * Injects the content-Repository
-     */
-    public function injectContentRepository(ContentRepository $contentRepository)
-    {
-        $this->contentRepository = $contentRepository;
-    }
-
-    /**
-     * Injects the helpers utility
-     */
-    public function injectHelpersUtility(HelpersUtility $helpersUtility)
-    {
-        $this->helpersUtility = $helpersUtility;
     }
     
 
@@ -1277,7 +1266,7 @@ class ContentController extends ActionController
         }
         $categoryRepository = GeneralUtility::makeInstance(CategoryRepository::class);
         foreach ($categoryUids as $key => $value) {
-            $category = $categoryRepository->findOneByUid($key);
+            $category = $categoryRepository->findOneBy(['uid' => $key]);
             $content->addCategory($category);
         }
 

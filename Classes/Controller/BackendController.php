@@ -55,23 +55,15 @@ class BackendController extends ActionController
   */
  protected $contentRepository;
 
-    public function __construct(
-        protected readonly ModuleTemplateFactory $moduleTemplateFactory,
-    ) {
+    public function __construct(protected readonly ModuleTemplateFactory $moduleTemplateFactory, \Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+    {
+        $this->contentRepository = $contentRepository;
     }
 
     public function initializeAction(): void
     {
         $this->id = (int)($this->request->getQueryParams()['id'] ?? 0);
         $this->moduleTemplate = $this->moduleTemplateFactory->create($this->request);
-    }
-
-    /**
-     * Injects the content-Repository
-     */
-    public function injectContentRepository(ContentRepository $contentRepository)
-    {
-        $this->contentRepository = $contentRepository;
     }
 
 

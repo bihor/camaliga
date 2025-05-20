@@ -313,4 +313,6 @@ Version     Changes
 13.1.3      Bugfix: plugin wizard.
 
 13.1.4/5    Documentation.
+
+13.2.0      Refactoring. You need to use "Flush TYPO3 and PHP Cache"!
 ==========  ==============================================================================================================================

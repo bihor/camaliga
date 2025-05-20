@@ -326,7 +326,7 @@ class Content extends AbstractValueObject
 	 * @param string $sorting
 	 * @return void
 	 */
-	public function setSorting($sorting) {
+	public function setSorting($sorting): void {
 	    $this->sorting = $sorting;
 	}
 	
@@ -355,7 +355,7 @@ class Content extends AbstractValueObject
 	 * @param string $title
 	 * @return void
 	 */
-	public function setTitle($title) {
+	public function setTitle($title): void {
 		$this->title = $title;
 	}
 
@@ -384,7 +384,7 @@ class Content extends AbstractValueObject
 	 * @param string $shortdesc
 	 * @return void
 	 */
-	public function setShortdesc($shortdesc) {
+	public function setShortdesc($shortdesc): void {
 		$this->shortdesc = $shortdesc;
 	}
 
@@ -413,7 +413,7 @@ class Content extends AbstractValueObject
 	 * @param string $longdesc
 	 * @return void
 	 */
-	public function setLongdesc($longdesc) {
+	public function setLongdesc($longdesc): void {
 		$this->longdesc = $longdesc;
 	}
 
@@ -476,7 +476,7 @@ class Content extends AbstractValueObject
 	 * @param string $link
 	 * @return void
 	 */
-	public function setLink($link) {
+	public function setLink($link): void {
 		$this->link = $link;
 	}
 	
@@ -495,7 +495,7 @@ class Content extends AbstractValueObject
 	 * @param string $slug
 	 * @return void
 	 */
-	public function setSlug($slug) {
+	public function setSlug($slug): void {
 		$this->slug = $slug;
 	}
 	
@@ -514,7 +514,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function setFalimage(FileReference $falimage)
+ public function setFalimage(FileReference $falimage): void
 	{
 		$this->falimage = $falimage;
 	}
@@ -534,7 +534,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function setFalimage2(FileReference $falimage2)
+ public function setFalimage2(FileReference $falimage2): void
 	{
 		$this->falimage2 = $falimage2;
 	}
@@ -554,7 +554,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function setFalimage3(FileReference $falimage3)
+ public function setFalimage3(FileReference $falimage3): void
 	{
 		$this->falimage3 = $falimage3;
 	}
@@ -574,7 +574,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function setFalimage4(FileReference $falimage4)
+ public function setFalimage4(FileReference $falimage4): void
 	{
 		$this->falimage4 = $falimage4;
 	}
@@ -594,7 +594,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function setFalimage5(FileReference $falimage5)
+ public function setFalimage5(FileReference $falimage5): void
 	{
 		$this->falimage5 = $falimage5;
 	}
@@ -624,7 +624,7 @@ class Content extends AbstractValueObject
 	 * @param string $street
 	 * @return void
 	 */
-	public function setStreet($street) {
+	public function setStreet($street): void {
 		$this->street = $street;
 	}
 	
@@ -643,7 +643,7 @@ class Content extends AbstractValueObject
 	 * @param string $zip
 	 * @return void
 	 */
-	public function setZip($zip) {
+	public function setZip($zip): void {
 		$this->zip = $zip;
 	}
 	
@@ -662,7 +662,7 @@ class Content extends AbstractValueObject
 	 * @param string $city
 	 * @return void
 	 */
-	public function setCity($city) {
+	public function setCity($city): void {
 		$this->city = $city;
 	}
 	
@@ -681,7 +681,7 @@ class Content extends AbstractValueObject
 	 * @param string $country
 	 * @return void
 	 */
-	public function setCountry($country) {
+	public function setCountry($country): void {
 		$this->country = $country;
 	}
 
@@ -700,7 +700,7 @@ class Content extends AbstractValueObject
 	 * @param string $person
 	 * @return void
 	 */
-	public function setPerson($person) {
+	public function setPerson($person): void {
 		$this->person = $person;
 	}
 	
@@ -719,7 +719,7 @@ class Content extends AbstractValueObject
 	 * @param string $phone
 	 * @return void
 	 */
-	public function setPhone($phone) {
+	public function setPhone($phone): void {
 		$this->phone = $phone;
 	}
 	
@@ -738,7 +738,7 @@ class Content extends AbstractValueObject
 	 * @param string $mobile
 	 * @return void
 	 */
-	public function setMobile($mobile) {
+	public function setMobile($mobile): void {
 		$this->mobile = $mobile;
 	}
 	
@@ -757,7 +757,7 @@ class Content extends AbstractValueObject
 	 * @param string $email
 	 * @return void
 	 */
-	public function setEmail($email) {
+	public function setEmail($email): void {
 		$this->email = $email;
 	}
 	
@@ -776,7 +776,7 @@ class Content extends AbstractValueObject
 	 * @param \float $latitude
 	 * @return void
 	 */
-	public function setLatitude($latitude) {
+	public function setLatitude($latitude): void {
 		$this->latitude = $latitude;
 	}
 
@@ -795,7 +795,7 @@ class Content extends AbstractValueObject
 	 * @param \float $longitude
 	 * @return void
 	 */
-	public function setLongitude($longitude) {
+	public function setLongitude($longitude): void {
 		$this->longitude = $longitude;
 	}
 
@@ -814,7 +814,7 @@ class Content extends AbstractValueObject
 	 * @param \float $distance
 	 * @return void
 	 */
-	public function setDistance($distance) {
+	public function setDistance($distance): void {
 		$this->distance = $distance;
 	}
 
@@ -833,7 +833,7 @@ class Content extends AbstractValueObject
 	 * @param string $custom1
 	 * @return void
 	 */
-	public function setCustom1($custom1) {
+	public function setCustom1($custom1): void {
 		$this->custom1 = $custom1;
 	}
 
@@ -852,7 +852,7 @@ class Content extends AbstractValueObject
 	 * @param string $custom2
 	 * @return void
 	 */
-	public function setCustom2($custom2) {
+	public function setCustom2($custom2): void {
 		$this->custom2 = $custom2;
 	}
 
@@ -871,7 +871,7 @@ class Content extends AbstractValueObject
 	 * @param string $custom3
 	 * @return void
 	 */
-	public function setCustom3($custom3) {
+	public function setCustom3($custom3): void {
 		$this->custom3 = $custom3;
 	}
 
@@ -889,7 +889,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function setMother(\Quizpalme\Camaliga\Domain\Model\Content $mother) {
+ public function setMother(\Quizpalme\Camaliga\Domain\Model\Content $mother): void {
 		$this->mother = $mother;
 	}
 
@@ -898,7 +898,7 @@ class Content extends AbstractValueObject
   *
   * @return void
   */
- public function addCategory(Category $category) {
+ public function addCategory(Category $category): void {
 		$this->categories->attach($category);
 	}
 	
@@ -908,7 +908,7 @@ class Content extends AbstractValueObject
   * @param Category $categoryToRemove The Category to be removed
   * @return void
   */
- public function removeCategory(Category $categoryToRemove) {
+ public function removeCategory(Category $categoryToRemove): void {
 		$this->categories->detach($categoryToRemove);
 	}
 	
@@ -918,7 +918,7 @@ class Content extends AbstractValueObject
   * @param ObjectStorage<Category> $categories
   * @return void
   */
- public function setCategories(ObjectStorage $categories) {
+ public function setCategories(ObjectStorage $categories): void {
 		$this->categories = $categories;
 	}
 	
@@ -982,7 +982,7 @@ class Content extends AbstractValueObject
 	 * @param integer $moduloBegin
 	 * @return void
 	 */
-	public function setModuloBegin($moduloBegin) {
+	public function setModuloBegin($moduloBegin): void {
 		$this->moduloBegin = $moduloBegin;
 	}
 
@@ -1001,7 +1001,7 @@ class Content extends AbstractValueObject
 	 * @param integer $moduloEnd
 	 * @return void
 	 */
-	public function setModuloEnd($moduloEnd) {
+	public function setModuloEnd($moduloEnd): void {
 		$this->moduloEnd = $moduloEnd;
 	}
 	
@@ -1043,7 +1043,7 @@ class Content extends AbstractValueObject
 	 *
 	 * @param integer $uid UID
 	 */
-	public function repairFALreference($uid) {
+	public function repairFALreference($uid): void {
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_file_reference');
 		$queryBuilder
 			->update('sys_file_reference')

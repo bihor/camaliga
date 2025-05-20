@@ -95,8 +95,5 @@ Benutzerhandbuch
 
 
 .. toctree::
-   :maxdepth: 5
-   :titlesonly:
-   :glob:
 
    Faq/Index

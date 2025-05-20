@@ -124,7 +124,7 @@ class CsvImportTask extends AbstractTask
 	 * @param string $csvfile Path to the csv file
 	 * @return void
 	 */
-	public function setCsvfile($csvfile) {
+	public function setCsvfile($csvfile): void {
 		$this->csvfile = $csvfile;
 	}
 
@@ -143,7 +143,7 @@ class CsvImportTask extends AbstractTask
 	 * @param string $header Header of the csv file
 	 * @return void
 	 */
-	public function setHeader($header) {
+	public function setHeader($header): void {
 		$this->header = $header;
 	}
 
@@ -162,7 +162,7 @@ class CsvImportTask extends AbstractTask
 	 * @param string $fields Fields to export
 	 * @return void
 	 */
-	public function setFields($fields) {
+	public function setFields($fields): void {
 		$this->fields = $fields;
 	}
 
@@ -181,7 +181,7 @@ class CsvImportTask extends AbstractTask
 	 * @param integer $page UID of the start page for this task.
 	 * @return void
 	 */
-	public function setPage($page) {
+	public function setPage($page): void {
 		$this->page = $page;
 	}
 
@@ -200,7 +200,7 @@ class CsvImportTask extends AbstractTask
 	 * @param integer $page UID of the start page for this task.
 	 * @return void
 	 */
-	public function setCatPage($catpage) {
+	public function setCatPage($catpage): void {
 		$this->catpage = ($catpage) ? 1 : 0;
 	}
 
@@ -219,7 +219,7 @@ class CsvImportTask extends AbstractTask
 	 * @param integer $page UID of the language for this task.
 	 * @return void
 	 */
-	public function setLanguage($language) {
+	public function setLanguage($language): void {
 		$this->language = $language;
 	}
 
@@ -238,7 +238,7 @@ class CsvImportTask extends AbstractTask
 	 * @param string $separator
 	 * @return void
 	 */
-	public function setSeparator($separator) {
+	public function setSeparator($separator): void {
 		$this->separator = $separator;
 	}
 
@@ -257,7 +257,7 @@ class CsvImportTask extends AbstractTask
 	 * @param string $delimiter
 	 * @return void
 	 */
-	public function setDelimiter($delimiter) {
+	public function setDelimiter($delimiter): void {
 		$this->delimiter = $delimiter;
 	}
 
@@ -276,7 +276,7 @@ class CsvImportTask extends AbstractTask
 	 * @param string $catdelimiter
 	 * @return void
 	 */
-	public function setCatdelimiter($catdelimiter) {
+	public function setCatdelimiter($catdelimiter): void {
 		$this->catdelimiter = $catdelimiter;
 	}
 
@@ -295,7 +295,7 @@ class CsvImportTask extends AbstractTask
 	 * @param integer $convert
 	 * @return void
 	 */
-	public function setConvert($convert) {
+	public function setConvert($convert): void {
 		$this->convert = ($convert) ? 1 : 0;
 	}
 
@@ -314,7 +314,7 @@ class CsvImportTask extends AbstractTask
 	 * @param integer $delete
 	 * @return void
 	 */
-	public function setDelete($delete) {
+	public function setDelete($delete): void {
 		$this->delete = ($delete) ? 1 : 0;
 	}
 
@@ -333,7 +333,7 @@ class CsvImportTask extends AbstractTask
 	 * @param integer $simulate
 	 * @return void
 	 */
-	public function setSimulate($simulate) {
+	public function setSimulate($simulate): void {
 		$this->simulate = ($simulate) ? 1 : 0;
 	}
 

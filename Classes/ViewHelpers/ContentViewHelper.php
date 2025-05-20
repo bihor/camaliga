@@ -29,14 +29,15 @@ class ContentViewHelper extends AbstractTagBasedViewHelper
  protected $contentRepository = NULL;
 	
 	/**
-  * Injects the content-Repository
+  * Constructor
   */
- public function injectContentRepository(ContentRepository $contentRepository)
-	{ 
-		$this->contentRepository = $contentRepository; 
-	}
+ public function __construct(\Quizpalme\Camaliga\Domain\Repository\ContentRepository $contentRepository)
+ {
+     parent::__construct();
+     $this->contentRepository = $contentRepository;
+ }
 	
-	public function initializeArguments()
+	public function initializeArguments(): void
 	{
 		parent::initializeArguments();
 		//$this->registerUniversalTagAttributes();
