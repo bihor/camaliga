@@ -315,4 +315,6 @@ Version     Changes
 13.1.4/5    Documentation.
 
 13.2.0      Refactoring. You need to use "Flush TYPO3 and PHP Cache"!
+
+13.2.1      New home url: https://github.com/fixpunkt-com/camaliga
 ==========  ==============================================================================================================================

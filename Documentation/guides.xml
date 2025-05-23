@@ -7,10 +7,10 @@
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
                project-home="https://extensions.typo3.org/extension/camaliga"
                project-contact="https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/"
-               project-repository="https://github.com/bihor/camaliga"
-               project-issues="https://github.com/bihor/camaliga/issues"
+               project-repository="https://github.com/fixpunkt-com/camaliga"
+               project-issues="https://github.com/fixpunkt-com/camaliga/issues"
                edit-on-github-branch="master"
-               edit-on-github="bihor/camaliga"
+               edit-on-github="fixpunkt-com/camaliga"
                interlink-shortcode="quizpalme/camaliga"
                typo3-core-preferred="13.4"
     />
